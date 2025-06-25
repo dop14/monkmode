@@ -1,0 +1,513 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>790</width>
+    <height>800</height>
+   </rect>
+  </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+    <horstretch>200</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>280</x>
+      <y>30</y>
+      <width>221</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>32</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>monkmode</string>
+    </property>
+   </widget>
+   <widget class="QWidget" name="layoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>140</x>
+      <y>110</y>
+      <width>491</width>
+      <height>542</height>
+     </rect>
+    </property>
+    <layout class="QVBoxLayout" name="verticalLayout_10">
+     <item>
+      <widget class="QFrame" name="focusFrame">
+       <property name="frameShape">
+        <enum>QFrame::Shape::StyledPanel</enum>
+       </property>
+       <property name="frameShadow">
+        <enum>QFrame::Shadow::Raised</enum>
+       </property>
+       <layout class="QVBoxLayout" name="verticalLayout_3">
+        <item>
+         <widget class="QLabel" name="timer_label">
+          <property name="font">
+           <font>
+            <pointsize>30</pointsize>
+           </font>
+          </property>
+          <property name="text">
+           <string>25:00</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignmentFlag::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="start_focus_btn">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="font">
+           <font>
+            <pointsize>18</pointsize>
+           </font>
+          </property>
+          <property name="text">
+           <string>focus</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_3">
+          <item>
+           <widget class="QPushButton" name="focus_pause_btn">
+            <property name="enabled">
+             <bool>true</bool>
+            </property>
+            <property name="font">
+             <font>
+              <kerning>true</kerning>
+             </font>
+            </property>
+            <property name="text">
+             <string>pause/start</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="focus_stop_btn">
+            <property name="text">
+             <string>stop</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </widget>
+     </item>
+     <item>
+      <spacer name="horizontalSpacer_4">
+       <property name="orientation">
+        <enum>Qt::Orientation::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout_4">
+       <item>
+        <layout class="QVBoxLayout" name="verticalLayout_8">
+         <item>
+          <widget class="QFrame" name="periodFrame">
+           <property name="frameShape">
+            <enum>QFrame::Shape::StyledPanel</enum>
+           </property>
+           <property name="frameShadow">
+            <enum>QFrame::Shadow::Raised</enum>
+           </property>
+           <layout class="QVBoxLayout" name="verticalLayout_4">
+            <item>
+             <widget class="QLabel" name="period_label">
+              <property name="font">
+               <font>
+                <pointsize>16</pointsize>
+               </font>
+              </property>
+              <property name="text">
+               <string>focus period</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QComboBox" name="period_combobox">
+              <item>
+               <property name="text">
+                <string>pomodoro</string>
+               </property>
+              </item>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="editperiod_btn">
+              <property name="text">
+               <string>edit</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="newperiod_btn">
+              <property name="text">
+               <string>create new period</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </item>
+         <item>
+          <spacer name="horizontalSpacer_2">
+           <property name="orientation">
+            <enum>Qt::Orientation::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item>
+          <widget class="QFrame" name="dailyFrame">
+           <property name="frameShape">
+            <enum>QFrame::Shape::StyledPanel</enum>
+           </property>
+           <property name="frameShadow">
+            <enum>QFrame::Shadow::Raised</enum>
+           </property>
+           <layout class="QVBoxLayout" name="verticalLayout_5">
+            <item>
+             <widget class="QLabel" name="daily_label">
+              <property name="font">
+               <font>
+                <pointsize>16</pointsize>
+               </font>
+              </property>
+              <property name="text">
+               <string>daily focus</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="today_label">
+              <property name="text">
+               <string>today's focus:</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="daily_goal_label">
+              <property name="text">
+               <string>daily focus goal:</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QProgressBar" name="daily_progression_bar">
+              <property name="value">
+               <number>24</number>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <spacer name="verticalSpacer">
+         <property name="orientation">
+          <enum>Qt::Orientation::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>40</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item>
+        <layout class="QVBoxLayout" name="verticalLayout_9">
+         <item>
+          <widget class="QFrame" name="subjectFrame">
+           <property name="frameShape">
+            <enum>QFrame::Shape::StyledPanel</enum>
+           </property>
+           <property name="frameShadow">
+            <enum>QFrame::Shadow::Raised</enum>
+           </property>
+           <layout class="QVBoxLayout" name="verticalLayout_6">
+            <item>
+             <widget class="QLabel" name="subject_label">
+              <property name="font">
+               <font>
+                <pointsize>16</pointsize>
+               </font>
+              </property>
+              <property name="text">
+               <string>subject</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QComboBox" name="subject_combobox">
+              <item>
+               <property name="text">
+                <string>study</string>
+               </property>
+              </item>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="edit_subject_btn">
+              <property name="text">
+               <string>edit</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="newsubject_btn">
+              <property name="text">
+               <string>create new subject</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </item>
+         <item>
+          <spacer name="horizontalSpacer_3">
+           <property name="orientation">
+            <enum>Qt::Orientation::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item>
+          <widget class="QFrame" name="weeklyFrame">
+           <property name="frameShape">
+            <enum>QFrame::Shape::StyledPanel</enum>
+           </property>
+           <property name="frameShadow">
+            <enum>QFrame::Shadow::Raised</enum>
+           </property>
+           <layout class="QVBoxLayout" name="verticalLayout_7">
+            <item>
+             <widget class="QLabel" name="weekly_label">
+              <property name="font">
+               <font>
+                <pointsize>16</pointsize>
+               </font>
+              </property>
+              <property name="text">
+               <string>weekly focus</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="weekly_focus_label">
+              <property name="text">
+               <string>this week's focus:</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="weekly_goal_label">
+              <property name="text">
+               <string>weekly focus goal:</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QProgressBar" name="weekly_progression_bar">
+              <property name="value">
+               <number>24</number>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </item>
+        </layout>
+       </item>
+      </layout>
+     </item>
+    </layout>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>790</width>
+     <height>33</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuSettings">
+    <property name="title">
+     <string>settings</string>
+    </property>
+    <widget class="QMenu" name="menuchange_default">
+     <property name="title">
+      <string>change default</string>
+     </property>
+     <addaction name="actiondaily_goal"/>
+     <addaction name="actionfocus_period"/>
+     <addaction name="actionfocus_subject"/>
+    </widget>
+    <widget class="QMenu" name="menutheme">
+     <property name="title">
+      <string>theme</string>
+     </property>
+     <addaction name="actiondark"/>
+     <addaction name="actionlight"/>
+    </widget>
+    <widget class="QMenu" name="menuset_week">
+     <property name="title">
+      <string>set week</string>
+     </property>
+     <addaction name="actionweekdays_only"/>
+     <addaction name="actionwhole_week"/>
+    </widget>
+    <widget class="QMenu" name="menunotifications">
+     <property name="title">
+      <string>notifications</string>
+     </property>
+     <addaction name="actionnotify_when_session_starts"/>
+     <addaction name="actionnotify_when_session_ends"/>
+    </widget>
+    <addaction name="menuchange_default"/>
+    <addaction name="menuset_week"/>
+    <addaction name="menunotifications"/>
+    <addaction name="menutheme"/>
+   </widget>
+   <widget class="QMenu" name="menuabout">
+    <property name="title">
+     <string>help</string>
+    </property>
+    <addaction name="actionabout"/>
+    <addaction name="actionabout_2"/>
+   </widget>
+   <widget class="QMenu" name="menuhistory">
+    <property name="title">
+     <string>history</string>
+    </property>
+    <addaction name="actionview_focus_history"/>
+    <addaction name="actionexport_data"/>
+    <addaction name="actionclear_history"/>
+   </widget>
+   <addaction name="menuSettings"/>
+   <addaction name="menuhistory"/>
+   <addaction name="menuabout"/>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <action name="actiondaily_goal">
+   <property name="text">
+    <string>daily focus goal</string>
+   </property>
+  </action>
+  <action name="actiondark">
+   <property name="text">
+    <string>dark</string>
+   </property>
+  </action>
+  <action name="actionlight">
+   <property name="text">
+    <string>light</string>
+   </property>
+  </action>
+  <action name="actionabout">
+   <property name="text">
+    <string>how to use</string>
+   </property>
+  </action>
+  <action name="actionabout_2">
+   <property name="text">
+    <string>about</string>
+   </property>
+  </action>
+  <action name="actionweekdays_only">
+   <property name="text">
+    <string>weekdays only</string>
+   </property>
+  </action>
+  <action name="actionwhole_week">
+   <property name="text">
+    <string>whole week</string>
+   </property>
+  </action>
+  <action name="actionnotify_when_session_starts">
+   <property name="text">
+    <string>notify when session starts</string>
+   </property>
+  </action>
+  <action name="actionnotify_when_session_ends">
+   <property name="text">
+    <string>notify when session ends</string>
+   </property>
+  </action>
+  <action name="actionview_focus_history">
+   <property name="text">
+    <string>view focus history</string>
+   </property>
+  </action>
+  <action name="actionexport_data">
+   <property name="text">
+    <string>export data</string>
+   </property>
+  </action>
+  <action name="actionclear_history">
+   <property name="text">
+    <string>clear history</string>
+   </property>
+  </action>
+  <action name="actionfocus_period">
+   <property name="text">
+    <string>focus period</string>
+   </property>
+  </action>
+  <action name="actionfocus_subject">
+   <property name="text">
+    <string>focus subject</string>
+   </property>
+  </action>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
