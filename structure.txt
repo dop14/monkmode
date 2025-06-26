@@ -1,21 +1,21 @@
 monkmode/
 │
 ├── core/                ← logic goes here
-│   └── timer.py
-│   └── session.py
-│   └── controller.py
+│   └── 
+│   └── 
+│   └──
 │
 ├── database/            ← Database setup and functions goes here
-│   └── db.py
-│   └── models.py
+│   └── schema.sql
+│   └── db_manager.py
 │
 ├── ui/                  ← Raw .ui files from QtDesigner
-│   └── main_window.ui
+│   └── mainwindow.ui
 │
-├── ui_py/               ← Auto-generated Python from .ui files, dont edit these manually
+├── ui_py/               ← Auto-generated Python from .ui files, dont edit these manually (i will only use this static ui version when the app is finished)
 │   └── main_window.py
 │
-├── main.py              ← Application entry point (imports logic, handles window)
+├── main.py              ← Application entry point (Dynamically loads UI)
 │
 ├── requirements.txt     ← Python dependencies 
 │

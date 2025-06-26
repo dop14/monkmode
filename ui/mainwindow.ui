@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>790</width>
-    <height>800</height>
+    <width>760</width>
+    <height>943</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -16,17 +16,23 @@
     <verstretch>0</verstretch>
    </sizepolicy>
   </property>
+  <property name="cursor">
+   <cursorShape>ArrowCursor</cursorShape>
+  </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
-  <widget class="QWidget" name="centralwidget">
+  <property name="autoFillBackground">
+   <bool>false</bool>
+  </property>
+  <widget class="QWidget" name="mainLayout">
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
-      <x>280</x>
-      <y>30</y>
-      <width>221</width>
-      <height>51</height>
+      <x>210</x>
+      <y>50</y>
+      <width>218</width>
+      <height>58</height>
      </rect>
     </property>
     <property name="font">
@@ -43,8 +49,8 @@
      <rect>
       <x>140</x>
       <y>110</y>
-      <width>491</width>
-      <height>542</height>
+      <width>351</width>
+      <height>482</height>
      </rect>
     </property>
     <layout class="QVBoxLayout" name="verticalLayout_10">
@@ -375,7 +381,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>790</width>
+     <width>760</width>
      <height>33</height>
     </rect>
    </property>
