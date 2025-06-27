@@ -1,20 +1,32 @@
-from PySide6.QtWidgets import QApplication
-from PySide6.QtUiTools import QUiLoader
-from PySide6.QtCore import QFile
+from PySide6.QtWidgets import QApplication, QMainWindow
+from PySide6.QtWidgets import QWidget
+from ui_py.mainwindow import Ui_MainWindow
+from ui_py.focuswindow import Ui_Form
 import sys
 
-# Loading the UI dynamically
-def load_ui():
-    loader = QUiLoader()
-    file = QFile("ui/mainwindow.ui")
-    file.open(QFile.ReadOnly)
-    window = loader.load(file)
-    file.close()
-    return window
+class MainWindow(QMainWindow):
+    def __init__(self):
+        super().__init__()
+        self.ui = Ui_MainWindow()
+        self.focus_ui = Ui_Form()
+        self.ui.setupUi(self)
+
+        # Hide buttons
+        self.ui.timer_label.hide()
+        self.ui.focus_pause_btn.hide()
+        self.ui.focus_stop_btn.hide()
+
+        # Click action
+        self.ui.start_focus_btn.clicked.connect(self.start_focus_window)
+
+    def start_focus_window(self):
+        self.focus_window = QWidget()
+        self.focus_ui.setupUi(self.focus_window)
+        self.focus_window.show()
 
 def main():
     app = QApplication(sys.argv)
-    window = load_ui()
+    window = MainWindow()
     window.show()
     sys.exit(app.exec())
 
