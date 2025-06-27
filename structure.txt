@@ -1,7 +1,7 @@
 monkmode/
 │
-├── core/                ← logic goes here
-│   └── 
+├── core/                ← Logic goes here
+│   └── timer.py
 │   └── 
 │   └──
 │
@@ -12,10 +12,16 @@ monkmode/
 ├── ui/                  ← Raw .ui files from QtDesigner
 │   └── mainwindow.ui
 │
-├── ui_py/               ← Auto-generated Python from .ui files, dont edit these manually (i will only use this static ui version when the app is finished)
+├── ui_py/               ← Auto-generated Python from .ui files, dont edit these manually
 │   └── main_window.py
 │
-├── main.py              ← Application entry point (Dynamically loads UI)
+│
+├── windows/              ← all windows goes here
+│   └── focus_window
+│   └── edit_period_window
+│   └── ...
+│
+├── main.py              ← Application entry point 
 │
 ├── requirements.txt     ← Python dependencies 
 │

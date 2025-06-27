@@ -5,12 +5,15 @@ CREATE TABLE IF NOT EXISTS periods (
     short_break_enabled BOOLEAN NOT NULL,
     short_break_time INTEGER,
     long_break_enabled BOOLEAN NOT NULL,
-    long_break_time INTEGER
+    long_break_time INTEGER,
+    long_break_after INTEGER,
+    default BOOLEAN NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS subjects (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
-    name TEXT UNIQUE NOT NULL
+    name TEXT UNIQUE NOT NULL,
+    default BOOLEAN NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS focus_sessions (

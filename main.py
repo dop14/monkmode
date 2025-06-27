@@ -1,14 +1,12 @@
 from PySide6.QtWidgets import QApplication, QMainWindow
-from PySide6.QtWidgets import QWidget
 from ui_py.mainwindow import Ui_MainWindow
-from ui_py.focuswindow import Ui_Form
+from windows.focus_window import FocusWindow
 import sys
 
 class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
         self.ui = Ui_MainWindow()
-        self.focus_ui = Ui_Form()
         self.ui.setupUi(self)
 
         # Hide buttons
@@ -18,12 +16,14 @@ class MainWindow(QMainWindow):
 
         # Click action
         self.ui.start_focus_btn.clicked.connect(self.start_focus_window)
-
+        # pause/resume button action (only when visible)
+        # reset button action (only when visible)
+    
     def start_focus_window(self):
-        self.focus_window = QWidget()
-        self.focus_ui.setupUi(self.focus_window)
-        self.focus_window.show()
+        self.focus_window = FocusWindow(self)
+        self.focus_window.exec()
 
+# Application entry point
 def main():
     app = QApplication(sys.argv)
     window = MainWindow()
