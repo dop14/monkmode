@@ -38,6 +38,7 @@ class Ui_Form(object):
 
         self.session_spinbox = QSpinBox(self.focusSetting)
         self.session_spinbox.setObjectName(u"session_spinbox")
+        self.session_spinbox.setMinimum(1)
 
         self.verticalLayout.addWidget(self.session_spinbox)
 

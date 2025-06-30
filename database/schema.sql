@@ -7,13 +7,13 @@ CREATE TABLE IF NOT EXISTS periods (
     long_break_enabled BOOLEAN NOT NULL,
     long_break_time INTEGER,
     long_break_after INTEGER,
-    default BOOLEAN NOT NULL
+    is_default BOOLEAN NOT NULL DEFAULT 0
 );
 
 CREATE TABLE IF NOT EXISTS subjects (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     name TEXT UNIQUE NOT NULL,
-    default BOOLEAN NOT NULL
+    is_default BOOLEAN NOT NULL DEFAULT 0
 );
 
 CREATE TABLE IF NOT EXISTS focus_sessions (

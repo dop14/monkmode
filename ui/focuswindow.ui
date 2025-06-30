@@ -31,7 +31,11 @@
        </widget>
       </item>
       <item>
-       <widget class="QSpinBox" name="session_spinbox"/>
+       <widget class="QSpinBox" name="session_spinbox">
+        <property name="minimum">
+         <number>1</number>
+        </property>
+       </widget>
       </item>
       <item>
        <widget class="QLabel" name="session_lenght_label">

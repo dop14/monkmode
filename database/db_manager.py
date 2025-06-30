@@ -1,6 +1,83 @@
 import sqlite3
+import os
 
-DB_NAME = "monkmode.db"
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))  
+DB_NAME = os.path.join(BASE_DIR, 'monkmode.db')       
+
+# Add default period to period table, if the table is empty
+def add_default_period(cursor):
+    cursor.execute("SELECT COUNT(*) FROM periods")
+    count = cursor.fetchone()[0]
+    if count == 0:
+        cursor.execute("""
+                INSERT INTO periods (name, focus_time, short_break_enabled, short_break_time, long_break_enabled, long_break_time, long_break_after, is_default)
+                VALUES (?,?,?,?,?,?,?,?)
+            """, ("pomodoro", 25, True, 5, True, 15, 4, True))
+
+# Add default subject to subject table, if the table is empty
+def add_default_subject(cursor):
+    cursor.execute("SELECT COUNT(*) FROM subjects")
+    count = cursor.fetchone()[0]
+    if count == 0:
+        cursor.execute("""
+                INSERT INTO subjects (name, is_default)
+                VALUES (?,?)
+            """, ("study", True))
+        
+# Gets the default period settings from database
+def get_default_period():
+    conn = get_connection()
+    cursor = conn.cursor()
+
+    cursor.execute("SELECT * FROM periods WHERE is_default = 1")
+    row = cursor.fetchone()
+    conn.close()
+
+    if row:
+        (id, name, focus_time, short_enabled, short_time,
+         long_enabled, long_time, long_after, is_default) = row
+        
+        return {
+            "id": id,
+            "name": name,
+            "focus_time": focus_time,
+            "short_break_enabled": bool(short_enabled),
+            "short_break_time": short_time,
+            "long_break_enabled": bool(long_enabled),
+            "long_break_time": long_time,
+            "long_break_after": long_after,
+            "is_default": bool(is_default)
+        }
+    else:
+        return None
+        
+# Calculates the session lenght with the current period setting
+def calculate_session_length(user_sessions):
+    period_data = get_default_period()
+
+    # If no breaks
+    if not period_data["long_break_enabled"] and not period_data["short_break_enabled"]:
+        total_length = user_sessions * (period_data["focus_time"])
+    # If short_breaks only
+    elif not period_data["long_break_enabled"] and period_data["short_break_enabled"]:
+        total_length = user_sessions * period_data["focus_time"] + (user_sessions-1) * period_data["short_break_time"]
+    # If long_breaks only
+    elif period_data["long_break_enabled"] and not period_data["short_break_enabled"]:
+        long_break_occurence = (user_sessions - 1) // period_data["long_break_after"]
+        total_length = (user_sessions * (period_data["focus_time"])) + (long_break_occurence * period_data["long_break_time"])
+    # If short_breaks and long_breaks
+    else:
+        long_break_occurence = (user_sessions - 1) // period_data["long_break_after"]
+        short_break_occurence = (user_sessions -1) - long_break_occurence
+        total_length = (user_sessions * period_data["focus_time"]) + (short_break_occurence * period_data["short_break_time"]) + (long_break_occurence * period_data["long_break_time"])
+
+    # Convert it to hours and minutes if needed
+    if total_length < 60:
+        return [total_length, short_break_occurence, long_break_occurence]
+    else:
+        hours = total_length // 60
+        minutes = total_length % 60
+        return [hours, minutes, short_break_occurence, long_break_occurence]
 
 def get_connection():
     conn = sqlite3.connect(DB_NAME)
@@ -23,33 +100,4 @@ def initialize_db():
 if __name__ == "__main__":
     initialize_db()
     print("Database successfully initialized")
-
-
-# Add default period to period table if not exists
-def add_default_period(cursor):
-    cursor.execute("SELECT COUNT(*) FROM periods")
-    count = cursor.fetchone()[0]
-    if count == 0:
-        cursor.execute("""
-                INSERT INTO periods (name, focus_time, short_break_enabled, short_break_time, long_break_enabled, long_break_time, long_break_after, default)
-                VALUES (?,?,?,?,?,?,?)
-            """, ("pomodoro", 25, True, 5, True, 15, 4, True))
-
-# Add default subject to subject table if not exists
-def add_default_subject(cursor):
-    cursor.execute("SELECT COUNT(*) FROM subjects")
-    count = cursor.fetchone()[0]
-    if count == 0:
-        cursor.execute("""
-                INSERT INTO subjects (name, default)
-                VALUES (?,?)
-            """, ("study", True))
-        
-
-# Gets the currrent period setting from UI
-def get_current_period(active_period):
-    pass
-        
-# Calculates the session lenght with the current period setting
-def calculate_session_lenght(session_count):
-    pass
+    

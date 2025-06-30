@@ -14,10 +14,22 @@ class MainWindow(QMainWindow):
         self.ui.focus_pause_btn.hide()
         self.ui.focus_stop_btn.hide()
 
-        # Click action
+        # Load period settings into combobox
+            # Set default
+
+        # Load subject settings into combobox
+            # Set default
+
+        # Load today's focus
+
+        # Load daily focus goal
+
+        # Load this week's focus
+
+        # Load weekly focus
+
+        # When focus button is clicked
         self.ui.start_focus_btn.clicked.connect(self.start_focus_window)
-        # pause/resume button action (only when visible)
-        # reset button action (only when visible)
     
     def start_focus_window(self):
         self.focus_window = FocusWindow(self)

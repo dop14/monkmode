@@ -16,7 +16,7 @@ monkmode/
 │   └── main_window.py
 │
 │
-├── windows/              ← all windows goes here
+├── windows/              ← all ui logic, changes, elements, windows goes here
 │   └── focus_window
 │   └── edit_period_window
 │   └── ...

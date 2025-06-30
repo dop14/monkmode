@@ -63,19 +63,19 @@ class Ui_MainWindow(object):
         self.actionfocus_subject.setObjectName(u"actionfocus_subject")
         self.mainLayout = QWidget(MainWindow)
         self.mainLayout.setObjectName(u"mainLayout")
+        self.verticalLayout = QVBoxLayout(self.mainLayout)
+        self.verticalLayout.setObjectName(u"verticalLayout")
         self.label = QLabel(self.mainLayout)
         self.label.setObjectName(u"label")
-        self.label.setGeometry(QRect(210, 50, 218, 58))
         font = QFont()
         font.setPointSize(32)
         self.label.setFont(font)
-        self.layoutWidget = QWidget(self.mainLayout)
-        self.layoutWidget.setObjectName(u"layoutWidget")
-        self.layoutWidget.setGeometry(QRect(140, 110, 351, 482))
-        self.verticalLayout_10 = QVBoxLayout(self.layoutWidget)
+
+        self.verticalLayout.addWidget(self.label)
+
+        self.verticalLayout_10 = QVBoxLayout()
         self.verticalLayout_10.setObjectName(u"verticalLayout_10")
-        self.verticalLayout_10.setContentsMargins(0, 0, 0, 0)
-        self.focusFrame = QFrame(self.layoutWidget)
+        self.focusFrame = QFrame(self.mainLayout)
         self.focusFrame.setObjectName(u"focusFrame")
         self.focusFrame.setFrameShape(QFrame.Shape.StyledPanel)
         self.focusFrame.setFrameShadow(QFrame.Shadow.Raised)
@@ -133,7 +133,7 @@ class Ui_MainWindow(object):
         self.horizontalLayout_4.setObjectName(u"horizontalLayout_4")
         self.verticalLayout_8 = QVBoxLayout()
         self.verticalLayout_8.setObjectName(u"verticalLayout_8")
-        self.periodFrame = QFrame(self.layoutWidget)
+        self.periodFrame = QFrame(self.mainLayout)
         self.periodFrame.setObjectName(u"periodFrame")
         self.periodFrame.setFrameShape(QFrame.Shape.StyledPanel)
         self.periodFrame.setFrameShadow(QFrame.Shadow.Raised)
@@ -148,7 +148,6 @@ class Ui_MainWindow(object):
         self.verticalLayout_4.addWidget(self.period_label)
 
         self.period_combobox = QComboBox(self.periodFrame)
-        self.period_combobox.addItem("")
         self.period_combobox.setObjectName(u"period_combobox")
 
         self.verticalLayout_4.addWidget(self.period_combobox)
@@ -170,7 +169,7 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_8.addItem(self.horizontalSpacer_2)
 
-        self.dailyFrame = QFrame(self.layoutWidget)
+        self.dailyFrame = QFrame(self.mainLayout)
         self.dailyFrame.setObjectName(u"dailyFrame")
         self.dailyFrame.setFrameShape(QFrame.Shape.StyledPanel)
         self.dailyFrame.setFrameShadow(QFrame.Shadow.Raised)
@@ -210,7 +209,7 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_9 = QVBoxLayout()
         self.verticalLayout_9.setObjectName(u"verticalLayout_9")
-        self.subjectFrame = QFrame(self.layoutWidget)
+        self.subjectFrame = QFrame(self.mainLayout)
         self.subjectFrame.setObjectName(u"subjectFrame")
         self.subjectFrame.setFrameShape(QFrame.Shape.StyledPanel)
         self.subjectFrame.setFrameShadow(QFrame.Shadow.Raised)
@@ -223,7 +222,6 @@ class Ui_MainWindow(object):
         self.verticalLayout_6.addWidget(self.subject_label)
 
         self.subject_combobox = QComboBox(self.subjectFrame)
-        self.subject_combobox.addItem("")
         self.subject_combobox.setObjectName(u"subject_combobox")
 
         self.verticalLayout_6.addWidget(self.subject_combobox)
@@ -245,7 +243,7 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_9.addItem(self.horizontalSpacer_3)
 
-        self.weeklyFrame = QFrame(self.layoutWidget)
+        self.weeklyFrame = QFrame(self.mainLayout)
         self.weeklyFrame.setObjectName(u"weeklyFrame")
         self.weeklyFrame.setFrameShape(QFrame.Shape.StyledPanel)
         self.weeklyFrame.setFrameShadow(QFrame.Shadow.Raised)
@@ -281,6 +279,9 @@ class Ui_MainWindow(object):
 
 
         self.verticalLayout_10.addLayout(self.horizontalLayout_4)
+
+
+        self.verticalLayout.addLayout(self.verticalLayout_10)
 
         MainWindow.setCentralWidget(self.mainLayout)
         self.menubar = QMenuBar(MainWindow)
@@ -354,16 +355,12 @@ class Ui_MainWindow(object):
         self.focus_pause_btn.setText(QCoreApplication.translate("MainWindow", u"pause/start", None))
         self.focus_stop_btn.setText(QCoreApplication.translate("MainWindow", u"stop", None))
         self.period_label.setText(QCoreApplication.translate("MainWindow", u"focus period", None))
-        self.period_combobox.setItemText(0, QCoreApplication.translate("MainWindow", u"pomodoro", None))
-
         self.editperiod_btn.setText(QCoreApplication.translate("MainWindow", u"edit", None))
         self.newperiod_btn.setText(QCoreApplication.translate("MainWindow", u"create new period", None))
         self.daily_label.setText(QCoreApplication.translate("MainWindow", u"daily focus", None))
         self.today_label.setText(QCoreApplication.translate("MainWindow", u"today's focus:", None))
         self.daily_goal_label.setText(QCoreApplication.translate("MainWindow", u"daily focus goal:", None))
         self.subject_label.setText(QCoreApplication.translate("MainWindow", u"subject", None))
-        self.subject_combobox.setItemText(0, QCoreApplication.translate("MainWindow", u"study", None))
-
         self.edit_subject_btn.setText(QCoreApplication.translate("MainWindow", u"edit", None))
         self.newsubject_btn.setText(QCoreApplication.translate("MainWindow", u"create new subject", None))
         self.weekly_label.setText(QCoreApplication.translate("MainWindow", u"weekly focus", None))
