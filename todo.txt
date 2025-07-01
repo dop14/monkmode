@@ -1,1 +1,4 @@
-Complete TODO'S in main.py
+Edit period
+Add period
+Edit subject
+Add subject

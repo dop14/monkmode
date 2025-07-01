@@ -24,18 +24,62 @@ def add_default_subject(cursor):
                 VALUES (?,?)
             """, ("study", True))
         
-# Gets the default period settings from database
-def get_default_period():
+# Get the DEFAULT period name
+def get_default_period_name():
     conn = get_connection()
     cursor = conn.cursor()
 
-    cursor.execute("SELECT * FROM periods WHERE is_default = 1")
+    cursor.execute("SELECT name FROM periods WHERE is_default = 1")
+    result = cursor.fetchone()
+
+    conn.close()
+    return result[0] if result else None
+
+# Get the default subject name
+def get_default_subject_name():
+    conn = get_connection()
+    cursor = conn.cursor()
+
+    cursor.execute("SELECT name FROM subjects WHERE is_default = 1")
+    result = cursor.fetchone()
+    
+    conn.close()
+    return result[0] if result else None
+
+# Get ALL period names
+def get_period_names():
+    conn = get_connection()
+    cursor = conn.cursor()
+
+    cursor.execute("SELECT name FROM periods")
+    subjects = [row[0] for row in cursor.fetchall()]
+    conn.close()
+
+    return subjects
+
+# Get ALL subject names
+def get_subject_names():
+    conn = get_connection()
+    cursor = conn.cursor()
+
+    cursor.execute("SELECT name FROM subjects")
+    subjects = [row[0] for row in cursor.fetchall()]
+    conn.close()
+
+    return subjects
+
+# Get period data
+def get_period_data(period_name):
+    conn = get_connection()
+    cursor = conn.cursor()
+
+    cursor.execute("SELECT * FROM periods WHERE name = ?", (period_name,))
     row = cursor.fetchone()
     conn.close()
 
     if row:
         (id, name, focus_time, short_enabled, short_time,
-         long_enabled, long_time, long_after, is_default) = row
+            long_enabled, long_time, long_after, is_default) = row
         
         return {
             "id": id,
@@ -50,10 +94,10 @@ def get_default_period():
         }
     else:
         return None
-        
+
 # Calculates the session lenght with the current period setting
-def calculate_session_length(user_sessions):
-    period_data = get_default_period()
+def calculate_session_length(user_sessions, period_name):
+    period_data = get_period_data(period_name)
 
     # If no breaks
     if not period_data["long_break_enabled"] and not period_data["short_break_enabled"]:
@@ -100,4 +144,4 @@ def initialize_db():
 if __name__ == "__main__":
     initialize_db()
     print("Database successfully initialized")
-    
+
