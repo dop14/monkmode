@@ -1,0 +1,11 @@
+UI:
+Icons instead of text:
+Add (plus)
+Edit (fogaskerek)
+delete (trashbin)
+pause resume
+stop
+
+UX:
+focus window:
+    Focus will approximately end on 12:45 (update every minute)

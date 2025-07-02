@@ -2,6 +2,7 @@ from PySide6.QtWidgets import QApplication, QMainWindow
 from ui_py.mainwindow import Ui_MainWindow
 from windows.focus_window import FocusWindow
 from windows.new_period_window import NewPeriodWindow
+from PySide6.QtCore import Qt
 from database.db_manager import get_period_names, get_subject_names
 from database.db_manager import get_default_period_name, get_default_subject_name
 import sys
@@ -26,6 +27,7 @@ class MainWindow(QMainWindow):
         period_index = self.ui.period_combobox.findText(default_period_name)
         if period_index != -1:
             self.ui.period_combobox.setCurrentIndex(period_index)
+
         
         # Load all subject settings into combobox
         subjects = get_subject_names()
@@ -35,7 +37,7 @@ class MainWindow(QMainWindow):
         default_subject_name = get_default_subject_name()
         subject_index = self.ui.subject_combobox.findText(default_subject_name)
         if subject_index != -1:
-            self.ui.period_combobox.setCurrentIndex(subject_index)
+            self.ui.subject_combobox.setCurrentIndex(subject_index)
 
         # Load today's focus
 

@@ -105,9 +105,12 @@ def calculate_session_length(user_sessions, period_name):
     # If short_breaks only
     elif not period_data["long_break_enabled"] and period_data["short_break_enabled"]:
         total_length = user_sessions * period_data["focus_time"] + (user_sessions-1) * period_data["short_break_time"]
+        short_break_occurence = (user_sessions -1)
+        long_break_occurence = 0
     # If long_breaks only
     elif period_data["long_break_enabled"] and not period_data["short_break_enabled"]:
         long_break_occurence = (user_sessions - 1) // period_data["long_break_after"]
+        short_break_occurence = 0
         total_length = (user_sessions * (period_data["focus_time"])) + (long_break_occurence * period_data["long_break_time"])
     # If short_breaks and long_breaks
     else:
@@ -122,6 +125,35 @@ def calculate_session_length(user_sessions, period_name):
         hours = total_length // 60
         minutes = total_length % 60
         return [hours, minutes, short_break_occurence, long_break_occurence]
+
+# Save new period settings
+def save_period_settings(data: dict):
+    conn = get_connection()
+    cursor = conn.cursor()
+    
+    query = """
+        INSERT INTO periods (
+            name,
+            focus_time,
+            short_break_enabled,
+            short_break_time,
+            long_break_enabled,
+            long_break_time,
+            long_break_after
+        ) VALUES (
+            :name,
+            :focus_time,
+            :short_break_enabled,
+            :short_break_time,
+            :long_break_enabled,
+            :long_break_time,
+            :long_break_after
+        )
+    """
+
+    cursor.execute(query, data)
+    conn.commit()
+    conn.close()
 
 def get_connection():
     conn = sqlite3.connect(DB_NAME)
@@ -144,4 +176,4 @@ def initialize_db():
 if __name__ == "__main__":
     initialize_db()
     print("Database successfully initialized")
-
+     

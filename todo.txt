@@ -1,4 +1,6 @@
-Edit period
 Add period
+Save period
+Edit period
+    delete period option
 Edit subject
 Add subject

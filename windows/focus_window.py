@@ -11,10 +11,18 @@ class FocusWindow(QDialog):
 
         # Get the current period from mainwindow
         self.current_period = main_window.ui.period_combobox.currentText()
+        self.current_subject = main_window.ui.subject_combobox.currentText()
 
         # Calculate session lenght for the minimum session (1)
         length = calculate_session_length(self.ui.session_spinbox.value(),self.current_period)
-        self.ui.session_lenght_label.setText(f"this will approximately take {length[0]} minutes\nfocus sessions: {self.ui.session_spinbox.value()}, short breaks: {length[1]}, long breaks: {length[2]}")
+        self.ui.session_lenght_label.setText(
+            f"You will be focusing on <b>{self.current_subject}</b>, with <b>{self.current_period}</b><br>"
+            f"Total session duration: <b>{length[0]} minutes</b><br><br>"
+            f"Session breakdown:<br>"
+            f"• Focus sessions: <b>{self.ui.session_spinbox.value()}</b><br>"
+            f"• Short breaks: <b>{length[1]}</b><br>"
+            f"• Long breaks: <b>{length[2]}</b>"
+        )
 
         # Calculate session length every time the spinbox value changes
         self.ui.session_spinbox.valueChanged.connect(self.spinbox_value_changed)
@@ -26,10 +34,25 @@ class FocusWindow(QDialog):
         length = calculate_session_length(self.ui.session_spinbox.value(),self.current_period)
         # if the return value is 3
         if len(length) == 3:
-            self.ui.session_lenght_label.setText(f"this will approximately take {length[0]} minutes\nfocus sessions: {self.ui.session_spinbox.value()}, short breaks: {length[1]}, long breaks: {length[2]}")
+            self.ui.session_lenght_label.setText(
+                f"You will be focusing on <b>{self.current_subject}</b>, with <b>{self.current_period}</b><br>"
+                f"Total session duration: <b>{length[0]} minutes</b><br><br>"
+                f"Session breakdown:<br>"
+                f"• Focus sessions: <b>{self.ui.session_spinbox.value()}</b><br>"
+                f"• Short breaks: <b>{length[1]}</b><br>"
+                f"• Long breaks: <b>{length[2]}</b>"
+            )
+
         else:
-            self.ui.session_lenght_label.setText(f"this will approximately take {length[0]} hours and {length[1]} minutes\nfocus sessions: {self.ui.session_spinbox.value()}, short breaks: {length[2]}, long breaks: {length[3]}")
-        
+            self.ui.session_lenght_label.setText(f"You will be focusing on <b>{self.current_subject}</b>, with <b>{self.current_period}</b> for <b>{length[0]}</b> hours and <b>{length[1]}</b> minutes<br>focus sessions: {self.ui.session_spinbox.value()}, short breaks: {length[2]}, long breaks: {length[3]}")
+            self.ui.session_lenght_label.setText(
+                f"You will be focusing on <b>{self.current_subject}</b>, with <b>{self.current_period}</b><br>"
+                f"Total session duration: <b>{length[0]} hours and {length[1]} minutes</b><br><br>"
+                f"Session breakdown:<br>"
+                f"• Focus sessions: <b>{self.ui.session_spinbox.value()}</b><br>"
+                f"• Short breaks: <b>{length[2]}</b><br>"
+                f"• Long breaks: <b>{length[3]}</b>"
+            )
     def start_focus(self):
        # calling timer.py
        pass

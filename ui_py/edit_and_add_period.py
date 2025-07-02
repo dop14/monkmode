@@ -15,9 +15,9 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QFont, QFontDatabase, QGradient, QIcon,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
-from PySide6.QtWidgets import (QApplication, QCheckBox, QDoubleSpinBox, QFrame,
-    QHBoxLayout, QLabel, QLineEdit, QPushButton,
-    QSizePolicy, QSpinBox, QVBoxLayout, QWidget)
+from PySide6.QtWidgets import (QApplication, QCheckBox, QFrame, QHBoxLayout,
+    QLabel, QLineEdit, QPushButton, QSizePolicy,
+    QSpinBox, QVBoxLayout, QWidget)
 
 class Ui_Form(object):
     def setupUi(self, Form):
@@ -55,10 +55,10 @@ class Ui_Form(object):
 
         self.verticalLayout.addWidget(self.focus_time_label)
 
-        self.focus_time_spinbox = QDoubleSpinBox(self.focus_frame)
+        self.focus_time_spinbox = QSpinBox(self.focus_frame)
         self.focus_time_spinbox.setObjectName(u"focus_time_spinbox")
-        self.focus_time_spinbox.setMinimum(1.000000000000000)
-        self.focus_time_spinbox.setMaximum(1000.000000000000000)
+        self.focus_time_spinbox.setMinimum(1)
+        self.focus_time_spinbox.setMaximum(1000)
 
         self.verticalLayout.addWidget(self.focus_time_spinbox)
 
@@ -76,9 +76,10 @@ class Ui_Form(object):
 
         self.horizontalLayout.addWidget(self.short_break_checkbox)
 
-        self.short_break_spinbox = QDoubleSpinBox(self.short_break_frame)
+        self.short_break_spinbox = QSpinBox(self.short_break_frame)
         self.short_break_spinbox.setObjectName(u"short_break_spinbox")
-        self.short_break_spinbox.setEnabled(True)
+        self.short_break_spinbox.setMinimum(1)
+        self.short_break_spinbox.setMaximum(100)
 
         self.horizontalLayout.addWidget(self.short_break_spinbox)
 
@@ -98,8 +99,10 @@ class Ui_Form(object):
 
         self.horizontalLayout_2.addWidget(self.long_break_checkbox)
 
-        self.long_break_spinbox = QDoubleSpinBox(self.long_break_frame)
+        self.long_break_spinbox = QSpinBox(self.long_break_frame)
         self.long_break_spinbox.setObjectName(u"long_break_spinbox")
+        self.long_break_spinbox.setMinimum(1)
+        self.long_break_spinbox.setMaximum(100)
 
         self.horizontalLayout_2.addWidget(self.long_break_spinbox)
 
@@ -113,6 +116,8 @@ class Ui_Form(object):
 
         self.long_break_after_spinbox = QSpinBox(self.long_break_frame)
         self.long_break_after_spinbox.setObjectName(u"long_break_after_spinbox")
+        self.long_break_after_spinbox.setMinimum(2)
+        self.long_break_after_spinbox.setMaximum(100)
 
         self.verticalLayout_2.addWidget(self.long_break_after_spinbox)
 
