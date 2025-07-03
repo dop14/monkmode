@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'edit_and_add_period.ui'
+## Form generated from reading UI file 'add_period.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.9.1
 ##

@@ -9,3 +9,6 @@ stop
 UX:
 focus window:
     Focus will approximately end on 12:45 (update every minute)
+
+Edit, Add window:
+    - bold default period, subject

@@ -98,7 +98,9 @@ def get_period_data(period_name):
 # Calculates the session lenght with the current period setting
 def calculate_session_length(user_sessions, period_name):
     period_data = get_period_data(period_name)
-
+    short_break_occurence = 0
+    long_break_occurence = 0
+    
     # If no breaks
     if not period_data["long_break_enabled"] and not period_data["short_break_enabled"]:
         total_length = user_sessions * (period_data["focus_time"])
@@ -106,11 +108,9 @@ def calculate_session_length(user_sessions, period_name):
     elif not period_data["long_break_enabled"] and period_data["short_break_enabled"]:
         total_length = user_sessions * period_data["focus_time"] + (user_sessions-1) * period_data["short_break_time"]
         short_break_occurence = (user_sessions -1)
-        long_break_occurence = 0
     # If long_breaks only
     elif period_data["long_break_enabled"] and not period_data["short_break_enabled"]:
         long_break_occurence = (user_sessions - 1) // period_data["long_break_after"]
-        short_break_occurence = 0
         total_length = (user_sessions * (period_data["focus_time"])) + (long_break_occurence * period_data["long_break_time"])
     # If short_breaks and long_breaks
     else:
@@ -152,6 +152,31 @@ def save_period_settings(data: dict):
     """
 
     cursor.execute(query, data)
+    conn.commit()
+    conn.close()
+
+# Update the period setting
+def update_period_settings(data: dict, id):
+    conn = get_connection()
+    cursor = conn.cursor()
+
+    query = """
+        UPDATE periods SET
+            name = :name,
+            focus_time = :focus_time,
+            short_break_enabled = :short_break_enabled,
+            short_break_time = :short_break_time,
+            long_break_enabled = :long_break_enabled,
+            long_break_time = :long_break_time,
+            long_break_after = :long_break_after
+        WHERE id = :id
+    """
+
+    # Add the id key to the data dict for the WHERE clause
+    data_with_id = data.copy()
+    data_with_id["id"] = id
+
+    cursor.execute(query, data_with_id)
     conn.commit()
     conn.close()
 

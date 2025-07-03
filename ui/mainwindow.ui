@@ -26,7 +26,7 @@
    <bool>false</bool>
   </property>
   <widget class="QWidget" name="mainLayout">
-   <layout class="QVBoxLayout" name="verticalLayout">
+   <layout class="QVBoxLayout" name="verticalLayout_4">
     <item>
      <widget class="QLabel" name="label">
       <property name="font">
@@ -137,7 +137,7 @@
             <property name="frameShadow">
              <enum>QFrame::Shadow::Raised</enum>
             </property>
-            <layout class="QVBoxLayout" name="verticalLayout_4">
+            <layout class="QVBoxLayout" name="verticalLayout">
              <item>
               <widget class="QLabel" name="period_label">
                <property name="font">
@@ -154,11 +154,22 @@
               <widget class="QComboBox" name="period_combobox"/>
              </item>
              <item>
-              <widget class="QPushButton" name="editperiod_btn">
-               <property name="text">
-                <string>edit</string>
-               </property>
-              </widget>
+              <layout class="QHBoxLayout" name="horizontalLayout">
+               <item>
+                <widget class="QPushButton" name="editperiod_btn">
+                 <property name="text">
+                  <string>edit</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QPushButton" name="delete_period_btn">
+                 <property name="text">
+                  <string>delete</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
              </item>
              <item>
               <widget class="QPushButton" name="newperiod_btn">
@@ -253,7 +264,7 @@
             <property name="frameShadow">
              <enum>QFrame::Shadow::Raised</enum>
             </property>
-            <layout class="QVBoxLayout" name="verticalLayout_6">
+            <layout class="QVBoxLayout" name="verticalLayout_2">
              <item>
               <widget class="QLabel" name="subject_label">
                <property name="font">
@@ -270,11 +281,22 @@
               <widget class="QComboBox" name="subject_combobox"/>
              </item>
              <item>
-              <widget class="QPushButton" name="edit_subject_btn">
-               <property name="text">
-                <string>edit</string>
-               </property>
-              </widget>
+              <layout class="QHBoxLayout" name="horizontalLayout_2">
+               <item>
+                <widget class="QPushButton" name="edit_subject_btn">
+                 <property name="text">
+                  <string>edit</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QPushButton" name="delete_subject_btn">
+                 <property name="text">
+                  <string>delete</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
              </item>
              <item>
               <widget class="QPushButton" name="newsubject_btn">

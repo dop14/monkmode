@@ -1,6 +1,12 @@
-Add period
-Save period
-Edit period
-    delete period option
-Edit subject
+Delete period
+    ! DEFAULT PERIOD CAN NOT BE DELETED !
+
+
 Add subject
+Edit subject
+Delete subject
+    ! DEFAULT SUBJECT CAN NOT BE DELETED !
+
+
+Timer.py
+    counting sessions in db
