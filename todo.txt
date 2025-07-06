@@ -1,12 +1,11 @@
 Delete period
     ! DEFAULT PERIOD CAN NOT BE DELETED !
 
-
-Add subject
-Edit subject
-Delete subject
-    ! DEFAULT SUBJECT CAN NOT BE DELETED !
-
+In main.py pass type to start_<function>_window
+    Add subject
+    Edit subject
+    Delete subject
+        ! DEFAULT SUBJECT CAN NOT BE DELETED !
 
 Timer.py
     counting sessions in db

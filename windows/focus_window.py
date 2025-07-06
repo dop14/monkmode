@@ -8,21 +8,13 @@ class FocusWindow(QDialog):
         self.ui = Ui_Form()
         self.ui.setupUi(self)
         self.setModal(True)
-
+        
         # Get the current period from mainwindow
         self.current_period = main_window.ui.period_combobox.currentText()
         self.current_subject = main_window.ui.subject_combobox.currentText()
 
-        # Calculate session lenght for the minimum session (1)
-        length = calculate_session_length(self.ui.session_spinbox.value(),self.current_period)
-        self.ui.session_lenght_label.setText(
-            f"You will be focusing on <b>{self.current_subject}</b>, with <b>{self.current_period}</b><br>"
-            f"Total session duration: <b>{length[0]} minutes</b><br><br>"
-            f"Session breakdown:<br>"
-            f"• Focus sessions: <b>{self.ui.session_spinbox.value()}</b><br>"
-            f"• Short breaks: <b>{length[1]}</b><br>"
-            f"• Long breaks: <b>{length[2]}</b>"
-        )
+        # Show for default value (1)
+        self.spinbox_value_changed()
 
         # Calculate session length every time the spinbox value changes
         self.ui.session_spinbox.valueChanged.connect(self.spinbox_value_changed)

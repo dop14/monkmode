@@ -4,6 +4,8 @@ from windows.focus_window import FocusWindow
 from windows.new_period_window import NewPeriodWindow
 from windows.edit_period_window import EditPeriodWindow
 from windows.confirmation_window import ConfirmationWindow
+from windows.new_subject_window import NewSubjectWindow
+from windows.edit_subject_window import EditSubjectWindow
 from PySide6.QtCore import Qt
 from database.db_manager import get_period_names, get_subject_names
 from database.db_manager import get_default_period_name, get_default_subject_name
@@ -30,7 +32,6 @@ class MainWindow(QMainWindow):
         if period_index != -1:
             self.ui.period_combobox.setCurrentIndex(period_index)
 
-        
         # Load all subject settings into combobox
         subjects = get_subject_names()
         self.ui.subject_combobox.addItems(subjects)
@@ -53,25 +54,40 @@ class MainWindow(QMainWindow):
         self.ui.start_focus_btn.clicked.connect(self.start_focus_window)
         
         # When add period button is clicked
-        self.ui.newperiod_btn.clicked.connect(self.start_add_window)
+        self.ui.newperiod_btn.clicked.connect(lambda:self.start_add_window("period"))
 
         # When edit period button is clicked
-        self.ui.editperiod_btn.clicked.connect(self.start_edit_window)
+        self.ui.editperiod_btn.clicked.connect(lambda:self.start_edit_window("period"))
 
         # When delete period button is clicked
         self.ui.delete_period_btn.clicked.connect(lambda:self.start_delete_window("period"))
+
+        # When add subject button is clicked
+        self.ui.newsubject_btn.clicked.connect(lambda:self.start_add_window("subject"))
+
+        # When edit subject button is clicked
+        self.ui.edit_subject_btn.clicked.connect(lambda:self.start_edit_window("subject"))
     
     def start_focus_window(self):
         self.focus_window = FocusWindow(self)
         self.focus_window.exec()
 
-    def start_add_window(self):
-        self.add_window = NewPeriodWindow(self)
-        self.add_window.exec()
+    def start_add_window(self, type):
+        if type == "period":
+            self.add_window = NewPeriodWindow(self)
+            self.add_window.exec()
+        elif type == "subject":
+            self.add_window = NewSubjectWindow(self)
+            self.add_window.exec()
 
-    def start_edit_window(self):
-        self.edit_window = EditPeriodWindow(self)
-        self.edit_window.exec()
+    def start_edit_window(self, type):
+        if type == "period":
+            self.edit_window = EditPeriodWindow(self)
+            self.edit_window.exec()
+        elif type == "subject":
+            self.edit_window = EditSubjectWindow(self)
+            self.edit_window.exec()
+
 
     def start_delete_window(self, setting_type):
         # Check if the currentext is not equal to default

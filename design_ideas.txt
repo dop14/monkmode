@@ -10,5 +10,16 @@ UX:
 focus window:
     Focus will approximately end on 12:45 (update every minute)
 
+When adding, updating, deleting pop-up message:
+    Added XY period setting / subject
+    Updated XY period setting / subject
+    Deleted XY period setting / subject
+
+
+
 Edit, Add window:
     - bold default period, subject
+
+
+Archiving subjects
+    If user focused on a project, but the project is done, he could perhaps archive it.

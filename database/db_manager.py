@@ -95,6 +95,17 @@ def get_period_data(period_name):
     else:
         return None
 
+# Get subject data
+def get_subject_data(subject_name):
+    conn = get_connection()
+    cursor = conn.cursor()
+
+    cursor.execute("SELECT * FROM subjects WHERE name = ?", (subject_name,))
+    row = cursor.fetchone()
+    conn.close()
+
+    return row
+
 # Calculates the session lenght with the current period setting
 def calculate_session_length(user_sessions, period_name):
     period_data = get_period_data(period_name)
@@ -155,6 +166,17 @@ def save_period_settings(data: dict):
     conn.commit()
     conn.close()
 
+# Save new subject settings
+def save_subject_settings(subject_name):
+    conn = get_connection()
+    cursor = conn.cursor()
+
+    query = "INSERT INTO subjects(name) VALUES (?)"
+    cursor.execute(query,(subject_name,))
+
+    conn.commit()
+    conn.close()
+
 # Update the period setting
 def update_period_settings(data: dict, id):
     conn = get_connection()
@@ -177,6 +199,21 @@ def update_period_settings(data: dict, id):
     data_with_id["id"] = id
 
     cursor.execute(query, data_with_id)
+    conn.commit()
+    conn.close()
+
+# Update the subject setting
+def update_subject_settings():
+    pass
+
+# Delete the periods setting
+def delete_period_settings(id):
+    conn = get_connection()
+    cursor = conn.cursor()
+
+    query = "DELETE FROM periods WHERE id = ?"
+    cursor.execute(query,(id,))
+
     conn.commit()
     conn.close()
 
