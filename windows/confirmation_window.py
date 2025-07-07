@@ -1,6 +1,6 @@
 from PySide6.QtWidgets import QDialog
 from ui_py.confirmation import Ui_Confirmation
-from database.db_manager import get_period_data, delete_period_settings, get_period_names, get_default_period_name
+from database.db_manager import get_period_data, delete_period_settings, get_period_names, get_default_period_name, delete_subject_settings, get_subject_data, get_subject_names, get_default_subject_name
 
 class ConfirmationWindow(QDialog):
     def __init__(self, main_window, text, type):
@@ -10,7 +10,7 @@ class ConfirmationWindow(QDialog):
         self.setModal(True)
 
         # If user wants to delete the default setting
-        if text == "The default focus setting cannot be deleted.<br>To change the default value, go to Settings → Change Default → Focus Period.":
+        if text == "The default focus setting cannot be deleted.<br>To change the default value, go to Settings → Change Default → Focus Period." or text == "The default subject cannot be deleted.<br>To change the default value, go to Settings → Change Default → Focus Subject.":
             self.ui.cancel_btn.hide()
             self.ui.ok_btn.clicked.connect(self.close)
             self.setWindowTitle("Error")
@@ -41,12 +41,13 @@ class ConfirmationWindow(QDialog):
         elif type == "subject":
             # Get the id of the chosen subject
             self.current_subject = main_window.ui.subject_combobox.currentText()
-            # subject_data =
+            subject_data = get_subject_data(self.current_subject)
 
             # Delete from database
+            delete_subject_settings(subject_data[0])
 
             # Refresh the main window
-
+            self.refresh_subject_combobox(main_window)
             # Close window
             self.close()
 
@@ -61,3 +62,15 @@ class ConfirmationWindow(QDialog):
         period_index = main_window.ui.period_combobox.findText(default_period_name)
         if period_index != -1:
             main_window.ui.period_combobox.setCurrentIndex(period_index)
+
+    # Refresh the subject combobox on main_window
+    def refresh_subject_combobox(self, main_window):
+        subjects = get_subject_names()
+        main_window.ui.subject_combobox.clear()
+        main_window.ui.subject_combobox.addItems(subjects)
+
+        # Set the default again
+        default_subject_name = get_default_subject_name()
+        period_index = main_window.ui.subject_combobox.findText(default_subject_name)
+        if period_index != -1:
+            main_window.ui.subject_combobox.setCurrentIndex(period_index)

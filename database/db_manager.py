@@ -202,16 +202,37 @@ def update_period_settings(data: dict, id):
     conn.commit()
     conn.close()
 
-# Update the subject setting
-def update_subject_settings():
-    pass
+# Update the subject setting    
+def update_subject_settings(id:int, name:str):
+    conn = get_connection()
+    cursor = conn.cursor()
 
-# Delete the periods setting
+    query = """
+        UPDATE subjects SET
+            name = ?
+        WHERE id = ?
+    """
+    cursor.execute(query, (name, id))
+    conn.commit()
+    conn.close()
+
+# Delete period setting
 def delete_period_settings(id):
     conn = get_connection()
     cursor = conn.cursor()
 
     query = "DELETE FROM periods WHERE id = ?"
+    cursor.execute(query,(id,))
+
+    conn.commit()
+    conn.close()
+
+# Delete subject setting
+def delete_subject_settings(id):
+    conn = get_connection()
+    cursor = conn.cursor()
+
+    query = "DELETE FROM subjects WHERE id = ?"
     cursor.execute(query,(id,))
 
     conn.commit()

@@ -37,8 +37,8 @@ class MainWindow(QMainWindow):
         self.ui.subject_combobox.addItems(subjects)
 
         # Set default subject setting
-        default_subject_name = get_default_subject_name()
-        subject_index = self.ui.subject_combobox.findText(default_subject_name)
+        self.default_subject_name = get_default_subject_name()
+        subject_index = self.ui.subject_combobox.findText(self.default_subject_name)
         if subject_index != -1:
             self.ui.subject_combobox.setCurrentIndex(subject_index)
 
@@ -67,6 +67,9 @@ class MainWindow(QMainWindow):
 
         # When edit subject button is clicked
         self.ui.edit_subject_btn.clicked.connect(lambda:self.start_edit_window("subject"))
+
+        # When delete subject button is clicked
+        self.ui.delete_subject_btn.clicked.connect(lambda:self.start_delete_window("subject"))
     
     def start_focus_window(self):
         self.focus_window = FocusWindow(self)
@@ -90,13 +93,27 @@ class MainWindow(QMainWindow):
 
 
     def start_delete_window(self, setting_type):
-        # Check if the currentext is not equal to default
-        if self.ui.period_combobox.currentText() == self.default_period_name:
-            self.error_window = ConfirmationWindow(self,"The default focus setting cannot be deleted.<br>To change the default value, go to Settings → Change Default → Focus Period.",setting_type)
-            self.error_window.exec()
-        else:
-            self.del_window = ConfirmationWindow(self,f"Do you really want to delete <b>{self.ui.period_combobox.currentText()}</b> focus period setting?<br>This action cannot be undone.",setting_type)
-            self.del_window.exec()
+        # If the a period setting is being deleted
+        if setting_type == "period":
+            # If the chosen element is the default one
+            if self.ui.period_combobox.currentText() == self.default_period_name:
+                self.error_window = ConfirmationWindow(self,"The default focus setting cannot be deleted.<br>To change the default value, go to Settings → Change Default → Focus Period.",setting_type)
+                self.error_window.exec()
+            # Else if deletable
+            else:
+                self.del_window = ConfirmationWindow(self,f"Do you really want to delete <b>{self.ui.period_combobox.currentText()}</b> focus period setting?<br>This action cannot be undone.",setting_type)
+                self.del_window.exec()
+        # Else if a subject setting is being deleted
+        elif setting_type == "subject":
+            # If the chosen element is the default one
+            if self.ui.subject_combobox.currentText() == self.default_subject_name:
+                self.error_window = ConfirmationWindow(self,"The default subject cannot be deleted.<br>To change the default value, go to Settings → Change Default → Focus Subject.",setting_type)
+                self.error_window.exec()
+            # Else if deletable
+            else:
+                self.del_window = ConfirmationWindow(self,f"Do you really want to delete <b>{self.ui.subject_combobox.currentText()}</b> subject?<br>This action cannot be undone.",setting_type)
+                self.del_window.exec()
+
 
 # Application entry point
 def main():

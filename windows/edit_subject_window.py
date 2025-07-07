@@ -1,6 +1,6 @@
 from PySide6.QtWidgets import QDialog
 from ui_py.add_and_edit_subject import Ui_Form
-from database.db_manager import get_subject_names, save_subject_settings, get_default_subject_name, get_subject_data
+from database.db_manager import get_subject_names, get_default_subject_name, get_subject_data, update_subject_settings
 
 class EditSubjectWindow(QDialog):
     def __init__(self, main_window):
@@ -40,8 +40,9 @@ class EditSubjectWindow(QDialog):
                 self.ui.subject_name_entry.setToolTip("Field has to be unique")
             # Else no errors
             else:
-                # Save to database
-                print("Updating in db")
+                # Update in database
+                subject_data = get_subject_data(main_window.ui.subject_combobox.currentText())
+                update_subject_settings(subject_data[0],self.ui.subject_name_entry.text().strip())
 
                 # Refresh combobox on main_window
                 self.refresh_subject_combobox(main_window)
@@ -54,8 +55,8 @@ class EditSubjectWindow(QDialog):
         main_window.ui.subject_combobox.clear()
         main_window.ui.subject_combobox.addItems(subjects)
 
-        # Set the default again
-        default_subject_name = get_default_subject_name()
-        subject_index = main_window.ui.subject_combobox.findText(default_subject_name)
+        # Set the current as last edited
+        last_subject_name = self.ui.subject_name_entry.text().strip()
+        subject_index = main_window.ui.subject_combobox.findText(last_subject_name)
         if subject_index != -1:
             main_window.ui.subject_combobox.setCurrentIndex(subject_index)

@@ -1,11 +1,4 @@
-Delete period
-    ! DEFAULT PERIOD CAN NOT BE DELETED !
-
-In main.py pass type to start_<function>_window
-    Add subject
-    Edit subject
-    Delete subject
-        ! DEFAULT SUBJECT CAN NOT BE DELETED !
+Focus sessions duration -> TIME SPENT IN FOCUS, WITHOUT BREAKS
 
 Timer.py
-    counting sessions in db
+    Start session based on period_setting

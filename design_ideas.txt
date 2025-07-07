@@ -15,11 +15,13 @@ When adding, updating, deleting pop-up message:
     Updated XY period setting / subject
     Deleted XY period setting / subject
 
-
-
 Edit, Add window:
     - bold default period, subject
 
-
 Archiving subjects
     If user focused on a project, but the project is done, he could perhaps archive it.
+    Settings -> Archived subjects -> See archived / Unarchive
+    Unarchived wont show in combobox
+
+When deleting subject: 
+    Deleting this subject will stop tracking any new focus time for it. Past focus time data will remain, but you won’t be able to add more. 

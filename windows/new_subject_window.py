@@ -47,8 +47,8 @@ class NewSubjectWindow(QDialog):
         main_window.ui.subject_combobox.clear()
         main_window.ui.subject_combobox.addItems(subjects)
 
-        # Set the default again
-        default_subject_name = get_default_subject_name()
-        subject_index = main_window.ui.subject_combobox.findText(default_subject_name)
+        # Set the chosen as last added
+        last_added_subject = self.ui.subject_name_entry.text().strip()
+        subject_index = main_window.ui.subject_combobox.findText(last_added_subject)
         if subject_index != -1:
             main_window.ui.subject_combobox.setCurrentIndex(subject_index)

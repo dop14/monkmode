@@ -143,8 +143,8 @@ class EditPeriodWindow(QDialog):
         main_window.ui.period_combobox.clear()
         main_window.ui.period_combobox.addItems(periods)
 
-        # Set the default again
-        default_period_name = get_default_period_name()
-        period_index = main_window.ui.period_combobox.findText(default_period_name)
+        # Set the last edited period as chosen
+        last_edited_period = self.ui.focus_name_entry.text().strip()
+        period_index = main_window.ui.period_combobox.findText(last_edited_period)
         if period_index != -1:
             main_window.ui.period_combobox.setCurrentIndex(period_index)
