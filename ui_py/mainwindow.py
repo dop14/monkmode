@@ -65,14 +65,6 @@ class Ui_MainWindow(object):
         self.mainLayout.setObjectName(u"mainLayout")
         self.verticalLayout_4 = QVBoxLayout(self.mainLayout)
         self.verticalLayout_4.setObjectName(u"verticalLayout_4")
-        self.label = QLabel(self.mainLayout)
-        self.label.setObjectName(u"label")
-        font = QFont()
-        font.setPointSize(32)
-        self.label.setFont(font)
-
-        self.verticalLayout_4.addWidget(self.label)
-
         self.verticalLayout_10 = QVBoxLayout()
         self.verticalLayout_10.setObjectName(u"verticalLayout_10")
         self.focusFrame = QFrame(self.mainLayout)
@@ -83,9 +75,9 @@ class Ui_MainWindow(object):
         self.verticalLayout_3.setObjectName(u"verticalLayout_3")
         self.timer_label = QLabel(self.focusFrame)
         self.timer_label.setObjectName(u"timer_label")
-        font1 = QFont()
-        font1.setPointSize(30)
-        self.timer_label.setFont(font1)
+        font = QFont()
+        font.setPointSize(30)
+        self.timer_label.setFont(font)
         self.timer_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
 
         self.verticalLayout_3.addWidget(self.timer_label)
@@ -97,9 +89,9 @@ class Ui_MainWindow(object):
         sizePolicy1.setVerticalStretch(0)
         sizePolicy1.setHeightForWidth(self.start_focus_btn.sizePolicy().hasHeightForWidth())
         self.start_focus_btn.setSizePolicy(sizePolicy1)
-        font2 = QFont()
-        font2.setPointSize(18)
-        self.start_focus_btn.setFont(font2)
+        font1 = QFont()
+        font1.setPointSize(18)
+        self.start_focus_btn.setFont(font1)
 
         self.verticalLayout_3.addWidget(self.start_focus_btn)
 
@@ -108,11 +100,16 @@ class Ui_MainWindow(object):
         self.focus_pause_btn = QPushButton(self.focusFrame)
         self.focus_pause_btn.setObjectName(u"focus_pause_btn")
         self.focus_pause_btn.setEnabled(True)
-        font3 = QFont()
-        font3.setKerning(True)
-        self.focus_pause_btn.setFont(font3)
+        font2 = QFont()
+        font2.setKerning(True)
+        self.focus_pause_btn.setFont(font2)
 
         self.horizontalLayout_3.addWidget(self.focus_pause_btn)
+
+        self.focus_resume_btn = QPushButton(self.focusFrame)
+        self.focus_resume_btn.setObjectName(u"focus_resume_btn")
+
+        self.horizontalLayout_3.addWidget(self.focus_resume_btn)
 
         self.focus_stop_btn = QPushButton(self.focusFrame)
         self.focus_stop_btn.setObjectName(u"focus_stop_btn")
@@ -141,9 +138,9 @@ class Ui_MainWindow(object):
         self.verticalLayout.setObjectName(u"verticalLayout")
         self.period_label = QLabel(self.periodFrame)
         self.period_label.setObjectName(u"period_label")
-        font4 = QFont()
-        font4.setPointSize(16)
-        self.period_label.setFont(font4)
+        font3 = QFont()
+        font3.setPointSize(16)
+        self.period_label.setFont(font3)
 
         self.verticalLayout.addWidget(self.period_label)
 
@@ -187,7 +184,7 @@ class Ui_MainWindow(object):
         self.verticalLayout_5.setObjectName(u"verticalLayout_5")
         self.daily_label = QLabel(self.dailyFrame)
         self.daily_label.setObjectName(u"daily_label")
-        self.daily_label.setFont(font4)
+        self.daily_label.setFont(font3)
 
         self.verticalLayout_5.addWidget(self.daily_label)
 
@@ -227,7 +224,7 @@ class Ui_MainWindow(object):
         self.verticalLayout_2.setObjectName(u"verticalLayout_2")
         self.subject_label = QLabel(self.subjectFrame)
         self.subject_label.setObjectName(u"subject_label")
-        self.subject_label.setFont(font4)
+        self.subject_label.setFont(font3)
 
         self.verticalLayout_2.addWidget(self.subject_label)
 
@@ -271,7 +268,7 @@ class Ui_MainWindow(object):
         self.verticalLayout_7.setObjectName(u"verticalLayout_7")
         self.weekly_label = QLabel(self.weeklyFrame)
         self.weekly_label.setObjectName(u"weekly_label")
-        self.weekly_label.setFont(font4)
+        self.weekly_label.setFont(font3)
 
         self.verticalLayout_7.addWidget(self.weekly_label)
 
@@ -369,10 +366,10 @@ class Ui_MainWindow(object):
         self.actionclear_history.setText(QCoreApplication.translate("MainWindow", u"clear history", None))
         self.actionfocus_period.setText(QCoreApplication.translate("MainWindow", u"focus period", None))
         self.actionfocus_subject.setText(QCoreApplication.translate("MainWindow", u"focus subject", None))
-        self.label.setText(QCoreApplication.translate("MainWindow", u"monkmode", None))
         self.timer_label.setText(QCoreApplication.translate("MainWindow", u"25:00", None))
         self.start_focus_btn.setText(QCoreApplication.translate("MainWindow", u"focus", None))
-        self.focus_pause_btn.setText(QCoreApplication.translate("MainWindow", u"pause/start", None))
+        self.focus_pause_btn.setText(QCoreApplication.translate("MainWindow", u"pause", None))
+        self.focus_resume_btn.setText(QCoreApplication.translate("MainWindow", u"resume", None))
         self.focus_stop_btn.setText(QCoreApplication.translate("MainWindow", u"stop", None))
         self.period_label.setText(QCoreApplication.translate("MainWindow", u"focus period", None))
         self.editperiod_btn.setText(QCoreApplication.translate("MainWindow", u"edit", None))

@@ -1,4 +1,51 @@
 Focus sessions duration -> TIME SPENT IN FOCUS, WITHOUT BREAKS
 
 Timer.py
-    Start session based on period_setting
+    Count the number of sessions left:
+    Example: Pomodoro default
+    Start: sessions_left = 6, short_break_time = 5, long_break_time = 15, long_break_after = 4, is_long_break = 0
+    
+    focus_timer()
+    def start_focus_timer():
+        If focus_time == 0:
+            sessions_left--
+            is_long_break++
+            save_session_to_database()
+
+            if long_break_after == is_long_break
+                Start long break
+                is_long_break = 0
+            Else
+                Start short break
+        
+    def
+        elif focus_time_paused == True:
+            pause_timer()
+
+            if focus_time_paused == False:
+                continue_timer()
+
+        elif focus_time_stopped == True:
+            show_confirmation_window() -> do you really want to stop the focus session? Time in focus will be saved
+            stop_focus_time() -> save current time to db
+
+
+
+    Start session based on period_setting and user_sessions
+        Hide FOCUS button
+        Show pause/resume and reset button
+        Show time left
+            Update it every second
+
+    After session ends/stopped/app closed:
+        save to focus_sessions in db
+        update today's focus, this week's focus
+        update daily focus goal label, weekly focus label
+        update daily focus goal, weekly focus goal progression bar
+
+
+Create schema for focus goal
+    - daily focus goal default: 1 hour
+    - weekly focus goal default: (weekdays || whole week) * daily focus goal
+
+Default: weekdays only

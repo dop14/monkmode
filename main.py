@@ -1,4 +1,4 @@
-from PySide6.QtWidgets import QApplication, QMainWindow
+from PySide6.QtWidgets import QApplication, QMainWindow, QMessageBox
 from ui_py.mainwindow import Ui_MainWindow
 from windows.focus_window import FocusWindow
 from windows.new_period_window import NewPeriodWindow
@@ -7,6 +7,7 @@ from windows.confirmation_window import ConfirmationWindow
 from windows.new_subject_window import NewSubjectWindow
 from windows.edit_subject_window import EditSubjectWindow
 from PySide6.QtCore import Qt
+from core.timer import FocusTimer
 from database.db_manager import get_period_names, get_subject_names
 from database.db_manager import get_default_period_name, get_default_subject_name
 import sys
@@ -16,11 +17,13 @@ class MainWindow(QMainWindow):
         super().__init__()
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
+        self.setWindowTitle("monkmode")
 
         # Hide buttons
         self.ui.timer_label.hide()
         self.ui.focus_pause_btn.hide()
         self.ui.focus_stop_btn.hide()
+        self.ui.focus_resume_btn.hide()
 
         # Load all period settings into combobox
         periods = get_period_names()
@@ -71,6 +74,25 @@ class MainWindow(QMainWindow):
         # When delete subject button is clicked
         self.ui.delete_subject_btn.clicked.connect(lambda:self.start_delete_window("subject"))
     
+    # If app is closed
+    def closeEvent(self, event):
+        reply = QMessageBox.question(
+            self,
+            "Quit",
+            "Are you sure you want to quit?",
+            QMessageBox.Yes | QMessageBox.No,
+            QMessageBox.No
+        )
+
+        if reply == QMessageBox.Yes:
+            # Check if there's an active focus session running
+                # If there is
+                    # Save the data
+            # Close the app
+            event.accept()  
+        else:
+            event.ignore() 
+    
     def start_focus_window(self):
         self.focus_window = FocusWindow(self)
         self.focus_window.exec()
@@ -113,7 +135,42 @@ class MainWindow(QMainWindow):
             else:
                 self.del_window = ConfirmationWindow(self,f"Do you really want to delete <b>{self.ui.subject_combobox.currentText()}</b> subject?<br>This action cannot be undone.",setting_type)
                 self.del_window.exec()
+        
+    def start_timer(self, period, subject, user_sessions):
+        # Hide button
+        self.ui.start_focus_btn.hide()
 
+        # Show buttons
+        self.ui.timer_label.show()
+        self.ui.focus_pause_btn.show()
+        self.ui.focus_stop_btn.show()
+
+        # Disable things on mainwindow
+        self.ui.periodFrame.setDisabled(True)
+        self.ui.subjectFrame.setDisabled(True)
+        self.ui.dailyFrame.setDisabled(True)
+        self.ui.weeklyFrame.setDisabled(True)
+        self.ui.menubar.setDisabled(True)
+
+        # Call function in core->timer.py with inputs
+        self.focus_timer = FocusTimer(period, subject, user_sessions, self)
+        self.focus_timer.start()
+
+        # If pause button clicked
+        self.ui.focus_pause_btn.clicked.connect(self.focus_timer.pause)
+
+        # If resume button is clicked
+        self.ui.focus_resume_btn.clicked.connect(self.focus_timer.resume)
+
+        # If stop button is clicked
+        self.ui.focus_stop_btn.clicked.connect(lambda:self.stop_focus_confirmation())
+
+    def update_timer_label(self, remaining_time):
+        # Format it to hours, minutes, seconds
+        self.ui.timer_label.setText(f"{remaining_time}")
+
+    def stop_focus_confirmation(self):
+        pass
 
 # Application entry point
 def main():

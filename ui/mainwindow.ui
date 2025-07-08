@@ -28,18 +28,6 @@
   <widget class="QWidget" name="mainLayout">
    <layout class="QVBoxLayout" name="verticalLayout_4">
     <item>
-     <widget class="QLabel" name="label">
-      <property name="font">
-       <font>
-        <pointsize>32</pointsize>
-       </font>
-      </property>
-      <property name="text">
-       <string>monkmode</string>
-      </property>
-     </widget>
-    </item>
-    <item>
      <layout class="QVBoxLayout" name="verticalLayout_10">
       <item>
        <widget class="QFrame" name="focusFrame">
@@ -96,7 +84,14 @@
               </font>
              </property>
              <property name="text">
-              <string>pause/start</string>
+              <string>pause</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="focus_resume_btn">
+             <property name="text">
+              <string>resume</string>
              </property>
             </widget>
            </item>

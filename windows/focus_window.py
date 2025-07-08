@@ -1,6 +1,6 @@
 from PySide6.QtWidgets import QDialog
 from ui_py.focuswindow import Ui_Form
-from database.db_manager import calculate_session_length
+from database.db_manager import calculate_session_length, get_period_data, get_subject_data
 
 class FocusWindow(QDialog):
     def __init__(self, main_window):
@@ -20,7 +20,7 @@ class FocusWindow(QDialog):
         self.ui.session_spinbox.valueChanged.connect(self.spinbox_value_changed)
 
         # If start focus is button is clicked
-        self.ui.start_focus_btn.clicked.connect(self.start_focus)
+        self.ui.start_focus_btn.clicked.connect(lambda: self.start_focus(main_window))
 
     def spinbox_value_changed(self):
         length = calculate_session_length(self.ui.session_spinbox.value(),self.current_period)
@@ -45,6 +45,10 @@ class FocusWindow(QDialog):
                 f"• Short breaks: <b>{length[2]}</b><br>"
                 f"• Long breaks: <b>{length[3]}</b>"
             )
-    def start_focus(self):
-       # calling timer.py
-       pass
+    def start_focus(self, main_window):
+       # calling start_focus on main_window
+       period_data = get_period_data(self.current_period)
+       subject_data = get_subject_data(self.current_subject)
+       main_window.start_timer(period_data, subject_data, self.ui.session_spinbox.value())
+
+       self.close()
