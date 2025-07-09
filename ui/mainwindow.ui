@@ -46,10 +46,17 @@
             </font>
            </property>
            <property name="text">
-            <string>25:00</string>
+            <string/>
            </property>
            <property name="alignment">
             <set>Qt::AlignmentFlag::AlignCenter</set>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="period_type_label">
+           <property name="text">
+            <string/>
            </property>
           </widget>
          </item>
@@ -410,6 +417,8 @@
      </property>
      <addaction name="actionnotify_when_session_starts"/>
      <addaction name="actionnotify_when_session_ends"/>
+     <addaction name="actionnotify_when_session_starts_2"/>
+     <addaction name="actionnotifty_when_session_ends"/>
     </widget>
     <addaction name="menuchange_default"/>
     <addaction name="menuset_week"/>
@@ -473,12 +482,12 @@
   </action>
   <action name="actionnotify_when_session_starts">
    <property name="text">
-    <string>notify when session starts</string>
+    <string>play sound when session starts</string>
    </property>
   </action>
   <action name="actionnotify_when_session_ends">
    <property name="text">
-    <string>notify when session ends</string>
+    <string>play sound when session starts</string>
    </property>
   </action>
   <action name="actionview_focus_history">
@@ -504,6 +513,16 @@
   <action name="actionfocus_subject">
    <property name="text">
     <string>focus subject</string>
+   </property>
+  </action>
+  <action name="actionnotify_when_session_starts_2">
+   <property name="text">
+    <string>notify when session starts</string>
+   </property>
+  </action>
+  <action name="actionnotifty_when_session_ends">
+   <property name="text">
+    <string>notifty when session ends</string>
    </property>
   </action>
  </widget>

@@ -7,6 +7,7 @@ from windows.confirmation_window import ConfirmationWindow
 from windows.new_subject_window import NewSubjectWindow
 from windows.edit_subject_window import EditSubjectWindow
 from PySide6.QtCore import Qt
+import datetime
 from core.timer import FocusTimer
 from database.db_manager import get_period_names, get_subject_names
 from database.db_manager import get_default_period_name, get_default_subject_name
@@ -24,6 +25,7 @@ class MainWindow(QMainWindow):
         self.ui.focus_pause_btn.hide()
         self.ui.focus_stop_btn.hide()
         self.ui.focus_resume_btn.hide()
+        self.ui.period_type_label.hide()
 
         # Load all period settings into combobox
         periods = get_period_names()
@@ -73,6 +75,9 @@ class MainWindow(QMainWindow):
 
         # When delete subject button is clicked
         self.ui.delete_subject_btn.clicked.connect(lambda:self.start_delete_window("subject"))
+
+        # If stop button is clicked
+        self.ui.focus_stop_btn.clicked.connect(self.stop_focus_confirmation)
     
     # If app is closed
     def closeEvent(self, event):
@@ -113,7 +118,6 @@ class MainWindow(QMainWindow):
             self.edit_window = EditSubjectWindow(self)
             self.edit_window.exec()
 
-
     def start_delete_window(self, setting_type):
         # If the a period setting is being deleted
         if setting_type == "period":
@@ -146,11 +150,7 @@ class MainWindow(QMainWindow):
         self.ui.focus_stop_btn.show()
 
         # Disable things on mainwindow
-        self.ui.periodFrame.setDisabled(True)
-        self.ui.subjectFrame.setDisabled(True)
-        self.ui.dailyFrame.setDisabled(True)
-        self.ui.weeklyFrame.setDisabled(True)
-        self.ui.menubar.setDisabled(True)
+        self.disable_and_enable_gui(True)
 
         # Call function in core->timer.py with inputs
         self.focus_timer = FocusTimer(period, subject, user_sessions, self)
@@ -162,15 +162,57 @@ class MainWindow(QMainWindow):
         # If resume button is clicked
         self.ui.focus_resume_btn.clicked.connect(self.focus_timer.resume)
 
-        # If stop button is clicked
-        self.ui.focus_stop_btn.clicked.connect(lambda:self.stop_focus_confirmation())
-
     def update_timer_label(self, remaining_time):
         # Format it to hours, minutes, seconds
-        self.ui.timer_label.setText(f"{remaining_time}")
+        hours, remainder = divmod(remaining_time, 3600)
+        minutes, seconds = divmod(remainder, 60)
+
+        # Show time
+        self.ui.timer_label.setText(f"{hours}:{minutes}:{seconds}")
 
     def stop_focus_confirmation(self):
-        pass
+        self.focus_timer.stop()
+        print("stop focus timer called")
+        reply = QMessageBox.question(
+            self,
+            "Quit",
+            "Are you sure you want stop the focus session? This will save, but end your current progress.",
+            QMessageBox.Yes | QMessageBox.No,
+            QMessageBox.No
+        )
+
+        if reply == QMessageBox.Yes:
+            # Save the data, if elapsed_time >= 60 seconds
+
+            # Hide timer label, pause/resume and stop
+            self.ui.timer_label.hide()
+            self.ui.focus_pause_btn.hide()
+            self.ui.focus_stop_btn.hide()
+            self.ui.focus_resume_btn.hide()
+            self.ui.period_type_label.hide()
+
+            # Clear timer_label
+            self.ui.timer_label.setText("")
+           
+            # Show focus button
+            self.ui.start_focus_btn.show()
+
+            # Enable GUI
+            self.disable_and_enable_gui(False)
+
+        elif reply == QMessageBox.No:
+            self.focus_timer.resume()
+
+    def disable_and_enable_gui(self, bool_value):
+        self.ui.periodFrame.setDisabled(bool_value)
+        self.ui.subjectFrame.setDisabled(bool_value)
+        self.ui.dailyFrame.setDisabled(bool_value)
+        self.ui.weeklyFrame.setDisabled(bool_value)
+        self.ui.menubar.setDisabled(bool_value)
+
+    def focus_ended(self):
+        print("Yaaaay! Congratulations.")
+
 
 # Application entry point
 def main():

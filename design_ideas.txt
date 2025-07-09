@@ -10,6 +10,8 @@ UX:
 focus window:
     Focus will approximately end on 12:45 (update every minute)
 
+When focus period started: Focus period(1 out of 6), Break (1 of 5)
+
 When adding, updating, deleting pop-up message:
     Added XY period setting / subject
     Updated XY period setting / subject
@@ -25,3 +27,9 @@ Archiving subjects
 
 When deleting subject: 
     Deleting this subject will stop tracking any new focus time for it. Past focus time data will remain, but you won’t be able to add more. 
+
+
+Skip breaks?
+Hide timer
+Timer popup (green plant-like in microsoft focus)
+Popups+sound when completed a focus, break period
