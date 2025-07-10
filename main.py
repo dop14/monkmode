@@ -20,12 +20,10 @@ class MainWindow(QMainWindow):
         self.ui.setupUi(self)
         self.setWindowTitle("monkmode")
 
+        self.is_timer_active = False
+
         # Hide buttons
-        self.ui.timer_label.hide()
-        self.ui.focus_pause_btn.hide()
-        self.ui.focus_stop_btn.hide()
-        self.ui.focus_resume_btn.hide()
-        self.ui.period_type_label.hide()
+        self.hide_buttons()
 
         # Load all period settings into combobox
         periods = get_period_names()
@@ -81,22 +79,40 @@ class MainWindow(QMainWindow):
     
     # If app is closed
     def closeEvent(self, event):
-        reply = QMessageBox.question(
-            self,
-            "Quit",
-            "Are you sure you want to quit?",
-            QMessageBox.Yes | QMessageBox.No,
-            QMessageBox.No
-        )
+        # If no timer is active
+        if self.is_timer_active == False:
+            reply = QMessageBox.question(
+                self,
+                "Quit",
+                "Are you sure you want to quit?",
+                QMessageBox.Yes | QMessageBox.No,
+                QMessageBox.No
+            )
 
-        if reply == QMessageBox.Yes:
-            # Check if there's an active focus session running
-                # If there is
-                    # Save the data
-            # Close the app
-            event.accept()  
+            if reply == QMessageBox.Yes:
+                event.accept()  
+            else:
+                event.ignore() 
+        # If timer is active
         else:
-            event.ignore() 
+            self.focus_timer.stop()
+            reply = QMessageBox.question(
+                self,
+                "Quit",
+                "Are you sure you want to quit while in focus? This will save, but end your current progress.",
+                QMessageBox.Yes | QMessageBox.No,
+                QMessageBox.No
+                )
+
+            if reply == QMessageBox.Yes:
+                # Save the data
+                self.focus_timer.save_focus_stopped_session()
+                event.accept()
+
+            elif reply == QMessageBox.No:
+                self.focus_timer.resume()
+                event.ignore()
+
     
     def start_focus_window(self):
         self.focus_window = FocusWindow(self)
@@ -139,8 +155,13 @@ class MainWindow(QMainWindow):
             else:
                 self.del_window = ConfirmationWindow(self,f"Do you really want to delete <b>{self.ui.subject_combobox.currentText()}</b> subject?<br>This action cannot be undone.",setting_type)
                 self.del_window.exec()
-        
+    
+    # Starting timer
     def start_timer(self, period, subject, user_sessions):
+
+        # Timer is active
+        self.is_timer_active = True
+
         # Hide button
         self.ui.start_focus_btn.hide()
 
@@ -152,7 +173,7 @@ class MainWindow(QMainWindow):
         # Disable things on mainwindow
         self.disable_and_enable_gui(True)
 
-        # Call function in core->timer.py with inputs
+        # Create FocusTimer
         self.focus_timer = FocusTimer(period, subject, user_sessions, self)
         self.focus_timer.start()
 
@@ -161,44 +182,23 @@ class MainWindow(QMainWindow):
 
         # If resume button is clicked
         self.ui.focus_resume_btn.clicked.connect(self.focus_timer.resume)
-
-    def update_timer_label(self, remaining_time):
-        # Format it to hours, minutes, seconds
-        hours, remainder = divmod(remaining_time, 3600)
-        minutes, seconds = divmod(remainder, 60)
-
-        # Show time
-        self.ui.timer_label.setText(f"{hours}:{minutes}:{seconds}")
-
+    
+    # Confirmation for stopping the focus
     def stop_focus_confirmation(self):
         self.focus_timer.stop()
-        print("stop focus timer called")
         reply = QMessageBox.question(
             self,
-            "Quit",
+            "Stopping focus session",
             "Are you sure you want stop the focus session? This will save, but end your current progress.",
             QMessageBox.Yes | QMessageBox.No,
             QMessageBox.No
         )
 
         if reply == QMessageBox.Yes:
-            # Save the data, if elapsed_time >= 60 seconds
+            # Save the data
+            self.focus_timer.save_focus_stopped_session()
 
-            # Hide timer label, pause/resume and stop
-            self.ui.timer_label.hide()
-            self.ui.focus_pause_btn.hide()
-            self.ui.focus_stop_btn.hide()
-            self.ui.focus_resume_btn.hide()
-            self.ui.period_type_label.hide()
-
-            # Clear timer_label
-            self.ui.timer_label.setText("")
-           
-            # Show focus button
-            self.ui.start_focus_btn.show()
-
-            # Enable GUI
-            self.disable_and_enable_gui(False)
+            self.focus_ended()
 
         elif reply == QMessageBox.No:
             self.focus_timer.resume()
@@ -210,10 +210,34 @@ class MainWindow(QMainWindow):
         self.ui.weeklyFrame.setDisabled(bool_value)
         self.ui.menubar.setDisabled(bool_value)
 
+    def hide_buttons(self):
+        self.ui.timer_label.hide()
+        self.ui.focus_pause_btn.hide()
+        self.ui.focus_stop_btn.hide()
+        self.ui.focus_resume_btn.hide()
+        self.ui.period_type_label.hide()
+
     def focus_ended(self):
-        print("Yaaaay! Congratulations.")
+        # Timer is inactive
+        self.is_timer_active = False
+
+        # Hide timer label, pause/resume and stop
+        self.hide_buttons()
+
+        # Clear timer_label
+        self.ui.timer_label.setText("")
+
+        # Show focus button
+        self.ui.start_focus_btn.show()
+
+        # Enable GUI
+        self.disable_and_enable_gui(False)
 
 
+        # Update today's focus, daily progression bar, weekly focus, weekly progression bar
+
+        print("Yaay! Congratulations!")
+        
 # Application entry point
 def main():
     app = QApplication(sys.argv)

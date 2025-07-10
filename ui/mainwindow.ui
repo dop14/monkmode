@@ -415,10 +415,10 @@
      <property name="title">
       <string>notifications</string>
      </property>
-     <addaction name="actionnotify_when_session_starts"/>
-     <addaction name="actionnotify_when_session_ends"/>
-     <addaction name="actionnotify_when_session_starts_2"/>
-     <addaction name="actionnotifty_when_session_ends"/>
+     <addaction name="popup_break_start"/>
+     <addaction name="sound_break_start"/>
+     <addaction name="popup_focus_start"/>
+     <addaction name="sound_focus_start"/>
     </widget>
     <addaction name="menuchange_default"/>
     <addaction name="menuset_week"/>
@@ -451,11 +451,17 @@
    </property>
   </action>
   <action name="actiondark">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
    <property name="text">
     <string>dark</string>
    </property>
   </action>
   <action name="actionlight">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
    <property name="text">
     <string>light</string>
    </property>
@@ -471,23 +477,38 @@
    </property>
   </action>
   <action name="actionweekdays_only">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>false</bool>
+   </property>
    <property name="text">
     <string>weekdays only</string>
    </property>
   </action>
   <action name="actionwhole_week">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
    <property name="text">
     <string>whole week</string>
    </property>
   </action>
-  <action name="actionnotify_when_session_starts">
+  <action name="popup_break_start">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
    <property name="text">
-    <string>play sound when session starts</string>
+    <string>play sound when focus period starts</string>
    </property>
   </action>
-  <action name="actionnotify_when_session_ends">
+  <action name="sound_break_start">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
    <property name="text">
-    <string>play sound when session starts</string>
+    <string>play sound when break period starts</string>
    </property>
   </action>
   <action name="actionview_focus_history">
@@ -515,14 +536,20 @@
     <string>focus subject</string>
    </property>
   </action>
-  <action name="actionnotify_when_session_starts_2">
+  <action name="popup_focus_start">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
    <property name="text">
-    <string>notify when session starts</string>
+    <string>notify when focus period starts</string>
    </property>
   </action>
-  <action name="actionnotifty_when_session_ends">
+  <action name="sound_focus_start">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
    <property name="text">
-    <string>notifty when session ends</string>
+    <string>notify when break period starts</string>
    </property>
   </action>
  </widget>

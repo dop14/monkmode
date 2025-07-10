@@ -6,30 +6,32 @@ delete (trashbin)
 pause resume
 stop
 
-UX:
 focus window:
     Focus will approximately end on 12:45 (update every minute)
 
-When focus period started: Focus period(1 out of 6), Break (1 of 5)
-
-When adding, updating, deleting pop-up message:
+When adding, updating, deleting pop-up notification message:
     Added XY period setting / subject
     Updated XY period setting / subject
     Deleted XY period setting / subject
 
-Edit, Add window:
-    - bold default period, subject
+Bold default period, subject
 
 Archiving subjects
     If user focused on a project, but the project is done, he could perhaps archive it.
     Settings -> Archived subjects -> See archived / Unarchive
-    Unarchived wont show in combobox
+    Archived wont show in combobox
+    Unarchived will go back to combobox
 
 When deleting subject: 
     Deleting this subject will stop tracking any new focus time for it. Past focus time data will remain, but you won’t be able to add more. 
 
-
-Skip breaks?
 Hide timer
 Timer popup (green plant-like in microsoft focus)
-Popups+sound when completed a focus, break period
+
+Timer fades in, fades out -> not pops
+
+Tips and Quotes
+Lots of quotes and tips in a db -> select them randomly and show them
+Settings -> uncheck them if not needed
+
+

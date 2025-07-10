@@ -1,12 +1,40 @@
-Save data if closeEVENT -> only if elapsed_time >= 60 seconds
-Save data if timer is stopped -> only if elapsed_time >= 60 seconds
 
-# Count elapsed_time -> TIME SPENT IN FOCUS, WITHOUT BREAKS
-# Create timer logic (focus, break, long break)
 
-#Play sound at 2 sec
+
+1.
+    self.start_break_session()
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Dominik\OneDrive\Desktop\monkmode\core\timer.py", line 34, in start_break_session
+    if self.completed_focus_sessions % self.long_break_after == 0:
+       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~
+
+2. If you stop the session while in a break, what happens?
+
+
+
+
+
+
+. notification
+    - sound
+        - play focus_starts if focus_starts sound enabled in menubar
+        - play break_starts if break_starts sound enabled in menubar
+    - pop-up
+        - show focus starts popup if enabled in menubar
+        - show break starts popup if enabled in menubar
+        - show focus completed popup if enabled in menubar
+
 Create schema for focus goal
     - daily focus goal default: 1 hour
     - weekly focus goal default: (weekdays || whole week) * daily focus goal
 
 Default: weekdays only
+
+COUNT STREAKS if daily goal achieved
+-heatmap
+
+
+
+CLARIFY:
+FOCUS SESSION -> is the whole
+FOCUS PERIOD -> is a part of the whole

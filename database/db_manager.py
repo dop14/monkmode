@@ -238,6 +238,27 @@ def delete_subject_settings(id):
     conn.commit()
     conn.close()
 
+def save_focus_session_db(data:dict):
+    conn = get_connection()
+    cursor = conn.cursor()
+
+    query = """
+        INSERT INTO focus_sessions (
+            subject_id,
+            period_id,
+            duration
+        ) VALUES (
+            :subject_id,
+            :period_id,
+            :duration
+        )
+    """
+    
+    cursor.execute(query, data)
+    conn.commit()
+    conn.close()
+
+
 def get_connection():
     conn = sqlite3.connect(DB_NAME)
     return conn
