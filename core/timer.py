@@ -31,8 +31,7 @@ class FocusTimer(QObject):
     def start_break_session(self):
         self.is_break = True
         # If long break is next
-        #if self.long_break_after != 0:
-        if self.completed_focus_sessions % self.long_break_after == 0:
+        if self.long_break_after != 0 and self.completed_focus_sessions % self.long_break_after == 0 and self.long_break_after:
             self.remaining_time = self.period["long_break_time"] * 60
             self.main_window.ui.period_type_label.setText(f"Break ({self.completed_focus_sessions} of {self.total_sessions-1})")
         # If short break is next
@@ -100,9 +99,9 @@ class FocusTimer(QObject):
             "period_id": self.period["id"],
             "duration":  self.focus_time,
         }
-        print(self.subject)
-        print(self.period)
+        # For testing, see the focus_session
         print(focus_session)
+        
         # call db function
         save_focus_session_db(focus_session)
 
@@ -110,19 +109,19 @@ class FocusTimer(QObject):
         self.focus_time = self.period["focus_time"] * 60
         focus_time_unfinished_session = self.focus_time - self.remaining_time
         # If user spent more than one minute in focus in the unfinished session
-        if focus_time_unfinished_session > 60:
+        if not self.is_break and focus_time_unfinished_session > 60:
+                # save data to db
+                focus_session = {
+                    "subject_id": self.subject[0],
+                    "period_id": self.period["id"],
+                    "duration": focus_time_unfinished_session,
+                }
+                
+                # For testing, see the focus_session
+                print(focus_session)
 
-            # save data to db
-            focus_session = {
-                "subject_id": self.subject[0],
-                "period_id": self.period["id"],
-                "duration": focus_time_unfinished_session,
-            }
-
-            print(focus_session)
-
-            # call db function
-            save_focus_session_db(focus_session)
+                # call db function
+                save_focus_session_db(focus_session)
      
 
     def play_sound(self):

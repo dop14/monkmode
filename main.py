@@ -208,6 +208,7 @@ class MainWindow(QMainWindow):
         self.ui.subjectFrame.setDisabled(bool_value)
         self.ui.dailyFrame.setDisabled(bool_value)
         self.ui.weeklyFrame.setDisabled(bool_value)
+        self.ui.streakFrame.setDisabled(bool_value)
         self.ui.menubar.setDisabled(bool_value)
 
     def hide_buttons(self):
@@ -235,8 +236,7 @@ class MainWindow(QMainWindow):
 
 
         # Update today's focus, daily progression bar, weekly focus, weekly progression bar
-
-        print("Yaay! Congratulations!")
+        
         
 # Application entry point
 def main():

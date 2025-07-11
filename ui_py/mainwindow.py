@@ -25,7 +25,7 @@ class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
-        MainWindow.resize(760, 943)
+        MainWindow.resize(499, 657)
         sizePolicy = QSizePolicy(QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Minimum)
         sizePolicy.setHorizontalStretch(200)
         sizePolicy.setVerticalStretch(0)
@@ -48,6 +48,7 @@ class Ui_MainWindow(object):
         self.actionweekdays_only = QAction(MainWindow)
         self.actionweekdays_only.setObjectName(u"actionweekdays_only")
         self.actionweekdays_only.setCheckable(True)
+        self.actionweekdays_only.setChecked(False)
         self.actionwhole_week = QAction(MainWindow)
         self.actionwhole_week.setObjectName(u"actionwhole_week")
         self.actionwhole_week.setCheckable(True)
@@ -75,10 +76,10 @@ class Ui_MainWindow(object):
         self.sound_focus_start.setCheckable(True)
         self.mainLayout = QWidget(MainWindow)
         self.mainLayout.setObjectName(u"mainLayout")
-        self.verticalLayout_4 = QVBoxLayout(self.mainLayout)
-        self.verticalLayout_4.setObjectName(u"verticalLayout_4")
-        self.verticalLayout_10 = QVBoxLayout()
+        self.verticalLayout_10 = QVBoxLayout(self.mainLayout)
         self.verticalLayout_10.setObjectName(u"verticalLayout_10")
+        self.verticalLayout_6 = QVBoxLayout()
+        self.verticalLayout_6.setObjectName(u"verticalLayout_6")
         self.focusFrame = QFrame(self.mainLayout)
         self.focusFrame.setObjectName(u"focusFrame")
         self.focusFrame.setFrameShape(QFrame.Shape.StyledPanel)
@@ -137,11 +138,11 @@ class Ui_MainWindow(object):
         self.verticalLayout_3.addLayout(self.horizontalLayout_3)
 
 
-        self.verticalLayout_10.addWidget(self.focusFrame)
+        self.verticalLayout_6.addWidget(self.focusFrame)
 
         self.horizontalSpacer_4 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
 
-        self.verticalLayout_10.addItem(self.horizontalSpacer_4)
+        self.verticalLayout_6.addItem(self.horizontalSpacer_4)
 
         self.horizontalLayout_4 = QHBoxLayout()
         self.horizontalLayout_4.setObjectName(u"horizontalLayout_4")
@@ -312,15 +313,34 @@ class Ui_MainWindow(object):
         self.horizontalLayout_4.addLayout(self.verticalLayout_9)
 
 
-        self.verticalLayout_10.addLayout(self.horizontalLayout_4)
+        self.verticalLayout_6.addLayout(self.horizontalLayout_4)
+
+        self.horizontalSpacer = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
+
+        self.verticalLayout_6.addItem(self.horizontalSpacer)
+
+        self.streakFrame = QFrame(self.mainLayout)
+        self.streakFrame.setObjectName(u"streakFrame")
+        self.streakFrame.setFrameShape(QFrame.Shape.StyledPanel)
+        self.streakFrame.setFrameShadow(QFrame.Shadow.Raised)
+        self.verticalLayout_4 = QVBoxLayout(self.streakFrame)
+        self.verticalLayout_4.setObjectName(u"verticalLayout_4")
+        self.streak_label = QLabel(self.streakFrame)
+        self.streak_label.setObjectName(u"streak_label")
+        self.streak_label.setFont(font3)
+
+        self.verticalLayout_4.addWidget(self.streak_label)
 
 
-        self.verticalLayout_4.addLayout(self.verticalLayout_10)
+        self.verticalLayout_6.addWidget(self.streakFrame)
+
+
+        self.verticalLayout_10.addLayout(self.verticalLayout_6)
 
         MainWindow.setCentralWidget(self.mainLayout)
         self.menubar = QMenuBar(MainWindow)
         self.menubar.setObjectName(u"menubar")
-        self.menubar.setGeometry(QRect(0, 0, 760, 33))
+        self.menubar.setGeometry(QRect(0, 0, 499, 33))
         self.menuSettings = QMenu(self.menubar)
         self.menuSettings.setObjectName(u"menuSettings")
         self.menuchange_default = QMenu(self.menuSettings)
@@ -407,6 +427,7 @@ class Ui_MainWindow(object):
         self.weekly_label.setText(QCoreApplication.translate("MainWindow", u"weekly focus", None))
         self.weekly_focus_label.setText(QCoreApplication.translate("MainWindow", u"this week's focus:", None))
         self.weekly_goal_label.setText(QCoreApplication.translate("MainWindow", u"weekly focus goal:", None))
+        self.streak_label.setText(QCoreApplication.translate("MainWindow", u"streaks heatmap: (current):", None))
         self.menuSettings.setTitle(QCoreApplication.translate("MainWindow", u"settings", None))
         self.menuchange_default.setTitle(QCoreApplication.translate("MainWindow", u"change default", None))
         self.menutheme.setTitle(QCoreApplication.translate("MainWindow", u"theme", None))
