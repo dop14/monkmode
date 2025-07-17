@@ -1,54 +1,22 @@
-Menubar:
-    1. Settings:
-        Save user preferences in DB, or Qsettings?:
-        change default
-            - daily focus goal
-            - focus period 
-            - focus subject
-
-        set week
-            - weekdays
-            - whole week
-
-        notification
-            - sound
-                - play focus_starts if focus_starts sound enabled in menubar
-                - play break_starts if break_starts sound enabled in menubar
-            - pop-up
-                - show focus starts popup if enabled in menubar
-                - show break starts popup if enabled in menubar
-                - show focus completed popup if enabled in menubar
-        theme
-            - light
-            - dark
-    2. History
-        view focus history -> opens new window (statistics....)
-        export data -> exports all data to a file
-        clear history -> resets focus_session table
-
-    3. Help
-        how to use -> opens github readme
-        about -> creator info
+1. FINISH change_def_daily_focus.py
+2. create change_def_period and subject for menu_bar.py
 
 
-        CREATE TABLE user_preferences IF NOT EXISTS (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
+STREAKS table
 
-            default_daily_focus_goal INTEGER NOT NULL DEFAULT 1,
+qt.qpa.screen: "Unable to open monitor interface to \\\\.\\DISPLAY1:" "Unknown error 0xe0000225."
 
-            week_mode TEXT CHECK(week_mode IN ('weekdays', 'wholeweek')) NOT NULL DEFAULT 'weekdays'
+# ADD TIPS & QUOTES
+# Monkmode philosophy (deep work, focus, zen, monklike)
+Tips for breaks are only showed when in a break
+When in focus, there's no noise, or quotes whatsoever
+Daily quotes, choosing randomly, showing up one everyday (resets at 00:00)
 
-            sound_focus_start BOOLEAN NUT NULL DEFAULT 1,
-            sound_break_start BOOLEAN NUT NULL DEFAULT 1,
-            sound_focus_completed BOOLEAN NUT NULL DEFAULT 1,
-            popup_focus_start BOOLEAN NUT NULL DEFAULT 1,
-            popup_break_start BOOLEAN NUT NULL DEFAULT 1,
-            popup_focus_completed BOOLEAN NUT NULL DEFAULT 1,
 
-            theme TEXT CHECK(theme IN ('light', 'dark')) NOT NULL DEFAULT 'dark'
-        )
 
-1. Add to schema
-2. Load these default values the first time in db (when lenght == 0)
-3. Load all defaults in main.py using db
-4. Load everything else that needs default values
+
+
+
+
+
+Run db_manager.py automatically when the user enters the app

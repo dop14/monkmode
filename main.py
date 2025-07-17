@@ -6,11 +6,11 @@ from windows.edit_period_window import EditPeriodWindow
 from windows.confirmation_window import ConfirmationWindow
 from windows.new_subject_window import NewSubjectWindow
 from windows.edit_subject_window import EditSubjectWindow
-from PySide6.QtCore import Qt
 import datetime
 from core.timer import FocusTimer
+from core.menu_bar import MenuBar
 from database.db_manager import get_period_names, get_subject_names
-from database.db_manager import get_default_period_name, get_default_subject_name
+from database.db_manager import get_default_period_name, get_default_subject_name, get_user_preferences
 import sys
 
 class MainWindow(QMainWindow):
@@ -45,6 +45,10 @@ class MainWindow(QMainWindow):
         if subject_index != -1:
             self.ui.subject_combobox.setCurrentIndex(subject_index)
 
+        # Load user preferences
+        preferences = get_user_preferences()
+        self.menubar = MenuBar(preferences, self)
+
         # Load today's focus
 
         # Load daily focus goal
@@ -76,6 +80,9 @@ class MainWindow(QMainWindow):
 
         # If stop button is clicked
         self.ui.focus_stop_btn.clicked.connect(self.stop_focus_confirmation)
+
+        # When change default daily focus button is clicked
+        self.ui.actiondaily_goal.triggered.connect(self.menubar.change_default_daily)
     
     # If app is closed
     def closeEvent(self, event):
@@ -197,7 +204,7 @@ class MainWindow(QMainWindow):
         if reply == QMessageBox.Yes:
             # Save the data
             self.focus_timer.save_focus_stopped_session()
-
+            
             self.focus_ended()
 
         elif reply == QMessageBox.No:

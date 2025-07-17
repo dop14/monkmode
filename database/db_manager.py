@@ -23,7 +23,14 @@ def add_default_subject(cursor):
                 INSERT INTO subjects (name, is_default)
                 VALUES (?,?)
             """, ("study", True))
-        
+
+# Add default values to user_preferences, if the table is empty
+def add_default_user_preferences(cursor):
+    cursor.execute("SELECT COUNT(*) FROM user_preferences")
+    count = cursor.fetchone()[0]
+    if count == 0:
+        cursor.execute("INSERT INTO user_preferences DEFAULT VALUES")
+
 # Get the DEFAULT period name
 def get_default_period_name():
     conn = get_connection()
@@ -45,6 +52,17 @@ def get_default_subject_name():
     
     conn.close()
     return result[0] if result else None
+
+# Get default user_preferences
+def get_user_preferences():
+    conn = get_connection()
+    cursor = conn.cursor()
+
+    cursor.execute("SELECT * FROM user_preferences")
+    result = cursor.fetchone()
+    
+    conn.close()
+    return result if result else None
 
 # Get ALL period names
 def get_period_names():
@@ -238,6 +256,7 @@ def delete_subject_settings(id):
     conn.commit()
     conn.close()
 
+# Save a focus session
 def save_focus_session_db(data:dict):
     conn = get_connection()
     cursor = conn.cursor()
@@ -258,7 +277,6 @@ def save_focus_session_db(data:dict):
     conn.commit()
     conn.close()
 
-
 def get_connection():
     conn = sqlite3.connect(DB_NAME)
     return conn
@@ -273,6 +291,7 @@ def initialize_db():
 
     add_default_period(cursor)
     add_default_subject(cursor)
+    add_default_user_preferences(cursor)
 
     conn.commit()
     conn.close()

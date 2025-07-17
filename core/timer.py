@@ -123,6 +123,5 @@ class FocusTimer(QObject):
                 # call db function
                 save_focus_session_db(focus_session)
      
-
     def play_sound(self):
         pass

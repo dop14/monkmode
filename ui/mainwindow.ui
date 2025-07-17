@@ -452,15 +452,13 @@
      <property name="title">
       <string>notifications</string>
      </property>
-     <addaction name="popup_break_start"/>
-     <addaction name="sound_break_start"/>
-     <addaction name="popup_focus_start"/>
-     <addaction name="sound_focus_start"/>
+     <addaction name="all_notifications"/>
     </widget>
     <addaction name="menuchange_default"/>
     <addaction name="menuset_week"/>
     <addaction name="menunotifications"/>
     <addaction name="menutheme"/>
+    <addaction name="actiontips_and_quotes"/>
    </widget>
    <widget class="QMenu" name="menuabout">
     <property name="title">
@@ -532,12 +530,12 @@
     <string>whole week</string>
    </property>
   </action>
-  <action name="popup_break_start">
+  <action name="all_notifications">
    <property name="checkable">
     <bool>true</bool>
    </property>
    <property name="text">
-    <string>play sound when focus period starts</string>
+    <string>turn off all notifications</string>
    </property>
   </action>
   <action name="sound_break_start">
@@ -545,7 +543,7 @@
     <bool>true</bool>
    </property>
    <property name="text">
-    <string>play sound when break period starts</string>
+    <string>play sound when focus period starts</string>
    </property>
   </action>
   <action name="actionview_focus_history">
@@ -587,6 +585,103 @@
    </property>
    <property name="text">
     <string>notify when break period starts</string>
+   </property>
+  </action>
+  <action name="actiontips">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>tips</string>
+   </property>
+  </action>
+  <action name="actiondaily_quotes">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>daily quotes</string>
+   </property>
+  </action>
+  <action name="actionplay_sound_when_focus_completed">
+   <property name="text">
+    <string>play sound when focus completed</string>
+   </property>
+  </action>
+  <action name="actionsounds">
+   <property name="text">
+    <string>play sound when focus session starts</string>
+   </property>
+  </action>
+  <action name="actionplay_sound_when_break_starts">
+   <property name="text">
+    <string>play sound when break starts</string>
+   </property>
+  </action>
+  <action name="actionplay_sound_when_focus_completed_2">
+   <property name="text">
+    <string>play sound when focus completed</string>
+   </property>
+  </action>
+  <action name="actionnotify_when_focus_session_starts">
+   <property name="text">
+    <string>notify when focus session starts</string>
+   </property>
+  </action>
+  <action name="actionfocus_start">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>focus session starts</string>
+   </property>
+  </action>
+  <action name="actionbreak_start">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>break starts</string>
+   </property>
+  </action>
+  <action name="actionfocus_completed">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>focus completed</string>
+   </property>
+  </action>
+  <action name="actionfocus_session_starts_popup">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>focus session starts</string>
+   </property>
+  </action>
+  <action name="action_break_starts_popup">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>break starts</string>
+   </property>
+  </action>
+  <action name="actionfocus_completed_popup">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>focus completed</string>
+   </property>
+  </action>
+  <action name="actiontips_and_quotes">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>tips and quotes</string>
    </property>
   </action>
  </widget>
