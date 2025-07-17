@@ -60,9 +60,22 @@ def get_user_preferences():
 
     cursor.execute("SELECT * FROM user_preferences")
     result = cursor.fetchone()
-    
     conn.close()
-    return result if result else None
+
+    if result:
+        (id,default_daily_focus_goal, week_mode, all_notifications_off, theme,
+            tips_and_quotes) = result
+        
+        return {
+            "id":id,
+            "default_daily_focus_goal": default_daily_focus_goal,
+            "week_mode": week_mode,
+            "all_notifications_off": bool(all_notifications_off),
+            "theme": theme,
+            "tips_and_quotes": bool(tips_and_quotes)
+        }
+    else:
+        return None
 
 # Get ALL period names
 def get_period_names():
@@ -123,6 +136,23 @@ def get_subject_data(subject_name):
     conn.close()
 
     return row
+
+def get_today_focus():
+    conn = get_connection()
+    cursor = conn.cursor()
+
+    cursor.execute("""
+        SELECT SUM(duration) 
+        FROM focus_sessions 
+        WHERE date(timestamp) = date('now', 'localtime')
+    """)
+    total_focus_today = cursor.fetchone()[0] or 0
+    conn.close()
+
+    return total_focus_today
+
+def get_this_week_focus():
+    pass
 
 # Calculates the session lenght with the current period setting
 def calculate_session_length(user_sessions, period_name):
@@ -231,6 +261,29 @@ def update_subject_settings(id:int, name:str):
         WHERE id = ?
     """
     cursor.execute(query, (name, id))
+    conn.commit()
+    conn.close()
+
+# Update user_preferences
+def update_user_preferences(data:dict, id):
+    conn = get_connection()
+    cursor = conn.cursor()
+
+    query = """
+        UPDATE user_preferences SET
+            default_daily_focus_goal =:default_daily_focus_goal,
+            week_mode = :week_mode,
+            all_notifications_off = :all_notifications_off,
+            theme = :theme,
+            tips_and_quotes= :tips_and_quotes
+        WHERE id = :id
+    """
+
+    # Add the id key to the data dict for the WHERE clause
+    data_with_id = data.copy()
+    data_with_id["id"] = id
+
+    cursor.execute(query, data_with_id)
     conn.commit()
     conn.close()
 
