@@ -6,6 +6,7 @@ from windows.edit_period_window import EditPeriodWindow
 from windows.confirmation_window import ConfirmationWindow
 from windows.new_subject_window import NewSubjectWindow
 from windows.edit_subject_window import EditSubjectWindow
+from windows.change_default import ChangeDefault
 import datetime
 from core.timer import FocusTimer
 from core.menu_bar import MenuBar
@@ -24,26 +25,12 @@ class MainWindow(QMainWindow):
 
         # Hide buttons
         self.hide_buttons()
+        
+        # Load period combobox values
+        self.update_period_combobox()
 
-        # Load all period settings into combobox
-        periods = get_period_names()
-        self.ui.period_combobox.addItems(periods)
-
-        # Set default period setting
-        self.default_period_name = get_default_period_name()
-        period_index = self.ui.period_combobox.findText(self.default_period_name)
-        if period_index != -1:
-            self.ui.period_combobox.setCurrentIndex(period_index)
-
-        # Load all subject settings into combobox
-        subjects = get_subject_names()
-        self.ui.subject_combobox.addItems(subjects)
-
-        # Set default subject setting
-        self.default_subject_name = get_default_subject_name()
-        subject_index = self.ui.subject_combobox.findText(self.default_subject_name)
-        if subject_index != -1:
-            self.ui.subject_combobox.setCurrentIndex(subject_index)
+        # Load subject combobox values
+        self.update_subject_combobox()
 
         # Load user preferences
         preferences = get_user_preferences()
@@ -113,6 +100,21 @@ class MainWindow(QMainWindow):
 
         # When change default daily focus button is clicked
         self.ui.actiondaily_goal.triggered.connect(self.menubar.change_default_daily)
+
+        # When change default period button is clicked
+        self.ui.actionfocus_period.triggered.connect(lambda:self.start_change_default_window("period"))
+
+        # When change default subject is clicked
+        self.ui.actionfocus_subject.triggered.connect(lambda:self.start_change_default_window("subject"))
+
+        # When weekdays only clicked
+        self.ui.actionweekdays_only.triggered.connect(self.menubar.change_to_weekdays)
+        
+        # When whole week clicked
+        self.ui.actionwhole_week.triggered.connect(self.menubar.change_to_wholeweek)
+
+        # When turn off notifications clicked
+        self.ui.all_notifications.triggered.connect(self.menubar.all_notifications_clicked)
     
     # If app is closed
     def closeEvent(self, event):
@@ -192,6 +194,15 @@ class MainWindow(QMainWindow):
             else:
                 self.del_window = ConfirmationWindow(self,f"Do you really want to delete <b>{self.ui.subject_combobox.currentText()}</b> subject?<br>This action cannot be undone.",setting_type)
                 self.del_window.exec()
+
+    # Change default subject or period window
+    def start_change_default_window(self, setting_type):
+        if setting_type == "period":
+            self.change_def_window = ChangeDefault(self, "period")
+            self.change_def_window.exec()
+        elif setting_type == "subject":
+            self.change_def_window = ChangeDefault(self, "subject")
+            self.change_def_window.exec()
     
     # Starting timer
     def start_timer(self, period, subject, user_sessions):
@@ -277,13 +288,15 @@ class MainWindow(QMainWindow):
     # Update the daily and weekly focus goal if the user changes the default values
     def update_daily_weekly_focus_goal(self):
         preferences = get_user_preferences()
+        print(preferences)
         self.ui.daily_goal_label.setText(f"daily focus goal: <b>{preferences["default_daily_focus_goal"]} hours</b> ")
         
         if preferences["week_mode"] == "weekdays":
             week_mode = 5
         else:
             week_mode = 7
-
+        
+        print(week_mode)
         weekly_goal = preferences["default_daily_focus_goal"] * week_mode
         self.ui.weekly_goal_label.setText(f"weekly focus goal: <b>{weekly_goal} hours</b>")
 
@@ -315,6 +328,29 @@ class MainWindow(QMainWindow):
         # update progression bar
 
 
+    # Update period combobox values
+    def update_period_combobox(self):
+        # Load all period settings into combobox
+        periods = get_period_names()
+        self.ui.period_combobox.addItems(periods)
+
+        # Set default period setting
+        self.default_period_name = get_default_period_name()
+        period_index = self.ui.period_combobox.findText(self.default_period_name)
+        if period_index != -1:
+            self.ui.period_combobox.setCurrentIndex(period_index)
+    
+    def update_subject_combobox(self):
+        # Load all subject settings into combobox
+        subjects = get_subject_names()
+        self.ui.subject_combobox.addItems(subjects)
+
+        # Set default subject setting
+        self.default_subject_name = get_default_subject_name()
+        subject_index = self.ui.subject_combobox.findText(self.default_subject_name)
+        if subject_index != -1:
+            self.ui.subject_combobox.setCurrentIndex(subject_index)
+        
         
         
 # Application entry point

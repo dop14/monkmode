@@ -1,6 +1,6 @@
 from PySide6.QtWidgets import QDialog
 from ui_py.change_default_daily_focus import Ui_Form
-from database.db_manager import update_user_preferences
+from database.db_manager import update_user_preferences, get_user_preferences
 
 class ChangeDefDailyFocus(QDialog):
     def __init__(self, preferences, main_window):
@@ -23,10 +23,11 @@ class ChangeDefDailyFocus(QDialog):
             self.close()
         else:
             # save to dictionary
-            self.preferences["default_daily_focus_goal"] = self.ui.daily_focus_goal_spinbox.value()
+            self.new_preferences = get_user_preferences()
+            self.new_preferences["default_daily_focus_goal"] = self.ui.daily_focus_goal_spinbox.value()
 
             # pass dictionary to db to update
-            update_user_preferences(self.preferences, self.preferences["id"])
+            update_user_preferences(self.new_preferences, self.new_preferences["id"])
 
             # Refresh calculation for dailt goal, weekly goal
             main_window.refresh_daily_weekly_focus()

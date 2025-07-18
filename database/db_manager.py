@@ -328,6 +328,34 @@ def delete_subject_settings(id):
     conn.commit()
     conn.close()
 
+# Change default period
+def change_def_period(period_name):
+    conn = get_connection()
+    cursor = conn.cursor()
+
+    # Change current default period values to 0
+    cursor.execute("UPDATE periods SET is_default = 0")
+
+    # Change new default value to 1
+    cursor.execute("UPDATE periods SET is_default = 1 WHERE name = ?", (period_name,))
+
+    conn.commit()
+    conn.close()
+
+# Change default subject
+def change_def_subject(subject_name):
+    conn = get_connection()
+    cursor = conn.cursor()
+
+    # Change current default period values to 0
+    cursor.execute("UPDATE subjects SET is_default = 0")
+
+    # Change new default value to 1
+    cursor.execute("UPDATE subjects SET is_default = 1 WHERE name = ?", (subject_name,))
+
+    conn.commit()
+    conn.close()
+
 # Save a focus session
 def save_focus_session_db(data:dict):
     conn = get_connection()

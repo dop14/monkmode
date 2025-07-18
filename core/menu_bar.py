@@ -1,4 +1,5 @@
 from windows.change_def_daily_focus import ChangeDefDailyFocus
+from database.db_manager import update_user_preferences, get_user_preferences
 
 class MenuBar:
     def __init__(self, preferences, main_window):
@@ -20,8 +21,10 @@ class MenuBar:
         
         # All notifications off/on
         self.all_notifications = self.preferences["all_notifications_off"]
-        if self.all_notifications == 1:
+        if self.all_notifications == False:
             self.main_window.ui.all_notifications.setChecked(False)
+        else:
+            self.main_window.ui.all_notifications.setChecked(True)
 
         # theme
         self.theme = self.preferences["theme"]
@@ -38,13 +41,51 @@ class MenuBar:
         self.change_def = ChangeDefDailyFocus(self.preferences, self)
         self.change_def.show()
 
+    def change_to_weekdays(self):
+        if self.main_window.ui.actionweekdays_only.isChecked() == False:
+            self.main_window.ui.actionweekdays_only.setChecked(True)
+            return
+            
+        else:
+            self.main_window.ui.actionwhole_week.setChecked(False)
+
+            # save to db
+            user_preferences = get_user_preferences()
+            user_preferences["week_mode"] = "weekdays"
+            update_user_preferences(user_preferences,user_preferences["id"])
+
+            # update progression bar
+            self.main_window.update_daily_weekly_focus_goal()
+            self.main_window.update_progression_bar()
+
+    def change_to_wholeweek(self):
+        if self.main_window.ui.actionwhole_week.isChecked() == False:
+            self.main_window.ui.actionwhole_week.setChecked(True)
+            return
+        #self.main_window.ui.actionweekdays_only.setChecked(False)
+
+        # save to db
+        else:
+            self.main_window.ui.actionweekdays_only.setChecked(False)
+
+            user_preferences = get_user_preferences()
+            user_preferences["week_mode"] = "wholeweek"
+            update_user_preferences(user_preferences, user_preferences["id"])
+
+            # update progression bar
+            self.main_window.update_daily_weekly_focus_goal()
+            self.main_window.update_progression_bar()
+
+    def all_notifications_clicked(self):
+        if self.main_window.ui.all_notifications.isChecked():
+            user_preferences = get_user_preferences()
+            user_preferences["all_notifications_off"] = 1
+            update_user_preferences(user_preferences, user_preferences["id"])
+        else:
+            user_preferences = get_user_preferences()
+            user_preferences["all_notifications_off"] = 0
+            update_user_preferences(user_preferences, user_preferences["id"])
+
+    
     def refresh_daily_weekly_focus(self):
         self.main_window.update_daily_weekly_focus_goal()
-
-
-    #self.main_window.ui.actionfocus_period.clicked.connect(lambda:ChangeDefault("period"))
-        # Load in to the combobox the current default period setting
-        # If the user changed it, save it to the db
-    #self.main_window.ui.actionfocus_subject.clicked.connect(lambda:ChangeDefault("subject"))
-        # Load in to the combobox the current default subject setting
-        # If the user changed it, save it to the db
