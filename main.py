@@ -10,7 +10,7 @@ import datetime
 from core.timer import FocusTimer
 from core.menu_bar import MenuBar
 from database.db_manager import get_period_names, get_subject_names
-from database.db_manager import get_default_period_name, get_default_subject_name, get_user_preferences, get_today_focus
+from database.db_manager import get_default_period_name, get_default_subject_name, get_user_preferences, get_today_focus, get_this_week_focus
 import sys
 
 class MainWindow(QMainWindow):
@@ -51,6 +51,7 @@ class MainWindow(QMainWindow):
 
         # Load today's focus
         today_focus = get_today_focus()
+        today_focus_minutes = 0
         if today_focus == 0:
             self.ui.today_label.setText(f"today's focus: <b>0 minutes</b>")
         elif today_focus < 3600:
@@ -63,24 +64,28 @@ class MainWindow(QMainWindow):
         # Load daily focus goal
         self.ui.daily_goal_label.setText(f"daily focus goal: <b>{preferences["default_daily_focus_goal"]} hours</b> ")
 
-
-        # Load daily focus progression bar
-        focus_goal_minutes = preferences["default_daily_focus_goal"] * 60
-        daily_progress = int((today_focus_minutes / focus_goal_minutes) * 100)
-        daily_progress = min(daily_progress,100)
-        self.ui.daily_progression_bar.setValue(daily_progress)
-
         # Load this week's focus
-        
+        focus_this_week = get_this_week_focus()
+        focus_this_week_minutes = 0
+        if focus_this_week == 0:
+            self.ui.weekly_focus_label.setText(f"this week's focus: <b>0 minutes</b>")
+        elif focus_this_week < 3600:
+            focus_this_week_minutes = int(focus_this_week / 60)
+            self.ui.weekly_focus_label.setText(f"this week's focus: <b>{focus_this_week_minutes} minutes</b>")
+        else:
+            focus_this_week_hours = (focus_this_week / 60) / 60
+            self.ui.weekly_focus_label.setText(f"this week's focus: <b>{focus_this_week_hours} hours</b>")
 
         # Load weekly focus
-
         if preferences["week_mode"] == "weekdays":
-            week_mode = 5
+            self.week_mode = 5
         else:
-            week_mode = 7
-        weekly_goal = preferences["default_daily_focus_goal"] * week_mode
+            self.week_mode = 7
+        weekly_goal = preferences["default_daily_focus_goal"] * self.week_mode
         self.ui.weekly_goal_label.setText(f"weekly focus goal: <b>{weekly_goal} hours</b>")
+
+        # Load daily and weekly progression bar
+        self.update_progression_bar()
 
         # When focus button is clicked
         self.ui.start_focus_btn.clicked.connect(self.start_focus_window)
@@ -269,6 +274,7 @@ class MainWindow(QMainWindow):
 
         # Update today's focus, daily progression bar, weekly focus, weekly progression bar
 
+    # Update the daily and weekly focus goal if the user changes the default values
     def update_daily_weekly_focus_goal(self):
         preferences = get_user_preferences()
         self.ui.daily_goal_label.setText(f"daily focus goal: <b>{preferences["default_daily_focus_goal"]} hours</b> ")
@@ -281,17 +287,32 @@ class MainWindow(QMainWindow):
         weekly_goal = preferences["default_daily_focus_goal"] * week_mode
         self.ui.weekly_goal_label.setText(f"weekly focus goal: <b>{weekly_goal} hours</b>")
 
-        # progression bar
-        # daily
+        self.update_progression_bar()
+
+    # Update the progression bars
+    def update_progression_bar(self):
+        preferences = get_user_preferences()
         focus_goal_minutes = preferences["default_daily_focus_goal"] * 60
         today_focus_minutes = get_today_focus() / 60
         daily_progress = int((today_focus_minutes / focus_goal_minutes) * 100)
         daily_progress = min(daily_progress,100)
         self.ui.daily_progression_bar.setValue(daily_progress)
-        # weekly
-        
-    def update_today_focus(self):
-        pass # + progressionbar
+
+        weekly_focus_goal_minutes = (preferences["default_daily_focus_goal"] * 60) * self.week_mode
+        focus_this_week_minutes = get_this_week_focus() / 60
+        weekly_progress = int((focus_this_week_minutes / weekly_focus_goal_minutes) * 100)
+        weekly_progress = min(weekly_progress,100)
+        self.ui.weekly_progression_bar.setValue(weekly_progress)
+
+    
+    # Update the daily and weekly focus if user finished a focus session
+    def update_today_weekly_focus(self):
+        pass
+        # update today's focus
+
+        # update this week's focus
+
+        # update progression bar
 
 
         

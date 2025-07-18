@@ -38,7 +38,7 @@ class Ui_Form(object):
 
         self.daily_focus_goal_spinbox = QSpinBox(self.changedailydefaultFrame)
         self.daily_focus_goal_spinbox.setObjectName(u"daily_focus_goal_spinbox")
-        self.daily_focus_goal_spinbox.setMinimum(0)
+        self.daily_focus_goal_spinbox.setMinimum(1)
         self.daily_focus_goal_spinbox.setMaximum(24)
 
         self.verticalLayout.addWidget(self.daily_focus_goal_spinbox)

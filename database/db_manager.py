@@ -1,5 +1,6 @@
 import sqlite3
 import os
+from datetime import datetime, timedelta
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))  
 DB_NAME = os.path.join(BASE_DIR, 'monkmode.db')       
@@ -137,6 +138,7 @@ def get_subject_data(subject_name):
 
     return row
 
+# Get today's focus in seconds
 def get_today_focus():
     conn = get_connection()
     cursor = conn.cursor()
@@ -151,8 +153,25 @@ def get_today_focus():
 
     return total_focus_today
 
+# Get this week's focus in seconds
 def get_this_week_focus():
-    pass
+    conn = get_connection()
+    cursor = conn.cursor()
+
+    today = datetime.now().date()
+
+    start_of_week = today - (timedelta(days=today.weekday()))
+    end_of_week = start_of_week  + timedelta(days=6)
+
+    cursor.execute("""
+        SELECT SUM(duration) 
+        FROM focus_sessions 
+        WHERE date(timestamp) BETWEEN ? AND ?
+    """, (start_of_week, end_of_week))
+    total_focus_week = cursor.fetchone()[0] or 0
+    conn.close()
+
+    return total_focus_week
 
 # Calculates the session lenght with the current period setting
 def calculate_session_length(user_sessions, period_name):
