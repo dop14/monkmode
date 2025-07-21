@@ -8,6 +8,7 @@ class ChangeDefault(QDialog):
         self.ui = Ui_Form()
         self.ui.setupUi(self)
         self.setModal(True)
+        self.setWindowTitle("settings")
 
         self.main_window = main_window
         self.setting_type = setting_type

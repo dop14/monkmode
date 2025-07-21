@@ -8,6 +8,7 @@ class EditSubjectWindow(QDialog):
         self.ui = Ui_Form()
         self.ui.setupUi(self)
         self.setModal(True)
+        self.setWindowTitle("monkmode")
 
         self.ui.main_label.setText("edit subject")
 

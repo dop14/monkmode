@@ -8,6 +8,7 @@ class FocusWindow(QDialog):
         self.ui = Ui_Form()
         self.ui.setupUi(self)
         self.setModal(True)
+        self.setWindowTitle("focus")
         
         # Get the current period from mainwindow
         self.current_period = main_window.ui.period_combobox.currentText()

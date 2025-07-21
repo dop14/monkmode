@@ -8,6 +8,7 @@ class NewSubjectWindow(QDialog):
         self.ui = Ui_Form()
         self.ui.setupUi(self)
         self.setModal(True)
+        self.setWindowTitle("monkmode")
 
         # Action for save button
         self.ui.save_btn.clicked.connect(lambda: self.error_handling(main_window))

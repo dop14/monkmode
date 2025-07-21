@@ -8,6 +8,7 @@ class ChangeDefDailyFocus(QDialog):
         self.ui = Ui_Form()
         self.ui.setupUi(self)
         self.setModal(True)
+        self.setWindowTitle("settings")
         self.preferences = preferences
         self.main_window = main_window
 

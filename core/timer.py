@@ -2,6 +2,7 @@ from PySide6.QtCore import QObject, Signal, QTimer
 from PySide6.QtWidgets import QMessageBox
 from database.db_manager import save_focus_session_db, get_user_preferences
 from core.sound_player import SoundPlayer
+from core.popup_notification import PopupNotification
 
 class FocusTimer(QObject):
     def __init__(self, period, subject, user_sessions, main_window):
@@ -15,14 +16,17 @@ class FocusTimer(QObject):
         self.long_break_after = self.period["long_break_after"] 
         self.completed_focus_sessions = 0 
         self.is_break = False 
+        self.focus_lenght = self.period["focus_time"] 
 
         preferences = get_user_preferences()
         self.notifications = preferences["all_notifications_off"]
 
-        # Start focus session (the first is always a focus session)
+        # Start focus session 
         if not self.notifications:
+            self.show_popup("focus")
             self.play_sound("focus")
         self.remaining_time = period["focus_time"] * 60
+        self.update_timer_label(self.remaining_time)
         self.timer = QTimer()
         self.timer.timeout.connect(self._tick)
         self.main_window.ui.period_type_label.show()
@@ -59,6 +63,7 @@ class FocusTimer(QObject):
                 # Play sound if notifications are on
                 if not self.notifications:
                     self.play_sound("focus")
+                    self.show_popup("focus")
                 # Start the focus session
                 self.start_focus_session()
             # If we're not in a break
@@ -69,11 +74,16 @@ class FocusTimer(QObject):
                 # If no sessions left
                 if self.sessions_left == 0:
                     # TODO: play end sound
+                    if not self.notifications:
+                         # TODO: play end sound
+                        #self.play_sound("end")
+                        self.show_popup("end")
                     self.main_window.focus_ended()
                     return
                 # Play sound if notifications are on
                 if not self.notifications:
                     self.play_sound("break")
+                    self.show_popup("break")
                 # Start a break session
                 self.start_break_session()
     
@@ -81,9 +91,13 @@ class FocusTimer(QObject):
         # Format it to hours, minutes, seconds
         hours, remainder = divmod(remaining_time, 3600)
         minutes, seconds = divmod(remainder, 60)
+        
+        # If less than an hour
+        if remaining_time < 3600:
+            self.main_window.ui.timer_label.setText(f"{minutes:02}:{seconds:02}")
+        else:
+            self.main_window.ui.timer_label.setText(f"{hours}:{minutes:02}:{seconds:02}")
 
-        # Show time
-        self.main_window.ui.timer_label.setText(f"{hours}:{minutes}:{seconds}")
                 
     def start(self):
         self.timer.start(1000)
@@ -127,11 +141,22 @@ class FocusTimer(QObject):
                     "period_id": self.period["id"],
                     "duration": focus_time_unfinished_session,
                 }
-            
-
+    
                 # call db function
                 save_focus_session_db(focus_session)
      
     def play_sound(self, sound_type):
         self.sound = SoundPlayer(sound_type)
         self.sound.play()
+
+    def show_popup(self, popup_type):
+        if popup_type == "focus":
+            self.popup = PopupNotification("The focus session has started!")
+            self.popup.show_notification()
+            
+        elif popup_type == "break":
+            self.popup = PopupNotification("The break session has started!")
+            self.popup.show_notification()
+        else:
+            self.popup = PopupNotification("Focus done! Great job.")
+            self.popup.show_notification()

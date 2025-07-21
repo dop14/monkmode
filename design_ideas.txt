@@ -1,20 +1,8 @@
-UI:
-Icons instead of text:
-Add (plus)
-Edit (fogaskerek)
-delete (trashbin)
-pause resume
-stop
-
-focus window:
-    Focus will approximately end on 12:45 (update every minute)
 
 When adding, updating, deleting pop-up notification message:
     Added XY period setting / subject
     Updated XY period setting / subject
     Deleted XY period setting / subject
-
-Bold default period, subject
 
 Archiving subjects
     If user focused on a project, but the project is done, he could perhaps archive it.
@@ -33,5 +21,11 @@ Timer fades in, fades out -> not pops
 Tips and Quotes
 Lots of quotes and tips in a db -> select them randomly and show them
 Settings -> uncheck them if not needed
+
+
+Design:
+- dark theme and light theme colors
+- Icons instead of text
+
 
 

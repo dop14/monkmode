@@ -402,7 +402,7 @@
             </font>
            </property>
            <property name="text">
-            <string>streaks heatmap: (current):</string>
+            <string>streaks heatmap: coming soon</string>
            </property>
           </widget>
          </item>
@@ -440,6 +440,7 @@
      </property>
      <addaction name="actiondark"/>
      <addaction name="actionlight"/>
+     <addaction name="actionCOMING_SOON_4"/>
     </widget>
     <widget class="QMenu" name="menuset_week">
      <property name="title">
@@ -466,6 +467,8 @@
     </property>
     <addaction name="actionabout"/>
     <addaction name="actionabout_2"/>
+    <addaction name="separator"/>
+    <addaction name="actionCOMING_SOON_2"/>
    </widget>
    <widget class="QMenu" name="menuhistory">
     <property name="title">
@@ -474,6 +477,8 @@
     <addaction name="actionview_focus_history"/>
     <addaction name="actionexport_data"/>
     <addaction name="actionclear_history"/>
+    <addaction name="separator"/>
+    <addaction name="actionCOMING_SOON_3"/>
    </widget>
    <addaction name="menuSettings"/>
    <addaction name="menuhistory"/>
@@ -681,7 +686,27 @@
     <bool>true</bool>
    </property>
    <property name="text">
-    <string>tips and quotes</string>
+    <string>tips and quotes (COMING SOON)</string>
+   </property>
+  </action>
+  <action name="actionCOMING_SOON">
+   <property name="text">
+    <string>COMING SOON</string>
+   </property>
+  </action>
+  <action name="actionCOMING_SOON_2">
+   <property name="text">
+    <string>COMING SOON</string>
+   </property>
+  </action>
+  <action name="actionCOMING_SOON_3">
+   <property name="text">
+    <string>COMING SOON</string>
+   </property>
+  </action>
+  <action name="actionCOMING_SOON_4">
+   <property name="text">
+    <string>COMING SOON</string>
    </property>
   </action>
  </widget>

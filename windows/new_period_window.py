@@ -8,6 +8,7 @@ class NewPeriodWindow(QDialog):
         self.ui = Ui_Form()
         self.ui.setupUi(self)
         self.setModal(True)
+        self.setWindowTitle("monkmode")
 
         # Set default values for checkboxes and spinboxes
         self.ui.short_break_checkbox.setChecked(True)

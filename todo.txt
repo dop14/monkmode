@@ -1,10 +1,14 @@
-1. FINISH change_def_daily_focus.py
-2. create change_def_period and subject for menu_bar.py
+1. Format timer to pretty
+2. Streaks, streaks table, streaks heatmap
+3. Archiving
+4. Tips and Quotes
+5. Design
+
+
 
 
 STREAKS table
 
-qt.qpa.screen: "Unable to open monitor interface to \\\\.\\DISPLAY1:" "Unknown error 0xe0000225."
 
 # ADD TIPS & QUOTES
 # Monkmode philosophy (deep work, focus, zen, monklike)

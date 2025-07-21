@@ -8,6 +8,7 @@ class EditPeriodWindow(QDialog):
         self.ui = Ui_Form()
         self.ui.setupUi(self)
         self.setModal(True)
+        self.setWindowTitle("monkmode")
 
         # Set title
         self.ui.main_label.setText("edit focus period")
