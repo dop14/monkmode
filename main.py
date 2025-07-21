@@ -36,32 +36,11 @@ class MainWindow(QMainWindow):
         preferences = get_user_preferences()
         self.menubar = MenuBar(preferences, self)
 
-        # Load today's focus
-        today_focus = get_today_focus()
-        today_focus_minutes = 0
-        if today_focus == 0:
-            self.ui.today_label.setText(f"today's focus: <b>0 minutes</b>")
-        elif today_focus < 3600:
-            today_focus_minutes = int(today_focus / 60)
-            self.ui.today_label.setText(f"today's focus: <b>{today_focus_minutes} minutes</b>")
-        else:
-            today_focus_hours = (today_focus / 60) / 60
-            self.ui.today_label.setText(f"today's focus: <b>{today_focus_hours} hours</b>")
+        # Load today's focus and this week's focus
+        self.update_daily_weekly_focus()
 
         # Load daily focus goal
         self.ui.daily_goal_label.setText(f"daily focus goal: <b>{preferences["default_daily_focus_goal"]} hours</b> ")
-
-        # Load this week's focus
-        focus_this_week = get_this_week_focus()
-        focus_this_week_minutes = 0
-        if focus_this_week == 0:
-            self.ui.weekly_focus_label.setText(f"this week's focus: <b>0 minutes</b>")
-        elif focus_this_week < 3600:
-            focus_this_week_minutes = int(focus_this_week / 60)
-            self.ui.weekly_focus_label.setText(f"this week's focus: <b>{focus_this_week_minutes} minutes</b>")
-        else:
-            focus_this_week_hours = (focus_this_week / 60) / 60
-            self.ui.weekly_focus_label.setText(f"this week's focus: <b>{focus_this_week_hours} hours</b>")
 
         # Load weekly focus
         if preferences["week_mode"] == "weekdays":
@@ -282,13 +261,12 @@ class MainWindow(QMainWindow):
         # Enable GUI
         self.disable_and_enable_gui(False)
 
-
-        # Update today's focus, daily progression bar, weekly focus, weekly progression bar
+        # Update focus times
+        self.update_focus()
 
     # Update the daily and weekly focus goal if the user changes the default values
     def update_daily_weekly_focus_goal(self):
         preferences = get_user_preferences()
-        print(preferences)
         self.ui.daily_goal_label.setText(f"daily focus goal: <b>{preferences["default_daily_focus_goal"]} hours</b> ")
         
         if preferences["week_mode"] == "weekdays":
@@ -296,7 +274,6 @@ class MainWindow(QMainWindow):
         else:
             week_mode = 7
         
-        print(week_mode)
         weekly_goal = preferences["default_daily_focus_goal"] * week_mode
         self.ui.weekly_goal_label.setText(f"weekly focus goal: <b>{weekly_goal} hours</b>")
 
@@ -316,17 +293,39 @@ class MainWindow(QMainWindow):
         weekly_progress = int((focus_this_week_minutes / weekly_focus_goal_minutes) * 100)
         weekly_progress = min(weekly_progress,100)
         self.ui.weekly_progression_bar.setValue(weekly_progress)
-
     
-    # Update the daily and weekly focus if user finished a focus session
-    def update_today_weekly_focus(self):
-        pass
-        # update today's focus
+    def update_daily_weekly_focus(self):
+         # Load today's focus
+        today_focus = get_today_focus()
+        today_focus_minutes = 0
+        if today_focus == 0:
+            self.ui.today_label.setText(f"today's focus: <b>0 minutes</b>")
+        elif today_focus < 3600:
+            today_focus_minutes = int(today_focus / 60)
+            self.ui.today_label.setText(f"today's focus: <b>{today_focus_minutes} minutes</b>")
+        else:
+            today_focus_hours = (today_focus / 60) / 60
+            self.ui.today_label.setText(f"today's focus: <b>{today_focus_hours} hours</b>")
 
-        # update this week's focus
+        # Load this week's focus
+        focus_this_week = get_this_week_focus()
+        focus_this_week_minutes = 0
+        if focus_this_week == 0:
+            self.ui.weekly_focus_label.setText(f"this week's focus: <b>0 minutes</b>")
+        elif focus_this_week < 3600:
+            focus_this_week_minutes = int(focus_this_week / 60)
+            self.ui.weekly_focus_label.setText(f"this week's focus: <b>{focus_this_week_minutes} minutes</b>")
+        else:
+            focus_this_week_hours = (focus_this_week / 60) / 60
+            self.ui.weekly_focus_label.setText(f"this week's focus: <b>{focus_this_week_hours} hours</b>")
+
+    # Update the daily and weekly focus if user finished a focus session
+    def update_focus(self):
+        # update focus labels
+        self.update_daily_weekly_focus()
 
         # update progression bar
-
+        self.update_progression_bar()
 
     # Update period combobox values
     def update_period_combobox(self):
@@ -350,8 +349,6 @@ class MainWindow(QMainWindow):
         subject_index = self.ui.subject_combobox.findText(self.default_subject_name)
         if subject_index != -1:
             self.ui.subject_combobox.setCurrentIndex(subject_index)
-        
-        
         
 # Application entry point
 def main():

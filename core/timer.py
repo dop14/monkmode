@@ -1,6 +1,7 @@
 from PySide6.QtCore import QObject, Signal, QTimer
 from PySide6.QtWidgets import QMessageBox
-from database.db_manager import save_focus_session_db
+from database.db_manager import save_focus_session_db, get_user_preferences
+from core.sound_player import SoundPlayer
 
 class FocusTimer(QObject):
     def __init__(self, period, subject, user_sessions, main_window):
@@ -10,12 +11,17 @@ class FocusTimer(QObject):
         self.main_window = main_window
         
         self.total_sessions = user_sessions
-        self.sessions_left = user_sessions # How many session we have left
-        self.long_break_after = self.period["long_break_after"] # After how many focus sessions do we have a long break
-        self.completed_focus_sessions = 0 # How many focus sessions we've completed
-        self.is_break = False # Are we on a break?
+        self.sessions_left = user_sessions 
+        self.long_break_after = self.period["long_break_after"] 
+        self.completed_focus_sessions = 0 
+        self.is_break = False 
+
+        preferences = get_user_preferences()
+        self.notifications = preferences["all_notifications_off"]
 
         # Start focus session (the first is always a focus session)
+        if not self.notifications:
+            self.play_sound("focus")
         self.remaining_time = period["focus_time"] * 60
         self.timer = QTimer()
         self.timer.timeout.connect(self._tick)
@@ -50,6 +56,9 @@ class FocusTimer(QObject):
             self.stop()
             # If we're in a break
             if self.is_break:
+                # Play sound if notifications are on
+                if not self.notifications:
+                    self.play_sound("focus")
                 # Start the focus session
                 self.start_focus_session()
             # If we're not in a break
@@ -59,8 +68,12 @@ class FocusTimer(QObject):
                 self.save_focus_session()
                 # If no sessions left
                 if self.sessions_left == 0:
+                    # TODO: play end sound
                     self.main_window.focus_ended()
                     return
+                # Play sound if notifications are on
+                if not self.notifications:
+                    self.play_sound("break")
                 # Start a break session
                 self.start_break_session()
     
@@ -99,8 +112,6 @@ class FocusTimer(QObject):
             "period_id": self.period["id"],
             "duration":  self.focus_time,
         }
-        # For testing, see the focus_session
-        print(focus_session)
         
         # call db function
         save_focus_session_db(focus_session)
@@ -116,12 +127,11 @@ class FocusTimer(QObject):
                     "period_id": self.period["id"],
                     "duration": focus_time_unfinished_session,
                 }
-                
-                # For testing, see the focus_session
-                print(focus_session)
+            
 
                 # call db function
                 save_focus_session_db(focus_session)
      
-    def play_sound(self):
-        pass
+    def play_sound(self, sound_type):
+        self.sound = SoundPlayer(sound_type)
+        self.sound.play()
