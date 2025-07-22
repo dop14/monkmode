@@ -292,6 +292,13 @@
                 </widget>
                </item>
                <item>
+                <widget class="QPushButton" name="archive_subject_btn">
+                 <property name="text">
+                  <string>archive</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
                 <widget class="QPushButton" name="delete_subject_btn">
                  <property name="text">
                   <string>delete</string>
@@ -385,30 +392,6 @@
         </property>
        </spacer>
       </item>
-      <item>
-       <widget class="QFrame" name="streakFrame">
-        <property name="frameShape">
-         <enum>QFrame::Shape::StyledPanel</enum>
-        </property>
-        <property name="frameShadow">
-         <enum>QFrame::Shadow::Raised</enum>
-        </property>
-        <layout class="QVBoxLayout" name="verticalLayout_4">
-         <item>
-          <widget class="QLabel" name="streak_label">
-           <property name="font">
-            <font>
-             <pointsize>16</pointsize>
-            </font>
-           </property>
-           <property name="text">
-            <string>streaks heatmap: coming soon</string>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </widget>
-      </item>
      </layout>
     </item>
    </layout>
@@ -434,14 +417,6 @@
      <addaction name="actionfocus_period"/>
      <addaction name="actionfocus_subject"/>
     </widget>
-    <widget class="QMenu" name="menutheme">
-     <property name="title">
-      <string>theme</string>
-     </property>
-     <addaction name="actiondark"/>
-     <addaction name="actionlight"/>
-     <addaction name="actionCOMING_SOON_4"/>
-    </widget>
     <widget class="QMenu" name="menuset_week">
      <property name="title">
       <string>set week</string>
@@ -449,17 +424,10 @@
      <addaction name="actionweekdays_only"/>
      <addaction name="actionwhole_week"/>
     </widget>
-    <widget class="QMenu" name="menunotifications">
-     <property name="title">
-      <string>notifications</string>
-     </property>
-     <addaction name="all_notifications"/>
-    </widget>
     <addaction name="menuchange_default"/>
     <addaction name="menuset_week"/>
-    <addaction name="menunotifications"/>
-    <addaction name="menutheme"/>
     <addaction name="actiontips_and_quotes"/>
+    <addaction name="all_notifications_2"/>
    </widget>
    <widget class="QMenu" name="menuabout">
     <property name="title">
@@ -479,8 +447,16 @@
     <addaction name="actionclear_history"/>
     <addaction name="separator"/>
     <addaction name="actionCOMING_SOON_3"/>
+    <addaction name="actionreset_settings_to_default"/>
+   </widget>
+   <widget class="QMenu" name="menuarchive">
+    <property name="title">
+     <string>archive</string>
+    </property>
+    <addaction name="actionview_archived_subjects"/>
    </widget>
    <addaction name="menuSettings"/>
+   <addaction name="menuarchive"/>
    <addaction name="menuhistory"/>
    <addaction name="menuabout"/>
   </widget>
@@ -686,7 +662,7 @@
     <bool>true</bool>
    </property>
    <property name="text">
-    <string>tips and quotes (COMING SOON)</string>
+    <string>show tips and quotes </string>
    </property>
   </action>
   <action name="actionCOMING_SOON">
@@ -707,6 +683,32 @@
   <action name="actionCOMING_SOON_4">
    <property name="text">
     <string>COMING SOON</string>
+   </property>
+  </action>
+  <action name="actionreset_settings_to_default">
+   <property name="text">
+    <string>reset settings to default</string>
+   </property>
+  </action>
+  <action name="actionshow_streaks">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>show streaks</string>
+   </property>
+  </action>
+  <action name="all_notifications_2">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>turn off notifications</string>
+   </property>
+  </action>
+  <action name="actionview_archived_subjects">
+   <property name="text">
+    <string>view archived subjects</string>
    </property>
   </action>
  </widget>

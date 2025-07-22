@@ -1,26 +1,32 @@
-1. Format timer to pretty
-2. Streaks, streaks table, streaks heatmap
-3. Archiving
-4. Tips and Quotes
-5. Design
+Archiving
+Tips and Quotes
+Design
+ELSE TODO
+
+ARCHIVING:
+- If user focused on a project, but the project is done, he could perhaps archive it.
+- Settings -> Archived subjects -> See archived / Unarchive
+- Archived wont show in combobox
+- Unarchived will go back to combobox
 
 
 
+TIPS AND QUOTES
+- Monkmode philosophy (deep work, focus, zen, monklike)
+- Tips for breaks are only showed when in a break
+- When in focus, there's no noise, or quotes whatsoever
+- Daily quotes, choosing randomly, showing up one everyday (resets at 00:00)
 
-STREAKS table
+DESIGN:
+- only one premade theme
+- Icons instead of text
+- Deleting this subject will stop tracking any new focus time for it. If you might use it later, use Archive instead of Delete.
+- When adding, updating, deleting pop-up notification message:
+    Added XY period setting / subject
+    Updated XY period setting / subject
+    Deleted XY period setting / subject
 
-
-# ADD TIPS & QUOTES
-# Monkmode philosophy (deep work, focus, zen, monklike)
-Tips for breaks are only showed when in a break
-When in focus, there's no noise, or quotes whatsoever
-Daily quotes, choosing randomly, showing up one everyday (resets at 00:00)
-
-
-
-
-
-
-
-
-Run db_manager.py automatically when the user enters the app
+ELSE TODO:
+- Stats for later: TABLE where (daily focus goal achieved 134 times, weekly focus goal achieved 13 times,...,...,) store data
+- Run db_manager.py automatically when the user enters the app
+- Streaks (history: longest streak, last active streak,...)

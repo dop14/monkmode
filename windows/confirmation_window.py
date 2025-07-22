@@ -1,6 +1,6 @@
 from PySide6.QtWidgets import QDialog
 from ui_py.confirmation import Ui_Confirmation
-from database.db_manager import get_period_data, delete_period_settings, get_period_names, get_default_period_name, delete_subject_settings, get_subject_data, get_subject_names, get_default_subject_name
+from database.db_manager import get_period_data, delete_period_settings, get_period_names, get_default_period_name, delete_subject_settings, get_subject_data, get_subject_names, get_default_subject_name, archive_subject_settings
 
 class ConfirmationWindow(QDialog):
     def __init__(self, main_window, text, type):
@@ -10,11 +10,15 @@ class ConfirmationWindow(QDialog):
         self.setModal(True)
 
         # If user wants to delete the default setting
-        if text == "The default focus setting cannot be deleted.<br>To change the default value, go to Settings → Change Default → Focus Period." or text == "The default subject cannot be deleted.<br>To change the default value, go to Settings → Change Default → Focus Subject.":
+        if text == "The default focus setting cannot be deleted.<br>To change the default value, go to Settings → Change Default → Focus Period." or text == "The default subject cannot be deleted.<br>To change the default value, go to Settings → Change Default → Focus Subject." or text == "The default subject cannot be archived.<br>To change the default value, go to Settings → Change Default → Focus Subject.":
             self.ui.cancel_btn.hide()
             self.ui.ok_btn.clicked.connect(self.close)
             self.setWindowTitle("Error")
         # Else if not the default one
+        elif type == "archive_subject":
+            self.ui.cancel_btn.clicked.connect(self.close)
+            self.ui.ok_btn.clicked.connect(lambda:self.archive_subject(main_window,type))
+            self.setWindowTitle("Confirmation")
         else:
             self.ui.cancel_btn.clicked.connect(self.close)
             self.ui.ok_btn.clicked.connect(lambda:self.delete_setting(main_window,type))
@@ -50,6 +54,20 @@ class ConfirmationWindow(QDialog):
             self.refresh_subject_combobox(main_window)
             # Close window
             self.close()
+
+    def archive_subject(self, main_window, type):
+        # Get the id of the chosen subject
+        self.current_subject = main_window.ui.subject_combobox.currentText()
+        subject_data = get_subject_data(self.current_subject)
+
+        # Delete from database
+        archive_subject_settings(subject_data[0])
+
+        # Refresh the main window
+        self.refresh_subject_combobox(main_window)
+        
+        # Close window
+        self.close()
 
     # Refresh the period combobox on main_window
     def refresh_period_combobox(self, main_window):

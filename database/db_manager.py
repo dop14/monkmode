@@ -89,12 +89,23 @@ def get_period_names():
 
     return subjects
 
-# Get ALL subject names
+# Get ALL not archived subject names
 def get_subject_names():
     conn = get_connection()
     cursor = conn.cursor()
 
-    cursor.execute("SELECT name FROM subjects")
+    cursor.execute("SELECT name FROM subjects WHERE is_archived = 0")
+    subjects = [row[0] for row in cursor.fetchall()]
+    conn.close()
+
+    return subjects
+
+# Get ALL archived subject names
+def get_archived_subject_names():
+    conn = get_connection()
+    cursor = conn.cursor()
+
+    cursor.execute("SELECT name FROM subjects WHERE is_archived = 1")
     subjects = [row[0] for row in cursor.fetchall()]
     conn.close()
 
@@ -325,6 +336,34 @@ def delete_subject_settings(id):
     query = "DELETE FROM subjects WHERE id = ?"
     cursor.execute(query,(id,))
 
+    conn.commit()
+    conn.close()
+
+# Archive subject setting
+def archive_subject_settings(id):
+    conn = get_connection()
+    cursor = conn.cursor()
+
+    query = """
+        UPDATE subjects SET
+            is_archived = ?
+        WHERE id = ?
+    """
+    cursor.execute(query, (1, id))
+    conn.commit()
+    conn.close()
+
+# Unarchive subject setting
+def unarchive_subject_settings(id):
+    conn = get_connection()
+    cursor = conn.cursor()
+
+    query = """
+        UPDATE subjects SET
+            is_archived = ?
+        WHERE id = ?
+    """
+    cursor.execute(query, (0, id))
     conn.commit()
     conn.close()
 

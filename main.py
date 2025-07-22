@@ -40,7 +40,20 @@ class MainWindow(QMainWindow):
         self.update_daily_weekly_focus()
 
         # Load daily focus goal
-        self.ui.daily_goal_label.setText(f"daily focus goal: <b>{preferences["default_daily_focus_goal"]} hours</b> ")
+        # If weekdays only
+        if preferences["week_mode"] == "weekdays":
+            today = datetime.date.today()
+            # And if its a weekend
+            if today.weekday() >= 5:
+                # Set goal to 0 hours
+                self.ui.daily_goal_label.setText("daily focus goal: <b>0 hours</b>")
+            # else if not weekend
+            else:
+                # set to default
+                self.ui.daily_goal_label.setText(f"daily focus goal: <b>{preferences["default_daily_focus_goal"]} hours</b> ")
+        # Else set to default
+        else:
+            self.ui.daily_goal_label.setText(f"daily focus goal: <b>{preferences["default_daily_focus_goal"]} hours</b> ")
 
         # Load weekly focus
         if preferences["week_mode"] == "weekdays":
@@ -71,6 +84,9 @@ class MainWindow(QMainWindow):
         # When edit subject button is clicked
         self.ui.edit_subject_btn.clicked.connect(lambda:self.start_edit_window("subject"))
 
+        # When archive subject button is clicked
+        self.ui.archive_subject_btn.clicked.connect(lambda:self.start_archive_window("subject"))
+
         # When delete subject button is clicked
         self.ui.delete_subject_btn.clicked.connect(lambda:self.start_delete_window("subject"))
 
@@ -93,7 +109,10 @@ class MainWindow(QMainWindow):
         self.ui.actionwhole_week.triggered.connect(self.menubar.change_to_wholeweek)
 
         # When turn off notifications clicked
-        self.ui.all_notifications.triggered.connect(self.menubar.all_notifications_clicked)
+        self.ui.all_notifications_2.triggered.connect(self.menubar.all_notifications_clicked)
+
+        # When view archived button is clicked
+        self.ui.actionview_archived_subjects.triggered.connect(self.menubar.archive_clicked)
     
     # If app is closed
     def closeEvent(self, event):
@@ -174,6 +193,16 @@ class MainWindow(QMainWindow):
                 self.del_window = ConfirmationWindow(self,f"Do you really want to delete <b>{self.ui.subject_combobox.currentText()}</b> subject?<br>This action cannot be undone.",setting_type)
                 self.del_window.exec()
 
+    def start_archive_window(self, setting_type):
+        if self.ui.subject_combobox.currentText() == self.default_subject_name:
+            self.error_window = ConfirmationWindow(self,"The default subject cannot be archived.<br>To change the default value, go to Settings → Change Default → Focus Subject.","archive_subject")
+            self.error_window.exec()
+            # Else if deletable
+        else:
+            self.del_window = ConfirmationWindow(self,f"Do you really want to archive <b>{self.ui.subject_combobox.currentText()}</b> subject?<br>You can unarchive it later.","archive_subject")
+            self.del_window.exec()
+
+
     # Change default subject or period window
     def start_change_default_window(self, setting_type):
         if setting_type == "period":
@@ -235,7 +264,6 @@ class MainWindow(QMainWindow):
         self.ui.subjectFrame.setDisabled(bool_value)
         self.ui.dailyFrame.setDisabled(bool_value)
         self.ui.weeklyFrame.setDisabled(bool_value)
-        self.ui.streakFrame.setDisabled(bool_value)
         self.ui.menubar.setDisabled(bool_value)
 
     def hide_buttons(self):
@@ -266,8 +294,23 @@ class MainWindow(QMainWindow):
 
     # Update the daily and weekly focus goal if the user changes the default values
     def update_daily_weekly_focus_goal(self):
+
         preferences = get_user_preferences()
-        self.ui.daily_goal_label.setText(f"daily focus goal: <b>{preferences["default_daily_focus_goal"]} hours</b> ")
+
+        if preferences["week_mode"] == "weekdays":
+            today = datetime.date.today()
+            
+            # And if its a weekend
+            if today.weekday() >= 5:
+                # Set goal to 0 hours
+                self.ui.daily_goal_label.setText("daily focus goal: <b>0 hours</b>")
+            # else if not weekend
+            else:
+                # set to default
+                self.ui.daily_goal_label.setText(f"daily focus goal: <b>{preferences["default_daily_focus_goal"]} hours</b> ")
+        # Else set to default
+        else:
+            self.ui.daily_goal_label.setText(f"daily focus goal: <b>{preferences["default_daily_focus_goal"]} hours</b> ")
         
         if preferences["week_mode"] == "weekdays":
             week_mode = 5
