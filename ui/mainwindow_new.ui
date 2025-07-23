@@ -1,0 +1,763 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>658</width>
+    <height>700</height>
+   </rect>
+  </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+    <horstretch>200</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>800</width>
+    <height>700</height>
+   </size>
+  </property>
+  <property name="cursor">
+   <cursorShape>ArrowCursor</cursorShape>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <property name="autoFillBackground">
+   <bool>false</bool>
+  </property>
+  <widget class="QWidget" name="mainLayout">
+   <widget class="QFrame" name="focusFrame">
+    <property name="geometry">
+     <rect>
+      <x>150</x>
+      <y>20</y>
+      <width>274</width>
+      <height>191</height>
+     </rect>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::Shape::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Shadow::Raised</enum>
+    </property>
+    <layout class="QVBoxLayout" name="verticalLayout_3">
+     <item>
+      <widget class="QLabel" name="timer_label">
+       <property name="font">
+        <font>
+         <pointsize>30</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignmentFlag::AlignCenter</set>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="period_type_label">
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+     <item alignment="Qt::AlignmentFlag::AlignHCenter">
+      <widget class="QPushButton" name="start_focus_btn">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>200</width>
+         <height>50</height>
+        </size>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>18</pointsize>
+        </font>
+       </property>
+       <property name="layoutDirection">
+        <enum>Qt::LayoutDirection::LeftToRight</enum>
+       </property>
+       <property name="text">
+        <string>focus</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout_3">
+       <item>
+        <widget class="QPushButton" name="focus_pause_btn">
+         <property name="enabled">
+          <bool>true</bool>
+         </property>
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>80</width>
+           <height>20</height>
+          </size>
+         </property>
+         <property name="font">
+          <font>
+           <kerning>true</kerning>
+          </font>
+         </property>
+         <property name="text">
+          <string>⏸️</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="focus_resume_btn">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>80</width>
+           <height>20</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>▶️</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="focus_stop_btn">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>80</width>
+           <height>20</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>⏹️</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QSplitter" name="splitter">
+    <property name="geometry">
+     <rect>
+      <x>120</x>
+      <y>280</y>
+      <width>411</width>
+      <height>111</height>
+     </rect>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Orientation::Horizontal</enum>
+    </property>
+    <widget class="QFrame" name="periodFrame">
+     <property name="minimumSize">
+      <size>
+       <width>200</width>
+       <height>0</height>
+      </size>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::Shape::StyledPanel</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Shadow::Raised</enum>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout">
+      <item>
+       <widget class="QLabel" name="period_label">
+        <property name="font">
+         <font>
+          <pointsize>16</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>period</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QComboBox" name="period_combobox"/>
+      </item>
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout">
+        <item>
+         <widget class="QPushButton" name="newperiod_btn">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="text">
+           <string>✚</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="editperiod_btn">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="text">
+           <string>⚙️</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="delete_period_btn">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="text">
+           <string>✖</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </widget>
+    <widget class="QFrame" name="subjectFrame">
+     <property name="minimumSize">
+      <size>
+       <width>200</width>
+       <height>0</height>
+      </size>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::Shape::StyledPanel</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Shadow::Raised</enum>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout_2">
+      <item>
+       <widget class="QLabel" name="subject_label">
+        <property name="font">
+         <font>
+          <pointsize>16</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>subject</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QComboBox" name="subject_combobox"/>
+      </item>
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout_2">
+        <item>
+         <widget class="QPushButton" name="newsubject_btn">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="text">
+           <string>✚</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="edit_subject_btn">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="text">
+           <string>⚙️</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="archive_subject_btn">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="text">
+           <string>♻️</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="delete_subject_btn">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="text">
+           <string>✖</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </widget>
+   </widget>
+   <widget class="QSplitter" name="splitter_2">
+    <property name="geometry">
+     <rect>
+      <x>100</x>
+      <y>450</y>
+      <width>257</width>
+      <height>122</height>
+     </rect>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Orientation::Horizontal</enum>
+    </property>
+    <widget class="QFrame" name="dailyFrame">
+     <property name="frameShape">
+      <enum>QFrame::Shape::StyledPanel</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Shadow::Raised</enum>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout_5">
+      <item>
+       <widget class="QLabel" name="daily_label">
+        <property name="font">
+         <font>
+          <pointsize>16</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>daily focus</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="today_label">
+        <property name="text">
+         <string>today's focus:</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="daily_goal_label">
+        <property name="text">
+         <string>daily goal:</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QProgressBar" name="daily_progression_bar">
+        <property name="value">
+         <number>24</number>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+    <widget class="QFrame" name="weeklyFrame">
+     <property name="frameShape">
+      <enum>QFrame::Shape::StyledPanel</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Shadow::Raised</enum>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout_7">
+      <item>
+       <widget class="QLabel" name="weekly_label">
+        <property name="font">
+         <font>
+          <pointsize>16</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>weekly focus</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="weekly_focus_label">
+        <property name="text">
+         <string>this week's focus:</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="weekly_goal_label">
+        <property name="text">
+         <string> weekly goal:</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QProgressBar" name="weekly_progression_bar">
+        <property name="value">
+         <number>24</number>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>658</width>
+     <height>33</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuSettings">
+    <property name="title">
+     <string>settings</string>
+    </property>
+    <widget class="QMenu" name="menuchange_default">
+     <property name="title">
+      <string>change default</string>
+     </property>
+     <addaction name="actiondaily_goal"/>
+     <addaction name="actionfocus_period"/>
+     <addaction name="actionfocus_subject"/>
+    </widget>
+    <widget class="QMenu" name="menuset_week">
+     <property name="title">
+      <string>set week</string>
+     </property>
+     <addaction name="actionweekdays_only"/>
+     <addaction name="actionwhole_week"/>
+    </widget>
+    <addaction name="menuchange_default"/>
+    <addaction name="menuset_week"/>
+    <addaction name="actiontips_and_quotes"/>
+    <addaction name="all_notifications_2"/>
+   </widget>
+   <widget class="QMenu" name="menuabout">
+    <property name="title">
+     <string>help</string>
+    </property>
+    <addaction name="actionabout"/>
+    <addaction name="actionabout_2"/>
+    <addaction name="separator"/>
+    <addaction name="actionCOMING_SOON_2"/>
+   </widget>
+   <widget class="QMenu" name="menuhistory">
+    <property name="title">
+     <string>history</string>
+    </property>
+    <addaction name="actionview_focus_history"/>
+    <addaction name="actionexport_data"/>
+    <addaction name="actionclear_history"/>
+    <addaction name="separator"/>
+    <addaction name="actionCOMING_SOON_3"/>
+    <addaction name="actionreset_settings_to_default"/>
+   </widget>
+   <widget class="QMenu" name="menuarchive">
+    <property name="title">
+     <string>archive</string>
+    </property>
+    <addaction name="actionview_archived_subjects"/>
+   </widget>
+   <addaction name="menuSettings"/>
+   <addaction name="menuarchive"/>
+   <addaction name="menuhistory"/>
+   <addaction name="menuabout"/>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <action name="actiondaily_goal">
+   <property name="text">
+    <string>daily focus goal</string>
+   </property>
+  </action>
+  <action name="actiondark">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>dark</string>
+   </property>
+  </action>
+  <action name="actionlight">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>light</string>
+   </property>
+  </action>
+  <action name="actionabout">
+   <property name="text">
+    <string>how to use</string>
+   </property>
+  </action>
+  <action name="actionabout_2">
+   <property name="text">
+    <string>about</string>
+   </property>
+  </action>
+  <action name="actionweekdays_only">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>weekdays only</string>
+   </property>
+  </action>
+  <action name="actionwhole_week">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>whole week</string>
+   </property>
+  </action>
+  <action name="all_notifications">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>turn off all notifications</string>
+   </property>
+  </action>
+  <action name="sound_break_start">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>play sound when focus period starts</string>
+   </property>
+  </action>
+  <action name="actionview_focus_history">
+   <property name="text">
+    <string>view focus history</string>
+   </property>
+  </action>
+  <action name="actionexport_data">
+   <property name="text">
+    <string>export data</string>
+   </property>
+  </action>
+  <action name="actionclear_history">
+   <property name="text">
+    <string>clear history</string>
+   </property>
+  </action>
+  <action name="actionfocus_period">
+   <property name="text">
+    <string>focus period</string>
+   </property>
+  </action>
+  <action name="actionfocus_subject">
+   <property name="text">
+    <string>focus subject</string>
+   </property>
+  </action>
+  <action name="popup_focus_start">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>notify when focus period starts</string>
+   </property>
+  </action>
+  <action name="sound_focus_start">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>notify when break period starts</string>
+   </property>
+  </action>
+  <action name="actiontips">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>tips</string>
+   </property>
+  </action>
+  <action name="actiondaily_quotes">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>daily quotes</string>
+   </property>
+  </action>
+  <action name="actionplay_sound_when_focus_completed">
+   <property name="text">
+    <string>play sound when focus completed</string>
+   </property>
+  </action>
+  <action name="actionsounds">
+   <property name="text">
+    <string>play sound when focus session starts</string>
+   </property>
+  </action>
+  <action name="actionplay_sound_when_break_starts">
+   <property name="text">
+    <string>play sound when break starts</string>
+   </property>
+  </action>
+  <action name="actionplay_sound_when_focus_completed_2">
+   <property name="text">
+    <string>play sound when focus completed</string>
+   </property>
+  </action>
+  <action name="actionnotify_when_focus_session_starts">
+   <property name="text">
+    <string>notify when focus session starts</string>
+   </property>
+  </action>
+  <action name="actionfocus_start">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>focus session starts</string>
+   </property>
+  </action>
+  <action name="actionbreak_start">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>break starts</string>
+   </property>
+  </action>
+  <action name="actionfocus_completed">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>focus completed</string>
+   </property>
+  </action>
+  <action name="actionfocus_session_starts_popup">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>focus session starts</string>
+   </property>
+  </action>
+  <action name="action_break_starts_popup">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>break starts</string>
+   </property>
+  </action>
+  <action name="actionfocus_completed_popup">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>focus completed</string>
+   </property>
+  </action>
+  <action name="actiontips_and_quotes">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>show tips and quotes </string>
+   </property>
+  </action>
+  <action name="actionCOMING_SOON">
+   <property name="text">
+    <string>COMING SOON</string>
+   </property>
+  </action>
+  <action name="actionCOMING_SOON_2">
+   <property name="text">
+    <string>COMING SOON</string>
+   </property>
+  </action>
+  <action name="actionCOMING_SOON_3">
+   <property name="text">
+    <string>COMING SOON</string>
+   </property>
+  </action>
+  <action name="actionCOMING_SOON_4">
+   <property name="text">
+    <string>COMING SOON</string>
+   </property>
+  </action>
+  <action name="actionreset_settings_to_default">
+   <property name="text">
+    <string>reset settings to default</string>
+   </property>
+  </action>
+  <action name="actionshow_streaks">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>show streaks</string>
+   </property>
+  </action>
+  <action name="all_notifications_2">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>turn off notifications</string>
+   </property>
+  </action>
+  <action name="actionview_archived_subjects">
+   <property name="text">
+    <string>view archived subjects</string>
+   </property>
+  </action>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

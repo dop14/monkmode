@@ -18,14 +18,14 @@ from PySide6.QtGui import (QAction, QBrush, QColor, QConicalGradient,
     QTransform)
 from PySide6.QtWidgets import (QApplication, QComboBox, QFrame, QHBoxLayout,
     QLabel, QMainWindow, QMenu, QMenuBar,
-    QProgressBar, QPushButton, QSizePolicy, QSpacerItem,
-    QStatusBar, QVBoxLayout, QWidget)
+    QProgressBar, QPushButton, QSizePolicy, QStatusBar,
+    QVBoxLayout, QWidget)
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
-        MainWindow.resize(499, 657)
+        MainWindow.resize(510, 615)
         sizePolicy = QSizePolicy(QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Minimum)
         sizePolicy.setHorizontalStretch(200)
         sizePolicy.setVerticalStretch(0)
@@ -137,6 +137,12 @@ class Ui_MainWindow(object):
         self.verticalLayout_6.setObjectName(u"verticalLayout_6")
         self.focusFrame = QFrame(self.mainLayout)
         self.focusFrame.setObjectName(u"focusFrame")
+        sizePolicy1 = QSizePolicy(QSizePolicy.Policy.Fixed, QSizePolicy.Policy.Fixed)
+        sizePolicy1.setHorizontalStretch(0)
+        sizePolicy1.setVerticalStretch(0)
+        sizePolicy1.setHeightForWidth(self.focusFrame.sizePolicy().hasHeightForWidth())
+        self.focusFrame.setSizePolicy(sizePolicy1)
+        self.focusFrame.setMinimumSize(QSize(490, 0))
         self.focusFrame.setFrameShape(QFrame.Shape.StyledPanel)
         self.focusFrame.setFrameShadow(QFrame.Shadow.Raised)
         self.verticalLayout_3 = QVBoxLayout(self.focusFrame)
@@ -157,16 +163,16 @@ class Ui_MainWindow(object):
 
         self.start_focus_btn = QPushButton(self.focusFrame)
         self.start_focus_btn.setObjectName(u"start_focus_btn")
-        sizePolicy1 = QSizePolicy(QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Preferred)
-        sizePolicy1.setHorizontalStretch(0)
-        sizePolicy1.setVerticalStretch(0)
-        sizePolicy1.setHeightForWidth(self.start_focus_btn.sizePolicy().hasHeightForWidth())
-        self.start_focus_btn.setSizePolicy(sizePolicy1)
+        sizePolicy2 = QSizePolicy(QSizePolicy.Policy.Fixed, QSizePolicy.Policy.Preferred)
+        sizePolicy2.setHorizontalStretch(0)
+        sizePolicy2.setVerticalStretch(0)
+        sizePolicy2.setHeightForWidth(self.start_focus_btn.sizePolicy().hasHeightForWidth())
+        self.start_focus_btn.setSizePolicy(sizePolicy2)
         font1 = QFont()
         font1.setPointSize(18)
         self.start_focus_btn.setFont(font1)
 
-        self.verticalLayout_3.addWidget(self.start_focus_btn)
+        self.verticalLayout_3.addWidget(self.start_focus_btn, 0, Qt.AlignmentFlag.AlignHCenter)
 
         self.horizontalLayout_3 = QHBoxLayout()
         self.horizontalLayout_3.setObjectName(u"horizontalLayout_3")
@@ -195,16 +201,15 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_6.addWidget(self.focusFrame)
 
-        self.horizontalSpacer_4 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
-
-        self.verticalLayout_6.addItem(self.horizontalSpacer_4)
-
         self.horizontalLayout_4 = QHBoxLayout()
         self.horizontalLayout_4.setObjectName(u"horizontalLayout_4")
         self.verticalLayout_8 = QVBoxLayout()
         self.verticalLayout_8.setObjectName(u"verticalLayout_8")
         self.periodFrame = QFrame(self.mainLayout)
         self.periodFrame.setObjectName(u"periodFrame")
+        sizePolicy1.setHeightForWidth(self.periodFrame.sizePolicy().hasHeightForWidth())
+        self.periodFrame.setSizePolicy(sizePolicy1)
+        self.periodFrame.setMinimumSize(QSize(230, 140))
         self.periodFrame.setFrameShape(QFrame.Shape.StyledPanel)
         self.periodFrame.setFrameShadow(QFrame.Shadow.Raised)
         self.verticalLayout = QVBoxLayout(self.periodFrame)
@@ -224,6 +229,11 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout = QHBoxLayout()
         self.horizontalLayout.setObjectName(u"horizontalLayout")
+        self.newperiod_btn = QPushButton(self.periodFrame)
+        self.newperiod_btn.setObjectName(u"newperiod_btn")
+
+        self.horizontalLayout.addWidget(self.newperiod_btn)
+
         self.editperiod_btn = QPushButton(self.periodFrame)
         self.editperiod_btn.setObjectName(u"editperiod_btn")
 
@@ -237,20 +247,14 @@ class Ui_MainWindow(object):
 
         self.verticalLayout.addLayout(self.horizontalLayout)
 
-        self.newperiod_btn = QPushButton(self.periodFrame)
-        self.newperiod_btn.setObjectName(u"newperiod_btn")
-
-        self.verticalLayout.addWidget(self.newperiod_btn)
-
 
         self.verticalLayout_8.addWidget(self.periodFrame)
 
-        self.horizontalSpacer_2 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
-
-        self.verticalLayout_8.addItem(self.horizontalSpacer_2)
-
         self.dailyFrame = QFrame(self.mainLayout)
         self.dailyFrame.setObjectName(u"dailyFrame")
+        sizePolicy1.setHeightForWidth(self.dailyFrame.sizePolicy().hasHeightForWidth())
+        self.dailyFrame.setSizePolicy(sizePolicy1)
+        self.dailyFrame.setMinimumSize(QSize(230, 140))
         self.dailyFrame.setFrameShape(QFrame.Shape.StyledPanel)
         self.dailyFrame.setFrameShadow(QFrame.Shadow.Raised)
         self.verticalLayout_5 = QVBoxLayout(self.dailyFrame)
@@ -283,14 +287,13 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_4.addLayout(self.verticalLayout_8)
 
-        self.verticalSpacer = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
-
-        self.horizontalLayout_4.addItem(self.verticalSpacer)
-
         self.verticalLayout_9 = QVBoxLayout()
         self.verticalLayout_9.setObjectName(u"verticalLayout_9")
         self.subjectFrame = QFrame(self.mainLayout)
         self.subjectFrame.setObjectName(u"subjectFrame")
+        sizePolicy1.setHeightForWidth(self.subjectFrame.sizePolicy().hasHeightForWidth())
+        self.subjectFrame.setSizePolicy(sizePolicy1)
+        self.subjectFrame.setMinimumSize(QSize(200, 140))
         self.subjectFrame.setFrameShape(QFrame.Shape.StyledPanel)
         self.subjectFrame.setFrameShadow(QFrame.Shadow.Raised)
         self.verticalLayout_2 = QVBoxLayout(self.subjectFrame)
@@ -308,6 +311,11 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_2 = QHBoxLayout()
         self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
+        self.newsubject_btn = QPushButton(self.subjectFrame)
+        self.newsubject_btn.setObjectName(u"newsubject_btn")
+
+        self.horizontalLayout_2.addWidget(self.newsubject_btn)
+
         self.edit_subject_btn = QPushButton(self.subjectFrame)
         self.edit_subject_btn.setObjectName(u"edit_subject_btn")
 
@@ -326,20 +334,14 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_2.addLayout(self.horizontalLayout_2)
 
-        self.newsubject_btn = QPushButton(self.subjectFrame)
-        self.newsubject_btn.setObjectName(u"newsubject_btn")
-
-        self.verticalLayout_2.addWidget(self.newsubject_btn)
-
 
         self.verticalLayout_9.addWidget(self.subjectFrame)
 
-        self.horizontalSpacer_3 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
-
-        self.verticalLayout_9.addItem(self.horizontalSpacer_3)
-
         self.weeklyFrame = QFrame(self.mainLayout)
         self.weeklyFrame.setObjectName(u"weeklyFrame")
+        sizePolicy1.setHeightForWidth(self.weeklyFrame.sizePolicy().hasHeightForWidth())
+        self.weeklyFrame.setSizePolicy(sizePolicy1)
+        self.weeklyFrame.setMinimumSize(QSize(239, 140))
         self.weeklyFrame.setFrameShape(QFrame.Shape.StyledPanel)
         self.weeklyFrame.setFrameShadow(QFrame.Shadow.Raised)
         self.verticalLayout_7 = QVBoxLayout(self.weeklyFrame)
@@ -375,17 +377,13 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_6.addLayout(self.horizontalLayout_4)
 
-        self.horizontalSpacer = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
-
-        self.verticalLayout_6.addItem(self.horizontalSpacer)
-
 
         self.verticalLayout_10.addLayout(self.verticalLayout_6)
 
         MainWindow.setCentralWidget(self.mainLayout)
         self.menubar = QMenuBar(MainWindow)
         self.menubar.setObjectName(u"menubar")
-        self.menubar.setGeometry(QRect(0, 0, 499, 33))
+        self.menubar.setGeometry(QRect(0, 0, 510, 33))
         self.menuSettings = QMenu(self.menubar)
         self.menuSettings.setObjectName(u"menuSettings")
         self.menuchange_default = QMenu(self.menuSettings)
@@ -476,21 +474,21 @@ class Ui_MainWindow(object):
         self.timer_label.setText("")
         self.period_type_label.setText("")
         self.start_focus_btn.setText(QCoreApplication.translate("MainWindow", u"focus", None))
-        self.focus_pause_btn.setText(QCoreApplication.translate("MainWindow", u"pause", None))
-        self.focus_resume_btn.setText(QCoreApplication.translate("MainWindow", u"resume", None))
-        self.focus_stop_btn.setText(QCoreApplication.translate("MainWindow", u"stop", None))
+        self.focus_pause_btn.setText(QCoreApplication.translate("MainWindow", u"\u23f8\ufe0f", None))
+        self.focus_resume_btn.setText(QCoreApplication.translate("MainWindow", u"\u25b6\ufe0f", None))
+        self.focus_stop_btn.setText(QCoreApplication.translate("MainWindow", u"\u23f9\ufe0f", None))
         self.period_label.setText(QCoreApplication.translate("MainWindow", u"focus period", None))
-        self.editperiod_btn.setText(QCoreApplication.translate("MainWindow", u"edit", None))
-        self.delete_period_btn.setText(QCoreApplication.translate("MainWindow", u"delete", None))
-        self.newperiod_btn.setText(QCoreApplication.translate("MainWindow", u"create new period", None))
+        self.newperiod_btn.setText(QCoreApplication.translate("MainWindow", u"\u271a", None))
+        self.editperiod_btn.setText(QCoreApplication.translate("MainWindow", u"\u2699\ufe0f", None))
+        self.delete_period_btn.setText(QCoreApplication.translate("MainWindow", u"\u274c", None))
         self.daily_label.setText(QCoreApplication.translate("MainWindow", u"daily focus", None))
         self.today_label.setText(QCoreApplication.translate("MainWindow", u"today's focus:", None))
         self.daily_goal_label.setText(QCoreApplication.translate("MainWindow", u"daily focus goal:", None))
         self.subject_label.setText(QCoreApplication.translate("MainWindow", u"subject", None))
-        self.edit_subject_btn.setText(QCoreApplication.translate("MainWindow", u"edit", None))
-        self.archive_subject_btn.setText(QCoreApplication.translate("MainWindow", u"archive", None))
-        self.delete_subject_btn.setText(QCoreApplication.translate("MainWindow", u"delete", None))
-        self.newsubject_btn.setText(QCoreApplication.translate("MainWindow", u"create new subject", None))
+        self.newsubject_btn.setText(QCoreApplication.translate("MainWindow", u"\u271a", None))
+        self.edit_subject_btn.setText(QCoreApplication.translate("MainWindow", u"\u2699\ufe0f", None))
+        self.archive_subject_btn.setText(QCoreApplication.translate("MainWindow", u"\u267b\ufe0f", None))
+        self.delete_subject_btn.setText(QCoreApplication.translate("MainWindow", u"\u274c", None))
         self.weekly_label.setText(QCoreApplication.translate("MainWindow", u"weekly focus", None))
         self.weekly_focus_label.setText(QCoreApplication.translate("MainWindow", u"this week's focus:", None))
         self.weekly_goal_label.setText(QCoreApplication.translate("MainWindow", u"weekly focus goal:", None))

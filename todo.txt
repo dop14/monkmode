@@ -1,13 +1,15 @@
-Archiving
-Tips and Quotes
-Design
-ELSE TODO
+DESIGN:
+- only one premade theme
+- choose font
+- Icons instead of text (tootlips for icon texts)
+- Deleting this subject will stop tracking any new focus time for it. If you might use it later, use Archive instead of Delete.
+- When adding, updating, deleting pop-up notification message:
+    Added XY period setting / subject
+    Updated XY period setting / subject
+    Deleted XY period setting / subject
 
-ARCHIVING:
-- If user focused on a project, but the project is done, he could perhaps archive it.
-- Settings -> Archived subjects -> See archived / Unarchive
-- Archived wont show in combobox
-- Unarchived will go back to combobox
+
+
 
 
 
@@ -17,16 +19,8 @@ TIPS AND QUOTES
 - When in focus, there's no noise, or quotes whatsoever
 - Daily quotes, choosing randomly, showing up one everyday (resets at 00:00)
 
-DESIGN:
-- only one premade theme
-- Icons instead of text
-- Deleting this subject will stop tracking any new focus time for it. If you might use it later, use Archive instead of Delete.
-- When adding, updating, deleting pop-up notification message:
-    Added XY period setting / subject
-    Updated XY period setting / subject
-    Deleted XY period setting / subject
-
 ELSE TODO:
+- little window with timer if user clicks on it (hide main window, show little window with function to hide timer)
 - Stats for later: TABLE where (daily focus goal achieved 134 times, weekly focus goal achieved 13 times,...,...,) store data
 - Run db_manager.py automatically when the user enters the app
 - Streaks (history: longest streak, last active streak,...)
