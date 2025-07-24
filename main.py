@@ -10,6 +10,7 @@ from windows.change_default import ChangeDefault
 import datetime
 from core.timer import FocusTimer
 from core.menu_bar import MenuBar
+from core.thememanager import ThemeManager
 from database.db_manager import get_period_names, get_subject_names
 from database.db_manager import get_default_period_name, get_default_subject_name, get_user_preferences, get_today_focus, get_this_week_focus
 import sys
@@ -71,24 +72,31 @@ class MainWindow(QMainWindow):
         
         # When add period button is clicked
         self.ui.newperiod_btn.clicked.connect(lambda:self.start_add_window("period"))
+        self.ui.newperiod_btn.setToolTip("create new period")
 
         # When edit period button is clicked
         self.ui.editperiod_btn.clicked.connect(lambda:self.start_edit_window("period"))
+        self.ui.editperiod_btn.setToolTip("edit period")
 
         # When delete period button is clicked
         self.ui.delete_period_btn.clicked.connect(lambda:self.start_delete_window("period"))
+        self.ui.delete_period_btn.setToolTip("delete period")
 
         # When add subject button is clicked
         self.ui.newsubject_btn.clicked.connect(lambda:self.start_add_window("subject"))
+        self.ui.newsubject_btn.setToolTip("create new subject")
 
         # When edit subject button is clicked
         self.ui.edit_subject_btn.clicked.connect(lambda:self.start_edit_window("subject"))
+        self.ui.edit_subject_btn.setToolTip("edit subject")
 
         # When archive subject button is clicked
         self.ui.archive_subject_btn.clicked.connect(lambda:self.start_archive_window("subject"))
+        self.ui.archive_subject_btn.setToolTip("archive subject")
 
         # When delete subject button is clicked
         self.ui.delete_subject_btn.clicked.connect(lambda:self.start_delete_window("subject"))
+        self.ui.delete_subject_btn.setToolTip("delete subject")
 
         # If stop button is clicked
         self.ui.focus_stop_btn.clicked.connect(self.stop_focus_confirmation)
@@ -176,7 +184,7 @@ class MainWindow(QMainWindow):
         if setting_type == "period":
             # If the chosen element is the default one
             if self.ui.period_combobox.currentText() == self.default_period_name:
-                self.error_window = ConfirmationWindow(self,"The default focus setting cannot be deleted.<br>To change the default value, go to Settings → Change Default → Focus Period.",setting_type)
+                self.error_window = ConfirmationWindow(self,"The default focus setting cannot be deleted.",setting_type)
                 self.error_window.exec()
             # Else if deletable
             else:
@@ -186,16 +194,16 @@ class MainWindow(QMainWindow):
         elif setting_type == "subject":
             # If the chosen element is the default one
             if self.ui.subject_combobox.currentText() == self.default_subject_name:
-                self.error_window = ConfirmationWindow(self,"The default subject cannot be deleted.<br>To change the default value, go to Settings → Change Default → Focus Subject.",setting_type)
+                self.error_window = ConfirmationWindow(self,"The default subject cannot be deleted.",setting_type)
                 self.error_window.exec()
             # Else if deletable
             else:
-                self.del_window = ConfirmationWindow(self,f"Do you really want to delete <b>{self.ui.subject_combobox.currentText()}</b> subject?<br>This action cannot be undone.",setting_type)
+                self.del_window = ConfirmationWindow(self,f"Do you really want to delete <b>{self.ui.subject_combobox.currentText()}</b> subject?<br>If you might use it later, use <b>archive</b> instead of <b>delete</b>.<br>This action cannot be undone.",setting_type)
                 self.del_window.exec()
 
     def start_archive_window(self, setting_type):
         if self.ui.subject_combobox.currentText() == self.default_subject_name:
-            self.error_window = ConfirmationWindow(self,"The default subject cannot be archived.<br>To change the default value, go to Settings → Change Default → Focus Subject.","archive_subject")
+            self.error_window = ConfirmationWindow(self,"The default subject cannot be archived.","archive_subject")
             self.error_window.exec()
             # Else if deletable
         else:
@@ -396,10 +404,11 @@ class MainWindow(QMainWindow):
         subject_index = self.ui.subject_combobox.findText(self.default_subject_name)
         if subject_index != -1:
             self.ui.subject_combobox.setCurrentIndex(subject_index)
-        
+
 # Application entry point
 def main():
     app = QApplication(sys.argv)
+    app.setPalette(ThemeManager.load_dark_palette())
     window = MainWindow()
     window.show()
     sys.exit(app.exec())

@@ -22,13 +22,20 @@ class Ui_Confirmation(object):
     def setupUi(self, Confirmation):
         if not Confirmation.objectName():
             Confirmation.setObjectName(u"Confirmation")
-        Confirmation.resize(338, 144)
+        Confirmation.resize(250, 144)
+        sizePolicy = QSizePolicy(QSizePolicy.Policy.Fixed, QSizePolicy.Policy.Preferred)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(Confirmation.sizePolicy().hasHeightForWidth())
+        Confirmation.setSizePolicy(sizePolicy)
+        Confirmation.setMaximumSize(QSize(300, 150))
         self.verticalLayout = QVBoxLayout(Confirmation)
         self.verticalLayout.setObjectName(u"verticalLayout")
         self.main_label = QLabel(Confirmation)
         self.main_label.setObjectName(u"main_label")
+        self.main_label.setMinimumSize(QSize(0, 0))
         font = QFont()
-        font.setPointSize(12)
+        font.setPointSize(11)
         self.main_label.setFont(font)
 
         self.verticalLayout.addWidget(self.main_label)
@@ -37,11 +44,13 @@ class Ui_Confirmation(object):
         self.horizontalLayout.setObjectName(u"horizontalLayout")
         self.ok_btn = QPushButton(Confirmation)
         self.ok_btn.setObjectName(u"ok_btn")
+        self.ok_btn.setMinimumSize(QSize(0, 30))
 
         self.horizontalLayout.addWidget(self.ok_btn)
 
         self.cancel_btn = QPushButton(Confirmation)
         self.cancel_btn.setObjectName(u"cancel_btn")
+        self.cancel_btn.setMinimumSize(QSize(0, 30))
 
         self.horizontalLayout.addWidget(self.cancel_btn)
 

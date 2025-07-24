@@ -10,7 +10,7 @@ class ConfirmationWindow(QDialog):
         self.setModal(True)
 
         # If user wants to delete the default setting
-        if text == "The default focus setting cannot be deleted.<br>To change the default value, go to Settings → Change Default → Focus Period." or text == "The default subject cannot be deleted.<br>To change the default value, go to Settings → Change Default → Focus Subject." or text == "The default subject cannot be archived.<br>To change the default value, go to Settings → Change Default → Focus Subject.":
+        if text == "The default focus setting cannot be deleted." or text == "The default subject cannot be deleted." or text == "The default subject cannot be archived.":
             self.ui.cancel_btn.hide()
             self.ui.ok_btn.clicked.connect(self.close)
             self.setWindowTitle("Error")

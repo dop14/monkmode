@@ -23,19 +23,28 @@ class EditPeriodWindow(QDialog):
         # Load period_data to input fields
         self.load_inputs(main_window)
 
+    # Set checkbox logic
     def short_break_checkbox_changed(self):
         if not self.ui.short_break_checkbox.isChecked():
             self.ui.short_break_spinbox.setDisabled(True)
+            self.ui.short_break_minutes_label.setDisabled(True)
         else:
             self.ui.short_break_spinbox.setDisabled(False)
+            self.ui.short_break_minutes_label.setDisabled(False)
 
     def long_break_checkbox_changed(self):
         if not self.ui.long_break_checkbox.isChecked():
             self.ui.long_break_spinbox.setDisabled(True)
             self.ui.long_break_after_spinbox.setDisabled(True)
+            self.ui.long_break_after_label.setDisabled(True)
+            self.ui.long_break_minutes_label.setDisabled(True)
+            self.ui.focus_sessions_label.setDisabled(True)
         else:
             self.ui.long_break_spinbox.setDisabled(False)
             self.ui.long_break_after_spinbox.setDisabled(False)
+            self.ui.long_break_after_label.setDisabled(False)
+            self.ui.focus_sessions_label.setDisabled(False)
+            self.ui.long_break_minutes_label.setDisabled(False)
 
     def load_inputs(self,main_window):
         # get period data
@@ -53,6 +62,7 @@ class EditPeriodWindow(QDialog):
         else:
             self.ui.short_break_checkbox.setChecked(False)
             self.ui.short_break_spinbox.setDisabled(True)
+            self.ui.short_break_minutes_label.setDisabled(True)
 
         # Long break checkbox logic
         if self.old_period_data["long_break_enabled"]:
@@ -64,6 +74,9 @@ class EditPeriodWindow(QDialog):
             self.ui.long_break_checkbox.setChecked(False)
             self.ui.long_break_spinbox.setDisabled(True)
             self.ui.long_break_after_spinbox.setDisabled(True)
+            self.ui.long_break_after_label.setDisabled(True)
+            self.ui.focus_sessions_label.setDisabled(True)
+            self.ui.long_break_minutes_label.setDisabled(True)
 
     def error_handling(self, main_window):
         period_names = get_period_names()

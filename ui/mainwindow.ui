@@ -115,7 +115,16 @@
               </font>
              </property>
              <property name="text">
-              <string>⏸️</string>
+              <string/>
+             </property>
+             <property name="icon">
+              <iconset theme="QIcon::ThemeIcon::MediaPlaybackPause"/>
+             </property>
+             <property name="iconSize">
+              <size>
+               <width>18</width>
+               <height>18</height>
+              </size>
              </property>
             </widget>
            </item>
@@ -128,7 +137,16 @@
               </sizepolicy>
              </property>
              <property name="text">
-              <string>▶️</string>
+              <string/>
+             </property>
+             <property name="icon">
+              <iconset theme="QIcon::ThemeIcon::MediaPlaybackStart"/>
+             </property>
+             <property name="iconSize">
+              <size>
+               <width>18</width>
+               <height>18</height>
+              </size>
              </property>
             </widget>
            </item>
@@ -141,7 +159,16 @@
               </sizepolicy>
              </property>
              <property name="text">
-              <string>⏹️</string>
+              <string/>
+             </property>
+             <property name="icon">
+              <iconset theme="QIcon::ThemeIcon::MediaPlaybackStop"/>
+             </property>
+             <property name="iconSize">
+              <size>
+               <width>18</width>
+               <height>18</height>
+              </size>
              </property>
             </widget>
            </item>
@@ -207,22 +234,37 @@
               <layout class="QHBoxLayout" name="horizontalLayout">
                <item>
                 <widget class="QPushButton" name="newperiod_btn">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
                  <property name="text">
-                  <string>✚</string>
+                  <string/>
+                 </property>
+                 <property name="icon">
+                  <iconset theme="QIcon::ThemeIcon::ListAdd"/>
                  </property>
                 </widget>
                </item>
                <item>
                 <widget class="QPushButton" name="editperiod_btn">
                  <property name="text">
-                  <string>⚙️</string>
+                  <string/>
+                 </property>
+                 <property name="icon">
+                  <iconset theme="QIcon::ThemeIcon::DocumentProperties"/>
                  </property>
                 </widget>
                </item>
                <item>
                 <widget class="QPushButton" name="delete_period_btn">
                  <property name="text">
-                  <string>❌</string>
+                  <string/>
+                 </property>
+                 <property name="icon">
+                  <iconset theme="QIcon::ThemeIcon::EditDelete"/>
                  </property>
                 </widget>
                </item>
@@ -318,7 +360,7 @@
             </property>
             <property name="minimumSize">
              <size>
-              <width>200</width>
+              <width>239</width>
               <height>140</height>
              </size>
             </property>
@@ -349,28 +391,40 @@
                <item>
                 <widget class="QPushButton" name="newsubject_btn">
                  <property name="text">
-                  <string>✚</string>
+                  <string/>
+                 </property>
+                 <property name="icon">
+                  <iconset theme="QIcon::ThemeIcon::ListAdd"/>
                  </property>
                 </widget>
                </item>
                <item>
                 <widget class="QPushButton" name="edit_subject_btn">
                  <property name="text">
-                  <string>⚙️</string>
+                  <string/>
+                 </property>
+                 <property name="icon">
+                  <iconset theme="QIcon::ThemeIcon::DocumentProperties"/>
                  </property>
                 </widget>
                </item>
                <item>
                 <widget class="QPushButton" name="archive_subject_btn">
                  <property name="text">
-                  <string>♻️</string>
+                  <string/>
+                 </property>
+                 <property name="icon">
+                  <iconset theme="QIcon::ThemeIcon::DocumentNew"/>
                  </property>
                 </widget>
                </item>
                <item>
                 <widget class="QPushButton" name="delete_subject_btn">
                  <property name="text">
-                  <string>❌</string>
+                  <string/>
+                 </property>
+                 <property name="icon">
+                  <iconset theme="QIcon::ThemeIcon::EditDelete"/>
                  </property>
                 </widget>
                </item>

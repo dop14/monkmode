@@ -22,11 +22,18 @@ class Ui_Form(object):
     def setupUi(self, Form):
         if not Form.objectName():
             Form.setObjectName(u"Form")
-        Form.resize(400, 200)
+        Form.resize(300, 200)
+        sizePolicy = QSizePolicy(QSizePolicy.Policy.Fixed, QSizePolicy.Policy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(Form.sizePolicy().hasHeightForWidth())
+        Form.setSizePolicy(sizePolicy)
+        Form.setMaximumSize(QSize(320, 200))
         self.verticalLayout_2 = QVBoxLayout(Form)
         self.verticalLayout_2.setObjectName(u"verticalLayout_2")
         self.focusSetting = QFrame(Form)
         self.focusSetting.setObjectName(u"focusSetting")
+        self.focusSetting.setMinimumSize(QSize(0, 0))
         self.focusSetting.setFrameShape(QFrame.Shape.StyledPanel)
         self.focusSetting.setFrameShadow(QFrame.Shadow.Raised)
         self.verticalLayout = QVBoxLayout(self.focusSetting)
@@ -52,6 +59,7 @@ class Ui_Form(object):
 
         self.start_focus_btn = QPushButton(Form)
         self.start_focus_btn.setObjectName(u"start_focus_btn")
+        self.start_focus_btn.setMinimumSize(QSize(0, 30))
 
         self.verticalLayout_2.addWidget(self.start_focus_btn)
 

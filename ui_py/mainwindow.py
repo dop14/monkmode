@@ -185,6 +185,9 @@ class Ui_MainWindow(object):
         font2 = QFont()
         font2.setKerning(True)
         self.focus_pause_btn.setFont(font2)
+        icon = QIcon(QIcon.fromTheme(QIcon.ThemeIcon.MediaPlaybackPause))
+        self.focus_pause_btn.setIcon(icon)
+        self.focus_pause_btn.setIconSize(QSize(18, 18))
 
         self.horizontalLayout_3.addWidget(self.focus_pause_btn, 0, Qt.AlignmentFlag.AlignHCenter)
 
@@ -192,6 +195,9 @@ class Ui_MainWindow(object):
         self.focus_resume_btn.setObjectName(u"focus_resume_btn")
         sizePolicy2.setHeightForWidth(self.focus_resume_btn.sizePolicy().hasHeightForWidth())
         self.focus_resume_btn.setSizePolicy(sizePolicy2)
+        icon1 = QIcon(QIcon.fromTheme(QIcon.ThemeIcon.MediaPlaybackStart))
+        self.focus_resume_btn.setIcon(icon1)
+        self.focus_resume_btn.setIconSize(QSize(18, 18))
 
         self.horizontalLayout_3.addWidget(self.focus_resume_btn, 0, Qt.AlignmentFlag.AlignHCenter)
 
@@ -199,6 +205,9 @@ class Ui_MainWindow(object):
         self.focus_stop_btn.setObjectName(u"focus_stop_btn")
         sizePolicy2.setHeightForWidth(self.focus_stop_btn.sizePolicy().hasHeightForWidth())
         self.focus_stop_btn.setSizePolicy(sizePolicy2)
+        icon2 = QIcon(QIcon.fromTheme(QIcon.ThemeIcon.MediaPlaybackStop))
+        self.focus_stop_btn.setIcon(icon2)
+        self.focus_stop_btn.setIconSize(QSize(18, 18))
 
         self.horizontalLayout_3.addWidget(self.focus_stop_btn, 0, Qt.AlignmentFlag.AlignHCenter)
 
@@ -242,16 +251,24 @@ class Ui_MainWindow(object):
         self.horizontalLayout.setObjectName(u"horizontalLayout")
         self.newperiod_btn = QPushButton(self.periodFrame)
         self.newperiod_btn.setObjectName(u"newperiod_btn")
+        sizePolicy1.setHeightForWidth(self.newperiod_btn.sizePolicy().hasHeightForWidth())
+        self.newperiod_btn.setSizePolicy(sizePolicy1)
+        icon3 = QIcon(QIcon.fromTheme(QIcon.ThemeIcon.ListAdd))
+        self.newperiod_btn.setIcon(icon3)
 
         self.horizontalLayout.addWidget(self.newperiod_btn)
 
         self.editperiod_btn = QPushButton(self.periodFrame)
         self.editperiod_btn.setObjectName(u"editperiod_btn")
+        icon4 = QIcon(QIcon.fromTheme(QIcon.ThemeIcon.DocumentProperties))
+        self.editperiod_btn.setIcon(icon4)
 
         self.horizontalLayout.addWidget(self.editperiod_btn)
 
         self.delete_period_btn = QPushButton(self.periodFrame)
         self.delete_period_btn.setObjectName(u"delete_period_btn")
+        icon5 = QIcon(QIcon.fromTheme(QIcon.ThemeIcon.EditDelete))
+        self.delete_period_btn.setIcon(icon5)
 
         self.horizontalLayout.addWidget(self.delete_period_btn)
 
@@ -308,7 +325,7 @@ class Ui_MainWindow(object):
         self.subjectFrame.setObjectName(u"subjectFrame")
         sizePolicy2.setHeightForWidth(self.subjectFrame.sizePolicy().hasHeightForWidth())
         self.subjectFrame.setSizePolicy(sizePolicy2)
-        self.subjectFrame.setMinimumSize(QSize(200, 140))
+        self.subjectFrame.setMinimumSize(QSize(239, 140))
         self.subjectFrame.setFrameShape(QFrame.Shape.StyledPanel)
         self.subjectFrame.setFrameShadow(QFrame.Shadow.Raised)
         self.verticalLayout_2 = QVBoxLayout(self.subjectFrame)
@@ -328,21 +345,26 @@ class Ui_MainWindow(object):
         self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
         self.newsubject_btn = QPushButton(self.subjectFrame)
         self.newsubject_btn.setObjectName(u"newsubject_btn")
+        self.newsubject_btn.setIcon(icon3)
 
         self.horizontalLayout_2.addWidget(self.newsubject_btn)
 
         self.edit_subject_btn = QPushButton(self.subjectFrame)
         self.edit_subject_btn.setObjectName(u"edit_subject_btn")
+        self.edit_subject_btn.setIcon(icon4)
 
         self.horizontalLayout_2.addWidget(self.edit_subject_btn)
 
         self.archive_subject_btn = QPushButton(self.subjectFrame)
         self.archive_subject_btn.setObjectName(u"archive_subject_btn")
+        icon6 = QIcon(QIcon.fromTheme(QIcon.ThemeIcon.DocumentNew))
+        self.archive_subject_btn.setIcon(icon6)
 
         self.horizontalLayout_2.addWidget(self.archive_subject_btn)
 
         self.delete_subject_btn = QPushButton(self.subjectFrame)
         self.delete_subject_btn.setObjectName(u"delete_subject_btn")
+        self.delete_subject_btn.setIcon(icon5)
 
         self.horizontalLayout_2.addWidget(self.delete_subject_btn)
 
@@ -497,21 +519,21 @@ class Ui_MainWindow(object):
         self.timer_label.setText("")
         self.period_type_label.setText("")
         self.start_focus_btn.setText(QCoreApplication.translate("MainWindow", u"focus", None))
-        self.focus_pause_btn.setText(QCoreApplication.translate("MainWindow", u"\u23f8\ufe0f", None))
-        self.focus_resume_btn.setText(QCoreApplication.translate("MainWindow", u"\u25b6\ufe0f", None))
-        self.focus_stop_btn.setText(QCoreApplication.translate("MainWindow", u"\u23f9\ufe0f", None))
+        self.focus_pause_btn.setText("")
+        self.focus_resume_btn.setText("")
+        self.focus_stop_btn.setText("")
         self.period_label.setText(QCoreApplication.translate("MainWindow", u"focus period", None))
-        self.newperiod_btn.setText(QCoreApplication.translate("MainWindow", u"\u271a", None))
-        self.editperiod_btn.setText(QCoreApplication.translate("MainWindow", u"\u2699\ufe0f", None))
-        self.delete_period_btn.setText(QCoreApplication.translate("MainWindow", u"\u274c", None))
+        self.newperiod_btn.setText("")
+        self.editperiod_btn.setText("")
+        self.delete_period_btn.setText("")
         self.daily_label.setText(QCoreApplication.translate("MainWindow", u"daily focus", None))
         self.today_label.setText(QCoreApplication.translate("MainWindow", u"today's focus:", None))
         self.daily_goal_label.setText(QCoreApplication.translate("MainWindow", u"daily focus goal:", None))
         self.subject_label.setText(QCoreApplication.translate("MainWindow", u"subject", None))
-        self.newsubject_btn.setText(QCoreApplication.translate("MainWindow", u"\u271a", None))
-        self.edit_subject_btn.setText(QCoreApplication.translate("MainWindow", u"\u2699\ufe0f", None))
-        self.archive_subject_btn.setText(QCoreApplication.translate("MainWindow", u"\u267b\ufe0f", None))
-        self.delete_subject_btn.setText(QCoreApplication.translate("MainWindow", u"\u274c", None))
+        self.newsubject_btn.setText("")
+        self.edit_subject_btn.setText("")
+        self.archive_subject_btn.setText("")
+        self.delete_subject_btn.setText("")
         self.weekly_label.setText(QCoreApplication.translate("MainWindow", u"weekly focus", None))
         self.weekly_focus_label.setText(QCoreApplication.translate("MainWindow", u"this week's focus:", None))
         self.weekly_goal_label.setText(QCoreApplication.translate("MainWindow", u"weekly focus goal:", None))

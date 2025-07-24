@@ -17,6 +17,9 @@ class NewPeriodWindow(QDialog):
         self.ui.long_break_checkbox.stateChanged.connect(self.long_break_checkbox_changed)
         self.ui.long_break_spinbox.setDisabled(True)
         self.ui.long_break_after_spinbox.setDisabled(True)
+        self.ui.long_break_after_label.setDisabled(True)
+        self.ui.long_break_minutes_label.setDisabled(True)
+        self.ui.focus_sessions_label.setDisabled(True)
 
         # When save button is clicked
         self.ui.save_btn.clicked.connect(lambda: self.error_handling(main_window))
@@ -25,16 +28,24 @@ class NewPeriodWindow(QDialog):
     def short_break_checkbox_changed(self):
         if not self.ui.short_break_checkbox.isChecked():
             self.ui.short_break_spinbox.setDisabled(True)
+            self.ui.short_break_minutes_label.setDisabled(True)
         else:
             self.ui.short_break_spinbox.setDisabled(False)
+            self.ui.short_break_minutes_label.setDisabled(False)
 
     def long_break_checkbox_changed(self):
         if not self.ui.long_break_checkbox.isChecked():
             self.ui.long_break_spinbox.setDisabled(True)
             self.ui.long_break_after_spinbox.setDisabled(True)
+            self.ui.long_break_after_label.setDisabled(True)
+            self.ui.long_break_minutes_label.setDisabled(True)
+            self.ui.focus_sessions_label.setDisabled(True)
         else:
             self.ui.long_break_spinbox.setDisabled(False)
             self.ui.long_break_after_spinbox.setDisabled(False)
+            self.ui.long_break_after_label.setDisabled(False)
+            self.ui.focus_sessions_label.setDisabled(False)
+            self.ui.long_break_minutes_label.setDisabled(False)
 
     # Handle errors 
     def error_handling(self, main_window):
