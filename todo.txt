@@ -1,7 +1,10 @@
 DESIGN:
-- only one premade theme
+- Finalise dynamic frames, size in QTDESIGNER...
 - choose font
-- Icons instead of text (tootlips for icon texts)
+- Create colors
+- Icons instead of text 
+    - tooltips for icon text
+- Check all windows (size,...)
 - Deleting this subject will stop tracking any new focus time for it. If you might use it later, use Archive instead of Delete.
 - When adding, updating, deleting pop-up notification message:
     Added XY period setting / subject
@@ -9,9 +12,10 @@ DESIGN:
     Deleted XY period setting / subject
 
 
+IDEA: for settings: automatic session start
+If not checked: then user will be prompted to: start focus session (1 of 2) OK CANCEL(behaves like stop)
 
-
-
+focus daily and this week: 1.35 hours OR 1 hours and 21 minutes
 
 TIPS AND QUOTES
 - Monkmode philosophy (deep work, focus, zen, monklike)

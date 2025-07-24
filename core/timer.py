@@ -36,6 +36,7 @@ class FocusTimer(QObject):
         self.is_break = False
         self.remaining_time = self.period["focus_time"] * 60
         self.main_window.ui.period_type_label.setText(f"Focus session ({self.completed_focus_sessions+1} of {self.total_sessions})")
+        self.update_timer_label(self.remaining_time)
         self.timer.start(1000)
 
     def start_break_session(self):
@@ -44,10 +45,12 @@ class FocusTimer(QObject):
         if self.long_break_after != 0 and self.completed_focus_sessions % self.long_break_after == 0 and self.long_break_after:
             self.remaining_time = self.period["long_break_time"] * 60
             self.main_window.ui.period_type_label.setText(f"Break ({self.completed_focus_sessions} of {self.total_sessions-1})")
+            self.update_timer_label(self.remaining_time)
         # If short break is next
         else:
             self.remaining_time = self.period["short_break_time"] * 60
             self.main_window.ui.period_type_label.setText(f"Break ({self.completed_focus_sessions} of {self.total_sessions-1})")
+            self.update_timer_label(self.remaining_time)
         self.timer.start(1000)
 
     def _tick(self):
@@ -73,10 +76,8 @@ class FocusTimer(QObject):
                 self.save_focus_session()
                 # If no sessions left
                 if self.sessions_left == 0:
-                    # TODO: play end sound
                     if not self.notifications:
-                         # TODO: play end sound
-                        #self.play_sound("end")
+                        self.play_sound("break")
                         self.show_popup("end")
                     self.main_window.focus_ended()
                     return

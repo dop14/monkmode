@@ -17,7 +17,7 @@ import sys
 class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
-        self.ui = Ui_MainWindow()
+        self.ui = Ui_MainWindow()   
         self.ui.setupUi(self)
         self.setWindowTitle("monkmode")
 
@@ -331,6 +331,10 @@ class MainWindow(QMainWindow):
         daily_progress = min(daily_progress,100)
         self.ui.daily_progression_bar.setValue(daily_progress)
 
+        if preferences["week_mode"] == "weekdays":
+            self.week_mode = 5
+        else:
+            self.week_mode = 7
         weekly_focus_goal_minutes = (preferences["default_daily_focus_goal"] * 60) * self.week_mode
         focus_this_week_minutes = get_this_week_focus() / 60
         weekly_progress = int((focus_this_week_minutes / weekly_focus_goal_minutes) * 100)
@@ -359,7 +363,7 @@ class MainWindow(QMainWindow):
             focus_this_week_minutes = int(focus_this_week / 60)
             self.ui.weekly_focus_label.setText(f"this week's focus: <b>{focus_this_week_minutes} minutes</b>")
         else:
-            focus_this_week_hours = (focus_this_week / 60) / 60
+            focus_this_week_hours = round((focus_this_week / 60) / 60,2)
             self.ui.weekly_focus_label.setText(f"this week's focus: <b>{focus_this_week_hours} hours</b>")
 
     # Update the daily and weekly focus if user finished a focus session

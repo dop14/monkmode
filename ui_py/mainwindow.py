@@ -18,14 +18,14 @@ from PySide6.QtGui import (QAction, QBrush, QColor, QConicalGradient,
     QTransform)
 from PySide6.QtWidgets import (QApplication, QComboBox, QFrame, QHBoxLayout,
     QLabel, QMainWindow, QMenu, QMenuBar,
-    QProgressBar, QPushButton, QSizePolicy, QStatusBar,
-    QVBoxLayout, QWidget)
+    QProgressBar, QPushButton, QSizePolicy, QSpacerItem,
+    QStatusBar, QVBoxLayout, QWidget)
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
-        MainWindow.resize(510, 615)
+        MainWindow.resize(510, 669)
         sizePolicy = QSizePolicy(QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Minimum)
         sizePolicy.setHorizontalStretch(200)
         sizePolicy.setVerticalStretch(0)
@@ -137,12 +137,12 @@ class Ui_MainWindow(object):
         self.verticalLayout_6.setObjectName(u"verticalLayout_6")
         self.focusFrame = QFrame(self.mainLayout)
         self.focusFrame.setObjectName(u"focusFrame")
-        sizePolicy1 = QSizePolicy(QSizePolicy.Policy.Fixed, QSizePolicy.Policy.Fixed)
+        sizePolicy1 = QSizePolicy(QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Fixed)
         sizePolicy1.setHorizontalStretch(0)
         sizePolicy1.setVerticalStretch(0)
         sizePolicy1.setHeightForWidth(self.focusFrame.sizePolicy().hasHeightForWidth())
         self.focusFrame.setSizePolicy(sizePolicy1)
-        self.focusFrame.setMinimumSize(QSize(490, 0))
+        self.focusFrame.setMinimumSize(QSize(490, 150))
         self.focusFrame.setFrameShape(QFrame.Shape.StyledPanel)
         self.focusFrame.setFrameShadow(QFrame.Shadow.Raised)
         self.verticalLayout_3 = QVBoxLayout(self.focusFrame)
@@ -150,7 +150,7 @@ class Ui_MainWindow(object):
         self.timer_label = QLabel(self.focusFrame)
         self.timer_label.setObjectName(u"timer_label")
         font = QFont()
-        font.setPointSize(30)
+        font.setPointSize(36)
         self.timer_label.setFont(font)
         self.timer_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
 
@@ -159,17 +159,18 @@ class Ui_MainWindow(object):
         self.period_type_label = QLabel(self.focusFrame)
         self.period_type_label.setObjectName(u"period_type_label")
 
-        self.verticalLayout_3.addWidget(self.period_type_label)
+        self.verticalLayout_3.addWidget(self.period_type_label, 0, Qt.AlignmentFlag.AlignHCenter)
 
         self.start_focus_btn = QPushButton(self.focusFrame)
         self.start_focus_btn.setObjectName(u"start_focus_btn")
-        sizePolicy2 = QSizePolicy(QSizePolicy.Policy.Fixed, QSizePolicy.Policy.Preferred)
+        sizePolicy2 = QSizePolicy(QSizePolicy.Policy.Fixed, QSizePolicy.Policy.Fixed)
         sizePolicy2.setHorizontalStretch(0)
         sizePolicy2.setVerticalStretch(0)
         sizePolicy2.setHeightForWidth(self.start_focus_btn.sizePolicy().hasHeightForWidth())
         self.start_focus_btn.setSizePolicy(sizePolicy2)
+        self.start_focus_btn.setMinimumSize(QSize(200, 65))
         font1 = QFont()
-        font1.setPointSize(18)
+        font1.setPointSize(22)
         self.start_focus_btn.setFont(font1)
 
         self.verticalLayout_3.addWidget(self.start_focus_btn, 0, Qt.AlignmentFlag.AlignHCenter)
@@ -179,21 +180,27 @@ class Ui_MainWindow(object):
         self.focus_pause_btn = QPushButton(self.focusFrame)
         self.focus_pause_btn.setObjectName(u"focus_pause_btn")
         self.focus_pause_btn.setEnabled(True)
+        sizePolicy2.setHeightForWidth(self.focus_pause_btn.sizePolicy().hasHeightForWidth())
+        self.focus_pause_btn.setSizePolicy(sizePolicy2)
         font2 = QFont()
         font2.setKerning(True)
         self.focus_pause_btn.setFont(font2)
 
-        self.horizontalLayout_3.addWidget(self.focus_pause_btn)
+        self.horizontalLayout_3.addWidget(self.focus_pause_btn, 0, Qt.AlignmentFlag.AlignHCenter)
 
         self.focus_resume_btn = QPushButton(self.focusFrame)
         self.focus_resume_btn.setObjectName(u"focus_resume_btn")
+        sizePolicy2.setHeightForWidth(self.focus_resume_btn.sizePolicy().hasHeightForWidth())
+        self.focus_resume_btn.setSizePolicy(sizePolicy2)
 
-        self.horizontalLayout_3.addWidget(self.focus_resume_btn)
+        self.horizontalLayout_3.addWidget(self.focus_resume_btn, 0, Qt.AlignmentFlag.AlignHCenter)
 
         self.focus_stop_btn = QPushButton(self.focusFrame)
         self.focus_stop_btn.setObjectName(u"focus_stop_btn")
+        sizePolicy2.setHeightForWidth(self.focus_stop_btn.sizePolicy().hasHeightForWidth())
+        self.focus_stop_btn.setSizePolicy(sizePolicy2)
 
-        self.horizontalLayout_3.addWidget(self.focus_stop_btn)
+        self.horizontalLayout_3.addWidget(self.focus_stop_btn, 0, Qt.AlignmentFlag.AlignHCenter)
 
 
         self.verticalLayout_3.addLayout(self.horizontalLayout_3)
@@ -201,14 +208,18 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_6.addWidget(self.focusFrame)
 
+        self.horizontalSpacer = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
+
+        self.verticalLayout_6.addItem(self.horizontalSpacer)
+
         self.horizontalLayout_4 = QHBoxLayout()
         self.horizontalLayout_4.setObjectName(u"horizontalLayout_4")
         self.verticalLayout_8 = QVBoxLayout()
         self.verticalLayout_8.setObjectName(u"verticalLayout_8")
         self.periodFrame = QFrame(self.mainLayout)
         self.periodFrame.setObjectName(u"periodFrame")
-        sizePolicy1.setHeightForWidth(self.periodFrame.sizePolicy().hasHeightForWidth())
-        self.periodFrame.setSizePolicy(sizePolicy1)
+        sizePolicy2.setHeightForWidth(self.periodFrame.sizePolicy().hasHeightForWidth())
+        self.periodFrame.setSizePolicy(sizePolicy2)
         self.periodFrame.setMinimumSize(QSize(230, 140))
         self.periodFrame.setFrameShape(QFrame.Shape.StyledPanel)
         self.periodFrame.setFrameShadow(QFrame.Shadow.Raised)
@@ -250,10 +261,14 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_8.addWidget(self.periodFrame)
 
+        self.verticalSpacer = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Fixed)
+
+        self.verticalLayout_8.addItem(self.verticalSpacer)
+
         self.dailyFrame = QFrame(self.mainLayout)
         self.dailyFrame.setObjectName(u"dailyFrame")
-        sizePolicy1.setHeightForWidth(self.dailyFrame.sizePolicy().hasHeightForWidth())
-        self.dailyFrame.setSizePolicy(sizePolicy1)
+        sizePolicy2.setHeightForWidth(self.dailyFrame.sizePolicy().hasHeightForWidth())
+        self.dailyFrame.setSizePolicy(sizePolicy2)
         self.dailyFrame.setMinimumSize(QSize(230, 140))
         self.dailyFrame.setFrameShape(QFrame.Shape.StyledPanel)
         self.dailyFrame.setFrameShadow(QFrame.Shadow.Raised)
@@ -291,8 +306,8 @@ class Ui_MainWindow(object):
         self.verticalLayout_9.setObjectName(u"verticalLayout_9")
         self.subjectFrame = QFrame(self.mainLayout)
         self.subjectFrame.setObjectName(u"subjectFrame")
-        sizePolicy1.setHeightForWidth(self.subjectFrame.sizePolicy().hasHeightForWidth())
-        self.subjectFrame.setSizePolicy(sizePolicy1)
+        sizePolicy2.setHeightForWidth(self.subjectFrame.sizePolicy().hasHeightForWidth())
+        self.subjectFrame.setSizePolicy(sizePolicy2)
         self.subjectFrame.setMinimumSize(QSize(200, 140))
         self.subjectFrame.setFrameShape(QFrame.Shape.StyledPanel)
         self.subjectFrame.setFrameShadow(QFrame.Shadow.Raised)
@@ -337,10 +352,14 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_9.addWidget(self.subjectFrame)
 
+        self.verticalSpacer_2 = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Fixed)
+
+        self.verticalLayout_9.addItem(self.verticalSpacer_2)
+
         self.weeklyFrame = QFrame(self.mainLayout)
         self.weeklyFrame.setObjectName(u"weeklyFrame")
-        sizePolicy1.setHeightForWidth(self.weeklyFrame.sizePolicy().hasHeightForWidth())
-        self.weeklyFrame.setSizePolicy(sizePolicy1)
+        sizePolicy2.setHeightForWidth(self.weeklyFrame.sizePolicy().hasHeightForWidth())
+        self.weeklyFrame.setSizePolicy(sizePolicy2)
         self.weeklyFrame.setMinimumSize(QSize(239, 140))
         self.weeklyFrame.setFrameShape(QFrame.Shape.StyledPanel)
         self.weeklyFrame.setFrameShadow(QFrame.Shadow.Raised)
@@ -379,6 +398,10 @@ class Ui_MainWindow(object):
 
 
         self.verticalLayout_10.addLayout(self.verticalLayout_6)
+
+        self.horizontalSpacer_2 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
+
+        self.verticalLayout_10.addItem(self.horizontalSpacer_2)
 
         MainWindow.setCentralWidget(self.mainLayout)
         self.menubar = QMenuBar(MainWindow)

@@ -43,29 +43,27 @@ class MenuBar:
         self.change_def.show()
 
     def change_to_weekdays(self):
+        # Logic if its already checked
         if self.main_window.ui.actionweekdays_only.isChecked() == False:
             self.main_window.ui.actionweekdays_only.setChecked(True)
             return
-            
         else:
             self.main_window.ui.actionwhole_week.setChecked(False)
 
             # save to db
             user_preferences = get_user_preferences()
-            user_preferences["week_mode"] = "weekdays"
+            user_preferences["week_mode"] = "weekdays" 
             update_user_preferences(user_preferences,user_preferences["id"])
-
+            
             # update progression bar
             self.main_window.update_daily_weekly_focus_goal()
             self.main_window.update_progression_bar()
 
     def change_to_wholeweek(self):
+        # Logic if its already checked
         if self.main_window.ui.actionwhole_week.isChecked() == False:
             self.main_window.ui.actionwhole_week.setChecked(True)
             return
-        #self.main_window.ui.actionweekdays_only.setChecked(False)
-
-        # save to db
         else:
             self.main_window.ui.actionweekdays_only.setChecked(False)
 
