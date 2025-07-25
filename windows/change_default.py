@@ -14,7 +14,7 @@ class ChangeDefault(QDialog):
         self.setting_type = setting_type
 
         if self.setting_type == "period":
-            self.ui.main_label.setText("Change default period setting")
+            self.ui.main_label.setText("change default period")
 
             # Load all periods
             periods = get_period_names()
@@ -30,7 +30,7 @@ class ChangeDefault(QDialog):
             self.ui.save_btn.clicked.connect(self.save_period)
 
         elif self.setting_type == "subject":
-            self.ui.main_label.setText("Change default subject setting")
+            self.ui.main_label.setText("change default subject")
 
             # Load all periods
             subjects = get_subject_names()

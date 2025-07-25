@@ -25,7 +25,7 @@ class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
-        MainWindow.resize(510, 669)
+        MainWindow.resize(510, 679)
         sizePolicy = QSizePolicy(QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Minimum)
         sizePolicy.setHorizontalStretch(200)
         sizePolicy.setVerticalStretch(0)
@@ -462,13 +462,9 @@ class Ui_MainWindow(object):
         self.menuabout.addAction(self.actionabout)
         self.menuabout.addAction(self.actionabout_2)
         self.menuabout.addSeparator()
-        self.menuabout.addAction(self.actionCOMING_SOON_2)
         self.menuhistory.addAction(self.actionview_focus_history)
-        self.menuhistory.addAction(self.actionexport_data)
         self.menuhistory.addAction(self.actionclear_history)
         self.menuhistory.addSeparator()
-        self.menuhistory.addAction(self.actionCOMING_SOON_3)
-        self.menuhistory.addAction(self.actionreset_settings_to_default)
         self.menuarchive.addAction(self.actionview_archived_subjects)
 
         self.retranslateUi(MainWindow)
@@ -489,7 +485,7 @@ class Ui_MainWindow(object):
         self.sound_break_start.setText(QCoreApplication.translate("MainWindow", u"play sound when focus period starts", None))
         self.actionview_focus_history.setText(QCoreApplication.translate("MainWindow", u"view focus history", None))
         self.actionexport_data.setText(QCoreApplication.translate("MainWindow", u"export data", None))
-        self.actionclear_history.setText(QCoreApplication.translate("MainWindow", u"clear history", None))
+        self.actionclear_history.setText(QCoreApplication.translate("MainWindow", u"clear focus history", None))
         self.actionfocus_period.setText(QCoreApplication.translate("MainWindow", u"focus period", None))
         self.actionfocus_subject.setText(QCoreApplication.translate("MainWindow", u"focus subject", None))
         self.popup_focus_start.setText(QCoreApplication.translate("MainWindow", u"notify when focus period starts", None))

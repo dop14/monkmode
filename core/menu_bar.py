@@ -39,7 +39,7 @@ class MenuBar:
 
     # Connect buttons to classes
     def change_default_daily(self):
-        self.change_def = ChangeDefDailyFocus(self.preferences, self)
+        self.change_def = ChangeDefDailyFocus(self)
         self.change_def.show()
 
     def change_to_weekdays(self):

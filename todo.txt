@@ -1,17 +1,11 @@
 DESIGN:
-- check windows -> edit subject, add subject, change default...
 - Choose color palette
 - change icons
-- When adding, updating, deleting pop-up notification message:
-    Added XY period setting / subject
-    Updated XY period setting / subject
-    Deleted XY period setting / subject
-
 
 IDEA: for settings: automatic session start
 If not checked: then user will be prompted to: start focus session (1 of 2) OK CANCEL(behaves like stop)
-
 focus daily and this week: 1.35 hours OR 1 hours and 21 minutes
+KARMA POINTS (STREAKS)
 
 TIPS AND QUOTES
 - Monkmode philosophy (deep work, focus, zen, monklike)

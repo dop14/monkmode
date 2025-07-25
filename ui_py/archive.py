@@ -22,32 +22,37 @@ class Ui_Form(object):
     def setupUi(self, Form):
         if not Form.objectName():
             Form.setObjectName(u"Form")
-        Form.resize(232, 135)
+        Form.resize(250, 150)
+        Form.setMaximumSize(QSize(300, 200))
         self.verticalLayout_2 = QVBoxLayout(Form)
         self.verticalLayout_2.setObjectName(u"verticalLayout_2")
+        self.main_label = QLabel(Form)
+        self.main_label.setObjectName(u"main_label")
+        font = QFont()
+        font.setPointSize(14)
+        self.main_label.setFont(font)
+
+        self.verticalLayout_2.addWidget(self.main_label)
+
         self.archiveFrame = QFrame(Form)
         self.archiveFrame.setObjectName(u"archiveFrame")
         self.archiveFrame.setFrameShape(QFrame.Shape.StyledPanel)
         self.archiveFrame.setFrameShadow(QFrame.Shadow.Raised)
         self.verticalLayout = QVBoxLayout(self.archiveFrame)
         self.verticalLayout.setObjectName(u"verticalLayout")
-        self.main_label = QLabel(self.archiveFrame)
-        self.main_label.setObjectName(u"main_label")
-
-        self.verticalLayout.addWidget(self.main_label)
-
         self.archived_combobox = QComboBox(self.archiveFrame)
         self.archived_combobox.setObjectName(u"archived_combobox")
 
         self.verticalLayout.addWidget(self.archived_combobox)
 
-        self.unarchive_btn = QPushButton(self.archiveFrame)
-        self.unarchive_btn.setObjectName(u"unarchive_btn")
-
-        self.verticalLayout.addWidget(self.unarchive_btn)
-
 
         self.verticalLayout_2.addWidget(self.archiveFrame)
+
+        self.unarchive_btn = QPushButton(Form)
+        self.unarchive_btn.setObjectName(u"unarchive_btn")
+        self.unarchive_btn.setMinimumSize(QSize(0, 30))
+
+        self.verticalLayout_2.addWidget(self.unarchive_btn)
 
 
         self.retranslateUi(Form)
@@ -57,7 +62,7 @@ class Ui_Form(object):
 
     def retranslateUi(self, Form):
         Form.setWindowTitle(QCoreApplication.translate("Form", u"Form", None))
-        self.main_label.setText(QCoreApplication.translate("Form", u"Archived subjects", None))
-        self.unarchive_btn.setText(QCoreApplication.translate("Form", u"Unarchive", None))
+        self.main_label.setText(QCoreApplication.translate("Form", u"archived subjects", None))
+        self.unarchive_btn.setText(QCoreApplication.translate("Form", u"unarchive", None))
     # retranslateUi
 

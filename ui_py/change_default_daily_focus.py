@@ -15,41 +15,57 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QFont, QFontDatabase, QGradient, QIcon,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
-from PySide6.QtWidgets import (QApplication, QFrame, QLabel, QPushButton,
-    QSizePolicy, QSpinBox, QVBoxLayout, QWidget)
+from PySide6.QtWidgets import (QApplication, QFrame, QHBoxLayout, QLabel,
+    QPushButton, QSizePolicy, QSpinBox, QVBoxLayout,
+    QWidget)
 
 class Ui_Form(object):
     def setupUi(self, Form):
         if not Form.objectName():
             Form.setObjectName(u"Form")
-        Form.resize(231, 125)
+        Form.resize(250, 150)
+        Form.setMaximumSize(QSize(300, 200))
         self.verticalLayout_2 = QVBoxLayout(Form)
         self.verticalLayout_2.setObjectName(u"verticalLayout_2")
+        self.main_label = QLabel(Form)
+        self.main_label.setObjectName(u"main_label")
+        font = QFont()
+        font.setPointSize(14)
+        self.main_label.setFont(font)
+
+        self.verticalLayout_2.addWidget(self.main_label)
+
         self.changedailydefaultFrame = QFrame(Form)
         self.changedailydefaultFrame.setObjectName(u"changedailydefaultFrame")
         self.changedailydefaultFrame.setFrameShape(QFrame.Shape.StyledPanel)
         self.changedailydefaultFrame.setFrameShadow(QFrame.Shadow.Raised)
         self.verticalLayout = QVBoxLayout(self.changedailydefaultFrame)
         self.verticalLayout.setObjectName(u"verticalLayout")
-        self.main_label = QLabel(self.changedailydefaultFrame)
-        self.main_label.setObjectName(u"main_label")
-
-        self.verticalLayout.addWidget(self.main_label)
-
+        self.horizontalLayout = QHBoxLayout()
+        self.horizontalLayout.setObjectName(u"horizontalLayout")
         self.daily_focus_goal_spinbox = QSpinBox(self.changedailydefaultFrame)
         self.daily_focus_goal_spinbox.setObjectName(u"daily_focus_goal_spinbox")
         self.daily_focus_goal_spinbox.setMinimum(1)
         self.daily_focus_goal_spinbox.setMaximum(24)
 
-        self.verticalLayout.addWidget(self.daily_focus_goal_spinbox)
+        self.horizontalLayout.addWidget(self.daily_focus_goal_spinbox)
 
-        self.save_btn = QPushButton(self.changedailydefaultFrame)
-        self.save_btn.setObjectName(u"save_btn")
+        self.hours_label = QLabel(self.changedailydefaultFrame)
+        self.hours_label.setObjectName(u"hours_label")
 
-        self.verticalLayout.addWidget(self.save_btn)
+        self.horizontalLayout.addWidget(self.hours_label)
+
+
+        self.verticalLayout.addLayout(self.horizontalLayout)
 
 
         self.verticalLayout_2.addWidget(self.changedailydefaultFrame)
+
+        self.save_btn = QPushButton(Form)
+        self.save_btn.setObjectName(u"save_btn")
+        self.save_btn.setMinimumSize(QSize(0, 30))
+
+        self.verticalLayout_2.addWidget(self.save_btn)
 
 
         self.retranslateUi(Form)
@@ -60,6 +76,7 @@ class Ui_Form(object):
     def retranslateUi(self, Form):
         Form.setWindowTitle(QCoreApplication.translate("Form", u"Form", None))
         self.main_label.setText(QCoreApplication.translate("Form", u"change daily focus goal", None))
-        self.save_btn.setText(QCoreApplication.translate("Form", u"Save", None))
+        self.hours_label.setText(QCoreApplication.translate("Form", u"hours", None))
+        self.save_btn.setText(QCoreApplication.translate("Form", u"save", None))
     # retranslateUi
 

@@ -101,6 +101,11 @@ class MainWindow(QMainWindow):
         # If stop button is clicked
         self.ui.focus_stop_btn.clicked.connect(self.stop_focus_confirmation)
 
+        # Tooltips for focus buttons
+        self.ui.focus_stop_btn.setToolTip("stop focus")
+        self.ui.focus_pause_btn.setToolTip("pause focus")
+        self.ui.focus_resume_btn.setToolTip("resume focus")
+
         # When change default daily focus button is clicked
         self.ui.actiondaily_goal.triggered.connect(self.menubar.change_default_daily)
 
@@ -144,7 +149,7 @@ class MainWindow(QMainWindow):
             reply = QMessageBox.question(
                 self,
                 "Quit",
-                "Are you sure you want to quit while in focus? This will save, but end your current progress.",
+                "Are you sure you want to quit while in focus?<br>This will save, but end your current progress.",
                 QMessageBox.Yes | QMessageBox.No,
                 QMessageBox.No
                 )
@@ -253,7 +258,7 @@ class MainWindow(QMainWindow):
         reply = QMessageBox.question(
             self,
             "Stopping focus session",
-            "Are you sure you want stop the focus session? This will save, but end your current progress.",
+            "Are you sure you want stop the focus session?<br>This will save, but end your current progress.",
             QMessageBox.Yes | QMessageBox.No,
             QMessageBox.No
         )

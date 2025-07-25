@@ -22,7 +22,8 @@ class Ui_Form(object):
     def setupUi(self, Form):
         if not Form.objectName():
             Form.setObjectName(u"Form")
-        Form.resize(249, 166)
+        Form.resize(250, 150)
+        Form.setMaximumSize(QSize(300, 200))
         self.verticalLayout_2 = QVBoxLayout(Form)
         self.verticalLayout_2.setObjectName(u"verticalLayout_2")
         self.main_label = QLabel(Form)
@@ -54,6 +55,7 @@ class Ui_Form(object):
 
         self.save_btn = QPushButton(Form)
         self.save_btn.setObjectName(u"save_btn")
+        self.save_btn.setMinimumSize(QSize(0, 30))
 
         self.verticalLayout_2.addWidget(self.save_btn)
 

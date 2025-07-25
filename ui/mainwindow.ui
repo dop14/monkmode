@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>510</width>
-    <height>669</height>
+    <height>679</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -567,18 +567,14 @@
     <addaction name="actionabout"/>
     <addaction name="actionabout_2"/>
     <addaction name="separator"/>
-    <addaction name="actionCOMING_SOON_2"/>
    </widget>
    <widget class="QMenu" name="menuhistory">
     <property name="title">
      <string>history</string>
     </property>
     <addaction name="actionview_focus_history"/>
-    <addaction name="actionexport_data"/>
     <addaction name="actionclear_history"/>
     <addaction name="separator"/>
-    <addaction name="actionCOMING_SOON_3"/>
-    <addaction name="actionreset_settings_to_default"/>
    </widget>
    <widget class="QMenu" name="menuarchive">
     <property name="title">
@@ -670,7 +666,7 @@
   </action>
   <action name="actionclear_history">
    <property name="text">
-    <string>clear history</string>
+    <string>clear focus history</string>
    </property>
   </action>
   <action name="actionfocus_period">
