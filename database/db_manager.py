@@ -1,6 +1,7 @@
 import sqlite3
 import os
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, date
+import requests
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))  
 DB_NAME = os.path.join(BASE_DIR, 'monkmode.db')       
@@ -415,6 +416,31 @@ def save_focus_session_db(data:dict):
     cursor.execute(query, data)
     conn.commit()
     conn.close()
+
+# Get daily quote
+def get_today_quote():
+    conn = get_connection()
+    cursor = conn.cursor()
+
+    today = date.today().isoformat()
+    cursor.execute("SELECT text, author FROM quotes WHERE date = ?", (today,))
+    result = cursor.fetchone()
+
+    if result:
+        return result[0], result[1]
+    
+    response = requests.get("https://zenquotes.io/api/today")
+    if response.status_code == 200:
+        print("Getting API data")
+        data = response.json()[0]
+        text = data["q"]
+        author = data["a"]
+
+        cursor.execute("INSERT INTO quotes (text, author, date) VALUES (?,?,?)", (text, author, today))
+        conn.commit()
+        return text, author
+    
+    return "monkmode is the way of life", "dop14"
 
 def get_connection():
     conn = sqlite3.connect(DB_NAME)

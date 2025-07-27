@@ -1,22 +1,46 @@
-DESIGN:
-- Choose color palette
-- change icons
-
-IDEA: for settings: automatic session start
-If not checked: then user will be prompted to: start focus session (1 of 2) OK CANCEL(behaves like stop)
-focus daily and this week: 1.35 hours OR 1 hours and 21 minutes
-KARMA POINTS (STREAKS)
-
 TIPS AND QUOTES
 - Monkmode philosophy (deep work, focus, zen, monklike)
 - Tips for breaks are only showed when in a break
 - When in focus, there's no noise, or quotes whatsoever
 - Daily quotes, choosing randomly, showing up one everyday (resets at 00:00)
 
+SHORT DELAY FOR AUTOMATIC SESSION STARTS (Focus session starts in 5...4...3...2...1)
+Little window with timer if user clicks on it (hide main window, show little window with function to hide timer)
+
 ELSE TODO:
-- little window with timer if user clicks on it (hide main window, show little window with function to hide timer)
-- Stats for later: TABLE where (daily focus goal achieved 134 times, weekly focus goal achieved 13 times,...,...,) store data
+- Stats for later (stats table): TABLE where (daily focus goal achieved 134 times, weekly focus goal achieved 13 times,...,...,) store data
 - Run db_manager.py automatically when the user enters the app
 - Streaks (history: longest streak, last active streak,...)
 - db backup
 - what if db changes (migration for users)
+
+
+DESIGN:
+- Choose color palette
+- change icons
+
+The data shown to the user:
+- daily goal achieved
+- weekly goal achieved
+- current KARMA
+- longest KARMA
+- total focus sessions completed
+- total time focused
+- most focused subject
+- whatever the user picks to see
+
+
+CREATE TABLE stats IF NOT EXISTS (
+    daily_goal_achieved: 5 times, (only once a day can be added (if user hits 100 percent, but decides to change dafault daily goal
+    so that it wont be 100% no more, than its still saved  as achieved daily goal))
+    weekly_goal_achieved: 4 times,  
+    ...
+)
+
+
+ABOUT:
+ We require that you show attribution with a link back to https://zenquotes.io/ when using the free version of this API.
+ App's goal
+ my github profile
+ technologies used
+ ...

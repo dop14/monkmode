@@ -25,7 +25,7 @@ class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
-        MainWindow.resize(510, 679)
+        MainWindow.resize(510, 701)
         sizePolicy = QSizePolicy(QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Minimum)
         sizePolicy.setHorizontalStretch(200)
         sizePolicy.setVerticalStretch(0)
@@ -214,6 +214,14 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_3.addLayout(self.horizontalLayout_3)
 
+        self.quote_label = QLabel(self.focusFrame)
+        self.quote_label.setObjectName(u"quote_label")
+        font3 = QFont()
+        font3.setPointSize(9)
+        self.quote_label.setFont(font3)
+
+        self.verticalLayout_3.addWidget(self.quote_label, 0, Qt.AlignmentFlag.AlignHCenter)
+
 
         self.verticalLayout_6.addWidget(self.focusFrame)
 
@@ -236,9 +244,9 @@ class Ui_MainWindow(object):
         self.verticalLayout.setObjectName(u"verticalLayout")
         self.period_label = QLabel(self.periodFrame)
         self.period_label.setObjectName(u"period_label")
-        font3 = QFont()
-        font3.setPointSize(16)
-        self.period_label.setFont(font3)
+        font4 = QFont()
+        font4.setPointSize(16)
+        self.period_label.setFont(font4)
 
         self.verticalLayout.addWidget(self.period_label)
 
@@ -278,7 +286,7 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_8.addWidget(self.periodFrame)
 
-        self.verticalSpacer = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Fixed)
+        self.verticalSpacer = QSpacerItem(20, 30, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Fixed)
 
         self.verticalLayout_8.addItem(self.verticalSpacer)
 
@@ -293,7 +301,7 @@ class Ui_MainWindow(object):
         self.verticalLayout_5.setObjectName(u"verticalLayout_5")
         self.daily_label = QLabel(self.dailyFrame)
         self.daily_label.setObjectName(u"daily_label")
-        self.daily_label.setFont(font3)
+        self.daily_label.setFont(font4)
 
         self.verticalLayout_5.addWidget(self.daily_label)
 
@@ -332,7 +340,7 @@ class Ui_MainWindow(object):
         self.verticalLayout_2.setObjectName(u"verticalLayout_2")
         self.subject_label = QLabel(self.subjectFrame)
         self.subject_label.setObjectName(u"subject_label")
-        self.subject_label.setFont(font3)
+        self.subject_label.setFont(font4)
 
         self.verticalLayout_2.addWidget(self.subject_label)
 
@@ -374,7 +382,7 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_9.addWidget(self.subjectFrame)
 
-        self.verticalSpacer_2 = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Fixed)
+        self.verticalSpacer_2 = QSpacerItem(20, 30, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Fixed)
 
         self.verticalLayout_9.addItem(self.verticalSpacer_2)
 
@@ -389,7 +397,7 @@ class Ui_MainWindow(object):
         self.verticalLayout_7.setObjectName(u"verticalLayout_7")
         self.weekly_label = QLabel(self.weeklyFrame)
         self.weekly_label.setObjectName(u"weekly_label")
-        self.weekly_label.setFont(font3)
+        self.weekly_label.setFont(font4)
 
         self.verticalLayout_7.addWidget(self.weekly_label)
 
@@ -518,6 +526,7 @@ class Ui_MainWindow(object):
         self.focus_pause_btn.setText("")
         self.focus_resume_btn.setText("")
         self.focus_stop_btn.setText("")
+        self.quote_label.setText("")
         self.period_label.setText(QCoreApplication.translate("MainWindow", u"focus period", None))
         self.newperiod_btn.setText("")
         self.editperiod_btn.setText("")

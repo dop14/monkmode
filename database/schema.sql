@@ -29,14 +29,18 @@ CREATE TABLE IF NOT EXISTS focus_sessions (
 
 CREATE TABLE IF NOT EXISTS user_preferences (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
-
     default_daily_focus_goal INTEGER NOT NULL DEFAULT 1,
-
     week_mode TEXT CHECK(week_mode IN ('weekdays', 'wholeweek')) NOT NULL DEFAULT 'weekdays',
-
     all_notifications_off BOOLEAN NOT NULL DEFAULT 0,
-
     theme TEXT CHECK(theme IN ('light', 'dark')) NOT NULL DEFAULT 'dark',
-
     tips_and_quotes BOOLEAN NOT NULL DEFAULT 1
 );
+
+CREATE TABLE IF NOT EXISTS quotes (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    text TEXT NOT NULL,
+    author TEXT,
+    date DATE UNIQUE
+);
+
+

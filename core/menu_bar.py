@@ -95,3 +95,21 @@ class MenuBar:
     def refresh_subject_combobox(self):
         self.main_window.ui.subject_combobox.clear()
         self.main_window.update_subject_combobox()
+
+    def tips_and_quotes_clicked(self):
+        if self.main_window.ui.actiontips_and_quotes.isChecked():
+            preferences = get_user_preferences()
+            new_preferences = preferences
+            new_preferences["tips_and_quotes"] = True
+            update_user_preferences(new_preferences, new_preferences["id"])
+
+            # Add tips aswell
+        else:
+            preferences = get_user_preferences()
+            new_preferences = preferences
+            new_preferences["tips_and_quotes"] = False
+            update_user_preferences(new_preferences, new_preferences["id"])
+
+            # Add tips aswell
+
+        self.main_window.load_today_quote()

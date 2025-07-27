@@ -12,7 +12,7 @@ from core.timer import FocusTimer
 from core.menu_bar import MenuBar
 from core.thememanager import ThemeManager
 from database.db_manager import get_period_names, get_subject_names
-from database.db_manager import get_default_period_name, get_default_subject_name, get_user_preferences, get_today_focus, get_this_week_focus
+from database.db_manager import get_default_period_name, get_default_subject_name, get_user_preferences, get_today_focus, get_this_week_focus, get_today_quote
 import sys
 
 class MainWindow(QMainWindow):
@@ -40,6 +40,12 @@ class MainWindow(QMainWindow):
         # Load today's focus and this week's focus
         self.update_daily_weekly_focus()
 
+        # Load daily and weekly progression bar
+        self.update_progression_bar()
+        
+        # Load today's quote
+        self.load_today_quote()
+
         # Load daily focus goal
         # If weekdays only
         if preferences["week_mode"] == "weekdays":
@@ -63,9 +69,6 @@ class MainWindow(QMainWindow):
             self.week_mode = 7
         weekly_goal = preferences["default_daily_focus_goal"] * self.week_mode
         self.ui.weekly_goal_label.setText(f"weekly focus goal: <b>{weekly_goal} hours</b>")
-
-        # Load daily and weekly progression bar
-        self.update_progression_bar()
 
         # When focus button is clicked
         self.ui.start_focus_btn.clicked.connect(self.start_focus_window)
@@ -126,6 +129,9 @@ class MainWindow(QMainWindow):
 
         # When view archived button is clicked
         self.ui.actionview_archived_subjects.triggered.connect(self.menubar.archive_clicked)
+
+        # When tips and quotes button is clicked
+        self.ui.actiontips_and_quotes.triggered.connect(self.menubar.tips_and_quotes_clicked)
     
     # If app is closed
     def closeEvent(self, event):
@@ -215,7 +221,6 @@ class MainWindow(QMainWindow):
             self.del_window = ConfirmationWindow(self,f"Do you really want to archive <b>{self.ui.subject_combobox.currentText()}</b> subject?<br>You can unarchive it later.","archive_subject")
             self.del_window.exec()
 
-
     # Change default subject or period window
     def start_change_default_window(self, setting_type):
         if setting_type == "period":
@@ -227,12 +232,12 @@ class MainWindow(QMainWindow):
     
     # Starting timer
     def start_timer(self, period, subject, user_sessions):
-
         # Timer is active
         self.is_timer_active = True
 
         # Hide button
         self.ui.start_focus_btn.hide()
+        self.ui.quote_label.hide()
 
         # Show buttons
         self.ui.timer_label.show()
@@ -298,6 +303,7 @@ class MainWindow(QMainWindow):
 
         # Show focus button
         self.ui.start_focus_btn.show()
+        self.ui.quote_label.show
 
         # Enable GUI
         self.disable_and_enable_gui(False)
@@ -307,7 +313,6 @@ class MainWindow(QMainWindow):
 
     # Update the daily and weekly focus goal if the user changes the default values
     def update_daily_weekly_focus_goal(self):
-
         preferences = get_user_preferences()
 
         if preferences["week_mode"] == "weekdays":
@@ -409,6 +414,15 @@ class MainWindow(QMainWindow):
         subject_index = self.ui.subject_combobox.findText(self.default_subject_name)
         if subject_index != -1:
             self.ui.subject_combobox.setCurrentIndex(subject_index)
+
+    def load_today_quote(self):
+        preferences = get_user_preferences()
+        if preferences["tips_and_quotes"] == 1:
+            quote, author = get_today_quote()
+            self.ui.quote_label.setText(f"\"{quote}\"\n— {author}")
+            self.ui.quote_label.show()
+        else:
+            self.ui.quote_label.hide()
 
 # Application entry point
 def main():
