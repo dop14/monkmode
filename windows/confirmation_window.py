@@ -13,16 +13,16 @@ class ConfirmationWindow(QDialog):
         if text == "The default focus setting cannot be deleted." or text == "The default subject cannot be deleted." or text == "The default subject cannot be archived.":
             self.ui.cancel_btn.hide()
             self.ui.ok_btn.clicked.connect(self.close)
-            self.setWindowTitle("Error")
+            self.setWindowTitle("error")
         # Else if not the default one
         elif type == "archive_subject":
             self.ui.cancel_btn.clicked.connect(self.close)
             self.ui.ok_btn.clicked.connect(lambda:self.archive_subject(main_window,type))
-            self.setWindowTitle("Confirmation")
+            self.setWindowTitle("confirmation")
         else:
             self.ui.cancel_btn.clicked.connect(self.close)
             self.ui.ok_btn.clicked.connect(lambda:self.delete_setting(main_window,type))
-            self.setWindowTitle("Confirmation")
+            self.setWindowTitle("confirmation")
             
         # Set the main label text to input text
         self.ui.main_label.setText(text)

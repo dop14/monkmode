@@ -139,7 +139,7 @@ class MainWindow(QMainWindow):
         if self.is_timer_active == False:
             reply = QMessageBox.question(
                 self,
-                "Quit",
+                "quit",
                 "Are you sure you want to quit?",
                 QMessageBox.Yes | QMessageBox.No,
                 QMessageBox.No
@@ -154,7 +154,7 @@ class MainWindow(QMainWindow):
             self.focus_timer.stop()
             reply = QMessageBox.question(
                 self,
-                "Quit",
+                "quit",
                 "Are you sure you want to quit while in focus?<br>This will save, but end your current progress.",
                 QMessageBox.Yes | QMessageBox.No,
                 QMessageBox.No
@@ -249,7 +249,7 @@ class MainWindow(QMainWindow):
 
         # Create FocusTimer
         self.focus_timer = FocusTimer(period, subject, user_sessions, self)
-        self.focus_timer.start()
+        #self.focus_timer.start()
 
         # If pause button clicked
         self.ui.focus_pause_btn.clicked.connect(self.focus_timer.pause)
@@ -303,7 +303,10 @@ class MainWindow(QMainWindow):
 
         # Show focus button
         self.ui.start_focus_btn.show()
-        self.ui.quote_label.show
+
+        self.preferences = get_user_preferences()
+        if self.preferences["tips_and_quotes"] == True:
+            self.ui.quote_label.show()
 
         # Enable GUI
         self.disable_and_enable_gui(False)

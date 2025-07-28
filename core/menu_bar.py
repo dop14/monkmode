@@ -102,14 +102,10 @@ class MenuBar:
             new_preferences = preferences
             new_preferences["tips_and_quotes"] = True
             update_user_preferences(new_preferences, new_preferences["id"])
-
-            # Add tips aswell
         else:
             preferences = get_user_preferences()
             new_preferences = preferences
             new_preferences["tips_and_quotes"] = False
             update_user_preferences(new_preferences, new_preferences["id"])
-
-            # Add tips aswell
 
         self.main_window.load_today_quote()

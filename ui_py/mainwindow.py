@@ -511,7 +511,7 @@ class Ui_MainWindow(object):
         self.actionfocus_session_starts_popup.setText(QCoreApplication.translate("MainWindow", u"focus session starts", None))
         self.action_break_starts_popup.setText(QCoreApplication.translate("MainWindow", u"break starts", None))
         self.actionfocus_completed_popup.setText(QCoreApplication.translate("MainWindow", u"focus completed", None))
-        self.actiontips_and_quotes.setText(QCoreApplication.translate("MainWindow", u"show tips and quotes ", None))
+        self.actiontips_and_quotes.setText(QCoreApplication.translate("MainWindow", u"show daily quote", None))
         self.actionCOMING_SOON.setText(QCoreApplication.translate("MainWindow", u"COMING SOON", None))
         self.actionCOMING_SOON_2.setText(QCoreApplication.translate("MainWindow", u"COMING SOON", None))
         self.actionCOMING_SOON_3.setText(QCoreApplication.translate("MainWindow", u"COMING SOON", None))

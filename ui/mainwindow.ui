@@ -801,7 +801,7 @@
     <bool>true</bool>
    </property>
    <property name="text">
-    <string>show tips and quotes </string>
+    <string>show daily quote</string>
    </property>
   </action>
   <action name="actionCOMING_SOON">

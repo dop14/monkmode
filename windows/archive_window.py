@@ -22,7 +22,9 @@ class ArchiveWindow(QDialog):
         self.ui.archived_combobox.addItems(archived_subjects)
 
     def unarchive_subject(self, unarchived_subject):
-
+        if unarchived_subject == "":
+            self.close()
+            return
         subject_data = get_subject_data(unarchived_subject)
         unarchive_subject_settings(subject_data[0])
 
