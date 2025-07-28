@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>510</width>
-    <height>701</height>
+    <height>721</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -50,6 +50,22 @@
          <enum>QFrame::Shadow::Raised</enum>
         </property>
         <layout class="QVBoxLayout" name="verticalLayout_3">
+         <item alignment="Qt::AlignmentFlag::AlignRight">
+          <widget class="QPushButton" name="small_focus_window">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+           <property name="icon">
+            <iconset theme="QIcon::ThemeIcon::WindowNew"/>
+           </property>
+          </widget>
+         </item>
          <item>
           <widget class="QLabel" name="timer_label">
            <property name="font">
@@ -109,6 +125,12 @@
                <verstretch>0</verstretch>
               </sizepolicy>
              </property>
+             <property name="minimumSize">
+              <size>
+               <width>60</width>
+               <height>0</height>
+              </size>
+             </property>
              <property name="font">
               <font>
                <kerning>true</kerning>
@@ -136,6 +158,12 @@
                <verstretch>0</verstretch>
               </sizepolicy>
              </property>
+             <property name="minimumSize">
+              <size>
+               <width>60</width>
+               <height>0</height>
+              </size>
+             </property>
              <property name="text">
               <string/>
              </property>
@@ -157,6 +185,12 @@
                <horstretch>0</horstretch>
                <verstretch>0</verstretch>
               </sizepolicy>
+             </property>
+             <property name="minimumSize">
+              <size>
+               <width>60</width>
+               <height>0</height>
+              </size>
              </property>
              <property name="text">
               <string/>

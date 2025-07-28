@@ -5,11 +5,12 @@ from core.sound_player import SoundPlayer
 from core.popup_notification import PopupNotification
 
 class FocusTimer(QObject):
-    def __init__(self, period, subject, user_sessions, main_window):
+    def __init__(self, period, subject, user_sessions, main_window, small_window):
         super().__init__()
         self.period = period
         self.subject = subject
         self.main_window = main_window
+        self.small_window = small_window
         
         self.total_sessions = user_sessions
         self.sessions_left = user_sessions 
@@ -32,6 +33,7 @@ class FocusTimer(QObject):
 
         self.main_window.ui.focus_pause_btn.show()
         self.main_window.ui.focus_stop_btn.show()
+        self.main_window.ui.small_focus_window.show()
         self.main_window.ui.period_type_label.setText(f"focus session ({self.completed_focus_sessions+1} of {self.total_sessions})")
         self.main_window.ui.period_type_label.show()
         self.main_window.ui.timer_label.setStyleSheet("font-size: 42px;")
@@ -48,6 +50,7 @@ class FocusTimer(QObject):
         self.is_break = True
         self.main_window.ui.focus_pause_btn.show()
         self.main_window.ui.focus_stop_btn.show()
+        self.main_window.ui.small_focus_window.show()
         self.main_window.ui.period_type_label.show()
         self.main_window.ui.timer_label.setStyleSheet("font-size: 42px;")
         if not self.notifications:
@@ -100,8 +103,11 @@ class FocusTimer(QObject):
         # If less than an hour
         if remaining_time < 3600:
             self.main_window.ui.timer_label.setText(f"{minutes:02}:{seconds:02}")
+            self.small_window.ui.time_label.setText(f"{minutes:02}:{seconds:02}")
+            
         else:
             self.main_window.ui.timer_label.setText(f"{hours}:{minutes:02}:{seconds:02}")
+            self.small_window.ui.time_label.setText(f"{hours}:{minutes:02}:{seconds:02}")
 
     def start(self):
         self.timer.start(1000)
@@ -174,6 +180,7 @@ class FocusTimer(QObject):
         self.main_window.ui.focus_pause_btn.hide()
         self.main_window.ui.focus_stop_btn.hide()
         self.main_window.ui.period_type_label.hide()
+        self.main_window.ui.small_focus_window.hide()
         
         self.focus_timer_delayed = QTimer()
         self.focus_timer_delayed.start(1000)
@@ -194,6 +201,7 @@ class FocusTimer(QObject):
         self.main_window.ui.focus_pause_btn.hide()
         self.main_window.ui.focus_stop_btn.hide()
         self.main_window.ui.period_type_label.hide()
+        self.main_window.ui.small_focus_window.hide()
 
         self.break_timer_delayed = QTimer()
         self.break_timer_delayed.start(1000)

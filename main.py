@@ -7,6 +7,7 @@ from windows.confirmation_window import ConfirmationWindow
 from windows.new_subject_window import NewSubjectWindow
 from windows.edit_subject_window import EditSubjectWindow
 from windows.change_default import ChangeDefault
+from windows.small_focus_window import SmallFocusWindow
 import datetime
 from core.timer import FocusTimer
 from core.menu_bar import MenuBar
@@ -22,6 +23,8 @@ class MainWindow(QMainWindow):
         self.ui.setupUi(self)
         self.setWindowTitle("monkmode")
 
+        self.small_window = SmallFocusWindow(self)
+        self.showNormal()
         self.is_timer_active = False
 
         # Hide buttons
@@ -104,10 +107,14 @@ class MainWindow(QMainWindow):
         # If stop button is clicked
         self.ui.focus_stop_btn.clicked.connect(self.stop_focus_confirmation)
 
+        # If small focus window button is clicked
+        self.ui.small_focus_window.clicked.connect(self.start_small_focus_window)
+
         # Tooltips for focus buttons
         self.ui.focus_stop_btn.setToolTip("stop focus")
         self.ui.focus_pause_btn.setToolTip("pause focus")
         self.ui.focus_resume_btn.setToolTip("resume focus")
+        self.ui.small_focus_window.setToolTip("small view")
 
         # When change default daily focus button is clicked
         self.ui.actiondaily_goal.triggered.connect(self.menubar.change_default_daily)
@@ -229,6 +236,10 @@ class MainWindow(QMainWindow):
         elif setting_type == "subject":
             self.change_def_window = ChangeDefault(self, "subject")
             self.change_def_window.exec()
+
+    def start_small_focus_window(self):
+        self.small_window.show()
+        self.showMinimized()
     
     # Starting timer
     def start_timer(self, period, subject, user_sessions):
@@ -243,13 +254,13 @@ class MainWindow(QMainWindow):
         self.ui.timer_label.show()
         self.ui.focus_pause_btn.show()
         self.ui.focus_stop_btn.show()
+        self.ui.small_focus_window.show()
 
         # Disable things on mainwindow
         self.disable_and_enable_gui(True)
 
         # Create FocusTimer
-        self.focus_timer = FocusTimer(period, subject, user_sessions, self)
-        #self.focus_timer.start()
+        self.focus_timer = FocusTimer(period, subject, user_sessions, self, self.small_window)
 
         # If pause button clicked
         self.ui.focus_pause_btn.clicked.connect(self.focus_timer.pause)
@@ -262,7 +273,7 @@ class MainWindow(QMainWindow):
         self.focus_timer.stop()
         reply = QMessageBox.question(
             self,
-            "Stopping focus session",
+            "stopping focus session",
             "Are you sure you want stop the focus session?<br>This will save, but end your current progress.",
             QMessageBox.Yes | QMessageBox.No,
             QMessageBox.No
@@ -290,6 +301,7 @@ class MainWindow(QMainWindow):
         self.ui.focus_stop_btn.hide()
         self.ui.focus_resume_btn.hide()
         self.ui.period_type_label.hide()
+        self.ui.small_focus_window.hide()
 
     def focus_ended(self):
         # Timer is inactive

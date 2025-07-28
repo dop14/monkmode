@@ -25,7 +25,7 @@ class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
-        MainWindow.resize(510, 701)
+        MainWindow.resize(510, 721)
         sizePolicy = QSizePolicy(QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Minimum)
         sizePolicy.setHorizontalStretch(200)
         sizePolicy.setVerticalStretch(0)
@@ -147,6 +147,18 @@ class Ui_MainWindow(object):
         self.focusFrame.setFrameShadow(QFrame.Shadow.Raised)
         self.verticalLayout_3 = QVBoxLayout(self.focusFrame)
         self.verticalLayout_3.setObjectName(u"verticalLayout_3")
+        self.small_focus_window = QPushButton(self.focusFrame)
+        self.small_focus_window.setObjectName(u"small_focus_window")
+        sizePolicy2 = QSizePolicy(QSizePolicy.Policy.Fixed, QSizePolicy.Policy.Fixed)
+        sizePolicy2.setHorizontalStretch(0)
+        sizePolicy2.setVerticalStretch(0)
+        sizePolicy2.setHeightForWidth(self.small_focus_window.sizePolicy().hasHeightForWidth())
+        self.small_focus_window.setSizePolicy(sizePolicy2)
+        icon = QIcon(QIcon.fromTheme(QIcon.ThemeIcon.WindowNew))
+        self.small_focus_window.setIcon(icon)
+
+        self.verticalLayout_3.addWidget(self.small_focus_window, 0, Qt.AlignmentFlag.AlignRight)
+
         self.timer_label = QLabel(self.focusFrame)
         self.timer_label.setObjectName(u"timer_label")
         font = QFont()
@@ -163,9 +175,6 @@ class Ui_MainWindow(object):
 
         self.start_focus_btn = QPushButton(self.focusFrame)
         self.start_focus_btn.setObjectName(u"start_focus_btn")
-        sizePolicy2 = QSizePolicy(QSizePolicy.Policy.Fixed, QSizePolicy.Policy.Fixed)
-        sizePolicy2.setHorizontalStretch(0)
-        sizePolicy2.setVerticalStretch(0)
         sizePolicy2.setHeightForWidth(self.start_focus_btn.sizePolicy().hasHeightForWidth())
         self.start_focus_btn.setSizePolicy(sizePolicy2)
         self.start_focus_btn.setMinimumSize(QSize(200, 65))
@@ -182,11 +191,12 @@ class Ui_MainWindow(object):
         self.focus_pause_btn.setEnabled(True)
         sizePolicy2.setHeightForWidth(self.focus_pause_btn.sizePolicy().hasHeightForWidth())
         self.focus_pause_btn.setSizePolicy(sizePolicy2)
+        self.focus_pause_btn.setMinimumSize(QSize(60, 0))
         font2 = QFont()
         font2.setKerning(True)
         self.focus_pause_btn.setFont(font2)
-        icon = QIcon(QIcon.fromTheme(QIcon.ThemeIcon.MediaPlaybackPause))
-        self.focus_pause_btn.setIcon(icon)
+        icon1 = QIcon(QIcon.fromTheme(QIcon.ThemeIcon.MediaPlaybackPause))
+        self.focus_pause_btn.setIcon(icon1)
         self.focus_pause_btn.setIconSize(QSize(18, 18))
 
         self.horizontalLayout_3.addWidget(self.focus_pause_btn, 0, Qt.AlignmentFlag.AlignHCenter)
@@ -195,8 +205,9 @@ class Ui_MainWindow(object):
         self.focus_resume_btn.setObjectName(u"focus_resume_btn")
         sizePolicy2.setHeightForWidth(self.focus_resume_btn.sizePolicy().hasHeightForWidth())
         self.focus_resume_btn.setSizePolicy(sizePolicy2)
-        icon1 = QIcon(QIcon.fromTheme(QIcon.ThemeIcon.MediaPlaybackStart))
-        self.focus_resume_btn.setIcon(icon1)
+        self.focus_resume_btn.setMinimumSize(QSize(60, 0))
+        icon2 = QIcon(QIcon.fromTheme(QIcon.ThemeIcon.MediaPlaybackStart))
+        self.focus_resume_btn.setIcon(icon2)
         self.focus_resume_btn.setIconSize(QSize(18, 18))
 
         self.horizontalLayout_3.addWidget(self.focus_resume_btn, 0, Qt.AlignmentFlag.AlignHCenter)
@@ -205,8 +216,9 @@ class Ui_MainWindow(object):
         self.focus_stop_btn.setObjectName(u"focus_stop_btn")
         sizePolicy2.setHeightForWidth(self.focus_stop_btn.sizePolicy().hasHeightForWidth())
         self.focus_stop_btn.setSizePolicy(sizePolicy2)
-        icon2 = QIcon(QIcon.fromTheme(QIcon.ThemeIcon.MediaPlaybackStop))
-        self.focus_stop_btn.setIcon(icon2)
+        self.focus_stop_btn.setMinimumSize(QSize(60, 0))
+        icon3 = QIcon(QIcon.fromTheme(QIcon.ThemeIcon.MediaPlaybackStop))
+        self.focus_stop_btn.setIcon(icon3)
         self.focus_stop_btn.setIconSize(QSize(18, 18))
 
         self.horizontalLayout_3.addWidget(self.focus_stop_btn, 0, Qt.AlignmentFlag.AlignHCenter)
@@ -261,22 +273,22 @@ class Ui_MainWindow(object):
         self.newperiod_btn.setObjectName(u"newperiod_btn")
         sizePolicy1.setHeightForWidth(self.newperiod_btn.sizePolicy().hasHeightForWidth())
         self.newperiod_btn.setSizePolicy(sizePolicy1)
-        icon3 = QIcon(QIcon.fromTheme(QIcon.ThemeIcon.ListAdd))
-        self.newperiod_btn.setIcon(icon3)
+        icon4 = QIcon(QIcon.fromTheme(QIcon.ThemeIcon.ListAdd))
+        self.newperiod_btn.setIcon(icon4)
 
         self.horizontalLayout.addWidget(self.newperiod_btn)
 
         self.editperiod_btn = QPushButton(self.periodFrame)
         self.editperiod_btn.setObjectName(u"editperiod_btn")
-        icon4 = QIcon(QIcon.fromTheme(QIcon.ThemeIcon.DocumentProperties))
-        self.editperiod_btn.setIcon(icon4)
+        icon5 = QIcon(QIcon.fromTheme(QIcon.ThemeIcon.DocumentProperties))
+        self.editperiod_btn.setIcon(icon5)
 
         self.horizontalLayout.addWidget(self.editperiod_btn)
 
         self.delete_period_btn = QPushButton(self.periodFrame)
         self.delete_period_btn.setObjectName(u"delete_period_btn")
-        icon5 = QIcon(QIcon.fromTheme(QIcon.ThemeIcon.EditDelete))
-        self.delete_period_btn.setIcon(icon5)
+        icon6 = QIcon(QIcon.fromTheme(QIcon.ThemeIcon.EditDelete))
+        self.delete_period_btn.setIcon(icon6)
 
         self.horizontalLayout.addWidget(self.delete_period_btn)
 
@@ -353,26 +365,26 @@ class Ui_MainWindow(object):
         self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
         self.newsubject_btn = QPushButton(self.subjectFrame)
         self.newsubject_btn.setObjectName(u"newsubject_btn")
-        self.newsubject_btn.setIcon(icon3)
+        self.newsubject_btn.setIcon(icon4)
 
         self.horizontalLayout_2.addWidget(self.newsubject_btn)
 
         self.edit_subject_btn = QPushButton(self.subjectFrame)
         self.edit_subject_btn.setObjectName(u"edit_subject_btn")
-        self.edit_subject_btn.setIcon(icon4)
+        self.edit_subject_btn.setIcon(icon5)
 
         self.horizontalLayout_2.addWidget(self.edit_subject_btn)
 
         self.archive_subject_btn = QPushButton(self.subjectFrame)
         self.archive_subject_btn.setObjectName(u"archive_subject_btn")
-        icon6 = QIcon(QIcon.fromTheme(QIcon.ThemeIcon.DocumentNew))
-        self.archive_subject_btn.setIcon(icon6)
+        icon7 = QIcon(QIcon.fromTheme(QIcon.ThemeIcon.DocumentNew))
+        self.archive_subject_btn.setIcon(icon7)
 
         self.horizontalLayout_2.addWidget(self.archive_subject_btn)
 
         self.delete_subject_btn = QPushButton(self.subjectFrame)
         self.delete_subject_btn.setObjectName(u"delete_subject_btn")
-        self.delete_subject_btn.setIcon(icon5)
+        self.delete_subject_btn.setIcon(icon6)
 
         self.horizontalLayout_2.addWidget(self.delete_subject_btn)
 
@@ -520,6 +532,7 @@ class Ui_MainWindow(object):
         self.actionshow_streaks.setText(QCoreApplication.translate("MainWindow", u"show streaks", None))
         self.all_notifications_2.setText(QCoreApplication.translate("MainWindow", u"turn off notifications", None))
         self.actionview_archived_subjects.setText(QCoreApplication.translate("MainWindow", u"view archived subjects", None))
+        self.small_focus_window.setText("")
         self.timer_label.setText("")
         self.period_type_label.setText("")
         self.start_focus_btn.setText(QCoreApplication.translate("MainWindow", u"focus", None))
