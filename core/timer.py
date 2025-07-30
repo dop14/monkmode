@@ -37,6 +37,8 @@ class FocusTimer(QObject):
         self.main_window.ui.period_type_label.setText(f"focus session ({self.completed_focus_sessions+1} of {self.total_sessions})")
         self.main_window.ui.period_type_label.show()
         self.main_window.ui.timer_label.setStyleSheet("font-size: 42px;")
+
+        self.small_window.ui.hidden_text.setText("focus")
     
         if not self.notifications:
             self.play_sound("focus")
@@ -53,6 +55,9 @@ class FocusTimer(QObject):
         self.main_window.ui.small_focus_window.show()
         self.main_window.ui.period_type_label.show()
         self.main_window.ui.timer_label.setStyleSheet("font-size: 42px;")
+
+        self.small_window.ui.hidden_text.setText("break")
+
         if not self.notifications:
             self.play_sound("break")
             self.show_popup("break")
@@ -103,8 +108,7 @@ class FocusTimer(QObject):
         # If less than an hour
         if remaining_time < 3600:
             self.main_window.ui.timer_label.setText(f"{minutes:02}:{seconds:02}")
-            self.small_window.ui.time_label.setText(f"{minutes:02}:{seconds:02}")
-            
+            self.small_window.ui.time_label.setText(f"{minutes:02}:{seconds:02}") 
         else:
             self.main_window.ui.timer_label.setText(f"{hours}:{minutes:02}:{seconds:02}")
             self.small_window.ui.time_label.setText(f"{hours}:{minutes:02}:{seconds:02}")
@@ -136,7 +140,6 @@ class FocusTimer(QObject):
             "period_id": self.period["id"],
             "duration":  self.focus_time,
         }
-        print(focus_session)
         # call db function
         save_focus_session_db(focus_session)
 
@@ -153,7 +156,6 @@ class FocusTimer(QObject):
                 }
     
                 # call db function
-                print(focus_session)
                 save_focus_session_db(focus_session)
      
     def play_sound(self, sound_type):

@@ -25,7 +25,7 @@ class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
-        MainWindow.resize(510, 721)
+        MainWindow.resize(510, 741)
         sizePolicy = QSizePolicy(QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Minimum)
         sizePolicy.setHorizontalStretch(200)
         sizePolicy.setVerticalStretch(0)
@@ -226,14 +226,6 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_3.addLayout(self.horizontalLayout_3)
 
-        self.quote_label = QLabel(self.focusFrame)
-        self.quote_label.setObjectName(u"quote_label")
-        font3 = QFont()
-        font3.setPointSize(9)
-        self.quote_label.setFont(font3)
-
-        self.verticalLayout_3.addWidget(self.quote_label, 0, Qt.AlignmentFlag.AlignHCenter)
-
 
         self.verticalLayout_6.addWidget(self.focusFrame)
 
@@ -256,9 +248,9 @@ class Ui_MainWindow(object):
         self.verticalLayout.setObjectName(u"verticalLayout")
         self.period_label = QLabel(self.periodFrame)
         self.period_label.setObjectName(u"period_label")
-        font4 = QFont()
-        font4.setPointSize(16)
-        self.period_label.setFont(font4)
+        font3 = QFont()
+        font3.setPointSize(16)
+        self.period_label.setFont(font3)
 
         self.verticalLayout.addWidget(self.period_label)
 
@@ -313,7 +305,7 @@ class Ui_MainWindow(object):
         self.verticalLayout_5.setObjectName(u"verticalLayout_5")
         self.daily_label = QLabel(self.dailyFrame)
         self.daily_label.setObjectName(u"daily_label")
-        self.daily_label.setFont(font4)
+        self.daily_label.setFont(font3)
 
         self.verticalLayout_5.addWidget(self.daily_label)
 
@@ -352,7 +344,7 @@ class Ui_MainWindow(object):
         self.verticalLayout_2.setObjectName(u"verticalLayout_2")
         self.subject_label = QLabel(self.subjectFrame)
         self.subject_label.setObjectName(u"subject_label")
-        self.subject_label.setFont(font4)
+        self.subject_label.setFont(font3)
 
         self.verticalLayout_2.addWidget(self.subject_label)
 
@@ -409,7 +401,7 @@ class Ui_MainWindow(object):
         self.verticalLayout_7.setObjectName(u"verticalLayout_7")
         self.weekly_label = QLabel(self.weeklyFrame)
         self.weekly_label.setObjectName(u"weekly_label")
-        self.weekly_label.setFont(font4)
+        self.weekly_label.setFont(font3)
 
         self.verticalLayout_7.addWidget(self.weekly_label)
 
@@ -444,6 +436,32 @@ class Ui_MainWindow(object):
         self.horizontalSpacer_2 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
 
         self.verticalLayout_10.addItem(self.horizontalSpacer_2)
+
+        self.quoteFrame = QFrame(self.mainLayout)
+        self.quoteFrame.setObjectName(u"quoteFrame")
+        sizePolicy2.setHeightForWidth(self.quoteFrame.sizePolicy().hasHeightForWidth())
+        self.quoteFrame.setSizePolicy(sizePolicy2)
+        self.quoteFrame.setMinimumSize(QSize(300, 0))
+        self.quoteFrame.setFrameShape(QFrame.Shape.StyledPanel)
+        self.quoteFrame.setFrameShadow(QFrame.Shadow.Raised)
+        self.verticalLayout_4 = QVBoxLayout(self.quoteFrame)
+        self.verticalLayout_4.setObjectName(u"verticalLayout_4")
+        self.quote_label = QLabel(self.quoteFrame)
+        self.quote_label.setObjectName(u"quote_label")
+        sizePolicy2.setHeightForWidth(self.quote_label.sizePolicy().hasHeightForWidth())
+        self.quote_label.setSizePolicy(sizePolicy2)
+        self.quote_label.setMinimumSize(QSize(0, 0))
+        self.quote_label.setMaximumSize(QSize(16777215, 16777215))
+        font4 = QFont()
+        font4.setPointSize(9)
+        self.quote_label.setFont(font4)
+        self.quote_label.setWordWrap(True)
+        self.quote_label.setMargin(0)
+
+        self.verticalLayout_4.addWidget(self.quote_label, 0, Qt.AlignmentFlag.AlignHCenter|Qt.AlignmentFlag.AlignVCenter)
+
+
+        self.verticalLayout_10.addWidget(self.quoteFrame, 0, Qt.AlignmentFlag.AlignHCenter)
 
         MainWindow.setCentralWidget(self.mainLayout)
         self.menubar = QMenuBar(MainWindow)
@@ -539,7 +557,6 @@ class Ui_MainWindow(object):
         self.focus_pause_btn.setText("")
         self.focus_resume_btn.setText("")
         self.focus_stop_btn.setText("")
-        self.quote_label.setText("")
         self.period_label.setText(QCoreApplication.translate("MainWindow", u"focus period", None))
         self.newperiod_btn.setText("")
         self.editperiod_btn.setText("")
@@ -555,6 +572,7 @@ class Ui_MainWindow(object):
         self.weekly_label.setText(QCoreApplication.translate("MainWindow", u"weekly focus", None))
         self.weekly_focus_label.setText(QCoreApplication.translate("MainWindow", u"this week's focus:", None))
         self.weekly_goal_label.setText(QCoreApplication.translate("MainWindow", u"weekly focus goal:", None))
+        self.quote_label.setText("")
         self.menuSettings.setTitle(QCoreApplication.translate("MainWindow", u"settings", None))
         self.menuchange_default.setTitle(QCoreApplication.translate("MainWindow", u"change default", None))
         self.menuset_week.setTitle(QCoreApplication.translate("MainWindow", u"set week", None))

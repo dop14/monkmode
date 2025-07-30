@@ -16,19 +16,19 @@ class SmallFocusWindow(QDialog):
         )
 
         self.top_right_position()
-        self.ui.back_to_main_btn.setToolTip("full view")
-        self.ui.small_pause_btn.setToolTip("pause focus")
-        self.ui.small_resume_btn.setToolTip("resume focus")
-        self.ui.small_stop_btn.setToolTip("stop focus")
 
         # Hide buttons
+        self.ui.hidden_text.hide()
         self.ui.small_resume_btn.hide()
+        self.ui.show_time_btn.hide()
 
         # Button actions
         self.ui.back_to_main_btn.clicked.connect(self.closeEvent)
         self.ui.small_pause_btn.clicked.connect(self.pause_timer)
         self.ui.small_resume_btn.clicked.connect(self.resume_timer)
         self.ui.small_stop_btn.clicked.connect(self.stop_timer)
+        self.ui.unshow_time_btn.clicked.connect(self.unshow_time)
+        self.ui.show_time_btn.clicked.connect(self.show_time)
         
     def top_right_position(self):
         screen_geometry = self.screen().availableGeometry()
@@ -56,5 +56,17 @@ class SmallFocusWindow(QDialog):
         self.main_window.showNormal()
         self.main_window.stop_focus_confirmation()
 
-    
+    def unshow_time(self):
+        self.ui.unshow_time_btn.hide()
+        self.ui.show_time_btn.show()
+
+        self.ui.time_label.hide()
+        self.ui.hidden_text.show()
+
+    def show_time(self):
+        self.ui.show_time_btn.hide()
+        self.ui.unshow_time_btn.show()
+
+        self.ui.hidden_text.hide()
+        self.ui.time_label.show()
 

@@ -1,11 +1,12 @@
-Little window with timer if user clicks on it (hide main window, show little window with function to hide timer)
+Add show time function logic
+small window tooltips not working
 
 ELSE TODO:
 - Stats for later (stats table): TABLE where (daily focus goal achieved 134 times, weekly focus goal achieved 13 times,...,...,) store data
 - Run db_manager.py automatically when the user enters the app
-- Streaks (history: longest streak, last active streak,...)
 - db backup
 - what if db changes (migration for users)
+- Circular progress bar around the timer label
 
 
 DESIGN:

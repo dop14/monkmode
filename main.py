@@ -248,7 +248,6 @@ class MainWindow(QMainWindow):
 
         # Hide button
         self.ui.start_focus_btn.hide()
-        self.ui.quote_label.hide()
 
         # Show buttons
         self.ui.timer_label.show()
@@ -294,6 +293,7 @@ class MainWindow(QMainWindow):
         self.ui.dailyFrame.setDisabled(bool_value)
         self.ui.weeklyFrame.setDisabled(bool_value)
         self.ui.menubar.setDisabled(bool_value)
+        self.ui.quoteFrame.setDisabled(bool_value)
 
     def hide_buttons(self):
         self.ui.timer_label.hide()
@@ -434,10 +434,11 @@ class MainWindow(QMainWindow):
         preferences = get_user_preferences()
         if preferences["tips_and_quotes"] == 1:
             quote, author = get_today_quote()
-            self.ui.quote_label.setText(f"\"{quote}\"\n— {author}")
-            self.ui.quote_label.show()
+            self.ui.quote_label.setText(f"\"<i>{quote}</i>\"<br>— {author}")
+            self.ui.quoteFrame.show()
+            #self.ui.quote_label.setText("You shall eat cock You shall eat cock You shall eat cock You shall eat cock You shall eat cock You shall eat cock You shall eat cock <br> -- Darwin")
         else:
-            self.ui.quote_label.hide()
+            self.ui.quoteFrame.hide()
 
 # Application entry point
 def main():
