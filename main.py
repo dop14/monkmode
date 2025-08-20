@@ -13,7 +13,7 @@ from core.timer import FocusTimer
 from core.menu_bar import MenuBar
 from core.thememanager import ThemeManager
 from database.db_manager import get_period_names, get_subject_names
-from database.db_manager import get_default_period_name, get_default_subject_name, get_user_preferences, get_today_focus, get_this_week_focus, get_today_quote
+from database.db_manager import get_default_period_name, get_default_subject_name, get_user_preferences, get_today_focus, get_this_week_focus, get_today_quote, get_this_month_focus
 import sys
 
 class MainWindow(QMainWindow):
@@ -26,6 +26,7 @@ class MainWindow(QMainWindow):
         self.small_window = SmallFocusWindow(self)
         self.showNormal()
         self.is_timer_active = False
+        self.is_delay_timer = False
 
         # Hide buttons
         self.hide_buttons()
@@ -41,7 +42,10 @@ class MainWindow(QMainWindow):
         self.menubar = MenuBar(preferences, self)
 
         # Load today's focus and this week's focus
-        self.update_daily_weekly_focus()
+        self.update_daily_focus()
+
+        # Load weekly and monthly focus
+        self.update_weekly_monthly_focus()
 
         # Load daily and weekly progression bar
         self.update_progression_bar()
@@ -50,28 +54,7 @@ class MainWindow(QMainWindow):
         self.load_today_quote()
 
         # Load daily focus goal
-        # If weekdays only
-        if preferences["week_mode"] == "weekdays":
-            today = datetime.date.today()
-            # And if its a weekend
-            if today.weekday() >= 5:
-                # Set goal to 0 hours
-                self.ui.daily_goal_label.setText("daily focus goal: <b>0 hours</b>")
-            # else if not weekend
-            else:
-                # set to default
-                self.ui.daily_goal_label.setText(f"daily focus goal: <b>{preferences["default_daily_focus_goal"]} hours</b> ")
-        # Else set to default
-        else:
-            self.ui.daily_goal_label.setText(f"daily focus goal: <b>{preferences["default_daily_focus_goal"]} hours</b> ")
-
-        # Load weekly focus
-        if preferences["week_mode"] == "weekdays":
-            self.week_mode = 5
-        else:
-            self.week_mode = 7
-        weekly_goal = preferences["default_daily_focus_goal"] * self.week_mode
-        self.ui.weekly_goal_label.setText(f"weekly focus goal: <b>{weekly_goal} hours</b>")
+        self.update_daily_focus_goal()
 
         # When focus button is clicked
         self.ui.start_focus_btn.clicked.connect(self.start_focus_window)
@@ -125,12 +108,6 @@ class MainWindow(QMainWindow):
         # When change default subject is clicked
         self.ui.actionfocus_subject.triggered.connect(lambda:self.start_change_default_window("subject"))
 
-        # When weekdays only clicked
-        self.ui.actionweekdays_only.triggered.connect(self.menubar.change_to_weekdays)
-        
-        # When whole week clicked
-        self.ui.actionwhole_week.triggered.connect(self.menubar.change_to_wholeweek)
-
         # When turn off notifications clicked
         self.ui.all_notifications_2.triggered.connect(self.menubar.all_notifications_clicked)
 
@@ -168,13 +145,20 @@ class MainWindow(QMainWindow):
                 )
 
             if reply == QMessageBox.Yes:
+                if self.is_delay_timer == True:
+                    event.accept()
                 # Save the data
-                self.focus_timer.save_focus_stopped_session()
-                event.accept()
+                else:
+                    self.focus_timer.save_focus_stopped_session()
+                    event.accept()
 
             elif reply == QMessageBox.No:
-                self.focus_timer.resume()
-                event.ignore()
+                # If delay timer is currently active
+                if self.is_delay_timer == True:
+                    event.ignore()
+                else:
+                    self.focus_timer.resume()
+                    event.ignore()
 
     
     def start_focus_window(self):
@@ -291,7 +275,7 @@ class MainWindow(QMainWindow):
         self.ui.periodFrame.setDisabled(bool_value)
         self.ui.subjectFrame.setDisabled(bool_value)
         self.ui.dailyFrame.setDisabled(bool_value)
-        self.ui.weeklyFrame.setDisabled(bool_value)
+        self.ui.statsFrame.setDisabled(bool_value)
         self.ui.menubar.setDisabled(bool_value)
         self.ui.quoteFrame.setDisabled(bool_value)
 
@@ -327,54 +311,24 @@ class MainWindow(QMainWindow):
         self.update_focus()
 
     # Update the daily and weekly focus goal if the user changes the default values
-    def update_daily_weekly_focus_goal(self):
+    def update_daily_focus_goal(self):
         preferences = get_user_preferences()
 
-        if preferences["week_mode"] == "weekdays":
-            today = datetime.date.today()
-            
-            # And if its a weekend
-            if today.weekday() >= 5:
-                # Set goal to 0 hours
-                self.ui.daily_goal_label.setText("daily focus goal: <b>0 hours</b>")
-            # else if not weekend
-            else:
-                # set to default
-                self.ui.daily_goal_label.setText(f"daily focus goal: <b>{preferences["default_daily_focus_goal"]} hours</b> ")
-        # Else set to default
-        else:
-            self.ui.daily_goal_label.setText(f"daily focus goal: <b>{preferences["default_daily_focus_goal"]} hours</b> ")
-        
-        if preferences["week_mode"] == "weekdays":
-            week_mode = 5
-        else:
-            week_mode = 7
-        
-        weekly_goal = preferences["default_daily_focus_goal"] * week_mode
-        self.ui.weekly_goal_label.setText(f"weekly focus goal: <b>{weekly_goal} hours</b>")
+        self.ui.daily_goal_label.setText(f"daily focus goal: <b>{preferences["default_daily_focus_goal"]} hours</b> ")
 
         self.update_progression_bar()
 
     # Update the progression bars
     def update_progression_bar(self):
         preferences = get_user_preferences()
+
         focus_goal_minutes = preferences["default_daily_focus_goal"] * 60
         today_focus_minutes = get_today_focus() / 60
         daily_progress = int((today_focus_minutes / focus_goal_minutes) * 100)
         daily_progress = min(daily_progress,100)
         self.ui.daily_progression_bar.setValue(daily_progress)
-
-        if preferences["week_mode"] == "weekdays":
-            self.week_mode = 5
-        else:
-            self.week_mode = 7
-        weekly_focus_goal_minutes = (preferences["default_daily_focus_goal"] * 60) * self.week_mode
-        focus_this_week_minutes = get_this_week_focus() / 60
-        weekly_progress = int((focus_this_week_minutes / weekly_focus_goal_minutes) * 100)
-        weekly_progress = min(weekly_progress,100)
-        self.ui.weekly_progression_bar.setValue(weekly_progress)
     
-    def update_daily_weekly_focus(self):
+    def update_daily_focus(self):
          # Load today's focus
         today_focus = get_today_focus()
         today_focus_minutes = 0
@@ -384,25 +338,33 @@ class MainWindow(QMainWindow):
             today_focus_minutes = int(today_focus / 60)
             self.ui.today_label.setText(f"today's focus: <b>{today_focus_minutes} minutes</b>")
         else:
-            today_focus_hours = (today_focus / 60) / 60
+            today_focus_hours = round((today_focus / 60) / 60,2)
             self.ui.today_label.setText(f"today's focus: <b>{today_focus_hours} hours</b>")
-
-        # Load this week's focus
-        focus_this_week = get_this_week_focus()
-        focus_this_week_minutes = 0
-        if focus_this_week == 0:
-            self.ui.weekly_focus_label.setText(f"this week's focus: <b>0 minutes</b>")
-        elif focus_this_week < 3600:
-            focus_this_week_minutes = int(focus_this_week / 60)
-            self.ui.weekly_focus_label.setText(f"this week's focus: <b>{focus_this_week_minutes} minutes</b>")
+        
+    def update_weekly_monthly_focus(self):
+        current_week_focus = get_this_week_focus()
+        if current_week_focus < 3600:
+            current_week_focus_minutes = int(current_week_focus / 60)
+            self.ui.this_week_focus.setText(f"this week's focus:<b> {current_week_focus_minutes} minutes</b>")
         else:
-            focus_this_week_hours = round((focus_this_week / 60) / 60,2)
-            self.ui.weekly_focus_label.setText(f"this week's focus: <b>{focus_this_week_hours} hours</b>")
+            current_week_focus_hours = round((current_week_focus / 60) / 60,2)
+            self.ui.this_week_focus.setText(f"this week's focus:<b> {current_week_focus_hours} hours</b>")
 
-    # Update the daily and weekly focus if user finished a focus session
+        current_month_focus = get_this_month_focus()
+        if current_month_focus < 3600:
+            current_month_focus_minutes = int(current_month_focus / 60)
+            self.ui.this_month_focus.setText(f"this month's focus:<b> {current_month_focus_minutes} minutes</b>")
+        else:
+            current_month_focus_hours = round((current_month_focus / 60) / 60,2)
+            self.ui.this_month_focus.setText(f"this month's focus:<b> {current_month_focus_hours} hours</b>")
+
+    # Update the daily, weekly, monthly focus if user finished a focus session
     def update_focus(self):
         # update focus labels
-        self.update_daily_weekly_focus()
+        self.update_daily_focus()
+
+        # update weekly and monthly focus
+        self.update_weekly_monthly_focus()
 
         # update progression bar
         self.update_progression_bar()
@@ -436,7 +398,6 @@ class MainWindow(QMainWindow):
             quote, author = get_today_quote()
             self.ui.quote_label.setText(f"\"<i>{quote}</i>\"<br>— {author}")
             self.ui.quoteFrame.show()
-            #self.ui.quote_label.setText("You shall eat cock You shall eat cock You shall eat cock You shall eat cock You shall eat cock You shall eat cock You shall eat cock <br> -- Darwin")
         else:
             self.ui.quoteFrame.hide()
 

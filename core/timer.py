@@ -30,13 +30,14 @@ class FocusTimer(QObject):
 
     def start_focus_session(self):
         self.is_break = False
+        self.main_window.is_delay_timer = False
 
         self.main_window.ui.focus_pause_btn.show()
         self.main_window.ui.focus_stop_btn.show()
         self.main_window.ui.small_focus_window.show()
         self.main_window.ui.period_type_label.setText(f"focus session ({self.completed_focus_sessions+1} of {self.total_sessions})")
         self.main_window.ui.period_type_label.show()
-        self.main_window.ui.timer_label.setStyleSheet("font-size: 42px;")
+        self.main_window.ui.timer_label.setStyleSheet("font-size: 46px;")
 
         self.small_window.ui.hidden_text.setText("focus")
     
@@ -50,11 +51,13 @@ class FocusTimer(QObject):
 
     def start_break_session(self):
         self.is_break = True
+        self.main_window.is_delay_timer = False
+
         self.main_window.ui.focus_pause_btn.show()
         self.main_window.ui.focus_stop_btn.show()
         self.main_window.ui.small_focus_window.show()
         self.main_window.ui.period_type_label.show()
-        self.main_window.ui.timer_label.setStyleSheet("font-size: 42px;")
+        self.main_window.ui.timer_label.setStyleSheet("font-size: 46px;")
 
         self.small_window.ui.hidden_text.setText("break")
 
@@ -141,6 +144,7 @@ class FocusTimer(QObject):
             "duration":  self.focus_time,
         }
         # call db function
+        print(focus_session)
         save_focus_session_db(focus_session)
 
     def save_focus_stopped_session(self):
@@ -156,6 +160,7 @@ class FocusTimer(QObject):
                 }
     
                 # call db function
+                print(focus_session)
                 save_focus_session_db(focus_session)
      
     def play_sound(self, sound_type):
@@ -175,6 +180,7 @@ class FocusTimer(QObject):
             self.popup.show_notification()
 
     def focus_delay(self):
+        self.main_window.is_delay_timer = True
         self.focus_delay_time = 5
 
         self.main_window.ui.timer_label.setText(f"focus session starts in {self.focus_delay_time}")
@@ -196,6 +202,7 @@ class FocusTimer(QObject):
             self.start_focus_session()
 
     def break_delay(self):
+        self.main_window.is_delay_timer = True
         self.break_delay_time = 5
 
         self.main_window.ui.timer_label.setText(f"break starts in {self.break_delay_time}")

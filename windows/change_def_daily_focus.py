@@ -31,7 +31,7 @@ class ChangeDefDailyFocus(QDialog):
             update_user_preferences(self.new_preferences, self.new_preferences["id"])
 
             # Refresh calculation for daily goal, weekly goal
-            main_window.refresh_daily_weekly_focus()
+            main_window.refresh_daily_focus()
 
             # Load the default value the spinbox
             self.default_daily = self.new_preferences["default_daily_focus_goal"]

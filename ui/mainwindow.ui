@@ -484,7 +484,7 @@
            </spacer>
           </item>
           <item>
-           <widget class="QFrame" name="weeklyFrame">
+           <widget class="QFrame" name="statsFrame">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
               <horstretch>0</horstretch>
@@ -504,36 +504,36 @@
              <enum>QFrame::Shadow::Raised</enum>
             </property>
             <layout class="QVBoxLayout" name="verticalLayout_7">
-             <item>
-              <widget class="QLabel" name="weekly_label">
+             <item alignment="Qt::AlignmentFlag::AlignTop">
+              <widget class="QLabel" name="stats_label">
                <property name="font">
                 <font>
                  <pointsize>16</pointsize>
                 </font>
                </property>
                <property name="text">
-                <string>weekly focus</string>
+                <string>statistics</string>
                </property>
               </widget>
              </item>
              <item>
-              <widget class="QLabel" name="weekly_focus_label">
+              <widget class="QLabel" name="this_week_focus">
                <property name="text">
                 <string>this week's focus:</string>
                </property>
               </widget>
              </item>
              <item>
-              <widget class="QLabel" name="weekly_goal_label">
+              <widget class="QLabel" name="this_month_focus">
                <property name="text">
-                <string>weekly focus goal:</string>
+                <string>this month's focus: </string>
                </property>
               </widget>
              </item>
              <item>
-              <widget class="QProgressBar" name="weekly_progression_bar">
-               <property name="value">
-                <number>24</number>
+              <widget class="QPushButton" name="pushButton">
+               <property name="text">
+                <string>show all</string>
                </property>
               </widget>
              </item>
@@ -642,15 +642,7 @@
      <addaction name="actionfocus_period"/>
      <addaction name="actionfocus_subject"/>
     </widget>
-    <widget class="QMenu" name="menuset_week">
-     <property name="title">
-      <string>set week</string>
-     </property>
-     <addaction name="actionweekdays_only"/>
-     <addaction name="actionwhole_week"/>
-    </widget>
     <addaction name="menuchange_default"/>
-    <addaction name="menuset_week"/>
     <addaction name="actiontips_and_quotes"/>
     <addaction name="all_notifications_2"/>
    </widget>
@@ -662,14 +654,6 @@
     <addaction name="actionabout_2"/>
     <addaction name="separator"/>
    </widget>
-   <widget class="QMenu" name="menuhistory">
-    <property name="title">
-     <string>history</string>
-    </property>
-    <addaction name="actionview_focus_history"/>
-    <addaction name="actionclear_history"/>
-    <addaction name="separator"/>
-   </widget>
    <widget class="QMenu" name="menuarchive">
     <property name="title">
      <string>archive</string>
@@ -678,7 +662,6 @@
    </widget>
    <addaction name="menuSettings"/>
    <addaction name="menuarchive"/>
-   <addaction name="menuhistory"/>
    <addaction name="menuabout"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
@@ -924,12 +907,17 @@
     <bool>true</bool>
    </property>
    <property name="text">
-    <string>turn off notifications</string>
+    <string>turn off focus notifications</string>
    </property>
   </action>
   <action name="actionview_archived_subjects">
    <property name="text">
     <string>view archived subjects</string>
+   </property>
+  </action>
+  <action name="actionweekly_focus_goal">
+   <property name="text">
+    <string>weekly focus goal</string>
    </property>
   </action>
  </widget>

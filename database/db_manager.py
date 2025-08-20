@@ -1,6 +1,7 @@
 import sqlite3
 import os
 from datetime import datetime, timedelta, date
+import calendar
 import requests
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))  
@@ -65,13 +66,12 @@ def get_user_preferences():
     conn.close()
 
     if result:
-        (id,default_daily_focus_goal, week_mode, all_notifications_off, theme,
+        (id,default_daily_focus_goal, all_notifications_off, theme,
             tips_and_quotes) = result
         
         return {
             "id":id,
             "default_daily_focus_goal": default_daily_focus_goal,
-            "week_mode": week_mode,
             "all_notifications_off": bool(all_notifications_off),
             "theme": theme,
             "tips_and_quotes": bool(tips_and_quotes)
@@ -184,6 +184,27 @@ def get_this_week_focus():
     conn.close()
 
     return total_focus_week
+
+# Get this month's focus in seconds
+def get_this_month_focus():
+    conn = get_connection()
+    cursor = conn.cursor()
+
+    today = datetime.now().date()
+
+    start_of_month = today.replace(day=1)
+    last_day = calendar.monthrange(today.year,today.month)[1]
+    end_of_month = today.replace(day=last_day)
+
+    cursor.execute("""
+        SELECT SUM(duration) 
+        FROM focus_sessions 
+        WHERE date(timestamp) BETWEEN ? AND ?
+    """, (start_of_month, end_of_month))
+    total_focus_month = cursor.fetchone()[0] or 0
+    conn.close()
+
+    return total_focus_month
 
 # Calculates the session lenght with the current period setting
 def calculate_session_length(user_sessions, period_name):
@@ -303,7 +324,6 @@ def update_user_preferences(data:dict, id):
     query = """
         UPDATE user_preferences SET
             default_daily_focus_goal =:default_daily_focus_goal,
-            week_mode = :week_mode,
             all_notifications_off = :all_notifications_off,
             theme = :theme,
             tips_and_quotes= :tips_and_quotes

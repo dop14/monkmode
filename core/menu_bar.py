@@ -11,15 +11,6 @@ class MenuBar:
 
     # Check buttons according to preferences (DEFAULT)
     def load_default_checkbox_values(self):
-        # Set week
-        self.preferred_week = self.preferences["week_mode"]
-        if self.preferred_week == "weekdays":
-            self.main_window.ui.actionweekdays_only.setChecked(True)
-            self.main_window.ui.actionwhole_week.setChecked(False)
-        else:
-            self.main_window.ui.actionwhole_week.setChecked(True)
-            self.main_window.ui.actionweekdays_only.setChecked(False)
-        
         # All notifications off/on
         self.all_notifications = self.preferences["all_notifications_off"]
         if self.all_notifications == False:
@@ -42,39 +33,6 @@ class MenuBar:
         self.change_def = ChangeDefDailyFocus(self)
         self.change_def.show()
 
-    def change_to_weekdays(self):
-        # Logic if its already checked
-        if self.main_window.ui.actionweekdays_only.isChecked() == False:
-            self.main_window.ui.actionweekdays_only.setChecked(True)
-            return
-        else:
-            self.main_window.ui.actionwhole_week.setChecked(False)
-
-            # save to db
-            user_preferences = get_user_preferences()
-            user_preferences["week_mode"] = "weekdays" 
-            update_user_preferences(user_preferences,user_preferences["id"])
-            
-            # update progression bar
-            self.main_window.update_daily_weekly_focus_goal()
-            self.main_window.update_progression_bar()
-
-    def change_to_wholeweek(self):
-        # Logic if its already checked
-        if self.main_window.ui.actionwhole_week.isChecked() == False:
-            self.main_window.ui.actionwhole_week.setChecked(True)
-            return
-        else:
-            self.main_window.ui.actionweekdays_only.setChecked(False)
-
-            user_preferences = get_user_preferences()
-            user_preferences["week_mode"] = "wholeweek"
-            update_user_preferences(user_preferences, user_preferences["id"])
-
-            # update progression bar
-            self.main_window.update_daily_weekly_focus_goal()
-            self.main_window.update_progression_bar()
-
     def all_notifications_clicked(self):
         if self.main_window.ui.all_notifications_2.isChecked():
             user_preferences = get_user_preferences()
@@ -89,8 +47,8 @@ class MenuBar:
         self.archived_window = ArchiveWindow(self)
         self.archived_window.show()
 
-    def refresh_daily_weekly_focus(self):
-        self.main_window.update_daily_weekly_focus_goal()
+    def refresh_daily_focus(self):
+        self.main_window.update_daily_focus_goal()
 
     def refresh_subject_combobox(self):
         self.main_window.ui.subject_combobox.clear()

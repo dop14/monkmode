@@ -1,5 +1,8 @@
-Add show time function logic
-small window tooltips not working
+Delete weekly progress, show statistics instead
+BUTTON: show all -> opens a new window with statistics
+
+
+
 
 ELSE TODO:
 - Stats for later (stats table): TABLE where (daily focus goal achieved 134 times, weekly focus goal achieved 13 times,...,...,) store data
@@ -7,30 +10,23 @@ ELSE TODO:
 - db backup
 - what if db changes (migration for users)
 - Circular progress bar around the timer label
+- save small focus window's last location?
+- delete history
 
+KARMA - works exactly like streaks
+- user can toggle -> show karma or unshow karma
+- refactor set week
+- karma points
+- karma levels
 
-DESIGN:
-- Choose color palette
-- change icons
-- CIRCLE PROGRESSION BAR TO TIMER (SEE HOW MUCH TIME IS LEFT)
 
 The data shown to the user:
 - daily goal achieved
-- weekly goal achieved
-- current KARMA
-- longest KARMA
 - total focus sessions completed
 - total time focused
 - most focused subject
 - whatever the user picks to see
 
-
-CREATE TABLE stats IF NOT EXISTS (
-    daily_goal_achieved: 5 times, (only once a day can be added (if user hits 100 percent, but decides to change dafault daily goal
-    so that it wont be 100% no more, than its still saved  as achieved daily goal))
-    weekly_goal_achieved: 4 times,  
-    ...
-)
 
 
 ABOUT:
