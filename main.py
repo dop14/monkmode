@@ -8,6 +8,7 @@ from windows.new_subject_window import NewSubjectWindow
 from windows.edit_subject_window import EditSubjectWindow
 from windows.change_default import ChangeDefault
 from windows.small_focus_window import SmallFocusWindow
+from windows.statistics import Statistics
 import datetime
 from core.timer import FocusTimer
 from core.menu_bar import MenuBar
@@ -116,6 +117,9 @@ class MainWindow(QMainWindow):
 
         # When tips and quotes button is clicked
         self.ui.actiontips_and_quotes.triggered.connect(self.menubar.tips_and_quotes_clicked)
+
+        # When show all statistics button is clicked
+        self.ui.show_all.clicked.connect(self.start_statistics_window)
     
     # If app is closed
     def closeEvent(self, event):
@@ -224,6 +228,10 @@ class MainWindow(QMainWindow):
     def start_small_focus_window(self):
         self.small_window.show()
         self.showMinimized()
+
+    def start_statistics_window(self):
+        self.statistics_window = Statistics(self)
+        self.statistics_window.exec()
     
     # Starting timer
     def start_timer(self, period, subject, user_sessions):

@@ -1,32 +1,93 @@
-Delete weekly progress, show statistics instead
-BUTTON: show all -> opens a new window with statistics
+Adatok amelyeket tarolni akarok:
+- total focus time
+- focus sessions completed
+- longest focus session
+- daily goal achieved (lekérdezéskor COUNT)
+- avarage focus time per session (lekérdezéskor AVG)
+- current streak
+- longest streak
+- karma (consistency) % -> Elmúlt 2 hónapban hány napon érte a daily goalt (lekérdezéskor)
+
+CREATE TABLE IF NOT EXISTS stats (
+    total_focus_time_mins INTEGER DEFAULT 0, -> minden focus session vegen frissitem, hozzaadom a perceket
+
+    focus_sessions_completed INTEGER DEFAULT 0, -> minden focus session vegen frissitem, hozzaadok 1-et. FONTOS: 1 perc után leállitott session nem szamit. Mindig a focus time / 2 kell lennie
+        legalabb. Pl. 25 perces a focus sessionje akkor 25/2 = 12 percnek el kell telnie legalabb hogy szamitson focus session completednek.
+
+    longest_focus_session INTEGER DEFAULT 0 -> minden focus session vegen megnezem, hogy a most elvegzett session hosszabb e volt, ha igen frissitem
+
+    current_streak
+
+    longest_streak
+
+)
+
+CREATE TABLE IF NOT EXISTS streak_log (
+    date DATE PRIMARY KEY,
+
+    goal_achieved BOOLEAN NOT NULL DEFAULT 0,
+
+)
+
+
+
+
+
+
+
+
+
+
+
+
+Focus time:
+- user can choose the timeframe: all history, this week, this month, this year, custom
+- OSZLOP DIAGRAM: shows the time spent in focus with each period setting
+- KÖR DIAGRAM: hogyan osztódnak el az egyes period settingek (pomodoro 60%, long-pomodoro 40%)
+
+Subjects: (archived subjects are here too)
+- user can choose timeframe: all history, this week, this month, this year, custom
+- OSZLOP DIAGRAM: x axis (subjects), y axis (hours) -> oszlopdiagram
+- KÖR DIAGRAM: hogyan osztódnak el az egyes subjectek (study 60%, maths 20%, work 20%)
+
+Heatmap:
+- user can scroll through a heatmap history (like on github)
+- days where there was no focus will show with grey
+- days where there was focus but the goal was not achieved will show with orange
+- days where there was focus and goal was achieved will show with blue
+- each day is clickable (pop-up window)
+    - show the focus time that day
+    - the most focused subject that day
+    - the state of the daily goal that day
+    - the most used period setting that day
+
+
+
+
+
+
+
+
 
 
 
 
 ELSE TODO:
-- Stats for later (stats table): TABLE where (daily focus goal achieved 134 times, weekly focus goal achieved 13 times,...,...,) store data
 - Run db_manager.py automatically when the user enters the app
 - db backup
 - what if db changes (migration for users)
 - Circular progress bar around the timer label
 - save small focus window's last location?
 - delete history
+- monkmode logo
+- help -> how to use (github), about (new page)
+- karma
+- .exe file
 
 KARMA - works exactly like streaks
 - user can toggle -> show karma or unshow karma
-- refactor set week
 - karma points
 - karma levels
-
-
-The data shown to the user:
-- daily goal achieved
-- total focus sessions completed
-- total time focused
-- most focused subject
-- whatever the user picks to see
-
 
 
 ABOUT:

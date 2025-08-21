@@ -417,10 +417,10 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_7.addWidget(self.this_month_focus)
 
-        self.pushButton = QPushButton(self.statsFrame)
-        self.pushButton.setObjectName(u"pushButton")
+        self.show_all = QPushButton(self.statsFrame)
+        self.show_all.setObjectName(u"show_all")
 
-        self.verticalLayout_7.addWidget(self.pushButton)
+        self.verticalLayout_7.addWidget(self.show_all)
 
 
         self.verticalLayout_9.addWidget(self.statsFrame)
@@ -563,7 +563,7 @@ class Ui_MainWindow(object):
         self.stats_label.setText(QCoreApplication.translate("MainWindow", u"statistics", None))
         self.this_week_focus.setText(QCoreApplication.translate("MainWindow", u"this week's focus:", None))
         self.this_month_focus.setText(QCoreApplication.translate("MainWindow", u"this month's focus: ", None))
-        self.pushButton.setText(QCoreApplication.translate("MainWindow", u"show all", None))
+        self.show_all.setText(QCoreApplication.translate("MainWindow", u"show all", None))
         self.quote_label.setText("")
         self.menuSettings.setTitle(QCoreApplication.translate("MainWindow", u"settings", None))
         self.menuchange_default.setTitle(QCoreApplication.translate("MainWindow", u"change default", None))
