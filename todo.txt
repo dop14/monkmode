@@ -27,9 +27,8 @@ CREATE TABLE IF NOT EXISTS streak_log (
 
 )
 
-1. Implement stats TABLE    
-    - Save data when session ends
-    - Write db function to give back data
+1. Get AVG to to INTEGER
+2. ALL STATS what if greater then 3600
 
 
 

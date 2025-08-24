@@ -224,6 +224,17 @@ def get_user_stats():
 
     return result
 
+def get_avg_focus():
+    conn = get_connection()
+    cursor = conn.cursor()
+
+    cursor.execute("SELECT AVG(duration) FROM focus_sessions")
+    result = cursor.fetchone()
+    conn.close()
+
+    return result
+
+
 # Calculates the session lenght with the current period setting
 def calculate_session_length(user_sessions, period_name):
     period_data = get_period_data(period_name)
