@@ -22,16 +22,16 @@ class Ui_Form(object):
     def setupUi(self, Form):
         if not Form.objectName():
             Form.setObjectName(u"Form")
-        Form.resize(737, 753)
+        Form.resize(663, 658)
         Form.setMinimumSize(QSize(0, 0))
         Form.setMaximumSize(QSize(16777215, 16777215))
         self.scrollArea = QScrollArea(Form)
         self.scrollArea.setObjectName(u"scrollArea")
-        self.scrollArea.setGeometry(QRect(40, 30, 651, 691))
+        self.scrollArea.setGeometry(QRect(40, 30, 571, 611))
         self.scrollArea.setWidgetResizable(True)
         self.scrollAreaWidgetContents = QWidget()
         self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
-        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 649, 689))
+        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 569, 609))
         self.verticalLayout_3 = QVBoxLayout(self.scrollAreaWidgetContents)
         self.verticalLayout_3.setObjectName(u"verticalLayout_3")
         self.frame = QFrame(self.scrollAreaWidgetContents)
@@ -48,30 +48,65 @@ class Ui_Form(object):
 
         self.verticalLayout.addWidget(self.label)
 
-        self.label_2 = QLabel(self.frame)
-        self.label_2.setObjectName(u"label_2")
+        self.focus_label = QLabel(self.frame)
+        self.focus_label.setObjectName(u"focus_label")
+        font1 = QFont()
+        font1.setPointSize(14)
+        font1.setBold(True)
+        self.focus_label.setFont(font1)
 
-        self.verticalLayout.addWidget(self.label_2)
+        self.verticalLayout.addWidget(self.focus_label)
 
-        self.label_3 = QLabel(self.frame)
-        self.label_3.setObjectName(u"label_3")
+        self.total_focus_time = QLabel(self.frame)
+        self.total_focus_time.setObjectName(u"total_focus_time")
 
-        self.verticalLayout.addWidget(self.label_3)
+        self.verticalLayout.addWidget(self.total_focus_time)
 
-        self.label_4 = QLabel(self.frame)
-        self.label_4.setObjectName(u"label_4")
+        self.focus_sessions_completed = QLabel(self.frame)
+        self.focus_sessions_completed.setObjectName(u"focus_sessions_completed")
 
-        self.verticalLayout.addWidget(self.label_4)
+        self.verticalLayout.addWidget(self.focus_sessions_completed)
 
-        self.label_5 = QLabel(self.frame)
-        self.label_5.setObjectName(u"label_5")
+        self.longest_focus_session = QLabel(self.frame)
+        self.longest_focus_session.setObjectName(u"longest_focus_session")
 
-        self.verticalLayout.addWidget(self.label_5)
+        self.verticalLayout.addWidget(self.longest_focus_session)
 
-        self.label_6 = QLabel(self.frame)
-        self.label_6.setObjectName(u"label_6")
+        self.avarage_focus_time = QLabel(self.frame)
+        self.avarage_focus_time.setObjectName(u"avarage_focus_time")
 
-        self.verticalLayout.addWidget(self.label_6)
+        self.verticalLayout.addWidget(self.avarage_focus_time)
+
+        self.streak_and_karma_label = QLabel(self.frame)
+        self.streak_and_karma_label.setObjectName(u"streak_and_karma_label")
+        self.streak_and_karma_label.setFont(font1)
+
+        self.verticalLayout.addWidget(self.streak_and_karma_label)
+
+        self.daily_goal_achieved = QLabel(self.frame)
+        self.daily_goal_achieved.setObjectName(u"daily_goal_achieved")
+
+        self.verticalLayout.addWidget(self.daily_goal_achieved)
+
+        self.longest_streak = QLabel(self.frame)
+        self.longest_streak.setObjectName(u"longest_streak")
+
+        self.verticalLayout.addWidget(self.longest_streak)
+
+        self.current_streak = QLabel(self.frame)
+        self.current_streak.setObjectName(u"current_streak")
+
+        self.verticalLayout.addWidget(self.current_streak)
+
+        self.karma = QLabel(self.frame)
+        self.karma.setObjectName(u"karma")
+
+        self.verticalLayout.addWidget(self.karma)
+
+        self.karma_level = QLabel(self.frame)
+        self.karma_level.setObjectName(u"karma_level")
+
+        self.verticalLayout.addWidget(self.karma_level)
 
 
         self.verticalLayout_3.addWidget(self.frame)
@@ -106,6 +141,21 @@ class Ui_Form(object):
 
         self.verticalLayout_3.addWidget(self.frame_3)
 
+        self.frame_4 = QFrame(self.scrollAreaWidgetContents)
+        self.frame_4.setObjectName(u"frame_4")
+        self.frame_4.setFrameShape(QFrame.Shape.StyledPanel)
+        self.frame_4.setFrameShadow(QFrame.Shadow.Raised)
+        self.verticalLayout_5 = QVBoxLayout(self.frame_4)
+        self.verticalLayout_5.setObjectName(u"verticalLayout_5")
+        self.label_4 = QLabel(self.frame_4)
+        self.label_4.setObjectName(u"label_4")
+        self.label_4.setFont(font)
+
+        self.verticalLayout_5.addWidget(self.label_4, 0, Qt.AlignmentFlag.AlignTop)
+
+
+        self.verticalLayout_3.addWidget(self.frame_4)
+
         self.scrollArea.setWidget(self.scrollAreaWidgetContents)
 
         self.retranslateUi(Form)
@@ -116,12 +166,19 @@ class Ui_Form(object):
     def retranslateUi(self, Form):
         Form.setWindowTitle(QCoreApplication.translate("Form", u"Form", None))
         self.label.setText(QCoreApplication.translate("Form", u"Overall statistics", None))
-        self.label_2.setText(QCoreApplication.translate("Form", u"total focus time:", None))
-        self.label_3.setText(QCoreApplication.translate("Form", u"this week's focus time:", None))
-        self.label_4.setText(QCoreApplication.translate("Form", u"this month's focus time:", None))
-        self.label_5.setText(QCoreApplication.translate("Form", u"this year's focus time:", None))
-        self.label_6.setText(QCoreApplication.translate("Form", u"most focused subject:", None))
-        self.label_7.setText(QCoreApplication.translate("Form", u"Heatmap", None))
+        self.focus_label.setText(QCoreApplication.translate("Form", u"Focus", None))
+        self.total_focus_time.setText(QCoreApplication.translate("Form", u"total focus time:", None))
+        self.focus_sessions_completed.setText(QCoreApplication.translate("Form", u"focus sessions completed:", None))
+        self.longest_focus_session.setText(QCoreApplication.translate("Form", u"longest focus session:", None))
+        self.avarage_focus_time.setText(QCoreApplication.translate("Form", u"avarage focus time:", None))
+        self.streak_and_karma_label.setText(QCoreApplication.translate("Form", u"Streak & Karma", None))
+        self.daily_goal_achieved.setText(QCoreApplication.translate("Form", u"daily goal achieved:", None))
+        self.longest_streak.setText(QCoreApplication.translate("Form", u"longest streak:", None))
+        self.current_streak.setText(QCoreApplication.translate("Form", u"current streak:", None))
+        self.karma.setText(QCoreApplication.translate("Form", u"karma:", None))
+        self.karma_level.setText(QCoreApplication.translate("Form", u"karma level:", None))
+        self.label_7.setText(QCoreApplication.translate("Form", u"Focus time", None))
         self.label_8.setText(QCoreApplication.translate("Form", u"Subjects", None))
+        self.label_4.setText(QCoreApplication.translate("Form", u"Heatmap history", None))
     # retranslateUi
 

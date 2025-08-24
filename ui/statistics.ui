@@ -69,23 +69,91 @@
          </widget>
         </item>
         <item>
-         <widget class="QLabel" name="label_2">
+         <widget class="QLabel" name="focus_label">
+          <property name="font">
+           <font>
+            <pointsize>14</pointsize>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="text">
+           <string>Focus</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="total_focus_time">
           <property name="text">
            <string>total focus time:</string>
           </property>
          </widget>
         </item>
         <item>
-         <widget class="QLabel" name="label_9">
+         <widget class="QLabel" name="focus_sessions_completed">
           <property name="text">
            <string>focus sessions completed:</string>
           </property>
          </widget>
         </item>
         <item>
-         <widget class="QLabel" name="label_10">
+         <widget class="QLabel" name="longest_focus_session">
+          <property name="text">
+           <string>longest focus session:</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="avarage_focus_time">
+          <property name="text">
+           <string>avarage focus time:</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="streak_and_karma_label">
+          <property name="font">
+           <font>
+            <pointsize>14</pointsize>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="text">
+           <string>Streak &amp; Karma</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="daily_goal_achieved">
           <property name="text">
            <string>daily goal achieved:</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="longest_streak">
+          <property name="text">
+           <string>longest streak:</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="current_streak">
+          <property name="text">
+           <string>current streak:</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="karma">
+          <property name="text">
+           <string>karma:</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="karma_level">
+          <property name="text">
+           <string>karma level:</string>
           </property>
          </widget>
         </item>

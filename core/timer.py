@@ -1,6 +1,6 @@
 from PySide6.QtCore import QObject, Signal, QTimer
 from PySide6.QtWidgets import QMessageBox
-from database.db_manager import save_focus_session_db, get_user_preferences
+from database.db_manager import save_focus_session_db, get_user_preferences, get_user_stats, update_user_stats
 from core.sound_player import SoundPlayer
 from core.popup_notification import PopupNotification
 
@@ -18,7 +18,7 @@ class FocusTimer(QObject):
         self.completed_focus_sessions = 0 
         self.is_break = False 
         self.focus_lenght = self.period["focus_time"] 
-
+    
         preferences = get_user_preferences()
         self.notifications = preferences["all_notifications_off"]
 
@@ -146,12 +146,29 @@ class FocusTimer(QObject):
         # call db function
         print(focus_session)
         save_focus_session_db(focus_session)
+        
+        # Save statistics
+        old_stats = get_user_stats()
+        # collect data 
+        if self.focus_time > old_stats[2]:
+            self.longest_session = self.focus_time
+        else:
+            self.longest_session = old_stats[2]
+
+        new_stats = {
+            "total_focus_time_mins": old_stats[0] + self.focus_time,
+            "focus_sessions_completed": old_stats[1] + 1,
+            "longest_focus_session": self.longest_session
+        }
+
+        update_user_stats(new_stats)
 
     def save_focus_stopped_session(self):
         self.focus_time = self.period["focus_time"] * 60
         focus_time_unfinished_session = self.focus_time - self.remaining_time
         # If user spent more than one minute in focus in the unfinished session
         if not self.is_break and focus_time_unfinished_session > 60:
+                
                 # save data to db
                 focus_session = {
                     "subject_id": self.subject[0],
@@ -162,7 +179,23 @@ class FocusTimer(QObject):
                 # call db function
                 print(focus_session)
                 save_focus_session_db(focus_session)
-     
+
+                # Save statistics
+                old_stats = get_user_stats()
+                # check if this was longest session
+                if focus_time_unfinished_session > old_stats[2]:
+                    self.longest_session = focus_time_unfinished_session
+                else:
+                    self.longest_session = old_stats[2]
+
+                # save new stats
+                new_stats = {
+                    "total_focus_time_mins": old_stats[0] + focus_time_unfinished_session,
+                    "focus_sessions_completed": old_stats[1] + 1,
+                    "longest_focus_session": self.longest_session
+                }
+                update_user_stats(new_stats)
+
     def play_sound(self, sound_type):
         self.sound = SoundPlayer(sound_type)
         self.sound.play()
@@ -222,6 +255,7 @@ class FocusTimer(QObject):
         if self.break_delay_time == 0:
             self.break_timer_delayed.stop()
             self.start_break_session()
+
 
 
 

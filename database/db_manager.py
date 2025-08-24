@@ -34,6 +34,13 @@ def add_default_user_preferences(cursor):
     if count == 0:
         cursor.execute("INSERT INTO user_preferences DEFAULT VALUES")
 
+# Add default stats
+def add_default_user_stats(cursor):
+    cursor.execute("SELECT COUNT(*) FROM user_stats")
+    count = cursor.fetchone()[0]
+    if count == 0:
+        cursor.execute("INSERT INTO user_stats DEFAULT VALUES")
+
 # Get the DEFAULT period name
 def get_default_period_name():
     conn = get_connection()
@@ -206,6 +213,17 @@ def get_this_month_focus():
 
     return total_focus_month
 
+# Get user stats
+def get_user_stats():
+    conn = get_connection()
+    cursor = conn.cursor()
+
+    cursor.execute("SELECT * FROM user_stats")
+    result = cursor.fetchone()
+    conn.close()
+
+    return result
+
 # Calculates the session lenght with the current period setting
 def calculate_session_length(user_sessions, period_name):
     period_data = get_period_data(period_name)
@@ -335,6 +353,22 @@ def update_user_preferences(data:dict, id):
     data_with_id["id"] = id
 
     cursor.execute(query, data_with_id)
+    conn.commit()
+    conn.close()
+
+# Update user_stats
+def update_user_stats(data:dict):
+    conn = get_connection()
+    cursor = conn.cursor()
+
+    query = """
+        UPDATE user_stats SET
+            total_focus_time_mins =:total_focus_time_mins,
+            focus_sessions_completed = :focus_sessions_completed,
+            longest_focus_session = :longest_focus_session
+    """
+
+    cursor.execute(query,data)
     conn.commit()
     conn.close()
 
@@ -477,6 +511,7 @@ def initialize_db():
     add_default_period(cursor)
     add_default_subject(cursor)
     add_default_user_preferences(cursor)
+    add_default_user_stats(cursor)
 
     conn.commit()
     conn.close()

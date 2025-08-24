@@ -42,4 +42,10 @@ CREATE TABLE IF NOT EXISTS quotes (
     date DATE UNIQUE
 );
 
+CREATE TABLE IF NOT EXISTS user_stats (
+    total_focus_time_mins INTEGER DEFAULT 0,
+    focus_sessions_completed INTEGER DEFAULT 0,
+    longest_focus_session INTEGER DEFAULT 0 
+);
+
 

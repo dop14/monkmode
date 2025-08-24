@@ -403,8 +403,8 @@ class MainWindow(QMainWindow):
     def load_today_quote(self):
         preferences = get_user_preferences()
         if preferences["tips_and_quotes"] == 1:
-            quote, author = get_today_quote()
-            self.ui.quote_label.setText(f"\"<i>{quote}</i>\"<br>— {author}")
+            #quote, author = get_today_quote()
+            #self.ui.quote_label.setText(f"\"<i>{quote}</i>\"<br>— {author}")
             self.ui.quoteFrame.show()
         else:
             self.ui.quoteFrame.hide()
