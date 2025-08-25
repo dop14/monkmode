@@ -13,8 +13,8 @@ import datetime
 from core.timer import FocusTimer
 from core.menu_bar import MenuBar
 from core.thememanager import ThemeManager
-from database.db_manager import get_period_names, get_subject_names
-from database.db_manager import get_default_period_name, get_default_subject_name, get_user_preferences, get_today_focus, get_this_week_focus, get_today_quote, get_this_month_focus
+from database.db_manager import get_period_names, get_subject_names, get_current_streak
+from database.db_manager import get_default_period_name, get_default_subject_name, get_user_preferences, get_today_focus, get_this_week_focus, get_today_quote, get_this_month_focus, check_streak_log
 import sys
 
 class MainWindow(QMainWindow):
@@ -28,6 +28,12 @@ class MainWindow(QMainWindow):
         self.showNormal()
         self.is_timer_active = False
         self.is_delay_timer = False
+
+        # Check the streak_log
+        check_streak_log()
+
+        # Show streak
+        self.show_streak()
 
         # Hide buttons
         self.hide_buttons()
@@ -318,6 +324,9 @@ class MainWindow(QMainWindow):
         # Update focus times
         self.update_focus()
 
+        # Check if daily goal was achieved
+        self.check_daily_goal()
+
     # Update the daily and weekly focus goal if the user changes the default values
     def update_daily_focus_goal(self):
         preferences = get_user_preferences()
@@ -332,9 +341,9 @@ class MainWindow(QMainWindow):
 
         focus_goal_minutes = preferences["default_daily_focus_goal"] * 60
         today_focus_minutes = get_today_focus() / 60
-        daily_progress = int((today_focus_minutes / focus_goal_minutes) * 100)
-        daily_progress = min(daily_progress,100)
-        self.ui.daily_progression_bar.setValue(daily_progress)
+        self.daily_progress = int((today_focus_minutes / focus_goal_minutes) * 100)
+        self.daily_progress = min(self.daily_progress,100)
+        self.ui.daily_progression_bar.setValue(self.daily_progress)
     
     def update_daily_focus(self):
          # Load today's focus
@@ -346,8 +355,9 @@ class MainWindow(QMainWindow):
             today_focus_minutes = int(today_focus / 60)
             self.ui.today_label.setText(f"today's focus: <b>{today_focus_minutes} minutes</b>")
         else:
-            today_focus_hours = round((today_focus / 60) / 60,2)
-            self.ui.today_label.setText(f"today's focus: <b>{today_focus_hours} hours</b>")
+            hours = today_focus // 3600
+            minutes = (today_focus % 3600) // 60
+            self.ui.today_label.setText(f"today's focus: <b>{hours} hours {minutes} minutes</b>")
         
     def update_weekly_monthly_focus(self):
         current_week_focus = get_this_week_focus()
@@ -355,16 +365,19 @@ class MainWindow(QMainWindow):
             current_week_focus_minutes = int(current_week_focus / 60)
             self.ui.this_week_focus.setText(f"this week's focus:<b> {current_week_focus_minutes} minutes</b>")
         else:
-            current_week_focus_hours = round((current_week_focus / 60) / 60,2)
-            self.ui.this_week_focus.setText(f"this week's focus:<b> {current_week_focus_hours} hours</b>")
+            hours = current_week_focus // 3600
+            minutes = (current_week_focus % 3600) // 60
+            self.ui.this_week_focus.setText(f"this week's focus:<b> {hours} hours {minutes} minutes</b>")
+    
+    def show_streak(self):
+        current_streak = get_current_streak()
+        self.ui.current_streak_label.setText(f"current streak: <b>{current_streak} days</b>")
 
-        current_month_focus = get_this_month_focus()
-        if current_month_focus < 3600:
-            current_month_focus_minutes = int(current_month_focus / 60)
-            self.ui.this_month_focus.setText(f"this month's focus:<b> {current_month_focus_minutes} minutes</b>")
-        else:
-            current_month_focus_hours = round((current_month_focus / 60) / 60,2)
-            self.ui.this_month_focus.setText(f"this month's focus:<b> {current_month_focus_hours} hours</b>")
+    def check_daily_goal(self):
+        if self.daily_progress == 100:
+            print("Daily goal was achieved, saving to db")
+
+
 
     # Update the daily, weekly, monthly focus if user finished a focus session
     def update_focus(self):
@@ -403,8 +416,8 @@ class MainWindow(QMainWindow):
     def load_today_quote(self):
         preferences = get_user_preferences()
         if preferences["tips_and_quotes"] == 1:
-            #quote, author = get_today_quote()
-            #self.ui.quote_label.setText(f"\"<i>{quote}</i>\"<br>— {author}")
+            quote, author = get_today_quote()
+            self.ui.quote_label.setText(f"\"<i>{quote}</i>\"<br>— {author}")
             self.ui.quoteFrame.show()
         else:
             self.ui.quoteFrame.hide()

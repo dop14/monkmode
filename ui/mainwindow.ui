@@ -524,9 +524,9 @@
               </widget>
              </item>
              <item>
-              <widget class="QLabel" name="this_month_focus">
+              <widget class="QLabel" name="current_streak_label">
                <property name="text">
-                <string>this month's focus: </string>
+                <string>current streak:</string>
                </property>
               </widget>
              </item>

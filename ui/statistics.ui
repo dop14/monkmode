@@ -89,9 +89,9 @@
          </widget>
         </item>
         <item>
-         <widget class="QLabel" name="focus_sessions_completed">
+         <widget class="QLabel" name="avarage_focus_time">
           <property name="text">
-           <string>focus sessions completed:</string>
+           <string>avarage focus time:</string>
           </property>
          </widget>
         </item>
@@ -103,9 +103,9 @@
          </widget>
         </item>
         <item>
-         <widget class="QLabel" name="avarage_focus_time">
+         <widget class="QLabel" name="focus_sessions_completed">
           <property name="text">
-           <string>avarage focus time:</string>
+           <string>focus sessions completed:</string>
           </property>
          </widget>
         </item>

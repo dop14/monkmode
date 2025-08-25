@@ -62,20 +62,20 @@ class Ui_Form(object):
 
         self.verticalLayout.addWidget(self.total_focus_time)
 
-        self.focus_sessions_completed = QLabel(self.frame)
-        self.focus_sessions_completed.setObjectName(u"focus_sessions_completed")
+        self.avarage_focus_time = QLabel(self.frame)
+        self.avarage_focus_time.setObjectName(u"avarage_focus_time")
 
-        self.verticalLayout.addWidget(self.focus_sessions_completed)
+        self.verticalLayout.addWidget(self.avarage_focus_time)
 
         self.longest_focus_session = QLabel(self.frame)
         self.longest_focus_session.setObjectName(u"longest_focus_session")
 
         self.verticalLayout.addWidget(self.longest_focus_session)
 
-        self.avarage_focus_time = QLabel(self.frame)
-        self.avarage_focus_time.setObjectName(u"avarage_focus_time")
+        self.focus_sessions_completed = QLabel(self.frame)
+        self.focus_sessions_completed.setObjectName(u"focus_sessions_completed")
 
-        self.verticalLayout.addWidget(self.avarage_focus_time)
+        self.verticalLayout.addWidget(self.focus_sessions_completed)
 
         self.streak_and_karma_label = QLabel(self.frame)
         self.streak_and_karma_label.setObjectName(u"streak_and_karma_label")
@@ -168,9 +168,9 @@ class Ui_Form(object):
         self.label.setText(QCoreApplication.translate("Form", u"Overall statistics", None))
         self.focus_label.setText(QCoreApplication.translate("Form", u"Focus", None))
         self.total_focus_time.setText(QCoreApplication.translate("Form", u"total focus time:", None))
-        self.focus_sessions_completed.setText(QCoreApplication.translate("Form", u"focus sessions completed:", None))
-        self.longest_focus_session.setText(QCoreApplication.translate("Form", u"longest focus session:", None))
         self.avarage_focus_time.setText(QCoreApplication.translate("Form", u"avarage focus time:", None))
+        self.longest_focus_session.setText(QCoreApplication.translate("Form", u"longest focus session:", None))
+        self.focus_sessions_completed.setText(QCoreApplication.translate("Form", u"focus sessions completed:", None))
         self.streak_and_karma_label.setText(QCoreApplication.translate("Form", u"Streak & Karma", None))
         self.daily_goal_achieved.setText(QCoreApplication.translate("Form", u"daily goal achieved:", None))
         self.longest_streak.setText(QCoreApplication.translate("Form", u"longest streak:", None))

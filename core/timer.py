@@ -144,7 +144,6 @@ class FocusTimer(QObject):
             "duration":  self.focus_time,
         }
         # call db function
-        print(focus_session)
         save_focus_session_db(focus_session)
         
         # Save statistics
@@ -177,7 +176,6 @@ class FocusTimer(QObject):
                 }
     
                 # call db function
-                print(focus_session)
                 save_focus_session_db(focus_session)
 
                 # Save statistics
@@ -191,7 +189,7 @@ class FocusTimer(QObject):
                 # save new stats
                 new_stats = {
                     "total_focus_time_mins": old_stats[0] + focus_time_unfinished_session,
-                    "focus_sessions_completed": old_stats[1] + 1,
+                    "focus_sessions_completed": old_stats[1],
                     "longest_focus_session": self.longest_session
                 }
                 update_user_stats(new_stats)

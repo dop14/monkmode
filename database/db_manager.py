@@ -224,16 +224,65 @@ def get_user_stats():
 
     return result
 
+# Get avg focus seconds
 def get_avg_focus():
     conn = get_connection()
     cursor = conn.cursor()
 
     cursor.execute("SELECT AVG(duration) FROM focus_sessions")
-    result = cursor.fetchone()
+    result = cursor.fetchone()[0]
     conn.close()
 
     return result
 
+# Count how many times was the daily goal achieved
+def get_daily_goal_achieved():
+    conn = get_connection()
+    cursor = conn.cursor()
+
+    cursor.execute("SELECT COUNT(*) FROM streak_log WHERE goal_achieved == True")
+    result = cursor.fetchone()[0]
+    conn.close()
+
+    return result
+
+# Calculate current streak
+def get_current_streak():
+    conn = get_connection()
+    cursor = conn.cursor()
+
+    today = date.today()
+    yesterday = today - timedelta(days=1)
+
+    # Get all dates from yesterday
+    cursor.execute("""
+        SELECT date, goal_achieved, is_weekend
+        FROM streak_log
+        WHERE date <= ?
+        ORDER BY date DESC
+    """, (yesterday.isoformat(),))
+
+    rows = cursor.fetchall()
+    conn.close()
+
+    streak = 0
+    for row in rows:
+        log_date, goal_achieved, is_weekend = row
+
+        if is_weekend:
+            # Weekend logic
+            if goal_achieved:
+                streak += 1
+            else:
+                continue
+        else:
+            # Weekday logic
+            if goal_achieved:
+                streak += 1
+            else:
+                break
+
+    return streak
 
 # Calculates the session lenght with the current period setting
 def calculate_session_length(user_sessions, period_name):
@@ -305,6 +354,27 @@ def save_subject_settings(subject_name):
 
     conn.commit()
     conn.close()
+
+# Save daily goal to streak_log
+def save_daily_goal(data:dict):
+    conn = get_connection()
+    cursor = conn.cursor()
+
+    today = date.today()
+
+    # Check if there's a row for today
+    cursor.execute = f"SELECT * FROM streak_log WHERE date == {today}"
+    today = cursor.fetchone()
+    
+    # if there is, then we update it
+    if today:
+        pass
+    else:
+        pass
+
+    conn.commit()
+    conn.close()
+
 
 # Update the period setting
 def update_period_settings(data: dict, id):
@@ -506,6 +576,42 @@ def get_today_quote():
         return text, author
     
     return "monkmode is the way of life", "dop14"
+
+# Check the streak_log for missing days
+def check_streak_log():
+    conn = get_connection()
+    cursor = conn.cursor()
+
+    # Get the last row
+    cursor.execute("SELECT date FROM streak_log ORDER BY date DESC LIMIT 1")
+    last_row = cursor.fetchone()
+
+    today = date.today()
+
+    # if there's a last row
+    if last_row:
+        last_date = datetime.strptime(last_row[0], "%Y-%m-%d").date()
+        delta = (today - last_date).days
+
+        # If there are missing days between last date and today
+        if delta > 0:
+            for i in range(1, delta + 1):
+                missing_date = last_date + timedelta(days=i)
+                is_weekend = 1 if missing_date.weekday() >= 5 else 0
+                cursor.execute(
+                    "INSERT OR IGNORE INTO streak_log (date, goal_achieved, is_weekend) VALUES (?, ?, ?)",
+                    (missing_date, False, is_weekend)
+                )
+    # if there is no last row, then we add today as the first day with goal_achieved = False
+    else:
+        is_weekend = 1 if today.weekday() >= 5 else 0
+        cursor.execute(
+            "INSERT INTO streak_log (date, goal_achieved, is_weekend) VALUES (?, ?, ?)",
+            (today, False, is_weekend)
+        )
+
+    conn.commit()
+    conn.close()
 
 def get_connection():
     conn = sqlite3.connect(DB_NAME)

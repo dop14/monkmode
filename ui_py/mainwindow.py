@@ -412,10 +412,10 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_7.addWidget(self.this_week_focus)
 
-        self.this_month_focus = QLabel(self.statsFrame)
-        self.this_month_focus.setObjectName(u"this_month_focus")
+        self.current_streak_label = QLabel(self.statsFrame)
+        self.current_streak_label.setObjectName(u"current_streak_label")
 
-        self.verticalLayout_7.addWidget(self.this_month_focus)
+        self.verticalLayout_7.addWidget(self.current_streak_label)
 
         self.show_all = QPushButton(self.statsFrame)
         self.show_all.setObjectName(u"show_all")
@@ -562,7 +562,7 @@ class Ui_MainWindow(object):
         self.delete_subject_btn.setText("")
         self.stats_label.setText(QCoreApplication.translate("MainWindow", u"statistics", None))
         self.this_week_focus.setText(QCoreApplication.translate("MainWindow", u"this week's focus:", None))
-        self.this_month_focus.setText(QCoreApplication.translate("MainWindow", u"this month's focus: ", None))
+        self.current_streak_label.setText(QCoreApplication.translate("MainWindow", u"current streak:", None))
         self.show_all.setText(QCoreApplication.translate("MainWindow", u"show all", None))
         self.quote_label.setText("")
         self.menuSettings.setTitle(QCoreApplication.translate("MainWindow", u"settings", None))

@@ -48,4 +48,13 @@ CREATE TABLE IF NOT EXISTS user_stats (
     longest_focus_session INTEGER DEFAULT 0 
 );
 
+CREATE TABLE IF NOT EXISTS streak_log (
+    date DATE PRIMARY KEY,
+
+    goal_achieved BOOLEAN, 
+
+    is_weekend BOOLEAN NOT NULL DEFAULT 0
+
+)
+
 
