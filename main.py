@@ -13,8 +13,8 @@ import datetime
 from core.timer import FocusTimer
 from core.menu_bar import MenuBar
 from core.thememanager import ThemeManager
-from database.db_manager import get_period_names, get_subject_names, get_current_streak
-from database.db_manager import get_default_period_name, get_default_subject_name, get_user_preferences, get_today_focus, get_this_week_focus, get_today_quote, get_this_month_focus, check_streak_log
+from database.db_manager import get_period_names, get_subject_names, get_current_streak, save_daily_goal, get_user_stats, update_user_stats
+from database.db_manager import get_default_period_name, get_default_subject_name, get_user_preferences, get_today_focus, get_this_week_focus, get_today_quote, check_streak_log
 import sys
 
 class MainWindow(QMainWindow):
@@ -31,6 +31,9 @@ class MainWindow(QMainWindow):
 
         # Check the streak_log
         check_streak_log()
+
+        # Check the longest_streak
+        self.check_longest_streak()
 
         # Show streak
         self.show_streak()
@@ -160,6 +163,7 @@ class MainWindow(QMainWindow):
                 # Save the data
                 else:
                     self.focus_timer.save_focus_stopped_session()
+                    self.focus_ended()
                     event.accept()
 
             elif reply == QMessageBox.No:
@@ -357,7 +361,10 @@ class MainWindow(QMainWindow):
         else:
             hours = today_focus // 3600
             minutes = (today_focus % 3600) // 60
-            self.ui.today_label.setText(f"today's focus: <b>{hours} hours {minutes} minutes</b>")
+            if minutes == 0:
+                self.ui.today_label.setText(f"today's focus: <b>{hours} hours</b>")
+            else:
+                self.ui.today_label.setText(f"today's focus: <b>{hours} hours {minutes} minutes</b>")
         
     def update_weekly_monthly_focus(self):
         current_week_focus = get_this_week_focus()
@@ -367,18 +374,38 @@ class MainWindow(QMainWindow):
         else:
             hours = current_week_focus // 3600
             minutes = (current_week_focus % 3600) // 60
-            self.ui.this_week_focus.setText(f"this week's focus:<b> {hours} hours {minutes} minutes</b>")
+            if minutes == 0:
+                self.ui.this_week_focus.setText(f"this week's focus:<b> {hours} hours </b>")
+            else:
+                self.ui.this_week_focus.setText(f"this week's focus:<b> {hours} hours {minutes} minutes</b>")
     
     def show_streak(self):
         current_streak = get_current_streak()
         self.ui.current_streak_label.setText(f"current streak: <b>{current_streak} days</b>")
 
+        user_stats = get_user_stats()
+        longest_streak = user_stats[3]
+
+    def check_longest_streak(self):
+        current_streak = get_current_streak()
+        user_stats = get_user_stats()
+        longest_streak = user_stats[3]
+
+        if current_streak > longest_streak:
+            new_stats = {
+                        "total_focus_time_mins": user_stats[0],
+                        "focus_sessions_completed": user_stats[1],
+                        "longest_focus_session": user_stats[2],
+                        "longest_streak": current_streak
+                    }
+            update_user_stats(new_stats)
+
+
     def check_daily_goal(self):
         if self.daily_progress == 100:
-            print("Daily goal was achieved, saving to db")
+            save_daily_goal()
 
-
-
+            
     # Update the daily, weekly, monthly focus if user finished a focus session
     def update_focus(self):
         # update focus labels

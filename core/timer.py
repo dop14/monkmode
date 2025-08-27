@@ -157,7 +157,8 @@ class FocusTimer(QObject):
         new_stats = {
             "total_focus_time_mins": old_stats[0] + self.focus_time,
             "focus_sessions_completed": old_stats[1] + 1,
-            "longest_focus_session": self.longest_session
+            "longest_focus_session": self.longest_session,
+            "longest_streak": old_stats[3]
         }
 
         update_user_stats(new_stats)
@@ -190,7 +191,8 @@ class FocusTimer(QObject):
                 new_stats = {
                     "total_focus_time_mins": old_stats[0] + focus_time_unfinished_session,
                     "focus_sessions_completed": old_stats[1],
-                    "longest_focus_session": self.longest_session
+                    "longest_focus_session": self.longest_session,
+                    "longest_streak": old_stats[3]
                 }
                 update_user_stats(new_stats)
 

@@ -88,15 +88,15 @@ class Ui_Form(object):
 
         self.verticalLayout.addWidget(self.daily_goal_achieved)
 
-        self.longest_streak = QLabel(self.frame)
-        self.longest_streak.setObjectName(u"longest_streak")
-
-        self.verticalLayout.addWidget(self.longest_streak)
-
         self.current_streak = QLabel(self.frame)
         self.current_streak.setObjectName(u"current_streak")
 
         self.verticalLayout.addWidget(self.current_streak)
+
+        self.longest_streak = QLabel(self.frame)
+        self.longest_streak.setObjectName(u"longest_streak")
+
+        self.verticalLayout.addWidget(self.longest_streak)
 
         self.karma = QLabel(self.frame)
         self.karma.setObjectName(u"karma")
@@ -173,8 +173,8 @@ class Ui_Form(object):
         self.focus_sessions_completed.setText(QCoreApplication.translate("Form", u"focus sessions completed:", None))
         self.streak_and_karma_label.setText(QCoreApplication.translate("Form", u"Streak & Karma", None))
         self.daily_goal_achieved.setText(QCoreApplication.translate("Form", u"daily goal achieved:", None))
-        self.longest_streak.setText(QCoreApplication.translate("Form", u"longest streak:", None))
         self.current_streak.setText(QCoreApplication.translate("Form", u"current streak:", None))
+        self.longest_streak.setText(QCoreApplication.translate("Form", u"longest streak:", None))
         self.karma.setText(QCoreApplication.translate("Form", u"karma:", None))
         self.karma_level.setText(QCoreApplication.translate("Form", u"karma level:", None))
         self.label_7.setText(QCoreApplication.translate("Form", u"Focus time", None))

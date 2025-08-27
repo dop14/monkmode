@@ -130,16 +130,16 @@
          </widget>
         </item>
         <item>
-         <widget class="QLabel" name="longest_streak">
+         <widget class="QLabel" name="current_streak">
           <property name="text">
-           <string>longest streak:</string>
+           <string>current streak:</string>
           </property>
          </widget>
         </item>
         <item>
-         <widget class="QLabel" name="current_streak">
+         <widget class="QLabel" name="longest_streak">
           <property name="text">
-           <string>current streak:</string>
+           <string>longest streak:</string>
           </property>
          </widget>
         </item>

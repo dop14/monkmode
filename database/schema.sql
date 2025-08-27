@@ -45,16 +45,14 @@ CREATE TABLE IF NOT EXISTS quotes (
 CREATE TABLE IF NOT EXISTS user_stats (
     total_focus_time_mins INTEGER DEFAULT 0,
     focus_sessions_completed INTEGER DEFAULT 0,
-    longest_focus_session INTEGER DEFAULT 0 
+    longest_focus_session INTEGER DEFAULT 0,
+    longest_streak INTEGER DEFAULT 0
 );
 
 CREATE TABLE IF NOT EXISTS streak_log (
     date DATE PRIMARY KEY,
-
     goal_achieved BOOLEAN, 
-
     is_weekend BOOLEAN NOT NULL DEFAULT 0
-
-)
+);
 
 

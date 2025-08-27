@@ -283,6 +283,47 @@ def get_current_streak():
                 break
 
     return streak
+    
+# Calculcate karma %
+def get_current_karma():
+    conn = get_connection()
+    cursor = conn.cursor()
+
+    today = date.today()
+    start_date = today - timedelta(days=90)
+
+    # 
+    cursor.execute("""
+        SELECT COUNT(*) FROM streak_log
+        WHERE date BETWEEN ? AND ?
+          AND goal_achieved = 1
+          AND strftime('%w', date) BETWEEN '1' AND '5'
+    """, (start_date, today))
+    completed_weekdays = cursor.fetchone()[0]
+
+    # Hétvégi sikeres napok száma
+    cursor.execute("""
+        SELECT COUNT(*) FROM streak_log
+        WHERE date BETWEEN ? AND ?
+          AND goal_achieved = 1
+          AND (strftime('%w', date) = '0' OR strftime('%w', date) = '6')
+    """, (start_date, today))
+    completed_weekends = cursor.fetchone()[0]
+
+    # Hétköznapok száma az időszakban
+    weekdays_past_3_months = sum(
+        1 for i in range(91)
+        if (start_date + timedelta(days=i)).weekday() < 5
+    )
+
+    # Karma számítás
+    relevant_days = weekdays_past_3_months + completed_weekends
+    completed_days = completed_weekdays + completed_weekends
+
+    karma = (completed_days / relevant_days * 100) if relevant_days > 0 else 0
+    return karma
+
+
 
 # Calculates the session lenght with the current period setting
 def calculate_session_length(user_sessions, period_name):
@@ -356,25 +397,31 @@ def save_subject_settings(subject_name):
     conn.close()
 
 # Save daily goal to streak_log
-def save_daily_goal(data:dict):
+def save_daily_goal():
     conn = get_connection()
     cursor = conn.cursor()
 
-    today = date.today()
+    today = date.today().isoformat()
 
-    # Check if there's a row for today
-    cursor.execute = f"SELECT * FROM streak_log WHERE date == {today}"
-    today = cursor.fetchone()
-    
-    # if there is, then we update it
-    if today:
-        pass
+    # Query if there's a row for today
+    cursor.execute("SELECT 1 FROM streak_log WHERE date = ?", (today,))
+    existing = cursor.fetchone()
+
+    if existing:
+        # if there's a row, then we update it
+        cursor.execute(
+            "UPDATE streak_log SET goal_achieved = 1 WHERE date = ?",
+            (today,)
+        )
     else:
-        pass
+        # If there's no row, then we insert it
+        cursor.execute(
+            "INSERT INTO streak_log (date, goal_achieved, is_weekend) VALUES (?, ?, ?)",
+            (today, 1, 1 if date.today().weekday() >= 5 else 0)
+        )
 
     conn.commit()
     conn.close()
-
 
 # Update the period setting
 def update_period_settings(data: dict, id):
@@ -446,7 +493,8 @@ def update_user_stats(data:dict):
         UPDATE user_stats SET
             total_focus_time_mins =:total_focus_time_mins,
             focus_sessions_completed = :focus_sessions_completed,
-            longest_focus_session = :longest_focus_session
+            longest_focus_session = :longest_focus_session,
+            longest_streak = :longest_streak
     """
 
     cursor.execute(query,data)
