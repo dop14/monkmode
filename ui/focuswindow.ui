@@ -44,7 +44,7 @@
       <item>
        <widget class="QLabel" name="session_label">
         <property name="text">
-         <string>choose the number of sessions</string>
+         <string>Choose the number of sessions</string>
         </property>
        </widget>
       </item>

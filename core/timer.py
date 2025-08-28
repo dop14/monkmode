@@ -202,11 +202,11 @@ class FocusTimer(QObject):
 
     def show_popup(self, popup_type):
         if popup_type == "focus":
-            self.popup = PopupNotification("The focus session has started!")
+            self.popup = PopupNotification("Focus session has started!")
             self.popup.show_notification()
             
         elif popup_type == "break":
-            self.popup = PopupNotification("The break session has started!")
+            self.popup = PopupNotification("Break session has started!")
             self.popup.show_notification()
         else:
             self.popup = PopupNotification("Focus done! Great job.")
@@ -216,7 +216,11 @@ class FocusTimer(QObject):
         self.main_window.is_delay_timer = True
         self.focus_delay_time = 5
 
-        self.main_window.ui.timer_label.setText(f"focus session starts in {self.focus_delay_time}")
+        if not self.notifications:
+            self.popup = PopupNotification(f"Focus session starts in {self.focus_delay_time}")
+            self.popup.show_notification()
+
+        self.main_window.ui.timer_label.setText(f"Focus session starts in {self.focus_delay_time}")
         self.main_window.ui.timer_label.setStyleSheet("font-size: 20px;")
         self.main_window.ui.focus_pause_btn.hide()
         self.main_window.ui.focus_stop_btn.hide()
@@ -229,7 +233,11 @@ class FocusTimer(QObject):
 
     def focus_delay_tick(self):
         self.focus_delay_time -=1
-        self.main_window.ui.timer_label.setText(f"focus session starts in {self.focus_delay_time}")
+        self.main_window.ui.timer_label.setText(f"Focus session starts in {self.focus_delay_time}")
+
+        if not self.notifications:
+            self.popup.update_message(f"Focus session starts in {self.focus_delay_time}")
+
         if self.focus_delay_time == 0:
             self.focus_timer_delayed.stop()
             self.start_focus_session()
@@ -238,7 +246,11 @@ class FocusTimer(QObject):
         self.main_window.is_delay_timer = True
         self.break_delay_time = 5
 
-        self.main_window.ui.timer_label.setText(f"break starts in {self.break_delay_time}")
+        if not self.notifications:
+            self.popup = PopupNotification(f"Break starts in {self.break_delay_time}")
+            self.popup.show_notification()
+
+        self.main_window.ui.timer_label.setText(f"Break starts in {self.break_delay_time}")
         self.main_window.ui.timer_label.setStyleSheet("font-size: 20px;")
         self.main_window.ui.focus_pause_btn.hide()
         self.main_window.ui.focus_stop_btn.hide()
@@ -251,7 +263,11 @@ class FocusTimer(QObject):
 
     def break_delay_tick(self):
         self.break_delay_time -=1   
-        self.main_window.ui.timer_label.setText(f"break starts in {self.break_delay_time}")
+        self.main_window.ui.timer_label.setText(f"Break starts in {self.break_delay_time}")
+
+        if not self.notifications:
+            self.popup.update_message(f"Break starts in {self.break_delay_time}")
+
         if self.break_delay_time == 0:
             self.break_timer_delayed.stop()
             self.start_break_session()

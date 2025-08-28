@@ -71,7 +71,7 @@ class Ui_Form(object):
 
     def retranslateUi(self, Form):
         Form.setWindowTitle(QCoreApplication.translate("Form", u"Form", None))
-        self.session_label.setText(QCoreApplication.translate("Form", u"choose the number of sessions", None))
+        self.session_label.setText(QCoreApplication.translate("Form", u"Choose the number of sessions", None))
         self.session_lenght_label.setText(QCoreApplication.translate("Form", u"this will approximately take:", None))
         self.start_focus_btn.setText(QCoreApplication.translate("Form", u"start focus", None))
     # retranslateUi

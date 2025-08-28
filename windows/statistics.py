@@ -43,8 +43,15 @@ class Statistics(QDialog):
         else:
             self.ui.longest_focus_session.setText(f"longest focus session: <b>{int(stats[2] / 60)} minutes</b>")
 
-        if avg_focus:
+        if avg_focus < 3600:
             self.ui.avarage_focus_time.setText(f"avarage focus time: <b>{int(avg_focus / 60)} minutes</b>")
+        elif avg_focus > 3600:
+            hours = avg_focus // 3600
+            minutes = (avg_focus % 3600) // 60
+            if minutes == 0:
+                self.ui.avarage_focus_time.setText(f"avarage focus time: <b>{hours} hours</b>")
+            else:
+                self.ui.avarage_focus_time.setText(f"avarage focus time: <b>{hours} hours and {minutes} minutes</b>")
         else:
             self.ui.avarage_focus_time.setText(f"avarage focus time: <b>no data</b>")
 
@@ -61,7 +68,7 @@ class Statistics(QDialog):
         self.ui.karma.setText(f"karma: <b>{int(self.current_karma)}%</b>")
         self.ui.karma.setToolTip("your consistency in the past 3 months")
         self.show_karma_level()
-
+ 
     def show_karma_level(self):
         if self.current_karma <= 15:
             karma_level = "☁️ Novice - Unsui (雲水)"

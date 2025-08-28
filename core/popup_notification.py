@@ -11,10 +11,12 @@ class PopupNotification(QWidget):
         self.setAttribute(Qt.WA_TranslucentBackground)
         self.setAttribute(Qt.WA_ShowWithoutActivating)
 
+        self.message = message
+
         layout = QVBoxLayout()
-        label = QLabel(message)
-        label.setFont(QFont("Segoe UI", 13))
-        label.setStyleSheet("""
+        self.label = QLabel(message)
+        self.label.setFont(QFont("Segoe UI", 13))
+        self.label.setStyleSheet("""
             QLabel {
                 background-color: #333;
                 color: white;
@@ -22,7 +24,7 @@ class PopupNotification(QWidget):
                 border-radius: 15px;
             }
         """)
-        layout.addWidget(label)
+        layout.addWidget(self.label)
         layout.setContentsMargins(0, 0, 0, 0)
         self.setLayout(layout)
         self.adjustSize()
@@ -37,3 +39,6 @@ class PopupNotification(QWidget):
 
     def show_notification(self):
         self.show()
+
+    def update_message(self, new_message):
+        self.label.setText(new_message)
