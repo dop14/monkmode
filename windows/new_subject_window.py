@@ -1,6 +1,7 @@
 from PySide6.QtWidgets import QDialog
 from ui_py.add_and_edit_subject import Ui_Form
 from database.db_manager import get_subject_names, save_subject_settings, get_default_subject_name
+from PySide6.QtGui import QIcon
 
 class NewSubjectWindow(QDialog):
     def __init__(self, main_window):
@@ -9,6 +10,7 @@ class NewSubjectWindow(QDialog):
         self.ui.setupUi(self)
         self.setModal(True)
         self.setWindowTitle("monkmode")
+        self.setWindowIcon(QIcon("logo/monkmode.png"))
 
         # Action for save button
         self.ui.save_btn.clicked.connect(lambda: self.error_handling(main_window))

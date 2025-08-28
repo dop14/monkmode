@@ -1,6 +1,7 @@
 from PySide6.QtWidgets import QDialog
 from ui_py.add_and_edit_subject import Ui_Form
 from database.db_manager import get_subject_names, get_default_subject_name, get_subject_data, update_subject_settings
+from PySide6.QtGui import QIcon
 
 class EditSubjectWindow(QDialog):
     def __init__(self, main_window):
@@ -9,6 +10,7 @@ class EditSubjectWindow(QDialog):
         self.ui.setupUi(self)
         self.setModal(True)
         self.setWindowTitle("monkmode")
+        self.setWindowIcon(QIcon("logo/monkmode.png"))
 
         self.ui.main_label.setText("edit subject")
 

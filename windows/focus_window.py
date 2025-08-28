@@ -1,6 +1,7 @@
 from PySide6.QtWidgets import QDialog
 from ui_py.focuswindow import Ui_Form
 from database.db_manager import calculate_session_length, get_period_data, get_subject_data
+from PySide6.QtGui import QIcon
 
 class FocusWindow(QDialog):
     def __init__(self, main_window):
@@ -9,6 +10,7 @@ class FocusWindow(QDialog):
         self.ui.setupUi(self)
         self.setModal(True)
         self.setWindowTitle("focus")
+        self.setWindowIcon(QIcon("logo/monkmode.png"))
         
         # Get the current period from mainwindow
         self.current_period = main_window.ui.period_combobox.currentText()

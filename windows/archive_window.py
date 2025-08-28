@@ -1,5 +1,6 @@
 from PySide6.QtWidgets import QDialog
 from ui_py.archive import Ui_Form
+from PySide6.QtGui import QIcon
 from database.db_manager import get_archived_subject_names, unarchive_subject_settings, get_subject_data
 
 class ArchiveWindow(QDialog):
@@ -9,6 +10,8 @@ class ArchiveWindow(QDialog):
         self.ui.setupUi(self)
         self.setModal(True)
         self.setWindowTitle("archive")
+        
+        self.setWindowIcon(QIcon("logo/monkmode.png"))
         self.parent_window = parent_window
 
         self.load_archived_subjects()

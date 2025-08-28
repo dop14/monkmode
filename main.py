@@ -9,6 +9,7 @@ from windows.edit_subject_window import EditSubjectWindow
 from windows.change_default import ChangeDefault
 from windows.small_focus_window import SmallFocusWindow
 from windows.statistics import Statistics
+from PySide6.QtGui import QIcon
 import datetime
 from core.timer import FocusTimer
 from core.menu_bar import MenuBar
@@ -455,6 +456,7 @@ def main():
     app.setPalette(ThemeManager.load_dark_palette())
     window = MainWindow()
     window.show()
+    window.setWindowIcon(QIcon("logo/monkmode.png"))
     sys.exit(app.exec())
 
 if __name__ == "__main__":

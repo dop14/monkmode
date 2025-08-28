@@ -1,6 +1,7 @@
 from PySide6.QtWidgets import QDialog
 from ui_py.statistics import Ui_Form
 from database.db_manager import get_user_stats, get_avg_focus, get_daily_goal_achieved, get_current_streak, get_current_karma
+from PySide6.QtGui import QIcon
 
 class Statistics(QDialog):
     def __init__(self, main_window):
@@ -9,6 +10,7 @@ class Statistics(QDialog):
         self.ui.setupUi(self)
         self.setModal(True)
         self.setWindowTitle("statistics")
+        self.setWindowIcon(QIcon("logo/monkmode.png"))
         self.main_window = main_window
 
         self.show_stats()
