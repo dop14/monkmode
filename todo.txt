@@ -1,12 +1,10 @@
-Focus time:
-- user can choose the timeframe: all history, this week, this month, this year, custom
-- OSZLOP DIAGRAM: shows the time spent in focus with each period setting
-- KÖR DIAGRAM: hogyan osztódnak el az egyes period settingek (pomodoro 60%, long-pomodoro 40%)
+TEST STREAK LOGIC: IF LOGIC ADDS UP CORRECTLY, IF YOU COMPLETE THE GOAL TODAY
 
-Subjects: (archived subjects are here too)
-- user can choose timeframe: all history, this week, this month, this year, custom
-- OSZLOP DIAGRAM: x axis (subjects), y axis (hours) -> oszlopdiagram
-- KÖR DIAGRAM: hogyan osztódnak el az egyes subjectek (study 60%, maths 20%, work 20%)
+ 2 diagrams:
+ 1st - daily focus linechart in the past 30 days
+ 2nd - pie chart from subjects (50% - study, 25% - work, 25% - reading)
+ 3rd - see how much time i spent on each subject
+
  
 Heatmap:
 - user can scroll through a heatmap history (like on github)
@@ -25,12 +23,12 @@ ELSE TODO:
 - Circular progress bar around the timer label
 - save small focus window's last location?
 - delete history
-- monkmode logo (Logo created with ChatGPT)
 - help -> how to use (github), about (new page)
 - .exe file
 
 ABOUT:
  We require that you show attribution with a link back to https://zenquotes.io/ when using the free version of this API.
+ Logo created with ChatGPT
  App's goal
  my github profile
  technologies used

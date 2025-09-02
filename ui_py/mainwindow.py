@@ -182,6 +182,7 @@ class Ui_MainWindow(object):
         self.start_focus_btn.setMinimumSize(QSize(200, 65))
         font1 = QFont()
         font1.setPointSize(22)
+        font1.setBold(True)
         self.start_focus_btn.setFont(font1)
 
         self.verticalLayout_3.addWidget(self.start_focus_btn, 0, Qt.AlignmentFlag.AlignHCenter)
@@ -252,6 +253,7 @@ class Ui_MainWindow(object):
         self.period_label.setObjectName(u"period_label")
         font3 = QFont()
         font3.setPointSize(16)
+        font3.setBold(True)
         self.period_label.setFont(font3)
 
         self.verticalLayout.addWidget(self.period_label)

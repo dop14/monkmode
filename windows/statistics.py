@@ -1,7 +1,11 @@
 from PySide6.QtWidgets import QDialog
 from ui_py.statistics import Ui_Form
-from database.db_manager import get_user_stats, get_avg_focus, get_daily_goal_achieved, get_current_streak, get_current_karma
+from database.db_manager import get_user_stats, get_avg_focus, get_daily_goal_achieved, get_current_streak, get_current_karma, get_focus_data, get_subject_data_stats
 from PySide6.QtGui import QIcon
+from datetime import datetime, timedelta
+from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
+import matplotlib.pyplot as plt
+from PySide6.QtWidgets import QVBoxLayout
 
 class Statistics(QDialog):
     def __init__(self, main_window):
@@ -15,6 +19,8 @@ class Statistics(QDialog):
 
         self.show_stats()
         self.show_karma_and_streaks()
+        self.plot_focus_chart()
+        self.plot_subject_chart()
 
     def show_stats(self):
         stats = get_user_stats()
@@ -97,4 +103,74 @@ class Statistics(QDialog):
         self.ui.karma_level.setText(f"karma level: <b>{karma_level}</b>")
         self.ui.karma_level.setToolTip(tooltip_text)
 
+    def plot_focus_chart(self):
+        # Get data
+        rows = get_focus_data()
+
+        # Prepare data
+        row_dict = {row[0]: row[1]/60 for row in rows}  # seconds -> minutes
+        all_days = [datetime.today() - timedelta(days=i) for i in reversed(range(30))]
+        all_durations = [row_dict.get(d.strftime('%Y-%m-%d'), 0) for d in all_days]
+
+        # Create Matplotlib figure and canvas
+        fig, ax = plt.subplots(figsize=(6, 3))
+        ax.plot(all_days, all_durations, marker='o', color='blue')
+        ax.set_title('daily focus time (last 30 days)')
+        ax.set_ylabel('focus duration (minutes)')
+        ax.grid(True)
+        ax.tick_params(axis='x', rotation=45)
+        fig.tight_layout()
+
+        canvas = FigureCanvas(fig)
+        canvas.setMaximumSize(600, 300)
+
+        layout = self.ui.focusFrame.layout()
+        if layout is None:
+            layout = QVBoxLayout()
+            self.ui.focusFrame.setLayout(layout)
+        else:
+            for i in reversed(range(layout.count())):
+                widget = layout.itemAt(i).widget()
+                if widget:
+                    layout.removeWidget(widget)
+                    widget.setParent(None)
+
+        layout.addWidget(canvas, 0)
+
+
+        # Add canvas to the focusFrame layout
+        layout = QVBoxLayout()
+        layout.addWidget(canvas)
+        self.ui.focusFrame.setLayout(layout)
+
+    def plot_subject_chart(self):
+        # Get data
+        rows = get_subject_data_stats()
+
+        # Prepare labels and values
+        labels = [row[0] for row in rows]
+        durations = [row[1]/60 for row in rows]  # seconds -> minutes
+
+        # Create pie chart with same size as line chart
+        fig, ax = plt.subplots(figsize=(6, 3))  # same as line chart
+        ax.pie(durations, labels=labels, autopct='%1.1f%%', startangle=90)
+        ax.set_title('focus time distribution by subject (last 30 days)')
+
+        canvas = FigureCanvas(fig)
+        canvas.setMaximumSize(600, 300)  # same max size as line chart
+
+        # Embed in subjectFrame
+        layout = self.ui.subjectFrame.layout()
+        if layout is None:
+            layout = QVBoxLayout()
+            self.ui.subjectFrame.setLayout(layout)
+        else:
+            # Clear previous widgets
+            for i in reversed(range(layout.count())):
+                widget = layout.itemAt(i).widget()
+                if widget:
+                    layout.removeWidget(widget)
+                    widget.setParent(None)
+
+        layout.addWidget(canvas, 0)  # add canvas with no stretch
     

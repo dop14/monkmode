@@ -254,13 +254,13 @@ def get_current_streak():
     today = date.today()
     yesterday = today - timedelta(days=1)
 
-    # Get all dates from yesterday
+    # Get all dates from today
     cursor.execute("""
         SELECT date, goal_achieved, is_weekend
         FROM streak_log
         WHERE date <= ?
         ORDER BY date DESC
-    """, (yesterday.isoformat(),))
+    """, (today.isoformat(),))
 
     rows = cursor.fetchall()
     conn.close()
@@ -269,18 +269,23 @@ def get_current_streak():
     for row in rows:
         log_date, goal_achieved, is_weekend = row
 
+        # If its a weekend day
         if is_weekend:
-            # Weekend logic
+            # But the goal was achieved
             if goal_achieved:
-                streak += 1
+                streak += 1 # Then we add a streak
             else:
-                continue
+                continue # If there was no goal achieved, we dont reset it
         else:
-            # Weekday logic
             if goal_achieved:
                 streak += 1
+            # If no goal was achieved that day
             else:
-                break
+                # But the day is today
+                if log_date == today.isoformat():
+                    continue  # We dont count it yet
+                else:
+                    break     # We break it
 
     return streak
     
@@ -323,7 +328,40 @@ def get_current_karma():
     karma = (completed_days / relevant_days * 100) if relevant_days > 0 else 0
     return karma
 
+# Get focus data for statistics
+def get_focus_data():
+    conn = get_connection()
+    cursor = conn.cursor()
 
+    cursor.execute("""
+        SELECT DATE(timestamp) AS day, SUM(duration) AS total_duration
+        FROM focus_sessions
+        WHERE timestamp >= DATE('now', '-29 days')
+        GROUP BY day
+        ORDER BY day;
+    """)
+    rows = cursor.fetchall()
+    conn.close()
+
+    return rows
+
+# Get subject data for statistics
+def get_subject_data_stats():
+    conn = get_connection()
+    cursor = conn.cursor()
+
+    cursor.execute("""
+        SELECT s.name, SUM(fs.duration) AS total_duration
+        FROM focus_sessions fs
+        JOIN subjects s ON fs.subject_id = s.id
+        WHERE fs.timestamp >= DATE('now', '-29 days')
+        GROUP BY fs.subject_id
+        ORDER BY total_duration DESC;
+    """)
+    rows = cursor.fetchall()
+    conn.close()
+
+    return rows
 
 # Calculates the session lenght with the current period setting
 def calculate_session_length(user_sessions, period_name):

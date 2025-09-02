@@ -284,6 +284,9 @@ class MainWindow(QMainWindow):
         if reply == QMessageBox.Yes:
             # Save the data
             self.focus_timer.save_focus_stopped_session()
+
+            # Reset small focus window
+            self.small_window.default_values()
             
             self.focus_ended()
 
@@ -309,6 +312,9 @@ class MainWindow(QMainWindow):
     def focus_ended(self):
         # Timer is inactive
         self.is_timer_active = False
+
+        # Update text on small focus window
+        self.small_window.focus_over()
 
         # Hide timer label, pause/resume and stop
         self.hide_buttons()
@@ -384,8 +390,6 @@ class MainWindow(QMainWindow):
         current_streak = get_current_streak()
         self.ui.current_streak_label.setText(f"current streak: <b>{current_streak} days</b>")
 
-        user_stats = get_user_stats()
-        longest_streak = user_stats[3]
 
     def check_longest_streak(self):
         current_streak = get_current_streak()

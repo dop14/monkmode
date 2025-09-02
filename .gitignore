@@ -1,0 +1,6 @@
+# Ignore Python cache
+__pycache__/
+*.pyc
+
+# Ignore local database
+monkmode.db
