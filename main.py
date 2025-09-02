@@ -36,6 +36,10 @@ class MainWindow(QMainWindow):
         # Check the longest_streak
         self.check_longest_streak()
 
+        # COMMENT
+
+
+
         # Show streak
         self.show_streak()
 

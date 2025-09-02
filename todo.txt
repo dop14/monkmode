@@ -1,11 +1,11 @@
-TEST STREAK LOGIC: IF LOGIC ADDS UP CORRECTLY, IF YOU COMPLETE THE GOAL TODAY
+TEST STREAK LOGIC ALL WEEK    AAAAAAAAAAAAAAAA
 
  2 diagrams:
  1st - daily focus linechart in the past 30 days
  2nd - pie chart from subjects (50% - study, 25% - work, 25% - reading)
  3rd - see how much time i spent on each subject
 
- 
+
 Heatmap:
 - user can scroll through a heatmap history (like on github)
 - days where there was no focus will show with grey
