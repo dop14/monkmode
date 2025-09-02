@@ -51,15 +51,18 @@ class Statistics(QDialog):
         else:
             self.ui.longest_focus_session.setText(f"longest focus session: <b>{int(stats[2] / 60)} minutes</b>")
 
-        if avg_focus < 3600:
-            self.ui.avarage_focus_time.setText(f"avarage focus time: <b>{int(avg_focus / 60)} minutes</b>")
-        elif avg_focus > 3600:
-            hours = avg_focus // 3600
-            minutes = (avg_focus % 3600) // 60
-            if minutes == 0:
-                self.ui.avarage_focus_time.setText(f"avarage focus time: <b>{hours} hours</b>")
+        if avg_focus != None:
+            if avg_focus < 3600:
+                self.ui.avarage_focus_time.setText(f"avarage focus time: <b>{int(avg_focus / 60)} minutes</b>")
+            elif avg_focus > 3600:
+                hours = avg_focus // 3600
+                minutes = (avg_focus % 3600) // 60
+                if minutes == 0:
+                    self.ui.avarage_focus_time.setText(f"avarage focus time: <b>{hours} hours</b>")
+                else:
+                    self.ui.avarage_focus_time.setText(f"avarage focus time: <b>{hours} hours and {minutes} minutes</b>")
             else:
-                self.ui.avarage_focus_time.setText(f"avarage focus time: <b>{hours} hours and {minutes} minutes</b>")
+                self.ui.avarage_focus_time.setText(f"avarage focus time: <b>no data</b>")
         else:
             self.ui.avarage_focus_time.setText(f"avarage focus time: <b>no data</b>")
 
