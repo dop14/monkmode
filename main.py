@@ -338,6 +338,9 @@ class MainWindow(QMainWindow):
         # Check if daily goal was achieved
         self.check_daily_goal()
 
+        # Update streak
+        self.show_streak()
+
     # Update the daily and weekly focus goal if the user changes the default values
     def update_daily_focus_goal(self):
         preferences = get_user_preferences()

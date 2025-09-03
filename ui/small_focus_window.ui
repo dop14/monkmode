@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>232</width>
-    <height>166</height>
+    <width>220</width>
+    <height>200</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -18,14 +18,14 @@
   </property>
   <property name="minimumSize">
    <size>
-    <width>232</width>
-    <height>166</height>
+    <width>200</width>
+    <height>200</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
     <width>300</width>
-    <height>200</height>
+    <height>287</height>
    </size>
   </property>
   <property name="windowTitle">
@@ -41,6 +41,39 @@
       <enum>QFrame::Shadow::Raised</enum>
      </property>
      <layout class="QVBoxLayout" name="verticalLayout">
+      <item>
+       <widget class="QPushButton" name="back_to_main_btn">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>60</width>
+          <height>0</height>
+         </size>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>7</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="icon">
+         <iconset theme="QIcon::ThemeIcon::ViewFullscreen"/>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>12</width>
+          <height>12</height>
+         </size>
+        </property>
+       </widget>
+      </item>
       <item alignment="Qt::AlignmentFlag::AlignHCenter">
        <widget class="QLabel" name="time_label">
         <property name="sizePolicy">
@@ -52,7 +85,7 @@
         <property name="maximumSize">
          <size>
           <width>300</width>
-          <height>200</height>
+          <height>220</height>
          </size>
         </property>
         <property name="font">
@@ -77,10 +110,17 @@
         </property>
        </widget>
       </item>
+      <item alignment="Qt::AlignmentFlag::AlignHCenter">
+       <widget class="QLabel" name="session_label">
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
       <item>
        <layout class="QHBoxLayout" name="horizontalLayout_2">
-        <item>
-         <widget class="QPushButton" name="back_to_main_btn">
+        <item alignment="Qt::AlignmentFlag::AlignHCenter">
+         <widget class="QPushButton" name="show_time_btn">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
             <horstretch>0</horstretch>
@@ -89,46 +129,22 @@
           </property>
           <property name="minimumSize">
            <size>
-            <width>0</width>
+            <width>60</width>
             <height>0</height>
            </size>
           </property>
-          <property name="font">
-           <font>
-            <pointsize>7</pointsize>
-           </font>
-          </property>
-          <property name="text">
-           <string/>
-          </property>
-          <property name="icon">
-           <iconset theme="QIcon::ThemeIcon::ViewFullscreen"/>
-          </property>
-          <property name="iconSize">
+          <property name="maximumSize">
            <size>
-            <width>12</width>
-            <height>12</height>
+            <width>16777215</width>
+            <height>16777215</height>
            </size>
           </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QPushButton" name="show_time_btn">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
           <property name="text">
-           <string/>
-          </property>
-          <property name="icon">
-           <iconset theme="QIcon::ThemeIcon::DocumentOpenRecent"/>
+           <string>show time</string>
           </property>
          </widget>
         </item>
-        <item>
+        <item alignment="Qt::AlignmentFlag::AlignHCenter">
          <widget class="QPushButton" name="unshow_time_btn">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
@@ -136,11 +152,20 @@
             <verstretch>0</verstretch>
            </sizepolicy>
           </property>
-          <property name="text">
-           <string/>
+          <property name="minimumSize">
+           <size>
+            <width>60</width>
+            <height>0</height>
+           </size>
           </property>
-          <property name="icon">
-           <iconset theme="QIcon::ThemeIcon::DocumentOpenRecent"/>
+          <property name="maximumSize">
+           <size>
+            <width>16777215</width>
+            <height>16777215</height>
+           </size>
+          </property>
+          <property name="text">
+           <string>hide time</string>
           </property>
          </widget>
         </item>

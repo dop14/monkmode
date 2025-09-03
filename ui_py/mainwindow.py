@@ -165,6 +165,7 @@ class Ui_MainWindow(object):
         self.timer_label.setObjectName(u"timer_label")
         font = QFont()
         font.setPointSize(36)
+        font.setBold(False)
         self.timer_label.setFont(font)
         self.timer_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
 
@@ -260,6 +261,9 @@ class Ui_MainWindow(object):
 
         self.period_combobox = QComboBox(self.periodFrame)
         self.period_combobox.setObjectName(u"period_combobox")
+        font4 = QFont()
+        font4.setPointSize(11)
+        self.period_combobox.setFont(font4)
 
         self.verticalLayout.addWidget(self.period_combobox)
 
@@ -276,7 +280,7 @@ class Ui_MainWindow(object):
 
         self.editperiod_btn = QPushButton(self.periodFrame)
         self.editperiod_btn.setObjectName(u"editperiod_btn")
-        icon5 = QIcon(QIcon.fromTheme(QIcon.ThemeIcon.DocumentProperties))
+        icon5 = QIcon(QIcon.fromTheme(QIcon.ThemeIcon.MailMessageNew))
         self.editperiod_btn.setIcon(icon5)
 
         self.horizontalLayout.addWidget(self.editperiod_btn)
@@ -315,11 +319,15 @@ class Ui_MainWindow(object):
 
         self.today_label = QLabel(self.dailyFrame)
         self.today_label.setObjectName(u"today_label")
+        font5 = QFont()
+        font5.setPointSize(10)
+        self.today_label.setFont(font5)
 
         self.verticalLayout_5.addWidget(self.today_label)
 
         self.daily_goal_label = QLabel(self.dailyFrame)
         self.daily_goal_label.setObjectName(u"daily_goal_label")
+        self.daily_goal_label.setFont(font5)
 
         self.verticalLayout_5.addWidget(self.daily_goal_label)
 
@@ -354,6 +362,7 @@ class Ui_MainWindow(object):
 
         self.subject_combobox = QComboBox(self.subjectFrame)
         self.subject_combobox.setObjectName(u"subject_combobox")
+        self.subject_combobox.setFont(font4)
 
         self.verticalLayout_2.addWidget(self.subject_combobox)
 
@@ -373,7 +382,7 @@ class Ui_MainWindow(object):
 
         self.archive_subject_btn = QPushButton(self.subjectFrame)
         self.archive_subject_btn.setObjectName(u"archive_subject_btn")
-        icon7 = QIcon(QIcon.fromTheme(QIcon.ThemeIcon.DocumentNew))
+        icon7 = QIcon(QIcon.fromTheme(QIcon.ThemeIcon.FolderOpen))
         self.archive_subject_btn.setIcon(icon7)
 
         self.horizontalLayout_2.addWidget(self.archive_subject_btn)
@@ -411,11 +420,13 @@ class Ui_MainWindow(object):
 
         self.this_week_focus = QLabel(self.statsFrame)
         self.this_week_focus.setObjectName(u"this_week_focus")
+        self.this_week_focus.setFont(font5)
 
         self.verticalLayout_7.addWidget(self.this_week_focus)
 
         self.current_streak_label = QLabel(self.statsFrame)
         self.current_streak_label.setObjectName(u"current_streak_label")
+        self.current_streak_label.setFont(font5)
 
         self.verticalLayout_7.addWidget(self.current_streak_label)
 
@@ -455,9 +466,9 @@ class Ui_MainWindow(object):
         self.quote_label.setSizePolicy(sizePolicy2)
         self.quote_label.setMinimumSize(QSize(0, 0))
         self.quote_label.setMaximumSize(QSize(16777215, 16777215))
-        font4 = QFont()
-        font4.setPointSize(9)
-        self.quote_label.setFont(font4)
+        font6 = QFont()
+        font6.setPointSize(9)
+        self.quote_label.setFont(font6)
         self.quote_label.setWordWrap(True)
         self.quote_label.setMargin(0)
 

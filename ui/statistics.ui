@@ -35,9 +35,9 @@
       <property name="geometry">
        <rect>
         <x>0</x>
-        <y>0</y>
+        <y>-1059</y>
         <width>620</width>
-        <height>930</height>
+        <height>1790</height>
        </rect>
       </property>
       <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -46,7 +46,7 @@
          <property name="maximumSize">
           <size>
            <width>600</width>
-           <height>300</height>
+           <height>330</height>
           </size>
          </property>
          <property name="frameShape">
@@ -57,22 +57,10 @@
          </property>
          <layout class="QVBoxLayout" name="verticalLayout">
           <item>
-           <widget class="QLabel" name="label">
-            <property name="font">
-             <font>
-              <pointsize>18</pointsize>
-             </font>
-            </property>
-            <property name="text">
-             <string>Overall statistics</string>
-            </property>
-           </widget>
-          </item>
-          <item>
            <widget class="QLabel" name="focus_label">
             <property name="font">
              <font>
-              <pointsize>14</pointsize>
+              <pointsize>18</pointsize>
               <bold>true</bold>
              </font>
             </property>
@@ -83,6 +71,11 @@
           </item>
           <item>
            <widget class="QLabel" name="total_focus_time">
+            <property name="font">
+             <font>
+              <pointsize>11</pointsize>
+             </font>
+            </property>
             <property name="text">
              <string>total focus time:</string>
             </property>
@@ -90,6 +83,11 @@
           </item>
           <item>
            <widget class="QLabel" name="avarage_focus_time">
+            <property name="font">
+             <font>
+              <pointsize>11</pointsize>
+             </font>
+            </property>
             <property name="text">
              <string>avarage focus time:</string>
             </property>
@@ -97,6 +95,11 @@
           </item>
           <item>
            <widget class="QLabel" name="longest_focus_session">
+            <property name="font">
+             <font>
+              <pointsize>11</pointsize>
+             </font>
+            </property>
             <property name="text">
              <string>longest focus session:</string>
             </property>
@@ -104,6 +107,11 @@
           </item>
           <item>
            <widget class="QLabel" name="focus_sessions_completed">
+            <property name="font">
+             <font>
+              <pointsize>11</pointsize>
+             </font>
+            </property>
             <property name="text">
              <string>focus sessions completed:</string>
             </property>
@@ -113,7 +121,7 @@
            <widget class="QLabel" name="streak_and_karma_label">
             <property name="font">
              <font>
-              <pointsize>14</pointsize>
+              <pointsize>18</pointsize>
               <bold>true</bold>
              </font>
             </property>
@@ -124,6 +132,11 @@
           </item>
           <item>
            <widget class="QLabel" name="daily_goal_achieved">
+            <property name="font">
+             <font>
+              <pointsize>11</pointsize>
+             </font>
+            </property>
             <property name="text">
              <string>daily goal achieved:</string>
             </property>
@@ -131,6 +144,11 @@
           </item>
           <item>
            <widget class="QLabel" name="current_streak">
+            <property name="font">
+             <font>
+              <pointsize>11</pointsize>
+             </font>
+            </property>
             <property name="text">
              <string>current streak:</string>
             </property>
@@ -138,6 +156,11 @@
           </item>
           <item>
            <widget class="QLabel" name="longest_streak">
+            <property name="font">
+             <font>
+              <pointsize>11</pointsize>
+             </font>
+            </property>
             <property name="text">
              <string>longest streak:</string>
             </property>
@@ -145,6 +168,11 @@
           </item>
           <item>
            <widget class="QLabel" name="karma">
+            <property name="font">
+             <font>
+              <pointsize>11</pointsize>
+             </font>
+            </property>
             <property name="text">
              <string>karma:</string>
             </property>
@@ -152,6 +180,11 @@
           </item>
           <item>
            <widget class="QLabel" name="karma_level">
+            <property name="font">
+             <font>
+              <pointsize>11</pointsize>
+             </font>
+            </property>
             <property name="text">
              <string>karma level:</string>
             </property>
@@ -159,6 +192,19 @@
           </item>
          </layout>
         </widget>
+       </item>
+       <item>
+        <spacer name="horizontalSpacer">
+         <property name="orientation">
+          <enum>Qt::Orientation::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
        </item>
        <item>
         <widget class="QFrame" name="focusFrame">
@@ -183,6 +229,19 @@
         </widget>
        </item>
        <item>
+        <spacer name="horizontalSpacer_2">
+         <property name="orientation">
+          <enum>Qt::Orientation::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item>
         <widget class="QFrame" name="subjectFrame">
          <property name="minimumSize">
           <size>
@@ -194,6 +253,76 @@
           <size>
            <width>600</width>
            <height>300</height>
+          </size>
+         </property>
+         <property name="frameShape">
+          <enum>QFrame::Shape::StyledPanel</enum>
+         </property>
+         <property name="frameShadow">
+          <enum>QFrame::Shadow::Raised</enum>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <spacer name="horizontalSpacer_3">
+         <property name="orientation">
+          <enum>Qt::Orientation::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item>
+        <widget class="QFrame" name="periodFrame">
+         <property name="minimumSize">
+          <size>
+           <width>600</width>
+           <height>300</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>600</width>
+           <height>300</height>
+          </size>
+         </property>
+         <property name="frameShape">
+          <enum>QFrame::Shape::StyledPanel</enum>
+         </property>
+         <property name="frameShadow">
+          <enum>QFrame::Shadow::Raised</enum>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <spacer name="horizontalSpacer_4">
+         <property name="orientation">
+          <enum>Qt::Orientation::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item>
+        <widget class="QFrame" name="subjectBarFrame">
+         <property name="minimumSize">
+          <size>
+           <width>600</width>
+           <height>420</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>600</width>
+           <height>420</height>
           </size>
          </property>
          <property name="frameShape">

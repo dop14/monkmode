@@ -363,6 +363,43 @@ def get_subject_data_stats():
 
     return rows
 
+# Get period data for statistics
+def get_period_data_stats():
+    conn = get_connection()
+    cursor = conn.cursor()
+
+    cursor.execute("""
+        SELECT p.name, SUM(fs.duration) AS total_duration
+        FROM focus_sessions fs
+        JOIN periods p ON fs.period_id = p.id
+        WHERE fs.timestamp >= DATE('now', '-29 days')
+        GROUP BY fs.period_id
+        ORDER BY total_duration DESC;
+    """)
+    rows = cursor.fetchall()
+    conn.close()
+
+    return rows
+
+# Get subject with duration for statistics
+def get_subject_time_data():
+    conn = get_connection()
+    cursor = conn.cursor()
+
+    cursor.execute("""
+        SELECT s.name, SUM(fs.duration) as total_duration
+        FROM focus_sessions fs
+        JOIN subjects s ON fs.subject_id = s.id
+        WHERE fs.timestamp >= DATE('now', '-29 days')
+        GROUP BY fs.subject_id
+        ORDER BY total_duration DESC;
+    """)
+
+    rows = cursor.fetchall()
+    conn.close()
+
+    return rows
+
 # Calculates the session lenght with the current period setting
 def calculate_session_length(user_sessions, period_name):
     period_data = get_period_data(period_name)

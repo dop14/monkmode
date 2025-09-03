@@ -36,6 +36,7 @@ class FocusTimer(QObject):
         self.main_window.ui.focus_stop_btn.show()
         self.main_window.ui.small_focus_window.show()
         self.main_window.ui.period_type_label.setText(f"focus session ({self.completed_focus_sessions+1} of {self.total_sessions})")
+        self.small_window.ui.session_label.setText(f"({self.completed_focus_sessions+1} of {self.total_sessions})")
         self.main_window.ui.period_type_label.show()
         self.main_window.ui.timer_label.setStyleSheet("font-size: 46px;")
 
@@ -68,11 +69,13 @@ class FocusTimer(QObject):
         if self.long_break_after != 0 and self.completed_focus_sessions % self.long_break_after == 0 and self.long_break_after:
             self.remaining_time = self.period["long_break_time"] * 60
             self.main_window.ui.period_type_label.setText(f"break ({self.completed_focus_sessions} of {self.total_sessions-1})")
+            self.small_window.ui.session_label.setText(f"({self.completed_focus_sessions} of {self.total_sessions-1})")
             self.update_timer_label(self.remaining_time)
         # If short break is next
         else:
             self.remaining_time = self.period["short_break_time"] * 60
             self.main_window.ui.period_type_label.setText(f"break ({self.completed_focus_sessions} of {self.total_sessions-1})")
+            self.small_window.ui.session_label.setText(f"({self.completed_focus_sessions} of {self.total_sessions-1})")
             self.update_timer_label(self.remaining_time)
         self.timer.start(1000)
 

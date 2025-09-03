@@ -1,11 +1,26 @@
-TEST STREAK LOGIC ALL WEEK    AAAAAAAAAAAAAAAA
+TEST STREAK LOGIC ALL WEEK    
+ Statistics todo:
+ pie charts: % too close to each other
+ 5th diagram - see how much time the user spent on each subject in all history -> checkbox (include archived subjects aswell)
+ How to change diagram theme
 
- 2 diagrams:
- 1st - daily focus linechart in the past 30 days
- 2nd - pie chart from subjects (50% - study, 25% - work, 25% - reading)
- 3rd - see how much time i spent on each subject
+ELSE TODO:
+- delete history button (hard confirmation)
+- .exe file (runs db_manager automatically)
+- db backup
+- help -> how to use (github), about (new page)
 
+ABOUT:
+ We require that you show attribution with a link back to https://zenquotes.io/ when using the free version of this API.
+ Logo created with ChatGPT
+ App's goal
+ my github profile
+ technologies used
+ ...
+Note: Changing your daily focus goal after completing it will not affect that day’s completion status.
+Note: focus sessions completed only counts if you complete the whole focus session, without stopping it.
 
+LATER TO-DO:
 Heatmap:
 - user can scroll through a heatmap history (like on github)
 - days where there was no focus will show with grey
@@ -16,20 +31,3 @@ Heatmap:
     - the most focused subject that day
     - the state of the daily goal that day
     - the most used period setting that day
-
-ELSE TODO:
-- Run db_manager.py automatically when the user enters the app
-- db backup
-- Circular progress bar around the timer label
-- save small focus window's last location?
-- delete history
-- help -> how to use (github), about (new page)
-- .exe file
-
-ABOUT:
- We require that you show attribution with a link back to https://zenquotes.io/ when using the free version of this API.
- Logo created with ChatGPT
- App's goal
- my github profile
- technologies used
- ...

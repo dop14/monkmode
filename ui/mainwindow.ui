@@ -71,6 +71,7 @@
            <property name="font">
             <font>
              <pointsize>36</pointsize>
+             <bold>false</bold>
             </font>
            </property>
            <property name="text">
@@ -264,7 +265,13 @@
               </widget>
              </item>
              <item>
-              <widget class="QComboBox" name="period_combobox"/>
+              <widget class="QComboBox" name="period_combobox">
+               <property name="font">
+                <font>
+                 <pointsize>11</pointsize>
+                </font>
+               </property>
+              </widget>
              </item>
              <item>
               <layout class="QHBoxLayout" name="horizontalLayout">
@@ -290,7 +297,7 @@
                   <string/>
                  </property>
                  <property name="icon">
-                  <iconset theme="QIcon::ThemeIcon::DocumentProperties"/>
+                  <iconset theme="QIcon::ThemeIcon::MailMessageNew"/>
                  </property>
                 </widget>
                </item>
@@ -361,6 +368,11 @@
              </item>
              <item>
               <widget class="QLabel" name="today_label">
+               <property name="font">
+                <font>
+                 <pointsize>10</pointsize>
+                </font>
+               </property>
                <property name="text">
                 <string>today's focus:</string>
                </property>
@@ -368,6 +380,11 @@
              </item>
              <item>
               <widget class="QLabel" name="daily_goal_label">
+               <property name="font">
+                <font>
+                 <pointsize>10</pointsize>
+                </font>
+               </property>
                <property name="text">
                 <string>daily focus goal:</string>
                </property>
@@ -422,7 +439,13 @@
               </widget>
              </item>
              <item>
-              <widget class="QComboBox" name="subject_combobox"/>
+              <widget class="QComboBox" name="subject_combobox">
+               <property name="font">
+                <font>
+                 <pointsize>11</pointsize>
+                </font>
+               </property>
+              </widget>
              </item>
              <item>
               <layout class="QHBoxLayout" name="horizontalLayout_2">
@@ -442,7 +465,7 @@
                   <string/>
                  </property>
                  <property name="icon">
-                  <iconset theme="QIcon::ThemeIcon::DocumentProperties"/>
+                  <iconset theme="QIcon::ThemeIcon::MailMessageNew"/>
                  </property>
                 </widget>
                </item>
@@ -452,7 +475,7 @@
                   <string/>
                  </property>
                  <property name="icon">
-                  <iconset theme="QIcon::ThemeIcon::DocumentNew"/>
+                  <iconset theme="QIcon::ThemeIcon::FolderOpen"/>
                  </property>
                 </widget>
                </item>
@@ -523,6 +546,11 @@
              </item>
              <item>
               <widget class="QLabel" name="this_week_focus">
+               <property name="font">
+                <font>
+                 <pointsize>10</pointsize>
+                </font>
+               </property>
                <property name="text">
                 <string>this week's focus:</string>
                </property>
@@ -530,6 +558,11 @@
              </item>
              <item>
               <widget class="QLabel" name="current_streak_label">
+               <property name="font">
+                <font>
+                 <pointsize>10</pointsize>
+                </font>
+               </property>
                <property name="text">
                 <string>current streak:</string>
                </property>

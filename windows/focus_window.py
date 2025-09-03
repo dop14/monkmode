@@ -31,7 +31,7 @@ class FocusWindow(QDialog):
         if len(length) == 3:
             self.ui.session_lenght_label.setText(
                 f"You will be focusing on <b>{self.current_subject}</b>, with <b>{self.current_period}</b><br>"
-                f"Total session duration: <b>{length[0]} minutes</b><br><br>"
+                f"Total duration: <b>{length[0]} minutes</b><br><br>"
                 f"Session breakdown:<br>"
                 f"• Focus sessions: <b>{self.ui.session_spinbox.value()}</b><br>"
                 f"• Short breaks: <b>{length[1]}</b><br>"
@@ -42,7 +42,7 @@ class FocusWindow(QDialog):
             self.ui.session_lenght_label.setText(f"You will be focusing on <b>{self.current_subject}</b>, with <b>{self.current_period}</b> for <b>{length[0]}</b> hours and <b>{length[1]}</b> minutes<br>focus sessions: {self.ui.session_spinbox.value()}, short breaks: {length[2]}, long breaks: {length[3]}")
             self.ui.session_lenght_label.setText(
                 f"You will be focusing on <b>{self.current_subject}</b>, with <b>{self.current_period}</b><br>"
-                f"Total session duration: <b>{length[0]} hours and {length[1]} minutes</b><br><br>"
+                f"Total duration: <b>{length[0]} hours and {length[1]} minutes</b><br><br>"
                 f"Session breakdown:<br>"
                 f"• Focus sessions: <b>{self.ui.session_spinbox.value()}</b><br>"
                 f"• Short breaks: <b>{length[2]}</b><br>"
