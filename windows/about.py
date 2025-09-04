@@ -12,9 +12,9 @@ class AboutWindow(QDialog):
         
         self.setWindowIcon(QIcon("logo/monkmode.png"))
 
-        self.link_labels()
+        self.set_text()
 
-    def link_labels(self):
+    def set_text(self):
         self.ui.about_text.setText(
             """
         <h2>monkmode</h2>
