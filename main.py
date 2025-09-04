@@ -10,6 +10,7 @@ from windows.new_subject_window import NewSubjectWindow
 from windows.edit_subject_window import EditSubjectWindow
 from windows.change_default import ChangeDefault
 from windows.small_focus_window import SmallFocusWindow
+from windows.about import AboutWindow
 from windows.statistics import Statistics
 from core.timer import FocusTimer
 from core.menu_bar import MenuBar
@@ -129,6 +130,8 @@ class MainWindow(QMainWindow):
 
         # When show all statistics button is clicked
         self.ui.show_all.clicked.connect(self.start_statistics_window)
+
+        self.ui.actionabout.triggered.connect(self.start_about_window)
     
     # If app is closed
     def closeEvent(self, event):
@@ -243,6 +246,10 @@ class MainWindow(QMainWindow):
     def start_statistics_window(self):
         self.statistics_window = Statistics(self)
         self.statistics_window.exec()
+
+    def start_about_window(self):
+        self.about_window = AboutWindow()
+        self.about_window.show()
     
     # Starting timer
     def start_timer(self, period, subject, user_sessions):

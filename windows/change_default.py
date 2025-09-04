@@ -3,7 +3,6 @@ from ui_py.change_default import Ui_Form
 from database.db_manager import get_default_period_name, get_default_subject_name, get_period_names, get_subject_names, change_def_period, change_def_subject
 from PySide6.QtGui import QIcon
 
-
 class ChangeDefault(QDialog):
     def __init__(self, main_window, setting_type):
         super().__init__()

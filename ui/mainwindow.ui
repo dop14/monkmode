@@ -688,8 +688,8 @@
     <property name="title">
      <string>help</string>
     </property>
+    <addaction name="actionhowtouse"/>
     <addaction name="actionabout"/>
-    <addaction name="actionabout_2"/>
     <addaction name="separator"/>
    </widget>
    <widget class="QMenu" name="menuarchive">
@@ -724,12 +724,12 @@
     <string>light</string>
    </property>
   </action>
-  <action name="actionabout">
+  <action name="actionhowtouse">
    <property name="text">
     <string>how to use</string>
    </property>
   </action>
-  <action name="actionabout_2">
+  <action name="actionabout">
    <property name="text">
     <string>about</string>
    </property>
