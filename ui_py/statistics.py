@@ -15,16 +15,17 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QFont, QFontDatabase, QGradient, QIcon,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
-from PySide6.QtWidgets import (QApplication, QFrame, QLabel, QScrollArea,
-    QSizePolicy, QSpacerItem, QVBoxLayout, QWidget)
+from PySide6.QtWidgets import (QApplication, QCheckBox, QFrame, QLabel,
+    QScrollArea, QSizePolicy, QSpacerItem, QVBoxLayout,
+    QWidget)
 
 class Ui_Form(object):
     def setupUi(self, Form):
         if not Form.objectName():
             Form.setObjectName(u"Form")
-        Form.resize(652, 725)
-        Form.setMinimumSize(QSize(0, 0))
-        Form.setMaximumSize(QSize(16777215, 16777215))
+        Form.resize(655, 725)
+        Form.setMinimumSize(QSize(650, 725))
+        Form.setMaximumSize(QSize(655, 725))
         self.verticalLayout_3 = QVBoxLayout(Form)
         self.verticalLayout_3.setObjectName(u"verticalLayout_3")
         self.scrollArea = QScrollArea(Form)
@@ -32,7 +33,7 @@ class Ui_Form(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollAreaWidgetContents = QWidget()
         self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
-        self.scrollAreaWidgetContents.setGeometry(QRect(0, -1059, 620, 1790))
+        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 623, 2272))
         self.verticalLayout_2 = QVBoxLayout(self.scrollAreaWidgetContents)
         self.verticalLayout_2.setObjectName(u"verticalLayout_2")
         self.overallFrame = QFrame(self.scrollAreaWidgetContents)
@@ -168,6 +169,25 @@ class Ui_Form(object):
 
         self.verticalLayout_2.addWidget(self.subjectBarFrame)
 
+        self.horizontalSpacer_5 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
+
+        self.verticalLayout_2.addItem(self.horizontalSpacer_5)
+
+        self.include_archived_checkbox = QCheckBox(self.scrollAreaWidgetContents)
+        self.include_archived_checkbox.setObjectName(u"include_archived_checkbox")
+        self.include_archived_checkbox.setFont(font1)
+        self.include_archived_checkbox.setChecked(True)
+
+        self.verticalLayout_2.addWidget(self.include_archived_checkbox)
+
+        self.subjectAllBarFrame = QFrame(self.scrollAreaWidgetContents)
+        self.subjectAllBarFrame.setObjectName(u"subjectAllBarFrame")
+        self.subjectAllBarFrame.setMinimumSize(QSize(600, 420))
+        self.subjectAllBarFrame.setFrameShape(QFrame.Shape.StyledPanel)
+        self.subjectAllBarFrame.setFrameShadow(QFrame.Shadow.Raised)
+
+        self.verticalLayout_2.addWidget(self.subjectAllBarFrame)
+
         self.scrollArea.setWidget(self.scrollAreaWidgetContents)
 
         self.verticalLayout_3.addWidget(self.scrollArea)
@@ -191,5 +211,6 @@ class Ui_Form(object):
         self.longest_streak.setText(QCoreApplication.translate("Form", u"longest streak:", None))
         self.karma.setText(QCoreApplication.translate("Form", u"karma:", None))
         self.karma_level.setText(QCoreApplication.translate("Form", u"karma level:", None))
+        self.include_archived_checkbox.setText(QCoreApplication.translate("Form", u"include archived subjects", None))
     # retranslateUi
 

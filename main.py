@@ -1,4 +1,6 @@
 from PySide6.QtWidgets import QApplication, QMainWindow, QMessageBox
+from PySide6.QtGui import QIcon
+import shutil, os, sys
 from ui_py.mainwindow import Ui_MainWindow
 from windows.focus_window import FocusWindow
 from windows.new_period_window import NewPeriodWindow
@@ -9,14 +11,11 @@ from windows.edit_subject_window import EditSubjectWindow
 from windows.change_default import ChangeDefault
 from windows.small_focus_window import SmallFocusWindow
 from windows.statistics import Statistics
-from PySide6.QtGui import QIcon
-import datetime
 from core.timer import FocusTimer
 from core.menu_bar import MenuBar
-from core.thememanager import ThemeManager
 from database.db_manager import get_period_names, get_subject_names, get_current_streak, save_daily_goal, get_user_stats, update_user_stats
 from database.db_manager import get_default_period_name, get_default_subject_name, get_user_preferences, get_today_focus, get_this_week_focus, get_today_quote, check_streak_log
-import sys
+
 
 class MainWindow(QMainWindow):
     def __init__(self):
@@ -144,6 +143,7 @@ class MainWindow(QMainWindow):
             )
 
             if reply == QMessageBox.Yes:
+                self.backup_db()
                 event.accept()  
             else:
                 event.ignore() 
@@ -165,6 +165,7 @@ class MainWindow(QMainWindow):
                 else:
                     self.focus_timer.save_focus_stopped_session()
                     self.focus_ended()
+                    self.backup_db()
                     event.accept()
 
             elif reply == QMessageBox.No:
@@ -175,7 +176,6 @@ class MainWindow(QMainWindow):
                     self.focus_timer.resume()
                     event.ignore()
 
-    
     def start_focus_window(self):
         self.focus_window = FocusWindow(self)
         self.focus_window.exec()
@@ -457,10 +457,25 @@ class MainWindow(QMainWindow):
         else:
             self.ui.quoteFrame.hide()
 
+    def backup_db(self,db_path="database/monkmode.db", backup_folder="database_backup"):
+        if not os.path.exists(db_path):
+            print(f"No database found at {db_path}, skipping backup.")
+            return
+
+        # Create backup folder if it doesn't exist
+        os.makedirs(backup_folder, exist_ok=True)
+
+        backup_path = os.path.join(backup_folder, "monkmode_backup.db")
+
+        try:
+            shutil.copy(db_path, backup_path)
+            print(f"Backup created: {backup_path}")
+        except Exception as e:
+            print(f"Failed to backup database: {e}")
+
 # Application entry point
 def main():
     app = QApplication(sys.argv)
-    app.setPalette(ThemeManager.load_dark_palette())
     window = MainWindow()
     window.show()
     window.setWindowIcon(QIcon("logo/monkmode.png"))

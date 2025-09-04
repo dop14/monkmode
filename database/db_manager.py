@@ -381,7 +381,7 @@ def get_period_data_stats():
 
     return rows
 
-# Get subject with duration for statistics
+# Get subject with duration for statistics (last 30 days)
 def get_subject_time_data():
     conn = get_connection()
     cursor = conn.cursor()
@@ -391,6 +391,43 @@ def get_subject_time_data():
         FROM focus_sessions fs
         JOIN subjects s ON fs.subject_id = s.id
         WHERE fs.timestamp >= DATE('now', '-29 days')
+        GROUP BY fs.subject_id
+        ORDER BY total_duration DESC;
+    """)
+
+    rows = cursor.fetchall()
+    conn.close()
+
+    return rows
+
+# Get subject with duration for statistics (all history)
+def get_subject_time_data_all_include_archived():
+    conn = get_connection()
+    cursor = conn.cursor()
+
+    cursor.execute("""
+        SELECT s.name, SUM(fs.duration) as total_duration
+        FROM focus_sessions fs
+        JOIN subjects s ON fs.subject_id = s.id
+        GROUP BY fs.subject_id
+        ORDER BY total_duration DESC;
+    """)
+
+    rows = cursor.fetchall()
+    conn.close()
+
+    return rows
+
+# Get subject with duration for statistics (all history withou)
+def get_subject_time_data_all_not_include_archived():
+    conn = get_connection()
+    cursor = conn.cursor()
+
+    cursor.execute("""
+        SELECT s.name, SUM(fs.duration) as total_duration
+        FROM focus_sessions fs
+        JOIN subjects s ON fs.subject_id = s.id
+        WHERE s.is_archived = 0
         GROUP BY fs.subject_id
         ORDER BY total_duration DESC;
     """)

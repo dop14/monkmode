@@ -18,15 +18,10 @@ class MenuBar:
         else:
             self.main_window.ui.all_notifications_2.setChecked(True)
 
-        # theme
-        self.theme = self.preferences["theme"]
-        # TODO: when DESIGN is coming up
-
         # tips
         self.tips_and_quotes = self.preferences["tips_and_quotes"]
         if self.tips_and_quotes == 1:
             self.main_window.ui.actiontips_and_quotes.setChecked(True)
-
 
     # Connect buttons to classes
     def change_default_daily(self):

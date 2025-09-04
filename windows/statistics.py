@@ -1,7 +1,7 @@
-from PySide6.QtWidgets import QDialog
+from PySide6.QtWidgets import QDialog, QApplication
 from ui_py.statistics import Ui_Form
-from database.db_manager import get_user_stats, get_avg_focus, get_daily_goal_achieved, get_current_streak, get_current_karma, get_focus_data, get_subject_data_stats, get_period_data_stats, get_subject_time_data
-from PySide6.QtGui import QIcon
+from database.db_manager import get_user_stats, get_avg_focus, get_daily_goal_achieved, get_current_streak, get_current_karma, get_focus_data, get_subject_data_stats, get_period_data_stats, get_subject_time_data, get_subject_time_data_all_include_archived, get_subject_time_data_all_not_include_archived
+from PySide6.QtGui import QIcon, QColor, QPalette
 from datetime import datetime, timedelta
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
 import matplotlib.pyplot as plt
@@ -20,10 +20,14 @@ class Statistics(QDialog):
 
         self.show_stats()
         self.show_karma_and_streaks()
+        self.set_color_mode()
         self.plot_focus_chart()
         self.plot_subject_chart()
         self.plot_period_distribution()
         self.plot_subject_bar_chart()
+        self.plot_subject_bar_chart_allhistory()
+
+        self.ui.include_archived_checkbox.stateChanged.connect(self.plot_subject_bar_chart_allhistory)
 
     def show_stats(self):
         stats = get_user_stats()
@@ -109,16 +113,35 @@ class Statistics(QDialog):
         self.ui.karma_level.setText(f"karma level: <b>{karma_level}</b>")
         self.ui.karma_level.setToolTip(tooltip_text)
 
+    def is_dark_mode(app: QApplication) -> bool:
+        palette: QPalette = app.palette()
+        color: QColor = palette.color(QPalette.Window)
+        luminance = 0.2126 * color.redF() + 0.7152 * color.greenF() + 0.0722 * color.blueF()
+        return luminance < 0.5  # return true if dark mode, false if light mode
+    
+    def set_color_mode(self):
+        if self.is_dark_mode():
+            plt.rcParams['figure.facecolor'] = '#2D2D2D'
+            plt.rcParams['axes.facecolor'] = '#2D2D2D'
+            plt.rcParams['axes.edgecolor'] = 'white'
+            plt.rcParams['axes.labelcolor'] = 'white'
+            plt.rcParams['xtick.color'] = 'white'
+            plt.rcParams['ytick.color'] = 'white'
+            plt.rcParams['text.color'] = 'white'
+            plt.rcParams['grid.color'] = 'gray'
+        else:
+            plt.rcParams.update(plt.rcParamsDefault)
+
     def plot_focus_chart(self):
         # Get data
         rows = get_focus_data()
 
         # Prepare data
-        row_dict = {row[0]: row[1]/60 for row in rows}  # seconds -> minutes
+        row_dict = {row[0]: row[1]/60 for row in rows} 
         all_days = [datetime.today() - timedelta(days=i) for i in reversed(range(30))]
         all_durations = [row_dict.get(d.strftime('%Y-%m-%d'), 0) for d in all_days]
 
-        # Create Matplotlib figure and canvas
+        # Create figure and canvas
         fig, ax = plt.subplots(figsize=(6, 3))
         ax.plot(all_days, all_durations, color='blue', linewidth=2)
         ax.set_title('daily focus time (last 30 days)',fontweight="bold")
@@ -144,7 +167,7 @@ class Statistics(QDialog):
         layout.addWidget(canvas, 0)
 
 
-        # Add canvas to the focusFrame layout
+        # Add canvas to layout
         layout = QVBoxLayout()
         layout.addWidget(canvas)
         self.ui.focusFrame.setLayout(layout)
@@ -155,18 +178,18 @@ class Statistics(QDialog):
 
         # Prepare labels and values
         labels = [row[0] for row in rows]
-        durations = [row[1]/60 for row in rows]  # seconds -> minutes
+        durations = [row[1]/60 for row in rows]  
 
-        # Create pie chart with same size as line chart
-        fig, ax = plt.subplots(figsize=(6.2, 3.2))  # same as line chart
+        # Create pie chart
+        fig, ax = plt.subplots(figsize=(6.2, 3.2))
         wedges, texts, autotexts = ax.pie(
-            durations,
-            autopct='%1.1f%%',  # show percentages inside
-            startangle=90,
-            textprops={'fontsize': 8}  # make % text small enough to always fit
+        durations,
+        autopct=autopct_filter,
+        startangle=90,
+        textprops={'fontsize': 7}
         )
 
-        # Add legend for subject names
+        # Add legend 
         ax.legend(
             wedges,
             labels,
@@ -176,11 +199,10 @@ class Statistics(QDialog):
             fontsize=8
         )
 
-        # Bold title
         ax.set_title('focus time distribution by subject (last 30 days)', fontweight="bold")
 
         canvas = FigureCanvas(fig)
-        canvas.setMaximumSize(620, 320)  # same max size as line chart
+        canvas.setMaximumSize(620, 320)  
 
         # Embed in subjectFrame
         layout = self.ui.subjectFrame.layout()
@@ -195,7 +217,7 @@ class Statistics(QDialog):
                     layout.removeWidget(widget)
                     widget.setParent(None)
 
-        layout.addWidget(canvas, 0)  # add canvas with no stretch
+        layout.addWidget(canvas, 0)  
 
     def plot_period_distribution(self):
         # Get data
@@ -216,20 +238,20 @@ class Statistics(QDialog):
         if not rows:
             return
 
-        # Prepare labels and values (seconds -> minutes)
+        # Prepare labels and values 
         labels = [r[0] for r in rows]
         durations = [r[1] / 60 for r in rows]
 
-        # Create pie chart (same size as subject pie chart)
+        # Create pie chart 
         fig, ax = plt.subplots(figsize=(6.2, 3.2))
         wedges, texts, autotexts = ax.pie(
-            durations,
-            autopct='%1.1f%%',    # keep percentages inside
-            startangle=90,
-            textprops={'fontsize': 8}
+        durations,
+        autopct=autopct_filter,
+        startangle=90,
+        textprops={'fontsize': 7}
         )
 
-        # Add legend on the side
+        # Add legend 
         ax.legend(
             wedges,
             labels,
@@ -239,11 +261,10 @@ class Statistics(QDialog):
             fontsize=8
         )
 
-        # Bold title
         ax.set_title('focus time distribution by period (last 30 days)', fontweight="bold")
 
         canvas = FigureCanvas(fig)
-        canvas.setMaximumSize(620, 320)  # match subject + line chart sizes
+        canvas.setMaximumSize(620, 320) 
 
         layout.addWidget(canvas, 0)
 
@@ -269,10 +290,10 @@ class Statistics(QDialog):
 
         # Prepare labels and values
         labels = [r[0] for r in rows]
-        durations = [r[1] / 60 for r in rows]  # seconds → minutes
+        durations = [r[1] / 60 for r in rows]  
 
-        # Pick distinct colors (using a matplotlib colormap)
-        cmap = plt.get_cmap("tab20")  # up to 20 distinct colors
+        # Pick colors
+        cmap = plt.get_cmap("tab20") 
         colors = [cmap(i % 20) for i in range(len(labels))]
 
         labels = [textwrap.fill(l, 10) for l in labels]
@@ -284,6 +305,49 @@ class Statistics(QDialog):
         ax.set_title("focus time per subject (last 30 days)", fontweight="bold")
         plt.xticks(rotation=45, ha="right")
 
+        fig.subplots_adjust(bottom=0.3)
+
+        canvas = FigureCanvas(fig)
+        canvas.setMaximumSize(600, 450)
+        layout.addWidget(canvas, 0)
+
+    def plot_subject_bar_chart_allhistory(self):
+        if self.ui.include_archived_checkbox.isChecked():
+            rows = get_subject_time_data_all_include_archived()
+        else:
+            rows = get_subject_time_data_all_not_include_archived()
+
+        # Ensure layout exists, clear old chart
+        layout = self.ui.subjectAllBarFrame.layout()
+        if layout is None:
+            layout = QVBoxLayout()
+            self.ui.subjectAllBarFrame.setLayout(layout)
+        else:
+            for i in reversed(range(layout.count())):
+                w = layout.itemAt(i).widget()
+                if w:
+                    layout.removeWidget(w)
+                    w.setParent(None)
+
+        if not rows:
+            return
+
+        labels = [r[0] for r in rows]
+        durations = [r[1] / 60 for r in rows] 
+
+        # Pick colors
+        cmap = plt.get_cmap("tab20")  
+        colors = [cmap(i % 20) for i in range(len(labels))]
+
+        labels = [textwrap.fill(l, 10) for l in labels]
+
+        # Create bar chart
+        fig, ax = plt.subplots(figsize=(6, 3))
+        ax.bar(labels, durations, color=colors)
+        ax.set_ylabel("focus time (minutes)")
+        ax.set_title("focus time per subject (all history)", fontweight="bold")
+        plt.xticks(rotation=45, ha="right")
+
         # Give more space at bottom for labels
         fig.subplots_adjust(bottom=0.3)
 
@@ -291,4 +355,7 @@ class Statistics(QDialog):
         canvas = FigureCanvas(fig)
         canvas.setMaximumSize(600, 450)
         layout.addWidget(canvas, 0)
-    
+
+# If less then 4% on pie chart then dont show
+def autopct_filter(pct):
+    return f'{pct:.1f}%' if pct >= 4 else ''
