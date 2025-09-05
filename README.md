@@ -13,14 +13,14 @@ Focus periods are the core of deep work. When you first run monkmode, the defaul
 <h3>Creating a New Focus Period</h3>
 
 MonkMode lets you create custom focus periods however you like.
-<img width="656" height="966" alt="monkmode_add_period" src="https://github.com/user-attachments/assets/13ee569a-bdad-4070-978e-ba93af54d399" /> 
-<img width="367" height="469" alt="image" src="https://github.com/user-attachments/assets/40602539-cb6b-437c-beef-7c4d3cb37f6c" />
+<img width="656" height="966" alt="monkmode_add_period" src="https://github.com/user-attachments/assets/13ee569a-bdad-4070-978e-ba93af54d399"/> 
+<img width="367" height="469" alt="image" src="https://github.com/user-attachments/assets/40602539-cb6b-437c-beef-7c4d3cb37f6c"/>
 
 <h3>Editing an Existing Focus Period</h3>
 
 <p>You can edit any previously created focus period, including the default "pomodoro". When you press Edit, the currently selected focus period will be modified according to your changes.</p>
-<img width="657" height="966" alt="monkmode_edit_period" src="https://github.com/user-attachments/assets/4c997207-2e6c-4b52-8906-55313f257042" />
-<img width="364" height="465" alt="image" src="https://github.com/user-attachments/assets/9712eaf3-3994-4b04-985e-f62d149b40a2" />
+<img width="657" height="966" alt="monkmode_edit_period" src="https://github.com/user-attachments/assets/4c997207-2e6c-4b52-8906-55313f257042"/>
+<img width="364" height="465" alt="image" src="https://github.com/user-attachments/assets/9712eaf3-3994-4b04-985e-f62d149b40a2"/>
 
 <h3>Deleting a Focus Period</h3>
 
@@ -44,7 +44,7 @@ To edit a focus subject, first select it from the combobox. When you press Edit,
 Archiving is useful for topics you’ve finished (for example, a completed university class or a side project). Archiving sets the subject aside without deleting it, so it still appears in your statistics menu.
 Note: The default focus subject cannot be archived.
 
-<img width="662" height="961" alt="monkmode_archive_subject" src="https://github.com/user-attachments/assets/8c59765c-e022-4781-8561-34880fc70ef6" />
+<img width="662" height="961" alt="monkmode_archive_subject" src="https://github.com/user-attachments/assets/8c59765c-e022-4781-8561-34880fc70ef6"/>
 
 <h3>Deleting a Focus Subject</h3>
 
@@ -53,12 +53,12 @@ You can delete any focus subject except the default one. Be careful — this act
 <h2>How Focus Works</h2>
 
 Starting a focus session is simple. 
-First, select the focus period you want to use and the subject or topic you’ll focus on. 
-Next, press “Focus” and choose the number of focus sessions you want to complete.
-<img width="653" height="958" alt="monkmode_start_focus" src="https://github.com/user-attachments/assets/3e644003-05dc-44a9-a07a-f2ffb7008f35" />
-You’ll see the total duration of your focus time along with a breakdown of the sessions. 
-Finally, press “Start Focus” to begin the timer.
-<img width="373" height="335" alt="monkmode_start_focus_2" src="https://github.com/user-attachments/assets/56de15d4-5861-4424-a7f7-705e176dc6a1" />
+<p>First, select the focus period you want to use and the subject or topic you’ll focus on.</p>
+<p>Next, press “Focus” and choose the number of focus sessions you want to complete.</p>
+<img width="653" height="958" alt="monkmode_start_focus" src="https://github.com/user-attachments/assets/3e644003-05dc-44a9-a07a-f2ffb7008f35"/>
+<p></p>You’ll see the total duration of your focus time along with a breakdown of the sessions.</p>
+<p>Finally, press “Start Focus” to begin the timer.</p>
+<img width="373" height="335" alt="monkmode_start_focus_2" src="https://github.com/user-attachments/assets/56de15d4-5861-4424-a7f7-705e176dc6a1"/>
 
 5. While in focus
    Every time a focus session starts, and everytime a break session starts, you'll hear a sound, both different, signaling the start of that particular session. There's a small pop-up text aswell in the bottom-left corner telling you
@@ -124,6 +124,7 @@ With this, i think we've gone over everything that is important. If you have any
 Happy focusing! - dop14
 
    
+
 
 
 
