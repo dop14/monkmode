@@ -4,6 +4,7 @@ __pycache__/
 
 # Ignore local database
 monkmode.db
+database_backup/
 
 # Ignore todo
 todo.txt

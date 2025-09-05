@@ -37,7 +37,7 @@
         <x>0</x>
         <y>0</y>
         <width>623</width>
-        <height>2272</height>
+        <height>2300</height>
        </rect>
       </property>
       <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -191,6 +191,19 @@
            </widget>
           </item>
          </layout>
+        </widget>
+       </item>
+       <item alignment="Qt::AlignmentFlag::AlignHCenter">
+        <widget class="QLabel" name="no_data_message">
+         <property name="font">
+          <font>
+           <pointsize>12</pointsize>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
         </widget>
        </item>
        <item>

@@ -18,6 +18,8 @@ class Statistics(QDialog):
         self.setWindowIcon(QIcon("logo/monkmode.png"))
         self.main_window = main_window
 
+        self.ui.no_data_message.hide()
+
         self.show_stats()
         self.show_karma_and_streaks()
         self.set_color_mode()
@@ -133,8 +135,16 @@ class Statistics(QDialog):
             plt.rcParams.update(plt.rcParamsDefault)
 
     def plot_focus_chart(self):
+        self.ui.focusFrame.show()
+
         # Get data
         rows = get_focus_data()
+
+        if rows == []:
+            self.ui.focusFrame.hide()
+            self.ui.no_data_message.show()
+            self.ui.no_data_message.setText("Your statistics will appear here after you complete a focus session.")
+            return
 
         # Prepare data
         row_dict = {row[0]: row[1]/60 for row in rows} 
@@ -173,8 +183,15 @@ class Statistics(QDialog):
         self.ui.focusFrame.setLayout(layout)
 
     def plot_subject_chart(self):
+        # Show the frame if previously was hidden
+        self.ui.subjectFrame.show()
         # Get data
         rows = get_subject_data_stats()
+        
+        # If no data, hide the frame
+        if rows == []:
+            self.ui.subjectFrame.hide()
+            return
 
         # Prepare labels and values
         labels = [row[0] for row in rows]
@@ -220,8 +237,14 @@ class Statistics(QDialog):
         layout.addWidget(canvas, 0)  
 
     def plot_period_distribution(self):
+        self.ui.periodFrame.show()
+
         # Get data
         rows = get_period_data_stats()
+        
+        if rows == []:
+            self.ui.periodFrame.hide()
+            return
 
         # If no data, clear frame and exit
         layout = self.ui.periodFrame.layout()
@@ -270,8 +293,14 @@ class Statistics(QDialog):
 
 
     def plot_subject_bar_chart(self):
+        self.ui.subjectBarFrame.show()
+
         # Get data
         rows = get_subject_time_data()
+
+        if rows == []:
+            self.ui.subjectBarFrame.hide()
+            return
 
         # Ensure layout exists and clear old chart
         layout = self.ui.subjectBarFrame.layout()
@@ -284,9 +313,6 @@ class Statistics(QDialog):
                 if w:
                     layout.removeWidget(w)
                     w.setParent(None)
-
-        if not rows:
-            return
 
         # Prepare labels and values
         labels = [r[0] for r in rows]
@@ -312,10 +338,21 @@ class Statistics(QDialog):
         layout.addWidget(canvas, 0)
 
     def plot_subject_bar_chart_allhistory(self):
+        self.ui.subjectAllBarFrame.show()
+        self.ui.include_archived_checkbox.show()
+
         if self.ui.include_archived_checkbox.isChecked():
             rows = get_subject_time_data_all_include_archived()
+            if rows == []:
+                self.ui.subjectAllBarFrame.hide()
+                self.ui.include_archived_checkbox.hide()
+                return
         else:
             rows = get_subject_time_data_all_not_include_archived()
+            if rows == []:
+                self.ui.subjectAllBarFrame.hide()
+                self.ui.include_archived_checkbox.hide()
+                return
 
         # Ensure layout exists, clear old chart
         layout = self.ui.subjectAllBarFrame.layout()

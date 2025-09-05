@@ -31,6 +31,7 @@ class AboutWindow(QDialog):
         <ul>
             <li>Quotes provided by <a href="https://zenquotes.io/">ZenQuotes API</a></li>
             <li>Logo created with ChatGPT-5</li>
+            <li>Tested by: <a href="https://github.com/zsoci1">zsoci1</a></li>
         </ul>
 
         <p><b>License:</b> This project is licensed under the 

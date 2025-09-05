@@ -33,7 +33,7 @@ class Ui_Form(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollAreaWidgetContents = QWidget()
         self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
-        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 623, 2272))
+        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 623, 2300))
         self.verticalLayout_2 = QVBoxLayout(self.scrollAreaWidgetContents)
         self.verticalLayout_2.setObjectName(u"verticalLayout_2")
         self.overallFrame = QFrame(self.scrollAreaWidgetContents)
@@ -116,6 +116,15 @@ class Ui_Form(object):
 
 
         self.verticalLayout_2.addWidget(self.overallFrame)
+
+        self.no_data_message = QLabel(self.scrollAreaWidgetContents)
+        self.no_data_message.setObjectName(u"no_data_message")
+        font2 = QFont()
+        font2.setPointSize(12)
+        font2.setBold(True)
+        self.no_data_message.setFont(font2)
+
+        self.verticalLayout_2.addWidget(self.no_data_message, 0, Qt.AlignmentFlag.AlignHCenter)
 
         self.horizontalSpacer = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
 
@@ -211,6 +220,7 @@ class Ui_Form(object):
         self.longest_streak.setText(QCoreApplication.translate("Form", u"longest streak:", None))
         self.karma.setText(QCoreApplication.translate("Form", u"karma:", None))
         self.karma_level.setText(QCoreApplication.translate("Form", u"karma level:", None))
+        self.no_data_message.setText("")
         self.include_archived_checkbox.setText(QCoreApplication.translate("Form", u"include archived subjects", None))
     # retranslateUi
 
