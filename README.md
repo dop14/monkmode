@@ -1,7 +1,10 @@
-1. App's goal and idea behind it
-The ultimate goal of monkmode is achieving a monk-like focus state, where you can maximize your deep work, by dividing your set focus goal into focus sessions, short breaks and long breaks.
-Dividing your set focus goal into focus sessions, short breaks and long breaks, is a well known technique used by many high-achievers and students. By using focused bursts, 
-you can maintain a higher concentration level, which in turn allows you to accomplish more.
+monkmode
+<img width="1024" height="1024" alt="monkmode" src="https://github.com/user-attachments/assets/b6afc1d8-68b1-42ad-b760-2690c1c40023" />
+
+App's Goal and Idea Behind It
+
+The ultimate goal of monkmode is to help you achieve a monk-like state of focus, allowing you to maximize deep work. It does this by breaking your overall focus goal into structured focus sessions, short breaks, and long breaks.
+This approach is a well-known technique used by high achievers and students alike. By working in focused bursts, you can maintain higher levels of concentration, which in turn helps you accomplish more.
 
 2.What are focus periods
 Focus periods - is the true essence of deep work. When you first run monkmode, the default focus period will be called "pomodoro". The "pomodoro" method is the most known focus
@@ -66,29 +69,35 @@ At the top-left corner you can see all the options of the action bar.
    In the "help" menu, there's two options. One is "how to use", which will link to this README.md file you're currently reading. The other is "about", which contains basic information about the app, the developer, credits, the lincense       used.
 
 9. Statistics
-On the main page you can see the current week's focus time, and your current streak. If you press "show all", you can see more of these.
+On the main page you can see the current week's time spent in focus, and your current streak. If you press "show all", you can see more data.
+
+a. Focus statistics
+These focus statistics speaks for themselves. 
+One thing to note is that "focus sessions completed" only counts if you've completed that whole focus sessions (meaning you didn't stop it).
+
+b. Streak & Karma statistics
+- The daily goal achieved showed how many times you've hit your daily goal.
+- The current streak shows your most recent, current streak.
+How streak works: Streaks on the weekdays are strict, meaning that if you have don't complete your daily focus goal on any weekday, your streak will reset to 0.
+However, on weekends, its optional. If you choose to complete your daily focus goal, then your streak will be added, if you don't complete it, then the streak won't reset to 0.
+- The longest streak shows your all time longest streak.
+- Karma is a metric that shows your consistency over the past 3 months.
+How karma is calculcated: karma = (completed_days / relevant_days * 100). Completed days are the number of days you've completed your daily focus goal. Relevant days are the number of weekdays in the past 3 months, plus the number of weekend days where you've completed your daily focus goal.
+- Karma levels shows your current "monk status" in your focus journey. There are 7 different karma levels for you to achieve, but i won't spoil them here, that's your job to discover.
+
+c. Charts
+After completeing atleast one focus session, you'll see 5 different charts in the statistics window.
+- The first one is a line chart that shows your daily focus time in the last 30 days. With this you can see the ups and downs of your focus time.
+- The second on is a pie chart that shows how your focus is distributed by the subjects in the last 30 days. 
+- The third is a pie chart aswell that shows how your focus is distributed by the period setting in the last 30 days.
+- The fourth is a bar chart, that shows the focus time per subject in the last 30 days.
+- The last, fifth is a bar chart aswell, that works exactly like the previous chart, but not in the last 30 days, but all history. You can select to see, or unsee the archived subjects aswell.
+   
+
+With this, i think we've gone over everything that is important. If you have any questions feel free to ask them in the github repo.
+Happy focusing! - dop14
 
    
-   
 
-
-
-
-11. Basic statistics (explaining each statistics metric and how they work):
-   a. total focus time
-   b. avg focus time
-   c. longest focus session
-   d. focus sessions completed (Note: Focus sessions completed only counts if you complete the whole focus session, without stopping it.)
-   e. daily goal achieved
-   f. current streak and longest streak
-   g. how karma (consistency works)
-   h. how karma levels work (picture of levels)
-12. Chart statistics
-   a. daily focus line chart
-   b. focus time distribution by subject
-   c. focus time distribution by focus period
-   d. focus time per subject
-   e. focus timer per subject (all history)
-   
 
 
