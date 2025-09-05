@@ -12,18 +12,13 @@ Focus periods are the core of deep work. When you first run monkmode, the defaul
 
 <h3>Creating a New Focus Period</h3>
 
-MonkMode lets you create custom focus periods however you like. You can set:
-
-- A name for the period
-- The focus session length
-- Optional short and long breaks
-
+MonkMode lets you create custom focus periods however you like.
 <img width="656" height="966" alt="monkmode_add_period" src="https://github.com/user-attachments/assets/13ee569a-bdad-4070-978e-ba93af54d399" /> 
 <img width="367" height="469" alt="image" src="https://github.com/user-attachments/assets/40602539-cb6b-437c-beef-7c4d3cb37f6c" />
 
 <h3>Editing an Existing Focus Period</h3>
 
-You can edit any previously created focus period, including the default "pomodoro". When you press Edit, the currently selected focus period will be modified according to your changes.
+<p>You can edit any previously created focus period, including the default "pomodoro". When you press Edit, the currently selected focus period will be modified according to your changes.</p>
 <img width="657" height="966" alt="monkmode_edit_period" src="https://github.com/user-attachments/assets/4c997207-2e6c-4b52-8906-55313f257042" />
 <img width="364" height="465" alt="image" src="https://github.com/user-attachments/assets/9712eaf3-3994-4b04-985e-f62d149b40a2" />
 
@@ -116,6 +111,7 @@ With this, i think we've gone over everything that is important. If you have any
 Happy focusing! - dop14
 
    
+
 
 
 
