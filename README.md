@@ -27,21 +27,29 @@ MonkMode lets you create custom focus periods however you like.
 You can delete any focus period except the default one. Be careful — this action cannot be undone.
 <img width="657" height="957" alt="image" src="https://github.com/user-attachments/assets/e54f1063-4371-46f7-9a82-d875835245bb"/>
 
-3. What are focus subjects
-Focus subjects - are the topics you will be focusing on.
+<h2>What Are Focus Subjects</h2>
 
-a. Creating a new focus subject
-When creating a new focus subject you can be as detailed as you want to be. The only parameter to give here is the name of the topic you'd like to focus on.
+Focus subjects are the topics you will be concentrating on during your focus sessions.
 
-b. Editing an existing focus subject
-You can always edit previously created focus subjects, or even the default "study" one. The edited focus subject will always be the currently chosen focus subject in the combobox.
+<h3>Creating a New Focus Subject</h3>
 
-c. Archiving a focus subject
-The idea behind archiving a focus subject is that whenever you're done with a topic (like your maths class in university, or you've completed your side project) you can set them aside without deleting them. 
-This way it will still show up on your statistics menu. The default "study" focus subject can not be archived.
+When creating a new focus subject, you can be as detailed as you like. The only required parameter is the name of the topic you want to focus on.
+The interface for adding, editing, deleting focus subjects works the same as for focus periods (see screenshots above).”
 
-d. Deleting a focus subject
-You can choose to delete any focus subject, with the sole exception of the default one. Be aware that this action cannot be undone, and this way you'll lose any progress linked to that focus subject.
+<h3>Editing an Existing Focus Subject</h3>
+
+To edit a focus subject, first select it from the combobox. When you press Edit, the currently selected focus subject — including the default subject if chosen — will be modified according to your changes.
+
+<h3>Archiving a Focus Subject</h3>
+
+Archiving is useful for topics you’ve finished (for example, a completed university class or a side project). Archiving sets the subject aside without deleting it, so it still appears in your statistics menu.
+Note: The default focus subject cannot be archived.
+
+<img width="662" height="961" alt="monkmode_archive_subject" src="https://github.com/user-attachments/assets/8c59765c-e022-4781-8561-34880fc70ef6" />
+
+<h3>Deleting a Focus Subject</h3>
+
+You can delete any focus subject except the default one. Be careful — this action cannot be undone, and any progress linked to that subject will be lost.
 
 4. How focus works
 Starting a focus session couldn't be easier. First, you choose the focus period you'd like to use, and the subject, topic you'd like to focus on. Then you press "focus", and choose the number of focus sessions you'd like to have.
@@ -111,6 +119,7 @@ With this, i think we've gone over everything that is important. If you have any
 Happy focusing! - dop14
 
    
+
 
 
 
