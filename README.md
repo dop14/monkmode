@@ -25,11 +25,30 @@ When creating a new focus subject you can be as detailed as you want to be. The 
 b. Editing an existing focus subject
 You can always edit previously created focus subjects, or even the default "study" one. The edited focus subject will always be the currently chosen focus subject in the combobox.
 
-5. What are focus subjects
-6. How focus works (choosing number of sessions)
-7. While in focus:
-   a. pause, resume, stop
-   b. small focus window (hide)
+c. Archiving a focus subject
+The idea behind archiving a focus subject is that whenever you're done with a topic (like your maths class in university, or you've completed your side project) you can set them aside without deleting them. 
+This way it will still show up on your statistics menu. The default "study" focus subject can not be archived.
+
+d. Deleting a focus subject
+You can choose to delete any focus subject, with the sole exception of the default one. Be aware that this action cannot be undone, and this way you'll lose any progress linked to that focus subject.
+
+4. How focus works
+Starting a focus session couldn't be easier. First, you choose the focus period you'd like to use, and the subject, topic you'd like to focus on. Then you press "focus", and choose the number of focus sessions you'd like to have.
+You'll see the total duration of the focus, aswell as the breakdown of it. Lastly you press "start focus", and the timer begins.
+
+5. While in focus
+   
+   a. Pause, resume and stop
+   While you're in focus, you can always pause, or stop the timer. Pausing the timer will freeze the countdown until you press resume. Stopping the focus session will completely stop the focus session. By confirming it, the focus will         end,but don't worry, any progress made will be saved aswell.
+
+   b. Small view
+   At the top-left corner, you can see a small icon, that will open up a small view version of monkmode. This can be used to see your progress while you're doing other tasks. Pause, resume and stop works exactly like previously explained.
+   You can always go back to fullscreen view if you'd like to. If you find seeing the time remaining distracting, you can press "hide time" to hide it.
+
+6. Daily focus goal
+
+
+
 8. How daily focus goal works
 9. Settings:
    a. changing the default values (Note: Changing your daily focus goal after completing it will not affect that day’s completion status.)
@@ -53,3 +72,4 @@ You can always edit previously created focus subjects, or even the default "stud
    d. focus time per subject
    e. focus timer per subject (all history)
    
+
