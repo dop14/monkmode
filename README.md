@@ -30,11 +30,10 @@ You can delete any focus period except the default one. Be careful — this acti
 <h2>What Are Focus Subjects</h2>
 
 Focus subjects are the topics you will be concentrating on during your focus sessions.
-
+Note: The interface for adding, editing, deleting focus subjects works the same as for focus periods (see screenshots above).
 <h3>Creating a New Focus Subject</h3>
 
 When creating a new focus subject, you can be as detailed as you like. The only required parameter is the name of the topic you want to focus on.
-The interface for adding, editing, deleting focus subjects works the same as for focus periods (see screenshots above).”
 
 <h3>Editing an Existing Focus Subject</h3>
 
@@ -51,9 +50,15 @@ Note: The default focus subject cannot be archived.
 
 You can delete any focus subject except the default one. Be careful — this action cannot be undone, and any progress linked to that subject will be lost.
 
-4. How focus works
-Starting a focus session couldn't be easier. First, you choose the focus period you'd like to use, and the subject, topic you'd like to focus on. Then you press "focus", and choose the number of focus sessions you'd like to have.
-You'll see the total duration of the focus, aswell as the breakdown of it. Lastly you press "start focus", and the timer begins.
+<h2>How Focus Works</h2>
+
+Starting a focus session is simple. 
+First, select the focus period you want to use and the subject or topic you’ll focus on. 
+Next, press “Focus” and choose the number of focus sessions you want to complete.
+<img width="653" height="958" alt="monkmode_start_focus" src="https://github.com/user-attachments/assets/3e644003-05dc-44a9-a07a-f2ffb7008f35" />
+You’ll see the total duration of your focus time along with a breakdown of the sessions. 
+Finally, press “Start Focus” to begin the timer.
+<img width="373" height="335" alt="monkmode_start_focus_2" src="https://github.com/user-attachments/assets/56de15d4-5861-4424-a7f7-705e176dc6a1" />
 
 5. While in focus
    Every time a focus session starts, and everytime a break session starts, you'll hear a sound, both different, signaling the start of that particular session. There's a small pop-up text aswell in the bottom-left corner telling you
@@ -119,6 +124,7 @@ With this, i think we've gone over everything that is important. If you have any
 Happy focusing! - dop14
 
    
+
 
 
 
