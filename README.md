@@ -1,23 +1,32 @@
-monkmode
+<h1>monkmode</h1>
 <img width="1024" height="1024" alt="monkmode" src="https://github.com/user-attachments/assets/b6afc1d8-68b1-42ad-b760-2690c1c40023" />
 
-App's Goal and Idea Behind It
+<h2>App's Goal and Idea Behind It</h2>
 
 The ultimate goal of monkmode is to help you achieve a monk-like state of focus, allowing you to maximize deep work. It does this by breaking your overall focus goal into structured focus sessions, short breaks, and long breaks.
 This approach is a well-known technique used by high achievers and students alike. By working in focused bursts, you can maintain higher levels of concentration, which in turn helps you accomplish more.
 
-2.What are focus periods
-Focus periods - is the true essence of deep work. When you first run monkmode, the default focus period will be called "pomodoro". The "pomodoro" method is the most known focus
-period out there. It divides the focus sessions into: 25 minutes of focus, then a 5 minute break. After completeing 4 focus sessions, the next break will be a "long break" which is usually 15 minutes.
+<h2>What Are Focus Periods</h2>
 
-  a. Creating a new focus period
-  Monkmode allows you to create new focus periods, however you like them. You can customize your own period by setting a name for that perid, a focus time, and optionally choosing a short, and long break.
+Focus periods are the core of deep work. When you first run monkmode, the default focus period is called "pomodoro". The pomodoro method is one of the most well-known focus techniques: it divides work into 25-minute focus sessions followed by 5-minute breaks. After completing four focus sessions, the next break is a long break, usually around 15 minutes.
 
-  b. Editing an existing focus period
-  You can always edit previously created focus periods, or even the default "pomodoro" one. The edited focus period will always be the currently chosen focus period in the combobox.
+<h3>Creating a New Focus Period</h3>
 
-  c. Deleting a focus period
-  You can choose to delete any focus period, with the sole exception of the default one. Be aware that this action cannot be undone!
+MonkMode lets you create custom focus periods however you like. You can set:
+
+- A name for the period
+- The focus session length
+- Optional short and long breaks
+
+<h3>Editing an Existing Focus Period</h3>
+
+You can edit any previously created focus period, including the default "pomodoro". When you press Edit (<img width="73" height="24" alt="image" src="https://github.com/user-attachments/assets/0c016584-86fa-411c-a3fc-dc77ad5e8f43"/>), 
+the currently selected focus period will be modified according to your changes.
+
+<h3>Deleting a Focus Period</h3>
+
+You can delete any focus period except the default one. Be careful — this action cannot be undone.
+
 
 3. What are focus subjects
 Focus subjects - are the topics you will be focusing on.
@@ -98,6 +107,7 @@ With this, i think we've gone over everything that is important. If you have any
 Happy focusing! - dop14
 
    
+
 
 
 
