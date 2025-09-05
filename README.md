@@ -18,8 +18,7 @@ MonkMode lets you create custom focus periods however you like. You can set:
 - The focus session length
 - Optional short and long breaks
 
-<img width="656" height="966" alt="monkmode_add_period" src="https://github.com/user-attachments/assets/13ee569a-bdad-4070-978e-ba93af54d399" />
-<img width="367" height="469" alt="image" src="https://github.com/user-attachments/assets/40602539-cb6b-437c-beef-7c4d3cb37f6c" />
+<img width="656" height="966" alt="monkmode_add_period" src="https://github.com/user-attachments/assets/13ee569a-bdad-4070-978e-ba93af54d399" /> <img width="367" height="469" alt="image" src="https://github.com/user-attachments/assets/40602539-cb6b-437c-beef-7c4d3cb37f6c" />
 
 <h3>Editing an Existing Focus Period</h3>
 
@@ -114,6 +113,7 @@ With this, i think we've gone over everything that is important. If you have any
 Happy focusing! - dop14
 
    
+
 
 
 
