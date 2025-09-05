@@ -37,26 +37,44 @@ Starting a focus session couldn't be easier. First, you choose the focus period 
 You'll see the total duration of the focus, aswell as the breakdown of it. Lastly you press "start focus", and the timer begins.
 
 5. While in focus
+   Every time a focus session starts, and everytime a break session starts, you'll hear a sound, both different, signaling the start of that particular session. There's a small pop-up text aswell in the bottom-left corner telling you
+   if a focus session or a break session is about to start. These notifications (sound and pop-up) can be turned off in the settings menu.
    
    a. Pause, resume and stop
    While you're in focus, you can always pause, or stop the timer. Pausing the timer will freeze the countdown until you press resume. Stopping the focus session will completely stop the focus session. By confirming it, the focus will         end,but don't worry, any progress made will be saved aswell.
 
    b. Small view
-   At the top-left corner, you can see a small icon, that will open up a small view version of monkmode. This can be used to see your progress while you're doing other tasks. Pause, resume and stop works exactly like previously explained.
+   At the top-right corner, you can see a small icon, that will open up a small view version of monkmode. This can be used to see your progress while you're doing other tasks. Pause, resume and stop works exactly like previously explained.
    You can always go back to fullscreen view if you'd like to. If you find seeing the time remaining distracting, you can press "hide time" to hide it.
 
-6. Daily focus goal
+7. Daily focus goal
+Your daily focus goal is the time spent in focus, that you'd like to complete each day. The minimum time is 1 hours. You can change your daily focus goal in the settings menu, which you'll see a bit later. By completeing your daily focus goal you'll earn streaks, which i'm sure most people are familiar with, but it will be explained too later on.
+
+8. Action bar
+At the top-left corner you can see all the options of the action bar.
+
+   a. Settings
+   In the settings menu you can change default values, choose to show or unshow the daily quote, or to turn off focus notifications.
+   At the change default values menu you can choose the change the daily focus goal, the default period setting, and the default subject.
+   Note that changing your daily focus goal after completing it will not affect that day’s completion status.
+   The default period setting and subject are the ones that are chosen on default when you enter the app.
+
+   b. Archive
+   This is the place where you can see all of your archived subjects, and of course, you can unarchive them aswell.
+
+   c. Help
+   In the "help" menu, there's two options. One is "how to use", which will link to this README.md file you're currently reading. The other is "about", which contains basic information about the app, the developer, credits, the lincense       used.
+
+9. Statistics
+On the main page you can see the current week's focus time, and your current streak. If you press "show all", you can see more of these.
+
+   
+   
 
 
 
-8. How daily focus goal works
-9. Settings:
-   a. changing the default values (Note: Changing your daily focus goal after completing it will not affect that day’s completion status.)
-   b. showing daily quote
-   c. turning off focus notifications
-   d. unarchiving subjects
-   e. about and help page
-10. Basic statistics (explaining each statistics metric and how they work):
+
+11. Basic statistics (explaining each statistics metric and how they work):
    a. total focus time
    b. avg focus time
    c. longest focus session
@@ -65,11 +83,12 @@ You'll see the total duration of the focus, aswell as the breakdown of it. Lastl
    f. current streak and longest streak
    g. how karma (consistency works)
    h. how karma levels work (picture of levels)
-11. Chart statistics
+12. Chart statistics
    a. daily focus line chart
    b. focus time distribution by subject
    c. focus time distribution by focus period
    d. focus time per subject
    e. focus timer per subject (all history)
    
+
 
