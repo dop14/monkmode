@@ -18,10 +18,12 @@ MonkMode lets you create custom focus periods however you like. You can set:
 - The focus session length
 - Optional short and long breaks
 
+<img width="656" height="966" alt="monkmode_add_period" src="https://github.com/user-attachments/assets/13ee569a-bdad-4070-978e-ba93af54d399" />
+<img width="367" height="469" alt="image" src="https://github.com/user-attachments/assets/40602539-cb6b-437c-beef-7c4d3cb37f6c" />
+
 <h3>Editing an Existing Focus Period</h3>
 
-You can edit any previously created focus period, including the default "pomodoro". When you press Edit (<img width="73" height="24" alt="image" src="https://github.com/user-attachments/assets/0c016584-86fa-411c-a3fc-dc77ad5e8f43"/>), 
-the currently selected focus period will be modified according to your changes.
+You can edit any previously created focus period, including the default "pomodoro". When you press Edit, the currently selected focus period will be modified according to your changes.
 
 <h3>Deleting a Focus Period</h3>
 
@@ -101,12 +103,18 @@ After completeing atleast one focus session, you'll see 5 different charts in th
 - The third is a pie chart aswell that shows how your focus is distributed by the period setting in the last 30 days.
 - The fourth is a bar chart, that shows the focus time per subject in the last 30 days.
 - The last, fifth is a bar chart aswell, that works exactly like the previous chart, but not in the last 30 days, but all history. You can select to see, or unsee the archived subjects aswell.
-   
+
+10. Theme
+The theme of the app changes accordingly to your OS theme.
+
+
+IMPORTANT: HOW TO RUN THE APP. EXE FILE
 
 With this, i think we've gone over everything that is important. If you have any questions feel free to ask them in the github repo.
 Happy focusing! - dop14
 
    
+
 
 
 
