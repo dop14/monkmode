@@ -30,7 +30,7 @@ You can delete any focus period except the default one. Be careful — this acti
 <h2>What Are Focus Subjects</h2>
 
 Focus subjects are the topics you will be concentrating on during your focus sessions.
-Note: The interface for adding, editing, deleting focus subjects works the same as for focus periods (see screenshots above).
+<p>Note: The interface for adding, editing, deleting focus subjects works the same as for focus periods (see screenshots above).</p>
 <h3>Creating a New Focus Subject</h3>
 
 When creating a new focus subject, you can be as detailed as you like. The only required parameter is the name of the topic you want to focus on.
@@ -60,70 +60,125 @@ Starting a focus session is simple.
 <p>Finally, press “Start Focus” to begin the timer.</p>
 <img width="373" height="335" alt="monkmode_start_focus_2" src="https://github.com/user-attachments/assets/56de15d4-5861-4424-a7f7-705e176dc6a1"/>
 
-5. While in focus
-   Every time a focus session starts, and everytime a break session starts, you'll hear a sound, both different, signaling the start of that particular session. There's a small pop-up text aswell in the bottom-left corner telling you
-   if a focus session or a break session is about to start. These notifications (sound and pop-up) can be turned off in the settings menu.
+<h2>While in Focus</h2>
+
+Each time a focus session or a break begins, you’ll hear a distinct sound signaling the start of that session. A small pop-up text in the bottom-left corner will also appear to let you know whether a focus or break session is starting. Both the sound and pop-up notifications can be turned off in the settings menu.
+
+<h3>Pause, Resume, and Stop</h3>
+
+While you’re in focus, you can always pause or stop the timer:
+
+Pause freezes the countdown until you press Resume.
+
+Stop ends the focus session entirely (after confirmation). Don’t worry — any progress you’ve already made will still be saved.
+<img width="658" height="966" alt="monkmode_in_focus" src="https://github.com/user-attachments/assets/f61119ce-dc74-486e-85b6-754dc1dbf9f8" />
+
+<h3>Small View</h3>
+
+In the top-right corner, you’ll find an icon that opens a small view of MonkMode. This view allows you to track your progress while working on other tasks. The pause, resume, and stop functions work exactly as described above.
+
+<p>You can always switch back to the fullscreen view at any time. If you find the countdown distracting, you can press “Hide Time” to conceal the remaining time.</p>
+<img width="263" height="278" alt="monkmode_small_view" src="https://github.com/user-attachments/assets/0272c738-cee5-40b7-a646-4f5ba161eb5e" />
+
+<h2>Daily Focus Goal</h2>
+
+<p>Your daily focus goal is the amount of time you want to spend in focused work each day. The minimum goal is 1 hour.
+You can adjust your daily focus goal in the settings menu.
+By completing your daily goal, you’ll earn streaks — a familiar concept for many productivity apps.</p>
+
+<img width="656" height="961" alt="monkmode_daily_focus" src="https://github.com/user-attachments/assets/cdcfa3c2-f0e6-4131-89cb-fa031e0a10e2" />
+
+
+<h2>Action Bar</h2>
+
+<p>The action bar is located in the top-left corner of the app and provides quick access to key options.</p>
+<img width="660" height="962" alt="monkmode_actionbar" src="https://github.com/user-attachments/assets/1d073178-be32-4321-ac84-b3c36f20a2cf" />
+
+<h3>Settings</h3>
+In the settings menu, you can:
+<ul>
+   <li>Change default values</li>
+   <li>Choose to show or hide the daily quote</li>
+   <li>Turn focus notifications on or off</li>
+</ul>
+<p></p>Note: Changing your daily focus goal after completing it will not affect that day’s completion status.
+The default focus period and subject are automatically selected when you launch the app.</p>
+<img width="434" height="171" alt="Screenshot 2025-09-07 135937" src="https://github.com/user-attachments/assets/913ded4a-a869-4d0f-a930-d2a1c4f529c0" />
+
+<h3>Archive</h3>
+
+The archive is where all of your archived subjects are stored. From here, you can also unarchive them at any time.
+
+<h3>Help</h3>
+The help menu contains two options:
+<ul>
+   <li>How to Use → links directly to this README.md file (the guide you’re reading now).</li>
+   <li>About → provides basic information about the app, the developer, credits, and the license used.</li>
+</ul>
+
+
+<h2>Statistics</h2>
+<p>
+  On the main page, you can see your current week’s focus time  and your
+  current streak. Press “Show All” to access more detailed statistics.
+</p>
+
+<h3>Focus statistics</h3>
+<p>These statistics give you a clear overview of your progress.</p>
+Focus sessions completed</strong> only count if you finish the entire session (sessions you stop early do not count).
+
+<h3>Streak &amp; Karma statistics</h3>
+<ul>
+  <li>Daily goal achieved — shows how many times you’ve completed your daily focus goal.</li>
+  <li>
+    Current streak — shows your ongoing streak.
+    <ul>
+      <li><em>Weekdays</em>: streaks are strict — if you miss your daily goal on a weekday, your streak resets to 0.</li>
+      <li><em>Weekends</em>: optional — if you complete your daily goal, your streak increases; if you don’t, your streak will not reset.</li>
+    </ul>
+  </li>
+  <li><strong>Longest streak</strong> — your all-time longest streak.</li>
+  <li>
+    <strong>Karma</strong> — a metric showing your consistency over the past 3 months.
+    <p><strong>Formula:</strong></p>
+    <pre><code>karma = (completed_days / relevant_days) * 100</code></pre>
+    <p>
+      <em>completed_days</em> = number of days you completed your daily goal.<br>
+      <em>relevant_days</em> = all weekdays in the past 3 months + weekend days where you completed your daily goal.
+    </p>
+  </li>
+  <li><strong>Karma levels</strong> — reflect your “monk status” in your focus journey. There are 7 levels to discover.</li>
+</ul>
+<img width="810" height="921" alt="monkmode_statistics" src="https://github.com/user-attachments/assets/420b1bcd-1469-415d-943f-ebda1627d001" />
+
+<h3>Charts</h3>
+<p>After completing at least one focus session, 5 charts will appear in the statistics window:</p>
+<ol>
+  <li><strong>Line chart</strong> — shows your daily focus time over the last 30 days.</li>
+  <li><strong>Pie chart</strong> — shows how your focus is distributed across subjects in the last 30 days.</li>
+  <li><strong>Pie chart</strong> — shows how your focus is distributed across period settings in the last 30 days.</li>
+  <li><strong>Bar chart</strong> — shows the focus time per subject in the last 30 days.</li>
+  <li><strong>Bar chart</strong> — same as the previous one, but for all history (archived subjects can be shown or hidden).</li>
+</ol>
+
+<h2>Theme</h2>
+<p>
+  The app’s theme automatically adapts to your operating system’s theme.
+  If your OS is in dark mode, the app will use a dark theme; if it’s in light mode, the app will use a light theme.
+</p>
+
+
+<p>
+<h2>Wrapping Up</h2>
+  With this, we’ve covered all the important features. If you have any questions, feel free to ask them in the GitHub repository.
+</p>
+<p>
+  <strong>Happy focusing!</strong> – dop14
+</p>
+
+
    
-   a. Pause, resume and stop
-   While you're in focus, you can always pause, or stop the timer. Pausing the timer will freeze the countdown until you press resume. Stopping the focus session will completely stop the focus session. By confirming it, the focus will         end,but don't worry, any progress made will be saved aswell.
 
-   b. Small view
-   At the top-right corner, you can see a small icon, that will open up a small view version of monkmode. This can be used to see your progress while you're doing other tasks. Pause, resume and stop works exactly like previously explained.
-   You can always go back to fullscreen view if you'd like to. If you find seeing the time remaining distracting, you can press "hide time" to hide it.
-
-7. Daily focus goal
-Your daily focus goal is the time spent in focus, that you'd like to complete each day. The minimum time is 1 hours. You can change your daily focus goal in the settings menu, which you'll see a bit later. By completeing your daily focus goal you'll earn streaks, which i'm sure most people are familiar with, but it will be explained too later on.
-
-8. Action bar
-At the top-left corner you can see all the options of the action bar.
-
-   a. Settings
-   In the settings menu you can change default values, choose to show or unshow the daily quote, or to turn off focus notifications.
-   At the change default values menu you can choose the change the daily focus goal, the default period setting, and the default subject.
-   Note that changing your daily focus goal after completing it will not affect that day’s completion status.
-   The default period setting and subject are the ones that are chosen on default when you enter the app.
-
-   b. Archive
-   This is the place where you can see all of your archived subjects, and of course, you can unarchive them aswell.
-
-   c. Help
-   In the "help" menu, there's two options. One is "how to use", which will link to this README.md file you're currently reading. The other is "about", which contains basic information about the app, the developer, credits, the lincense       used.
-
-9. Statistics
-On the main page you can see the current week's time spent in focus, and your current streak. If you press "show all", you can see more data.
-
-a. Focus statistics
-These focus statistics speaks for themselves. 
-One thing to note is that "focus sessions completed" only counts if you've completed that whole focus sessions (meaning you didn't stop it).
-
-b. Streak & Karma statistics
-- The daily goal achieved showed how many times you've hit your daily goal.
-- The current streak shows your most recent, current streak.
-How streak works: Streaks on the weekdays are strict, meaning that if you have don't complete your daily focus goal on any weekday, your streak will reset to 0.
-However, on weekends, its optional. If you choose to complete your daily focus goal, then your streak will be added, if you don't complete it, then the streak won't reset to 0.
-- The longest streak shows your all time longest streak.
-- Karma is a metric that shows your consistency over the past 3 months.
-How karma is calculcated: karma = (completed_days / relevant_days * 100). Completed days are the number of days you've completed your daily focus goal. Relevant days are the number of weekdays in the past 3 months, plus the number of weekend days where you've completed your daily focus goal.
-- Karma levels shows your current "monk status" in your focus journey. There are 7 different karma levels for you to achieve, but i won't spoil them here, that's your job to discover.
-
-c. Charts
-After completeing atleast one focus session, you'll see 5 different charts in the statistics window.
-- The first one is a line chart that shows your daily focus time in the last 30 days. With this you can see the ups and downs of your focus time.
-- The second on is a pie chart that shows how your focus is distributed by the subjects in the last 30 days. 
-- The third is a pie chart aswell that shows how your focus is distributed by the period setting in the last 30 days.
-- The fourth is a bar chart, that shows the focus time per subject in the last 30 days.
-- The last, fifth is a bar chart aswell, that works exactly like the previous chart, but not in the last 30 days, but all history. You can select to see, or unsee the archived subjects aswell.
-
-10. Theme
-The theme of the app changes accordingly to your OS theme.
-
-
-IMPORTANT: HOW TO RUN THE APP. EXE FILE
-
-With this, i think we've gone over everything that is important. If you have any questions feel free to ask them in the github repo.
-Happy focusing! - dop14
-
-   
 
 
 
