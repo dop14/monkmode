@@ -57,7 +57,7 @@ Starting a focus session is simple.
 <p>Next, press “Focus” and choose the number of focus sessions you want to complete.</p>
 <img width="653" height="958" alt="monkmode_start_focus" src="https://github.com/user-attachments/assets/3e644003-05dc-44a9-a07a-f2ffb7008f35"/>
 <p></p>You’ll see the total duration of your focus time along with a breakdown of the sessions.</p>
-<p>Finally, press “Start Focus” to begin the timer.</p>
+<p>Finally, press “start focus” to begin the timer.</p>
 <img width="373" height="335" alt="monkmode_start_focus_2" src="https://github.com/user-attachments/assets/56de15d4-5861-4424-a7f7-705e176dc6a1"/>
 
 <h2>While in Focus</h2>
@@ -178,6 +178,7 @@ Focus sessions completed</strong> only count if you finish the entire session (s
 
 
    
+
 
 
 
