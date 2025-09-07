@@ -8,7 +8,7 @@ This approach is a well-known technique used by high achievers and students alik
 
 <h2>What Are Focus Periods</h2>
 
-Focus periods are the core of deep work. When you first run monkmode, the default focus period is called "pomodoro". The pomodoro method is one of the most well-known focus techniques: it divides work into 25-minute focus sessions followed by 5-minute breaks. After completing four focus sessions, the next break is a long break, usually around 15 minutes.
+Focus periods are the core of deep work. When you first run monkmode, the default focus period is called "pomodoro". The pomodoro method is one of the most popular focus techniques: it divides work into 25-minute focus sessions followed by 5-minute breaks. After completing four focus sessions, the next break is a long break, usually around 15 minutes.
 
 <h3>Creating a New Focus Period</h3>
 
@@ -178,6 +178,7 @@ Focus sessions completed</strong> only count if you finish the entire session (s
 
 
    
+
 
 
 
