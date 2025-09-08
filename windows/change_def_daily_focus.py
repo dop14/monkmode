@@ -2,6 +2,7 @@ from PySide6.QtWidgets import QDialog
 from ui_py.change_default_daily_focus import Ui_Form
 from database.db_manager import update_user_preferences, get_user_preferences
 from PySide6.QtGui import QIcon
+from utils import get_resource_path
 
 class ChangeDefDailyFocus(QDialog):
     def __init__(self, main_window):
@@ -10,7 +11,7 @@ class ChangeDefDailyFocus(QDialog):
         self.ui.setupUi(self)
         self.setModal(True)
         self.setWindowTitle("settings")
-        self.setWindowIcon(QIcon("logo/monkmode.png"))
+        self.setWindowIcon(QIcon(get_resource_path("logo/monkmode.png")))
         self.main_window = main_window
 
         # Load the default value the spinbox

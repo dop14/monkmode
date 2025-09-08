@@ -7,6 +7,7 @@ from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
 import matplotlib.pyplot as plt
 from PySide6.QtWidgets import QVBoxLayout
 import textwrap
+from utils import get_resource_path
 
 class Statistics(QDialog):
     def __init__(self, main_window):
@@ -15,7 +16,7 @@ class Statistics(QDialog):
         self.ui.setupUi(self)
         self.setModal(True)
         self.setWindowTitle("statistics")
-        self.setWindowIcon(QIcon("logo/monkmode.png"))
+        self.setWindowIcon(QIcon(get_resource_path("logo/monkmode.png")))
         self.main_window = main_window
 
         self.ui.no_data_message.hide()

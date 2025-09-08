@@ -2,6 +2,7 @@ from PySide6.QtWidgets import QDialog
 from ui_py.add_and_edit_period import Ui_Form
 from database.db_manager import get_period_names, save_period_settings, get_default_period_name
 from PySide6.QtGui import QIcon
+from utils import get_resource_path
 
 class NewPeriodWindow(QDialog):
     def __init__(self, main_window):
@@ -10,7 +11,7 @@ class NewPeriodWindow(QDialog):
         self.ui.setupUi(self)
         self.setModal(True)
         self.setWindowTitle("monkmode")
-        self.setWindowIcon(QIcon("logo/monkmode.png"))
+        self.setWindowIcon(QIcon(get_resource_path("logo/monkmode.png")))
 
         # Set default values for checkboxes and spinboxes
         self.ui.short_break_checkbox.setChecked(True)

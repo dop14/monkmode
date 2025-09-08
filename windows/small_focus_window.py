@@ -2,6 +2,7 @@ from PySide6.QtWidgets import QDialog
 from PySide6.QtCore import Qt
 from ui_py.small_focus_window import Ui_Form
 from PySide6.QtGui import QIcon
+from utils import get_resource_path
 
 class SmallFocusWindow(QDialog):
     def __init__(self, main_window):
@@ -10,7 +11,7 @@ class SmallFocusWindow(QDialog):
         self.ui.setupUi(self)
         self.setModal(True)
         self.setWindowTitle("small view")
-        self.setWindowIcon(QIcon("logo/monkmode.png"))
+        self.setWindowIcon(QIcon(get_resource_path("logo/monkmode.png")))
         self.main_window = main_window
         self.setWindowFlags(
             Qt.Window | 

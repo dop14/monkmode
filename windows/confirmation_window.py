@@ -2,6 +2,7 @@ from PySide6.QtWidgets import QDialog
 from ui_py.confirmation import Ui_Confirmation
 from database.db_manager import get_period_data, delete_period_settings, get_period_names, get_default_period_name, delete_subject_settings, get_subject_data, get_subject_names, get_default_subject_name, archive_subject_settings
 from PySide6.QtGui import QIcon
+from utils import get_resource_path
 
 class ConfirmationWindow(QDialog):
     def __init__(self, main_window, text, type):
@@ -9,7 +10,7 @@ class ConfirmationWindow(QDialog):
         self.ui = Ui_Confirmation()
         self.ui.setupUi(self)
         self.setModal(True)
-        self.setWindowIcon(QIcon("logo/monkmode.png"))
+        self.setWindowIcon(QIcon(get_resource_path("logo/monkmode.png")))
         
         # If user wants to delete the default setting
         if text == "The default focus setting cannot be deleted." or text == "The default subject cannot be deleted." or text == "The default subject cannot be archived.":

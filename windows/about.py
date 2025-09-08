@@ -1,7 +1,7 @@
 from PySide6.QtWidgets import QDialog
 from ui_py.about import Ui_Form
 from PySide6.QtGui import QIcon
-from PySide6.QtCore import Qt
+from utils import get_resource_path
 
 class AboutWindow(QDialog):
     def __init__(self):
@@ -10,7 +10,7 @@ class AboutWindow(QDialog):
         self.ui.setupUi(self)
         self.setWindowTitle("about")
         
-        self.setWindowIcon(QIcon("logo/monkmode.png"))
+        self.setWindowIcon(QIcon(get_resource_path("logo/monkmode.png")))
 
         self.set_text()
 

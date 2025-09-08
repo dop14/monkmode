@@ -3,6 +3,7 @@ import os
 from datetime import datetime, timedelta, date
 import calendar
 import requests
+from utils import get_resource_path, get_db_path
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))  
 DB_NAME = os.path.join(BASE_DIR, 'monkmode.db')       
@@ -769,15 +770,17 @@ def check_streak_log():
     conn.close()
 
 def get_connection():
-    conn = sqlite3.connect(DB_NAME)
-    return conn
+    db_path = get_db_path()
+    return sqlite3.connect(db_path)
 
 def initialize_db():
     conn = get_connection()
     cursor = conn.cursor()
 
-    with open("database/schema.sql", "r") as f:
+    schema_path = get_resource_path("database/schema.sql")
+    with open(schema_path, "r") as f:
         schema_sql = f.read()
+
     cursor.executescript(schema_sql)
 
     add_default_period(cursor)
@@ -788,7 +791,4 @@ def initialize_db():
     conn.commit()
     conn.close()
 
-if __name__ == "__main__":
-    initialize_db()
-    print("Database successfully initialized")
      
