@@ -1,6 +1,11 @@
 <h1>monkmode</h1>
 <img width="50%" alt="monkmode" src="https://github.com/user-attachments/assets/b6afc1d8-68b1-42ad-b760-2690c1c40023"/>
 
+<h2>App's Goal and Idea Behind It</h2>
+
+The ultimate goal of monkmode is to help you achieve a monk-like state of focus, allowing you to maximize deep work. It does this by breaking your overall focus goal into structured focus sessions, short breaks, and long breaks.
+This approach is a well-known technique used by high achievers and students alike. By working in focused bursts, you can maintain higher levels of concentration, which in turn helps you accomplish more.
+
 ## Download and Installation
 
 ### Windows (Recommended)
@@ -84,11 +89,6 @@ main.py
 ### Requirements
 - **Windows**: No requirements - executable includes everything
 - **Linux/macOS**: Python 3.8+ and dependencies listed in `requirements.txt`
-
-<h2>App's Goal and Idea Behind It</h2>
-
-The ultimate goal of monkmode is to help you achieve a monk-like state of focus, allowing you to maximize deep work. It does this by breaking your overall focus goal into structured focus sessions, short breaks, and long breaks.
-This approach is a well-known technique used by high achievers and students alike. By working in focused bursts, you can maintain higher levels of concentration, which in turn helps you accomplish more.
 
 <h2>What Are Focus Periods</h2>
 
@@ -264,6 +264,7 @@ The help menu contains two options:
 
 
    
+
 
 
 
