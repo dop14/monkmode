@@ -1,5 +1,6 @@
 from PySide6.QtWidgets import QApplication, QMainWindow, QMessageBox
-from PySide6.QtGui import QIcon
+from PySide6.QtGui import QIcon, QDesktopServices
+from PySide6.QtCore import QUrl
 import shutil, os, sys
 from ui_py.mainwindow import Ui_MainWindow
 from windows.focus_window import FocusWindow
@@ -16,7 +17,6 @@ from core.timer import FocusTimer
 from core.menu_bar import MenuBar
 from database.db_manager import get_period_names, get_subject_names, get_current_streak, save_daily_goal, get_user_stats, update_user_stats
 from database.db_manager import get_default_period_name, get_default_subject_name, get_user_preferences, get_today_focus, get_this_week_focus, get_today_quote, check_streak_log
-
 
 class MainWindow(QMainWindow):
     def __init__(self):
@@ -131,7 +131,11 @@ class MainWindow(QMainWindow):
         # When show all statistics button is clicked
         self.ui.show_all.clicked.connect(self.start_statistics_window)
 
+        # When about button is clicked
         self.ui.actionabout.triggered.connect(self.start_about_window)
+
+        # When how to use button is clicked
+        self.ui.actionhowtouse.triggered.connect(lambda: QDesktopServices.openUrl(QUrl("https://github.com/dop14/monkmode")))
     
     # If app is closed
     def closeEvent(self, event):
@@ -250,7 +254,7 @@ class MainWindow(QMainWindow):
     def start_about_window(self):
         self.about_window = AboutWindow()
         self.about_window.show()
-    
+
     # Starting timer
     def start_timer(self, period, subject, user_sessions):
         # Timer is active

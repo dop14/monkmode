@@ -160,7 +160,7 @@ class Statistics(QDialog):
         ax.tick_params(axis='x', rotation=45)
         fig.tight_layout()
 
-        canvas = FigureCanvas(fig)
+        canvas = ScrollFriendlyCanvas(fig)
         canvas.setMaximumSize(600, 300)
 
         layout = self.ui.focusFrame.layout()
@@ -175,12 +175,6 @@ class Statistics(QDialog):
                     widget.setParent(None)
 
         layout.addWidget(canvas, 0)
-
-
-        # Add canvas to layout
-        layout = QVBoxLayout()
-        layout.addWidget(canvas)
-        self.ui.focusFrame.setLayout(layout)
 
     def plot_subject_chart(self):
         # Show the frame if previously was hidden
@@ -206,6 +200,8 @@ class Statistics(QDialog):
         textprops={'fontsize': 7}
         )
 
+        plt.close(fig)
+
         # Add legend 
         ax.legend(
             wedges,
@@ -218,7 +214,7 @@ class Statistics(QDialog):
 
         ax.set_title('focus time distribution by subject (last 30 days)', fontweight="bold")
 
-        canvas = FigureCanvas(fig)
+        canvas = ScrollFriendlyCanvas(fig)
         canvas.setMaximumSize(620, 320)  
 
         # Embed in subjectFrame
@@ -274,6 +270,8 @@ class Statistics(QDialog):
         textprops={'fontsize': 7}
         )
 
+        plt.close(fig)
+
         # Add legend 
         ax.legend(
             wedges,
@@ -286,7 +284,7 @@ class Statistics(QDialog):
 
         ax.set_title('focus time distribution by period (last 30 days)', fontweight="bold")
 
-        canvas = FigureCanvas(fig)
+        canvas = ScrollFriendlyCanvas(fig)
         canvas.setMaximumSize(620, 320) 
 
         layout.addWidget(canvas, 0)
@@ -332,8 +330,9 @@ class Statistics(QDialog):
         plt.xticks(rotation=45, ha="right")
 
         fig.subplots_adjust(bottom=0.3)
+        plt.close(fig)
 
-        canvas = FigureCanvas(fig)
+        canvas = ScrollFriendlyCanvas(fig)
         canvas.setMaximumSize(600, 450)
         layout.addWidget(canvas, 0)
 
@@ -388,11 +387,19 @@ class Statistics(QDialog):
         # Give more space at bottom for labels
         fig.subplots_adjust(bottom=0.3)
 
+        plt.close(fig)
+
         # Embed into Qt
-        canvas = FigureCanvas(fig)
+        canvas = ScrollFriendlyCanvas(fig)
         canvas.setMaximumSize(600, 450)
         layout.addWidget(canvas, 0)
 
 # If less then 4% on pie chart then dont show
 def autopct_filter(pct):
     return f'{pct:.1f}%' if pct >= 4 else ''
+
+class ScrollFriendlyCanvas(FigureCanvas):
+    def wheelEvent(self, event):
+        # Forward scroll events to parent scroll area
+        if self.parent():
+            self.parent().wheelEvent(event)

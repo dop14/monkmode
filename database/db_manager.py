@@ -297,7 +297,6 @@ def get_current_karma():
     today = date.today()
     start_date = today - timedelta(days=90)
 
-    # 
     cursor.execute("""
         SELECT COUNT(*) FROM streak_log
         WHERE date BETWEEN ? AND ?
@@ -306,7 +305,6 @@ def get_current_karma():
     """, (start_date, today))
     completed_weekdays = cursor.fetchone()[0]
 
-    # Hétvégi sikeres napok száma
     cursor.execute("""
         SELECT COUNT(*) FROM streak_log
         WHERE date BETWEEN ? AND ?
@@ -315,13 +313,11 @@ def get_current_karma():
     """, (start_date, today))
     completed_weekends = cursor.fetchone()[0]
 
-    # Hétköznapok száma az időszakban
     weekdays_past_3_months = sum(
         1 for i in range(91)
         if (start_date + timedelta(days=i)).weekday() < 5
     )
 
-    # Karma számítás
     relevant_days = weekdays_past_3_months + completed_weekends
     completed_days = completed_weekdays + completed_weekends
 

@@ -18,8 +18,8 @@ class AboutWindow(QDialog):
         self.ui.about_text.setText(
             """
         <h2>monkmode</h2>
+        <p>monkmode helps you focus by tracking your sessions and breaks efficiently;<br> it also allows you to create custom focus periods and subjects.</p>
         <p><b>Version:</b> 1.0</p>
-        <p><b>About: </b>monkmode helps you focus by tracking your sessions and breaks efficiently;<br> it also allows you to create custom focus periods and subjects.</p>
 
         <p><b>Developed by:</b> 
             <a href="https://github.com/dop14">dop14</a>

@@ -503,8 +503,8 @@ class Ui_MainWindow(object):
         self.menuchange_default.addAction(self.actiondaily_goal)
         self.menuchange_default.addAction(self.actionfocus_period)
         self.menuchange_default.addAction(self.actionfocus_subject)
-        self.menuabout.addAction(self.actionhowtouse)
         self.menuabout.addAction(self.actionabout)
+        self.menuabout.addAction(self.actionhowtouse)
         self.menuabout.addSeparator()
         self.menuarchive.addAction(self.actionview_archived_subjects)
 
