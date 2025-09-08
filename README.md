@@ -62,7 +62,7 @@ Starting a focus session is simple.
 
 <h2>While in Focus</h2>
 
-Each time a focus session or a break begins, you’ll hear a distinct sound signaling the start of that session. A small pop-up text in the bottom-left corner will also appear to let you know whether a focus or break session is starting. Both the sound and pop-up notifications can be turned off in the settings menu.
+Each time a focus session or a break begins, you’ll hear a distinct sound signaling the start of that session. A small pop-up text in the bottom-right corner will also appear to let you know whether a focus or break session is starting. Both the sound and pop-up notifications can be turned off in the settings menu.
 
 <h3>Pause, Resume, and Stop</h3>
 
@@ -180,6 +180,7 @@ The help menu contains two options:
 
 
    
+
 
 
 
