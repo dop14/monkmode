@@ -4,9 +4,18 @@
 ## Download and Installation
 
 ### Windows (Recommended)
-1. Go to [Releases](https://github.com/dop14/monkmode/releases/tag/v1.0.0)
+1. Go to [Releases](https://github.com/yourusername/monkmode/releases)
 2. Download the latest `monkmode.exe`
 3. Double-click to run - no installation required!
+
+#### Windows Security Notice
+Windows Defender may show a warning when downloading or running the executable. This is normal for unsigned applications. To run the app:
+
+1. **When downloading**: Click "Keep" if browser shows a warning
+2. **When running**: Click "More info" → "Run anyway" if Windows Defender blocks it
+3. **Alternative**: Right-click the .exe → Properties → Check "Unblock" → Apply
+
+This happens because the executable isn't code-signed. The app is safe to use - you can verify by checking the source code in this repository.
 
 ### Linux
 #### Option 1: Run from source
@@ -255,6 +264,7 @@ The help menu contains two options:
 
 
    
+
 
 
 
