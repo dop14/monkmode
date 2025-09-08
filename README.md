@@ -112,8 +112,8 @@ The archive is where all of your archived subjects are stored. From here, you ca
 <h3>Help</h3>
 The help menu contains two options:
 <ul>
-   <li>How to Use → links directly to this README.md file (the guide you’re reading now).</li>
    <li>About → provides basic information about the app, the developer, credits, and the license used.</li>
+   <li>How to Use → links directly to this README.md file (the guide you’re reading now).</li>
 </ul>
 
 
@@ -180,6 +180,7 @@ The help menu contains two options:
 
 
    
+
 
 
 
