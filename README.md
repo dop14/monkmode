@@ -70,7 +70,7 @@ While you’re in focus, you can always pause or stop the timer:
 
 Pause freezes the countdown until you press Resume.
 
-Stop ends the focus session entirely (after confirmation). Don’t worry — any progress you’ve already made will still be saved.
+<p>Stop ends the focus session entirely (after confirmation). Don’t worry — any progress you’ve already made will still be saved.</p>
 <img width="50%" alt="monkmode_in_focus" src="https://github.com/user-attachments/assets/f61119ce-dc74-486e-85b6-754dc1dbf9f8" />
 
 <h3>Small View</h3>
@@ -180,6 +180,7 @@ The help menu contains two options:
 
 
    
+
 
 
 
