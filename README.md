@@ -4,7 +4,7 @@
 ## Download and Installation
 
 ### Windows (Recommended)
-1. Go to [Releases]([https://github.com/yourusername/monkmode/releases](https://github.com/dop14/monkmode/releases/tag/v1.0.0))
+1. Go to [Releases](https://github.com/dop14/monkmode/releases/tag/v1.0.0)
 2. Download the latest `monkmode.exe`
 3. Double-click to run - no installation required!
 
