@@ -1,5 +1,80 @@
 <h1>monkmode</h1>
-<img width="50%" alt="monkmode" src="https://github.com/user-attachments/assets/b6afc1d8-68b1-42ad-b760-2690c1c40023" />
+<img width="50%" alt="monkmode" src="https://github.com/user-attachments/assets/b6afc1d8-68b1-42ad-b760-2690c1c40023"/>
+
+## Download and Installation
+
+### Windows (Recommended)
+1. Go to [Releases](https://github.com/yourusername/monkmode/releases)
+2. Download the latest `monkmode.exe`
+3. Double-click to run - no installation required!
+
+### Linux
+#### Option 1: Run from source
+```bash
+# Clone the repository
+git clone https://github.com/yourusername/monkmode.git
+cd monkmode
+
+# Install dependencies
+pip install -r requirements.txt
+
+# Run the application
+python main.py
+```
+
+#### Option 2: Build your own executable
+```bash
+# Follow steps above, then:
+pip install pyinstaller
+
+# Linux build command
+pyinstaller --onefile --windowed \
+--name monkmode \
+--icon=logo/monkmode.png \
+--add-data "database/schema.sql:database" \
+--add-data "logo/monkmode.png:logo" \
+--add-data "monkmode_sounds/break_start.wav:monkmode_sounds" \
+--add-data "monkmode_sounds/focus_start.wav:monkmode_sounds" \
+main.py
+
+# Find executable in dist/ folder
+```
+
+### macOS
+#### Option 1: Run from source
+```bash
+# Clone the repository
+git clone https://github.com/yourusername/monkmode.git
+cd monkmode
+
+# Install dependencies
+pip install -r requirements.txt
+
+# Run the application
+python main.py
+```
+
+#### Option 2: Build your own executable
+```bash
+# Follow steps above, then:
+pip install pyinstaller
+
+# macOS build command
+pyinstaller --onefile --windowed \
+--name monkmode \
+--icon=logo/monkmode.png \
+--add-data "database/schema.sql:database" \
+--add-data "logo/monkmode.png:logo" \
+--add-data "monkmode_sounds/break_start.wav:monkmode_sounds" \
+--add-data "monkmode_sounds/focus_start.wav:monkmode_sounds" \
+main.py
+
+# Find executable in dist/ folder
+```
+
+### Requirements
+- **Windows**: No requirements - executable includes everything
+- **Linux/macOS**: Python 3.8+ and dependencies listed in `requirements.txt`
 
 <h2>App's Goal and Idea Behind It</h2>
 
@@ -180,6 +255,7 @@ The help menu contains two options:
 
 
    
+
 
 
 
