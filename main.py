@@ -15,7 +15,7 @@ from windows.about import AboutWindow
 from windows.statistics import Statistics
 from core.timer import FocusTimer
 from core.menu_bar import MenuBar
-from database.db_manager import get_period_names, get_subject_names, get_current_streak, save_daily_goal, get_user_stats, update_user_stats
+from database.db_manager import get_period_names, get_subject_names, get_current_streak, save_daily_goal, get_user_stats, update_user_stats, initialize_db
 from database.db_manager import get_default_period_name, get_default_subject_name, get_user_preferences, get_today_focus, get_this_week_focus, get_today_quote, check_streak_log
 
 class MainWindow(QMainWindow):
@@ -24,6 +24,9 @@ class MainWindow(QMainWindow):
         self.ui = Ui_MainWindow()   
         self.ui.setupUi(self)
         self.setWindowTitle("monkmode")
+
+        # Initialize database
+        initialize_db()
 
         self.small_window = SmallFocusWindow(self)
         self.showNormal()
@@ -339,6 +342,9 @@ class MainWindow(QMainWindow):
         self.preferences = get_user_preferences()
         if self.preferences["tips_and_quotes"] == True:
             self.ui.quote_label.show()
+
+        # Enable focus button
+        self.ui.start_focus_btn.setDisabled(False)
 
         # Enable GUI
         self.disable_and_enable_gui(False)

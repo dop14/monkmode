@@ -722,7 +722,6 @@ def get_today_quote():
     
     response = requests.get("https://zenquotes.io/api/today")
     if response.status_code == 200:
-        print("Getting API data")
         data = response.json()[0]
         text = data["q"]
         author = data["a"]
@@ -777,7 +776,7 @@ def initialize_db():
     conn = get_connection()
     cursor = conn.cursor()
 
-    with open("schema.sql", "r") as f:
+    with open("database/schema.sql", "r") as f:
         schema_sql = f.read()
     cursor.executescript(schema_sql)
 

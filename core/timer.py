@@ -22,8 +22,11 @@ class FocusTimer(QObject):
         preferences = get_user_preferences()
         self.notifications = preferences["all_notifications_off"]
 
+        self.main_window.ui.start_focus_btn.setDisabled(True)
+
         self.remaining_time = 0
         self.focus_delay()
+
 
         self.timer = QTimer()
         self.timer.timeout.connect(self._tick)
