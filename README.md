@@ -1,5 +1,5 @@
 <h1>monkmode</h1>
-<img width="1024" height="1024" alt="monkmode" src="https://github.com/user-attachments/assets/b6afc1d8-68b1-42ad-b760-2690c1c40023" />
+<img width="50%" alt="monkmode" src="https://github.com/user-attachments/assets/b6afc1d8-68b1-42ad-b760-2690c1c40023" />
 
 <h2>App's Goal and Idea Behind It</h2>
 
@@ -12,25 +12,25 @@ Focus periods are the core of deep work. When you first run monkmode, the defaul
 
 <h3>Creating a New Focus Period</h3>
 
-MonkMode lets you create custom focus periods however you like.
-<img width="656" height="966" alt="monkmode_add_period" src="https://github.com/user-attachments/assets/13ee569a-bdad-4070-978e-ba93af54d399"/> 
-<img width="367" height="469" alt="image" src="https://github.com/user-attachments/assets/40602539-cb6b-437c-beef-7c4d3cb37f6c"/>
+<p>MonkMode lets you create custom focus periods however you like.</p>
+<img width="50%" alt="monkmode_add_period" src="https://github.com/user-attachments/assets/13ee569a-bdad-4070-978e-ba93af54d399"/> 
+<img width="25%" alt="image" src="https://github.com/user-attachments/assets/40602539-cb6b-437c-beef-7c4d3cb37f6c"/>
 
 <h3>Editing an Existing Focus Period</h3>
 
 <p>You can edit any previously created focus period, including the default "pomodoro". When you press Edit, the currently selected focus period will be modified according to your changes.</p>
-<img width="657" height="966" alt="monkmode_edit_period" src="https://github.com/user-attachments/assets/4c997207-2e6c-4b52-8906-55313f257042"/>
-<img width="364" height="465" alt="image" src="https://github.com/user-attachments/assets/9712eaf3-3994-4b04-985e-f62d149b40a2"/>
+<img width="50%" alt="monkmode_edit_period" src="https://github.com/user-attachments/assets/4c997207-2e6c-4b52-8906-55313f257042"/>
+<img width="25%" alt="image" src="https://github.com/user-attachments/assets/9712eaf3-3994-4b04-985e-f62d149b40a2"/>
 
 <h3>Deleting a Focus Period</h3>
 
-You can delete any focus period except the default one. Be careful — this action cannot be undone.
-<img width="657" height="957" alt="image" src="https://github.com/user-attachments/assets/e54f1063-4371-46f7-9a82-d875835245bb"/>
+<p>You can delete any focus period except the default one. Be careful — this action cannot be undone.</p>
+<img width="50%" alt="image" src="https://github.com/user-attachments/assets/e54f1063-4371-46f7-9a82-d875835245bb"/>
 
 <h2>What Are Focus Subjects</h2>
 
 Focus subjects are the topics you will be concentrating on during your focus sessions.
-<p>Note: The interface for adding, editing, deleting focus subjects works the same as for focus periods (see screenshots above).</p>
+<p><i>Note: The interface for adding, editing, deleting focus subjects works the same as for focus periods (see screenshots above).</i></p>
 <h3>Creating a New Focus Subject</h3>
 
 When creating a new focus subject, you can be as detailed as you like. The only required parameter is the name of the topic you want to focus on.
@@ -41,10 +41,10 @@ To edit a focus subject, first select it from the combobox. When you press Edit,
 
 <h3>Archiving a Focus Subject</h3>
 
-Archiving is useful for topics you’ve finished (for example, a completed university class or a side project). Archiving sets the subject aside without deleting it, so it still appears in your statistics menu.
-Note: The default focus subject cannot be archived.
+<p>Archiving is useful for topics you’ve finished (for example, a completed university class or a side project). Archiving sets the subject aside without deleting it, so it still appears in your statistics menu.</p>
+<p><i>Note: The default focus subject cannot be archived.</i></p>
 
-<img width="662" height="961" alt="monkmode_archive_subject" src="https://github.com/user-attachments/assets/8c59765c-e022-4781-8561-34880fc70ef6"/>
+<img width="50%" alt="monkmode_archive_subject" src="https://github.com/user-attachments/assets/8c59765c-e022-4781-8561-34880fc70ef6"/>
 
 <h3>Deleting a Focus Subject</h3>
 
@@ -53,12 +53,12 @@ You can delete any focus subject except the default one. Be careful — this act
 <h2>How Focus Works</h2>
 
 Starting a focus session is simple. 
-<p>First, select the focus period you want to use and the subject or topic you’ll focus on.</p>
+<p>First, select the focus period you want to use and the subject you’ll focus on.</p>
 <p>Next, press “Focus” and choose the number of focus sessions you want to complete.</p>
-<img width="653" height="958" alt="monkmode_start_focus" src="https://github.com/user-attachments/assets/3e644003-05dc-44a9-a07a-f2ffb7008f35"/>
+<img width="50%" alt="monkmode_focus" src="https://github.com/user-attachments/assets/e4d57059-589d-4966-b9b7-b90782256d57" />
 <p></p>You’ll see the total duration of your focus time along with a breakdown of the sessions.</p>
 <p>Finally, press “start focus” to begin the timer.</p>
-<img width="373" height="335" alt="monkmode_start_focus_2" src="https://github.com/user-attachments/assets/56de15d4-5861-4424-a7f7-705e176dc6a1"/>
+<img width="25%" alt="monkmode_start_focus_2" src="https://github.com/user-attachments/assets/56de15d4-5861-4424-a7f7-705e176dc6a1"/>
 
 <h2>While in Focus</h2>
 
@@ -71,14 +71,14 @@ While you’re in focus, you can always pause or stop the timer:
 Pause freezes the countdown until you press Resume.
 
 Stop ends the focus session entirely (after confirmation). Don’t worry — any progress you’ve already made will still be saved.
-<img width="658" height="966" alt="monkmode_in_focus" src="https://github.com/user-attachments/assets/f61119ce-dc74-486e-85b6-754dc1dbf9f8" />
+<img width="50%" alt="monkmode_in_focus" src="https://github.com/user-attachments/assets/f61119ce-dc74-486e-85b6-754dc1dbf9f8" />
 
 <h3>Small View</h3>
 
-In the top-right corner, you’ll find an icon that opens a small view of MonkMode. This view allows you to track your progress while working on other tasks. The pause, resume, and stop functions work exactly as described above.
+In the top-right corner, you’ll find an icon that opens a small view of monkmode. This view allows you to track your progress while working on other tasks. The pause, resume, and stop functions work exactly as described above.
 
-<p>You can always switch back to the fullscreen view at any time. If you find the countdown distracting, you can press “Hide Time” to conceal the remaining time.</p>
-<img width="263" height="278" alt="monkmode_small_view" src="https://github.com/user-attachments/assets/0272c738-cee5-40b7-a646-4f5ba161eb5e" />
+<p>You can always switch back to the fullscreen view at any time. If you find the countdown distracting, you can press “hide time” to conceal the remaining time.</p>
+<img width="25%" alt="monkmode_small_view" src="https://github.com/user-attachments/assets/0272c738-cee5-40b7-a646-4f5ba161eb5e" />
 
 <h2>Daily Focus Goal</h2>
 
@@ -86,13 +86,13 @@ In the top-right corner, you’ll find an icon that opens a small view of MonkMo
 You can adjust your daily focus goal in the settings menu.
 By completing your daily goal, you’ll earn streaks — a familiar concept for many productivity apps.</p>
 
-<img width="656" height="961" alt="monkmode_daily_focus" src="https://github.com/user-attachments/assets/cdcfa3c2-f0e6-4131-89cb-fa031e0a10e2" />
+<img width="50%" alt="monkmode_daily_focus" src="https://github.com/user-attachments/assets/cdcfa3c2-f0e6-4131-89cb-fa031e0a10e2" />
 
 
 <h2>Action Bar</h2>
 
 <p>The action bar is located in the top-left corner of the app and provides quick access to key options.</p>
-<img width="660" height="962" alt="monkmode_actionbar" src="https://github.com/user-attachments/assets/1d073178-be32-4321-ac84-b3c36f20a2cf" />
+<img width="50%" alt="monkmode_actionbar" src="https://github.com/user-attachments/assets/1d073178-be32-4321-ac84-b3c36f20a2cf" />
 
 <h3>Settings</h3>
 In the settings menu, you can:
@@ -101,9 +101,9 @@ In the settings menu, you can:
    <li>Choose to show or hide the daily quote</li>
    <li>Turn focus notifications on or off</li>
 </ul>
-<p></p>Note: Changing your daily focus goal after completing it will not affect that day’s completion status.
+<p><i>Note: Changing your daily focus goal after completing it will not affect that day’s completion status.</i></p>
 The default focus period and subject are automatically selected when you launch the app.</p>
-<img width="434" height="171" alt="Screenshot 2025-09-07 135937" src="https://github.com/user-attachments/assets/913ded4a-a869-4d0f-a930-d2a1c4f529c0" />
+<img width="40%" alt="Screenshot 2025-09-07 135937" src="https://github.com/user-attachments/assets/913ded4a-a869-4d0f-a930-d2a1c4f529c0" />
 
 <h3>Archive</h3>
 
@@ -122,10 +122,12 @@ The help menu contains two options:
   On the main page, you can see your current week’s focus time  and your
   current streak. Press “Show All” to access more detailed statistics.
 </p>
+<img width="50%" alt="monkmode_stats" src="https://github.com/user-attachments/assets/96002231-6b08-4de1-bd06-da26a6d1a026" />
+
 
 <h3>Focus statistics</h3>
 <p>These statistics give you a clear overview of your progress.</p>
-Focus sessions completed</strong> only count if you finish the entire session (sessions you stop early do not count).
+<p><i>Note: Focus sessions completed</strong> only count if you finish the entire session (sessions you stop early do not count).</i></p>
 
 <h3>Streak &amp; Karma statistics</h3>
 <ul>
@@ -149,7 +151,7 @@ Focus sessions completed</strong> only count if you finish the entire session (s
   </li>
   <li><strong>Karma levels</strong> — reflect your “monk status” in your focus journey. There are 7 levels to discover.</li>
 </ul>
-<img width="810" height="921" alt="monkmode_statistics" src="https://github.com/user-attachments/assets/420b1bcd-1469-415d-943f-ebda1627d001" />
+<img width="50%" alt="monkmode_statistics" src="https://github.com/user-attachments/assets/420b1bcd-1469-415d-943f-ebda1627d001" />
 
 <h3>Charts</h3>
 <p>After completing at least one focus session, 5 charts will appear in the statistics window:</p>
@@ -178,6 +180,7 @@ Focus sessions completed</strong> only count if you finish the entire session (s
 
 
    
+
 
 
 
