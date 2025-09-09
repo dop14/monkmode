@@ -1,18 +1,105 @@
 <h1>monkmode</h1>
-<img width="50%" alt="monkmode" src="https://github.com/user-attachments/assets/b6afc1d8-68b1-42ad-b760-2690c1c40023" />
+<img width="50%" alt="monkmode" src="https://github.com/user-attachments/assets/b6afc1d8-68b1-42ad-b760-2690c1c40023"/>
 
 <h2>App's Goal and Idea Behind It</h2>
 
 The ultimate goal of monkmode is to help you achieve a monk-like state of focus, allowing you to maximize deep work. It does this by breaking your overall focus goal into structured focus sessions, short breaks, and long breaks.
 This approach is a well-known technique used by high achievers and students alike. By working in focused bursts, you can maintain higher levels of concentration, which in turn helps you accomplish more.
 
+## Download and Installation
+
+### Windows (Recommended)
+1. Go to [Releases](https://github.com/dop14/monkmode/releases/tag/v1.0.0)
+2. Download the latest `monkmode.exe`
+3. Double-click to run - no installation required!
+
+#### Windows Security Notice
+Windows Defender may show a warning when downloading or running the executable. This is normal for unsigned applications. To run the app:
+
+1. **When downloading**: Click "Keep" if browser shows a warning
+2. **When running**: Click "More info" → "Run anyway" if Windows Defender blocks it
+3. **Alternative**: Right-click the .exe → Properties → Check "Unblock" → Apply
+
+This happens because the executable isn't code-signed. The app is safe to use - you can verify by checking the source code in this repository.
+
+### Linux
+#### Option 1: Run from source
+```bash
+# Clone the repository
+git clone https://github.com/yourusername/monkmode.git
+cd monkmode
+
+# Install dependencies
+pip install -r requirements.txt
+
+# Run the application
+python main.py
+```
+
+#### Option 2: Build your own executable
+```bash
+# Follow steps above, then:
+pip install pyinstaller
+
+# Linux build command
+pyinstaller --onefile --windowed \
+--name monkmode \
+--icon=logo/monkmode.png \
+--add-data "database/schema.sql:database" \
+--add-data "logo/monkmode.png:logo" \
+--add-data "monkmode_sounds/break_start.wav:monkmode_sounds" \
+--add-data "monkmode_sounds/focus_start.wav:monkmode_sounds" \
+main.py
+
+# Find executable in dist/ folder
+```
+
+### macOS
+#### Option 1: Run from source
+```bash
+# Clone the repository
+git clone https://github.com/yourusername/monkmode.git
+cd monkmode
+
+# Install dependencies
+pip install -r requirements.txt
+
+# Run the application
+python main.py
+```
+
+#### Option 2: Build your own executable
+```bash
+# Follow steps above, then:
+pip install pyinstaller
+
+# macOS build command
+pyinstaller --onefile --windowed \
+--name monkmode \
+--icon=logo/monkmode.png \
+--add-data "database/schema.sql:database" \
+--add-data "logo/monkmode.png:logo" \
+--add-data "monkmode_sounds/break_start.wav:monkmode_sounds" \
+--add-data "monkmode_sounds/focus_start.wav:monkmode_sounds" \
+main.py
+
+# Find executable in dist/ folder
+```
+
+### Requirements
+- **Windows**: No requirements - executable includes everything
+- **Linux/macOS**: Python 3.8+ and dependencies listed in `requirements.txt`
+
+### Platform Note
+Screenshots in this README were taken on Windows. The app may look slightly different on Linux/macOS (different icons, progress bar styling, some UI behaviors) but all functionality remains the same.
+
 <h2>What Are Focus Periods</h2>
 
-Focus periods are the core of deep work. When you first run monkmode, the default focus period is called "pomodoro". The pomodoro method is one of the most popular focus techniques: it divides work into 25-minute focus sessions followed by 5-minute breaks. After completing four focus sessions, the next break is a long break, usually around 15 minutes.
+Focus periods are the core of deep work. When you first run monkmode, the default focus period is called "pomodoro", one of the most popular focus techniques: it divides work into 25-minute focus sessions followed by 5-minute breaks. After completing four focus sessions, the next break is a long break, usually around 15 minutes.
 
 <h3>Creating a New Focus Period</h3>
 
-<p>MonkMode lets you create custom focus periods however you like.</p>
+<p>With monkmode, you can create custom focus periods however you like.</p>
 <img width="50%" alt="monkmode_add_period" src="https://github.com/user-attachments/assets/13ee569a-bdad-4070-978e-ba93af54d399"/> 
 <img width="25%" alt="image" src="https://github.com/user-attachments/assets/40602539-cb6b-437c-beef-7c4d3cb37f6c"/>
 
@@ -41,7 +128,7 @@ To edit a focus subject, first select it from the combobox. When you press Edit,
 
 <h3>Archiving a Focus Subject</h3>
 
-<p>Archiving is useful for topics you’ve finished (for example, a completed university class or a side project). Archiving sets the subject aside without deleting it, so it still appears in your statistics menu.</p>
+<p>Archiving is useful for topics you’ve finished (for example, a task, a completed university class or a side project). Archiving sets the subject aside without deleting it, so it still appears in your statistics menu.</p>
 <p><i>Note: The default focus subject cannot be archived.</i></p>
 
 <img width="50%" alt="monkmode_archive_subject" src="https://github.com/user-attachments/assets/8c59765c-e022-4781-8561-34880fc70ef6"/>
@@ -68,9 +155,9 @@ Each time a focus session or a break begins, you’ll hear a distinct sound sign
 
 While you’re in focus, you can always pause or stop the timer:
 
-Pause freezes the countdown until you press Resume.
+- Pause freezes the countdown until you press Resume.
 
-<p>Stop ends the focus session entirely (after confirmation). Don’t worry — any progress you’ve already made will still be saved.</p>
+- <p>Stop ends the focus session entirely (after confirmation). Don’t worry — any progress you’ve already made will still be saved.</p>
 <img width="50%" alt="monkmode_in_focus" src="https://github.com/user-attachments/assets/f61119ce-dc74-486e-85b6-754dc1dbf9f8" />
 
 <h3>Small View</h3>
@@ -165,8 +252,8 @@ The help menu contains two options:
 
 <h2>Theme</h2>
 <p>
-  The app’s theme automatically adapts to your operating system’s theme.
-  If your OS is in dark mode, the app will use a dark theme; if it’s in light mode, the app will use a light theme.
+The app automatically adapts to your operating system's theme (dark/light mode). 
+Restart the app after changing your OS theme for the best experience.
 </p>
 
 
@@ -180,6 +267,12 @@ The help menu contains two options:
 
 
    
+
+
+
+
+
+
 
 
 
