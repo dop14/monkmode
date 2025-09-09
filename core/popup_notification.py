@@ -14,7 +14,6 @@ class PopupNotification(QWidget):
 
         self.message = message
 
-
         layout = QVBoxLayout()
         self.label = QLabel(message)
         self.label.setFont(QFont("Segoe UI", 13))
@@ -46,7 +45,7 @@ class PopupNotification(QWidget):
         # Position in bottom left corner
         screen_geometry = self.screen().availableGeometry()
         x = screen_geometry.right() - self.width() - 20
-        y = screen_geometry.bottom() - self.height() - 50
+        y = screen_geometry.bottom() - self.height() - 30
         self.move(x, y)
 
         QTimer.singleShot(duration, self.close)

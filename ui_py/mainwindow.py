@@ -25,7 +25,7 @@ class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
-        MainWindow.resize(530, 745)
+        MainWindow.resize(510, 715)
         sizePolicy = QSizePolicy(QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Minimum)
         sizePolicy.setHorizontalStretch(200)
         sizePolicy.setVerticalStretch(0)
@@ -447,10 +447,6 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_10.addLayout(self.verticalLayout_6)
 
-        self.horizontalSpacer_2 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
-
-        self.verticalLayout_10.addItem(self.horizontalSpacer_2)
-
         self.quoteFrame = QFrame(self.mainLayout)
         self.quoteFrame.setObjectName(u"quoteFrame")
         sizePolicy2.setHeightForWidth(self.quoteFrame.sizePolicy().hasHeightForWidth())
@@ -480,7 +476,7 @@ class Ui_MainWindow(object):
         MainWindow.setCentralWidget(self.mainLayout)
         self.menubar = QMenuBar(MainWindow)
         self.menubar.setObjectName(u"menubar")
-        self.menubar.setGeometry(QRect(0, 0, 530, 33))
+        self.menubar.setGeometry(QRect(0, 0, 510, 33))
         self.menuSettings = QMenu(self.menubar)
         self.menuSettings.setObjectName(u"menuSettings")
         self.menuchange_default = QMenu(self.menuSettings)
