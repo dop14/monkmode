@@ -35,7 +35,7 @@ class Ui_Form(object):
         self.about_text = QLabel(self.aboutFrame)
         self.about_text.setObjectName(u"about_text")
         font = QFont()
-        font.setPointSize(12)
+        font.setPointSize(10)
         self.about_text.setFont(font)
 
         self.verticalLayout_2.addWidget(self.about_text)
