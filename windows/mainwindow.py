@@ -1,6 +1,6 @@
 from PySide6.QtWidgets import QMainWindow, QMessageBox
 from PySide6.QtGui import QDesktopServices
-from PySide6.QtCore import QUrl
+from PySide6.QtCore import QUrl, Qt
 import shutil, os, sys
 from ui_py.mainwindow import Ui_MainWindow
 from windows.focus_window import FocusWindow
@@ -24,6 +24,9 @@ class MainWindow(QMainWindow):
         self.ui = Ui_MainWindow()   
         self.ui.setupUi(self)
         self.setWindowTitle("monkmode")
+
+        self.adjustSize()   # Shrinks window to the smallest size that fits the layout
+
 
         self.small_window = SmallFocusWindow(self)
         self.showNormal()
@@ -466,8 +469,8 @@ class MainWindow(QMainWindow):
         preferences = get_user_preferences()
         if preferences["tips_and_quotes"] == 1:
             quote, author = get_today_quote()
+            self.ui.quote_label.setAlignment(Qt.AlignCenter)
             self.ui.quote_label.setText(f"\"<i>{quote}</i>\"<br>— {author}")
-            self.ui.quoteFrame.show()
         else:
             self.ui.quoteFrame.hide()
 
