@@ -17,6 +17,7 @@ from core.timer import FocusTimer
 from core.menu_bar import MenuBar
 from database.db_manager import get_period_names, get_subject_names, get_current_streak, save_daily_goal, get_user_stats, update_user_stats
 from database.db_manager import get_default_period_name, get_default_subject_name, get_user_preferences, get_today_focus, get_this_week_focus, get_today_quote, check_streak_log
+from utils import get_db_path
 
 class MainWindow(QMainWindow):
     def __init__(self):
@@ -474,16 +475,17 @@ class MainWindow(QMainWindow):
         else:
             self.ui.quoteFrame.hide()
 
-    def backup_db(self,db_path="database/monkmode.db", backup_folder="database_backup"):
+    def backup_db(self):
+        db_path = get_db_path() 
+        
         if not os.path.exists(db_path):
             print(f"No database found at {db_path}, skipping backup.")
             return
-
-        # Create backup folder if it doesn't exist
-        os.makedirs(backup_folder, exist_ok=True)
-
+        
+        # Create backup in the same folder as the database
+        backup_folder = os.path.dirname(db_path) 
         backup_path = os.path.join(backup_folder, "monkmode_backup.db")
-
+        
         try:
             shutil.copy(db_path, backup_path)
             print(f"Backup created: {backup_path}")
