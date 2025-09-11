@@ -469,6 +469,7 @@ class MainWindow(QMainWindow):
     def load_today_quote(self):
         preferences = get_user_preferences()
         if preferences["tips_and_quotes"] == 1:
+            self.ui.quoteFrame.show()
             quote, author = get_today_quote()
             self.ui.quote_label.setAlignment(Qt.AlignCenter)
             self.ui.quote_label.setText(f"\"<i>{quote}</i>\"<br>— {author}")
