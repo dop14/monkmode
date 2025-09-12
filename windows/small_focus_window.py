@@ -75,10 +75,16 @@ class SmallFocusWindow(QDialog):
 
     # Hiding buttons in small focus window
     def default_values(self):
+        # Hide buttons
         self.ui.hidden_text.hide()
         self.ui.small_resume_btn.hide()
         self.ui.show_time_btn.hide()
+
+        # Show buttons
         self.ui.small_pause_btn.show()
+        self.ui.time_label.show()
+        self.ui.session_label.show()
+        self.ui.unshow_time_btn.show()
 
     def focus_over(self):
         self.close()
