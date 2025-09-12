@@ -49,6 +49,7 @@ class Ui_Form(object):
         font = QFont()
         font.setPointSize(7)
         self.back_to_main_btn.setFont(font)
+        self.back_to_main_btn.setFocusPolicy(Qt.FocusPolicy.NoFocus)
         icon = QIcon(QIcon.fromTheme(QIcon.ThemeIcon.ViewFullscreen))
         self.back_to_main_btn.setIcon(icon)
         self.back_to_main_btn.setIconSize(QSize(12, 12))
@@ -85,6 +86,7 @@ class Ui_Form(object):
         self.show_time_btn.setSizePolicy(sizePolicy1)
         self.show_time_btn.setMinimumSize(QSize(60, 0))
         self.show_time_btn.setMaximumSize(QSize(16777215, 16777215))
+        self.show_time_btn.setFocusPolicy(Qt.FocusPolicy.NoFocus)
 
         self.horizontalLayout_2.addWidget(self.show_time_btn, 0, Qt.AlignmentFlag.AlignHCenter)
 
@@ -94,6 +96,7 @@ class Ui_Form(object):
         self.unshow_time_btn.setSizePolicy(sizePolicy1)
         self.unshow_time_btn.setMinimumSize(QSize(60, 0))
         self.unshow_time_btn.setMaximumSize(QSize(16777215, 16777215))
+        self.unshow_time_btn.setFocusPolicy(Qt.FocusPolicy.NoFocus)
 
         self.horizontalLayout_2.addWidget(self.unshow_time_btn, 0, Qt.AlignmentFlag.AlignHCenter)
 
@@ -107,6 +110,7 @@ class Ui_Form(object):
         sizePolicy1.setHeightForWidth(self.small_pause_btn.sizePolicy().hasHeightForWidth())
         self.small_pause_btn.setSizePolicy(sizePolicy1)
         self.small_pause_btn.setMinimumSize(QSize(60, 0))
+        self.small_pause_btn.setFocusPolicy(Qt.FocusPolicy.NoFocus)
         icon1 = QIcon(QIcon.fromTheme(QIcon.ThemeIcon.MediaPlaybackPause))
         self.small_pause_btn.setIcon(icon1)
 
@@ -117,6 +121,7 @@ class Ui_Form(object):
         sizePolicy1.setHeightForWidth(self.small_resume_btn.sizePolicy().hasHeightForWidth())
         self.small_resume_btn.setSizePolicy(sizePolicy1)
         self.small_resume_btn.setMinimumSize(QSize(60, 0))
+        self.small_resume_btn.setFocusPolicy(Qt.FocusPolicy.NoFocus)
         icon2 = QIcon(QIcon.fromTheme(QIcon.ThemeIcon.MediaPlaybackStart))
         self.small_resume_btn.setIcon(icon2)
 
@@ -127,6 +132,7 @@ class Ui_Form(object):
         sizePolicy1.setHeightForWidth(self.small_stop_btn.sizePolicy().hasHeightForWidth())
         self.small_stop_btn.setSizePolicy(sizePolicy1)
         self.small_stop_btn.setMinimumSize(QSize(60, 0))
+        self.small_stop_btn.setFocusPolicy(Qt.FocusPolicy.NoFocus)
         icon3 = QIcon(QIcon.fromTheme(QIcon.ThemeIcon.MediaPlaybackStop))
         self.small_stop_btn.setIcon(icon3)
 
@@ -140,6 +146,9 @@ class Ui_Form(object):
 
 
         self.retranslateUi(Form)
+
+        self.back_to_main_btn.setDefault(False)
+
 
         QMetaObject.connectSlotsByName(Form)
     # setupUi

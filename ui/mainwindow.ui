@@ -64,6 +64,9 @@
              <verstretch>0</verstretch>
             </sizepolicy>
            </property>
+           <property name="focusPolicy">
+            <enum>Qt::FocusPolicy::NoFocus</enum>
+           </property>
            <property name="text">
             <string/>
            </property>
@@ -144,6 +147,9 @@
                <kerning>true</kerning>
               </font>
              </property>
+             <property name="focusPolicy">
+              <enum>Qt::FocusPolicy::NoFocus</enum>
+             </property>
              <property name="text">
               <string/>
              </property>
@@ -172,6 +178,9 @@
                <height>0</height>
               </size>
              </property>
+             <property name="focusPolicy">
+              <enum>Qt::FocusPolicy::NoFocus</enum>
+             </property>
              <property name="text">
               <string/>
              </property>
@@ -199,6 +208,9 @@
                <width>60</width>
                <height>0</height>
               </size>
+             </property>
+             <property name="focusPolicy">
+              <enum>Qt::FocusPolicy::NoFocus</enum>
              </property>
              <property name="text">
               <string/>
