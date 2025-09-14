@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>220</width>
+    <width>200</width>
     <height>200</height>
    </rect>
   </property>
@@ -80,6 +80,9 @@
         </property>
        </widget>
       </item>
+      <item>
+       <layout class="QVBoxLayout" name="image_layout"/>
+      </item>
       <item alignment="Qt::AlignmentFlag::AlignHCenter">
        <widget class="QLabel" name="time_label">
         <property name="sizePolicy">
@@ -105,83 +108,11 @@
        </widget>
       </item>
       <item alignment="Qt::AlignmentFlag::AlignHCenter">
-       <widget class="QLabel" name="hidden_text">
-        <property name="font">
-         <font>
-          <pointsize>36</pointsize>
-         </font>
-        </property>
-        <property name="text">
-         <string/>
-        </property>
-       </widget>
-      </item>
-      <item alignment="Qt::AlignmentFlag::AlignHCenter">
        <widget class="QLabel" name="session_label">
         <property name="text">
          <string/>
         </property>
        </widget>
-      </item>
-      <item>
-       <layout class="QHBoxLayout" name="horizontalLayout_2">
-        <item alignment="Qt::AlignmentFlag::AlignHCenter">
-         <widget class="QPushButton" name="show_time_btn">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="minimumSize">
-           <size>
-            <width>60</width>
-            <height>0</height>
-           </size>
-          </property>
-          <property name="maximumSize">
-           <size>
-            <width>16777215</width>
-            <height>16777215</height>
-           </size>
-          </property>
-          <property name="focusPolicy">
-           <enum>Qt::FocusPolicy::NoFocus</enum>
-          </property>
-          <property name="text">
-           <string>show time</string>
-          </property>
-         </widget>
-        </item>
-        <item alignment="Qt::AlignmentFlag::AlignHCenter">
-         <widget class="QPushButton" name="unshow_time_btn">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="minimumSize">
-           <size>
-            <width>60</width>
-            <height>0</height>
-           </size>
-          </property>
-          <property name="maximumSize">
-           <size>
-            <width>16777215</width>
-            <height>16777215</height>
-           </size>
-          </property>
-          <property name="focusPolicy">
-           <enum>Qt::FocusPolicy::NoFocus</enum>
-          </property>
-          <property name="text">
-           <string>hide time</string>
-          </property>
-         </widget>
-        </item>
-       </layout>
       </item>
       <item>
        <layout class="QHBoxLayout" name="horizontalLayout">

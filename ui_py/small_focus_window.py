@@ -56,6 +56,11 @@ class Ui_Form(object):
 
         self.verticalLayout.addWidget(self.back_to_main_btn)
 
+        self.image_layout = QVBoxLayout()
+        self.image_layout.setObjectName(u"image_layout")
+
+        self.verticalLayout.addLayout(self.image_layout)
+
         self.time_label = QLabel(self.smallFrame)
         self.time_label.setObjectName(u"time_label")
         sizePolicy1.setHeightForWidth(self.time_label.sizePolicy().hasHeightForWidth())
@@ -67,41 +72,10 @@ class Ui_Form(object):
 
         self.verticalLayout.addWidget(self.time_label, 0, Qt.AlignmentFlag.AlignHCenter)
 
-        self.hidden_text = QLabel(self.smallFrame)
-        self.hidden_text.setObjectName(u"hidden_text")
-        self.hidden_text.setFont(font1)
-
-        self.verticalLayout.addWidget(self.hidden_text, 0, Qt.AlignmentFlag.AlignHCenter)
-
         self.session_label = QLabel(self.smallFrame)
         self.session_label.setObjectName(u"session_label")
 
         self.verticalLayout.addWidget(self.session_label, 0, Qt.AlignmentFlag.AlignHCenter)
-
-        self.horizontalLayout_2 = QHBoxLayout()
-        self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
-        self.show_time_btn = QPushButton(self.smallFrame)
-        self.show_time_btn.setObjectName(u"show_time_btn")
-        sizePolicy1.setHeightForWidth(self.show_time_btn.sizePolicy().hasHeightForWidth())
-        self.show_time_btn.setSizePolicy(sizePolicy1)
-        self.show_time_btn.setMinimumSize(QSize(60, 0))
-        self.show_time_btn.setMaximumSize(QSize(16777215, 16777215))
-        self.show_time_btn.setFocusPolicy(Qt.FocusPolicy.NoFocus)
-
-        self.horizontalLayout_2.addWidget(self.show_time_btn, 0, Qt.AlignmentFlag.AlignHCenter)
-
-        self.unshow_time_btn = QPushButton(self.smallFrame)
-        self.unshow_time_btn.setObjectName(u"unshow_time_btn")
-        sizePolicy1.setHeightForWidth(self.unshow_time_btn.sizePolicy().hasHeightForWidth())
-        self.unshow_time_btn.setSizePolicy(sizePolicy1)
-        self.unshow_time_btn.setMinimumSize(QSize(60, 0))
-        self.unshow_time_btn.setMaximumSize(QSize(16777215, 16777215))
-        self.unshow_time_btn.setFocusPolicy(Qt.FocusPolicy.NoFocus)
-
-        self.horizontalLayout_2.addWidget(self.unshow_time_btn, 0, Qt.AlignmentFlag.AlignHCenter)
-
-
-        self.verticalLayout.addLayout(self.horizontalLayout_2)
 
         self.horizontalLayout = QHBoxLayout()
         self.horizontalLayout.setObjectName(u"horizontalLayout")
@@ -157,10 +131,7 @@ class Ui_Form(object):
         Form.setWindowTitle(QCoreApplication.translate("Form", u"Form", None))
         self.back_to_main_btn.setText("")
         self.time_label.setText(QCoreApplication.translate("Form", u"time", None))
-        self.hidden_text.setText("")
         self.session_label.setText("")
-        self.show_time_btn.setText(QCoreApplication.translate("Form", u"show time", None))
-        self.unshow_time_btn.setText(QCoreApplication.translate("Form", u"hide time", None))
         self.small_pause_btn.setText("")
         self.small_resume_btn.setText("")
         self.small_stop_btn.setText("")

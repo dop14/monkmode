@@ -8,6 +8,7 @@ import matplotlib.pyplot as plt
 from PySide6.QtWidgets import QVBoxLayout
 import textwrap
 from utils import get_resource_path
+from matplotlib.ticker import MultipleLocator
 
 class Statistics(QDialog):
     def __init__(self, main_window):
@@ -148,7 +149,7 @@ class Statistics(QDialog):
             return
 
         # Prepare data
-        row_dict = {row[0]: row[1]/60 for row in rows} 
+        row_dict = {row[0]: row[1]/3600 for row in rows} 
         all_days = [datetime.today() - timedelta(days=i) for i in reversed(range(30))]
         all_durations = [row_dict.get(d.strftime('%Y-%m-%d'), 0) for d in all_days]
 
@@ -156,10 +157,11 @@ class Statistics(QDialog):
         fig, ax = plt.subplots(figsize=(6, 3))
         ax.plot(all_days, all_durations, color='blue', linewidth=2)
         ax.set_title('daily focus time (last 30 days)',fontweight="bold")
-        ax.set_ylabel('focus duration (minutes)')
+        ax.set_ylabel('focus duration (hours)')
         ax.grid(True)
         ax.tick_params(axis='x', rotation=45)
         fig.tight_layout()
+        ax.yaxis.set_major_locator(MultipleLocator(0.5))
 
         canvas = ScrollFriendlyCanvas(fig)
         canvas.setMaximumSize(600, 300)
@@ -290,7 +292,6 @@ class Statistics(QDialog):
 
         layout.addWidget(canvas, 0)
 
-
     def plot_subject_bar_chart(self):
         self.ui.subjectBarFrame.show()
 
@@ -315,7 +316,7 @@ class Statistics(QDialog):
 
         # Prepare labels and values
         labels = [r[0] for r in rows]
-        durations = [r[1] / 60 for r in rows]  
+        durations = [r[1] / 3600 for r in rows]  
 
         # Pick colors
         cmap = plt.get_cmap("tab20") 
@@ -326,9 +327,10 @@ class Statistics(QDialog):
         # Create bar chart
         fig, ax = plt.subplots(figsize=(6, 3))
         ax.bar(labels, durations, color=colors)
-        ax.set_ylabel("focus time (minutes)")
+        ax.set_ylabel("focus time (hours)")
         ax.set_title("focus time per subject (last 30 days)", fontweight="bold")
-        plt.xticks(rotation=45, ha="right")
+        plt.xticks(rotation=45, ha="center")
+        ax.yaxis.set_major_locator(MultipleLocator(0.5))
 
         fig.subplots_adjust(bottom=0.3)
         plt.close(fig)
@@ -370,7 +372,7 @@ class Statistics(QDialog):
             return
 
         labels = [r[0] for r in rows]
-        durations = [r[1] / 60 for r in rows] 
+        durations = [r[1] / 3600 for r in rows]
 
         # Pick colors
         cmap = plt.get_cmap("tab20")  
@@ -381,9 +383,10 @@ class Statistics(QDialog):
         # Create bar chart
         fig, ax = plt.subplots(figsize=(6, 3))
         ax.bar(labels, durations, color=colors)
-        ax.set_ylabel("focus time (minutes)")
+        ax.set_ylabel("focus time (hours)")
         ax.set_title("focus time per subject (all history)", fontweight="bold")
-        plt.xticks(rotation=45, ha="right")
+        plt.xticks(rotation=45, ha="center")
+        ax.yaxis.set_major_locator(MultipleLocator(0.5))
 
         # Give more space at bottom for labels
         fig.subplots_adjust(bottom=0.3)
