@@ -164,8 +164,14 @@ While you’re in focus, you can always pause or stop the timer:
 
 In the top-right corner, you’ll find an icon that opens a small view of monkmode. This view allows you to track your progress while working on other tasks. The pause, resume, and stop functions work exactly as described above.
 
-<p>You can always switch back to the fullscreen view at any time. If you find the countdown distracting, you can press “hide time” to conceal the remaining time.</p>
-<img width="25%" alt="monkmode_small_view" src="https://github.com/user-attachments/assets/0272c738-cee5-40b7-a646-4f5ba161eb5e" />
+<p>You can always switch back to the fullscreen view at any time. If you find the countdown distracting, you can click on the timer to conceal the remaining time.</p>
+<img width="250" height="270" alt="monkmode_small_view" src="https://github.com/user-attachments/assets/b9475467-1345-4abb-b486-3e95b0422d14" />
+<img width="250" height="270" alt="monkmode_small_view_hidden" src="https://github.com/user-attachments/assets/345d1017-6346-4783-b48d-741c5fbbd23f" />
+
+
+
+
+
 
 <h2>Daily Focus Goal</h2>
 
@@ -267,6 +273,7 @@ Restart the app after changing your OS theme for the best experience.
 
 
    
+
 
 
 
