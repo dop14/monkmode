@@ -218,11 +218,16 @@ class FocusTimer(QObject):
         self.main_window.is_delay_timer = True
         self.focus_delay_time = 5
 
+        self.small_window.delay_starts()
+
         if not self.notifications:
             self.popup = PopupNotification(f"Focus session starts in {self.focus_delay_time}")
             self.popup.show_notification()
 
         self.main_window.ui.timer_label.setText(f"Focus session starts in {self.focus_delay_time}")
+
+        self.small_window.ui.time_label.setText(f"Focus in {self.focus_delay_time}")
+
         self.main_window.ui.timer_label.setStyleSheet("font-size: 20px;")
         self.main_window.ui.focus_pause_btn.hide()
         self.main_window.ui.focus_stop_btn.hide()
@@ -237,22 +242,31 @@ class FocusTimer(QObject):
         self.focus_delay_time -=1
         self.main_window.ui.timer_label.setText(f"Focus session starts in {self.focus_delay_time}")
 
+        self.small_window.ui.time_label.setText(f"Focus in {self.focus_delay_time}")
+
         if not self.notifications:
             self.popup.update_message(f"Focus session starts in {self.focus_delay_time}")
 
         if self.focus_delay_time == 0:
             self.focus_timer_delayed.stop()
+            self.small_window.delay_ends()
             self.start_focus_session()
 
     def break_delay(self):
         self.main_window.is_delay_timer = True
         self.break_delay_time = 5
 
+        self.small_window.delay_starts()
+
         if not self.notifications:
             self.popup = PopupNotification(f"Break starts in {self.break_delay_time}")
             self.popup.show_notification()
 
         self.main_window.ui.timer_label.setText(f"Break starts in {self.break_delay_time}")
+
+        self.small_window.ui.time_label.setText(f"Break in {self.break_delay_time}")
+
+
         self.main_window.ui.timer_label.setStyleSheet("font-size: 20px;")
         self.main_window.ui.focus_pause_btn.hide()
         self.main_window.ui.focus_stop_btn.hide()
@@ -267,11 +281,14 @@ class FocusTimer(QObject):
         self.break_delay_time -=1   
         self.main_window.ui.timer_label.setText(f"Break starts in {self.break_delay_time}")
 
+        self.small_window.ui.time_label.setText(f"Break in {self.break_delay_time}")
+
         if not self.notifications:
             self.popup.update_message(f"Break starts in {self.break_delay_time}")
 
         if self.break_delay_time == 0:
             self.break_timer_delayed.stop()
+            self.small_window.delay_ends()
             self.start_break_session()
 
 

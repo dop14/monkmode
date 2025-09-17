@@ -10,7 +10,6 @@ def get_resource_path(relative_path):
         base_path = os.path.abspath(".")
     return os.path.join(base_path, relative_path)
 
-
 def get_db_path():
     if os.name == 'nt':  # Windows
         app_data = os.path.join(os.environ['APPDATA'], 'MonkMode')

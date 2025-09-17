@@ -28,7 +28,6 @@ class MainWindow(QMainWindow):
 
         self.adjustSize()   # Shrinks window to the smallest size that fits the layout
 
-
         self.small_window = SmallFocusWindow(self)
         self.showNormal()
         self.is_timer_active = False

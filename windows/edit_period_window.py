@@ -139,7 +139,7 @@ class EditPeriodWindow(QDialog):
             # Refresh combobox
             self.refresh_period_combobox(main_window)
 
-            # Close the windo
+            # Close the window
             self.close()
 
         # If no changes were made

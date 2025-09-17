@@ -97,5 +97,16 @@ class SmallFocusWindow(QDialog):
 
         return self.image_label
     
+    def delay_starts(self):
+        self.ui.small_pause_btn.hide()
+        self.ui.small_stop_btn.hide()
+        self.ui.session_label.setText("")
+        self.ui.time_label.setStyleSheet("font-size: 32px;")
+
+    def delay_ends(self):
+        self.ui.small_pause_btn.show()
+        self.ui.small_stop_btn.show()
+        self.ui.time_label.setStyleSheet("font-size: 48px;")
+    
 
 
