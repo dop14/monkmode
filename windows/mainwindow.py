@@ -429,6 +429,7 @@ class MainWindow(QMainWindow):
     def check_daily_goal(self):
         if self.daily_progress == 100:
             save_daily_goal()
+            self.check_longest_streak()
 
             
     # Update the daily, weekly, monthly focus if user finished a focus session

@@ -26,8 +26,6 @@ class SmallFocusWindow(QDialog):
         self.ui.time_label.mousePressEvent = self.toggle_timer_image
         self.image_label.mousePressEvent = self.toggle_timer_image
 
-        # Hide buttons
-        self.ui.small_resume_btn.hide()
 
         # Button actions
         self.ui.back_to_main_btn.clicked.connect(self.closeEvent)

@@ -23,6 +23,8 @@ class FocusTimer(QObject):
         self.notifications = preferences["all_notifications_off"]
 
         self.main_window.ui.start_focus_btn.setDisabled(True)
+        
+        self.small_window.ui.small_resume_btn.hide()
 
         self.remaining_time = 0
         self.focus_delay()
@@ -127,10 +129,16 @@ class FocusTimer(QObject):
             self.main_window.ui.focus_pause_btn.hide()
             self.main_window.ui.focus_resume_btn.show()
 
+            self.small_window.ui.small_pause_btn.hide()
+            self.small_window.ui.small_resume_btn.show()
+
     def resume(self):
         self.timer.start(1000)
         self.main_window.ui.focus_resume_btn.hide()
         self.main_window.ui.focus_pause_btn.show()
+
+        self.small_window.ui.small_resume_btn.hide()
+        self.small_window.ui.small_pause_btn.show()
 
     def stop(self):
         if self.timer.isActive():

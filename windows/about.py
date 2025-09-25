@@ -19,7 +19,7 @@ class AboutWindow(QDialog):
             """
         <h2>monkmode</h2>
         <p>Stay focused with monkmode - track your focus sessions and breaks<br> efficiently while creating custom focus periods and subjects.</p>
-        <p><b>Version:</b> 1.0.0</p>
+        <p><b>Version:</b> 1.0.1</p>
 
         <p><b>Developed by:</b> 
             <a href="https://github.com/dop14">dop14</a>

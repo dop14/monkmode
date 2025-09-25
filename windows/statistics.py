@@ -149,7 +149,9 @@ class Statistics(QDialog):
             return
 
         # Prepare data
+
         row_dict = {row[0]: row[1]/3600 for row in rows} 
+
         all_days = [datetime.today() - timedelta(days=i) for i in reversed(range(30))]
         all_durations = [row_dict.get(d.strftime('%Y-%m-%d'), 0) for d in all_days]
 
@@ -162,6 +164,9 @@ class Statistics(QDialog):
         ax.tick_params(axis='x', rotation=45)
         fig.tight_layout()
         ax.yaxis.set_major_locator(MultipleLocator(0.5))
+        max_val = max(all_durations)
+        ax.set_ylim(0, max(0.5, max_val))
+
 
         canvas = ScrollFriendlyCanvas(fig)
         canvas.setMaximumSize(600, 300)
@@ -272,7 +277,7 @@ class Statistics(QDialog):
         startangle=90,
         textprops={'fontsize': 7}
         )
-
+        
         plt.close(fig)
 
         # Add legend 
@@ -333,6 +338,9 @@ class Statistics(QDialog):
         ax.yaxis.set_major_locator(MultipleLocator(0.5))
 
         fig.subplots_adjust(bottom=0.3)
+
+        max_val = max(durations)
+        ax.set_ylim(0, max(0.5, max_val))
         plt.close(fig)
 
         canvas = ScrollFriendlyCanvas(fig)
@@ -390,7 +398,9 @@ class Statistics(QDialog):
 
         # Give more space at bottom for labels
         fig.subplots_adjust(bottom=0.3)
-
+        
+        max_val = max(durations)
+        ax.set_ylim(0, max(0.5, max_val))
         plt.close(fig)
 
         # Embed into Qt
