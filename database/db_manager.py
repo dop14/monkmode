@@ -721,17 +721,19 @@ def get_today_quote():
     if result:
         return result[0], result[1]
     
-    response = requests.get("https://zenquotes.io/api/today")
-    if response.status_code == 200:
-        data = response.json()[0]
-        text = data["q"]
-        author = data["a"]
+    try:
+        response = requests.get("https://zenquotes.io/api/today")
+        if response.status_code == 200:
+            data = response.json()[0]
+            text = data["q"]
+            author = data["a"]
 
-        cursor.execute("INSERT INTO quotes (text, author, date) VALUES (?,?,?)", (text, author, today))
-        conn.commit()
-        return text, author
+            cursor.execute("INSERT INTO quotes (text, author, date) VALUES (?,?,?)", (text, author, today))
+            conn.commit()
+            return text, author
+    except:
+        return "You become what you focus on.", "dop14"
     
-    return "monkmode is the way of life", "dop14"
 
 # Check the streak_log for missing days
 def check_streak_log():
