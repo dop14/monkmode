@@ -37,7 +37,7 @@
         <x>0</x>
         <y>0</y>
         <width>623</width>
-        <height>2211</height>
+        <height>2193</height>
        </rect>
       </property>
       <layout class="QVBoxLayout" name="verticalLayout_11">
@@ -62,7 +62,7 @@
              <widget class="QLabel" name="focus_label">
               <property name="font">
                <font>
-                <pointsize>18</pointsize>
+                <pointsize>16</pointsize>
                 <bold>true</bold>
                </font>
               </property>
@@ -75,7 +75,7 @@
              <widget class="QLabel" name="total_focus_time">
               <property name="font">
                <font>
-                <pointsize>11</pointsize>
+                <pointsize>10</pointsize>
                </font>
               </property>
               <property name="text">
@@ -87,7 +87,7 @@
              <widget class="QLabel" name="avg_daily_focus">
               <property name="font">
                <font>
-                <pointsize>11</pointsize>
+                <pointsize>10</pointsize>
                </font>
               </property>
               <property name="text">
@@ -99,7 +99,7 @@
              <widget class="QLabel" name="avg_weekly_focus">
               <property name="font">
                <font>
-                <pointsize>11</pointsize>
+                <pointsize>10</pointsize>
                </font>
               </property>
               <property name="text">
@@ -111,7 +111,7 @@
              <widget class="QLabel" name="focus_sessions_completed">
               <property name="font">
                <font>
-                <pointsize>11</pointsize>
+                <pointsize>10</pointsize>
                </font>
               </property>
               <property name="text">
@@ -123,7 +123,7 @@
              <widget class="QLabel" name="longest_focus_session">
               <property name="font">
                <font>
-                <pointsize>11</pointsize>
+                <pointsize>10</pointsize>
                </font>
               </property>
               <property name="text">
@@ -135,7 +135,7 @@
              <widget class="QLabel" name="highest_daily_label">
               <property name="font">
                <font>
-                <pointsize>11</pointsize>
+                <pointsize>10</pointsize>
                </font>
               </property>
               <property name="text">
@@ -147,7 +147,7 @@
              <widget class="QLabel" name="highest_weekly_label">
               <property name="font">
                <font>
-                <pointsize>11</pointsize>
+                <pointsize>10</pointsize>
                </font>
               </property>
               <property name="text">
@@ -163,7 +163,7 @@
              <widget class="QLabel" name="streak_and_karma_label">
               <property name="font">
                <font>
-                <pointsize>18</pointsize>
+                <pointsize>16</pointsize>
                 <bold>true</bold>
                </font>
               </property>
@@ -176,7 +176,7 @@
              <widget class="QLabel" name="daily_goal_achieved">
               <property name="font">
                <font>
-                <pointsize>11</pointsize>
+                <pointsize>10</pointsize>
                </font>
               </property>
               <property name="text">
@@ -188,7 +188,7 @@
              <widget class="QLabel" name="current_streak">
               <property name="font">
                <font>
-                <pointsize>11</pointsize>
+                <pointsize>10</pointsize>
                </font>
               </property>
               <property name="text">
@@ -200,7 +200,7 @@
              <widget class="QLabel" name="longest_streak">
               <property name="font">
                <font>
-                <pointsize>11</pointsize>
+                <pointsize>10</pointsize>
                </font>
               </property>
               <property name="text">
@@ -212,7 +212,7 @@
              <widget class="QLabel" name="karma">
               <property name="font">
                <font>
-                <pointsize>11</pointsize>
+                <pointsize>10</pointsize>
                </font>
               </property>
               <property name="text">
@@ -224,7 +224,7 @@
              <widget class="QLabel" name="karma_level">
               <property name="font">
                <font>
-                <pointsize>11</pointsize>
+                <pointsize>10</pointsize>
                </font>
               </property>
               <property name="text">

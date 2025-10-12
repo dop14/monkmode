@@ -33,7 +33,7 @@ class Ui_Form(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollAreaWidgetContents = QWidget()
         self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
-        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 623, 2211))
+        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 623, 2193))
         self.verticalLayout_11 = QVBoxLayout(self.scrollAreaWidgetContents)
         self.verticalLayout_11.setObjectName(u"verticalLayout_11")
         self.overallFrame = QFrame(self.scrollAreaWidgetContents)
@@ -48,7 +48,7 @@ class Ui_Form(object):
         self.focus_label = QLabel(self.overallFrame)
         self.focus_label.setObjectName(u"focus_label")
         font = QFont()
-        font.setPointSize(18)
+        font.setPointSize(16)
         font.setBold(True)
         self.focus_label.setFont(font)
 
@@ -57,7 +57,7 @@ class Ui_Form(object):
         self.total_focus_time = QLabel(self.overallFrame)
         self.total_focus_time.setObjectName(u"total_focus_time")
         font1 = QFont()
-        font1.setPointSize(11)
+        font1.setPointSize(10)
         self.total_focus_time.setFont(font1)
 
         self.verticalLayout_2.addWidget(self.total_focus_time)
@@ -212,7 +212,9 @@ class Ui_Form(object):
 
         self.include_archived_checkbox = QCheckBox(self.scrollAreaWidgetContents)
         self.include_archived_checkbox.setObjectName(u"include_archived_checkbox")
-        self.include_archived_checkbox.setFont(font1)
+        font3 = QFont()
+        font3.setPointSize(11)
+        self.include_archived_checkbox.setFont(font3)
         self.include_archived_checkbox.setChecked(True)
 
         self.verticalLayout_11.addWidget(self.include_archived_checkbox)
