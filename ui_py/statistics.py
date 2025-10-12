@@ -15,9 +15,9 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QFont, QFontDatabase, QGradient, QIcon,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
-from PySide6.QtWidgets import (QApplication, QCheckBox, QFrame, QLabel,
-    QScrollArea, QSizePolicy, QSpacerItem, QVBoxLayout,
-    QWidget)
+from PySide6.QtWidgets import (QApplication, QCheckBox, QFrame, QHBoxLayout,
+    QLabel, QScrollArea, QSizePolicy, QSpacerItem,
+    QVBoxLayout, QWidget)
 
 class Ui_Form(object):
     def setupUi(self, Form):
@@ -33,16 +33,18 @@ class Ui_Form(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollAreaWidgetContents = QWidget()
         self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
-        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 623, 2300))
-        self.verticalLayout_2 = QVBoxLayout(self.scrollAreaWidgetContents)
-        self.verticalLayout_2.setObjectName(u"verticalLayout_2")
+        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 623, 2237))
+        self.verticalLayout_11 = QVBoxLayout(self.scrollAreaWidgetContents)
+        self.verticalLayout_11.setObjectName(u"verticalLayout_11")
         self.overallFrame = QFrame(self.scrollAreaWidgetContents)
         self.overallFrame.setObjectName(u"overallFrame")
-        self.overallFrame.setMaximumSize(QSize(600, 330))
+        self.overallFrame.setMaximumSize(QSize(600, 400))
         self.overallFrame.setFrameShape(QFrame.Shape.StyledPanel)
         self.overallFrame.setFrameShadow(QFrame.Shadow.Raised)
-        self.verticalLayout = QVBoxLayout(self.overallFrame)
-        self.verticalLayout.setObjectName(u"verticalLayout")
+        self.horizontalLayout = QHBoxLayout(self.overallFrame)
+        self.horizontalLayout.setObjectName(u"horizontalLayout")
+        self.verticalLayout_2 = QVBoxLayout()
+        self.verticalLayout_2.setObjectName(u"verticalLayout_2")
         self.focus_label = QLabel(self.overallFrame)
         self.focus_label.setObjectName(u"focus_label")
         font = QFont()
@@ -50,7 +52,7 @@ class Ui_Form(object):
         font.setBold(True)
         self.focus_label.setFont(font)
 
-        self.verticalLayout.addWidget(self.focus_label)
+        self.verticalLayout_2.addWidget(self.focus_label)
 
         self.total_focus_time = QLabel(self.overallFrame)
         self.total_focus_time.setObjectName(u"total_focus_time")
@@ -58,64 +60,96 @@ class Ui_Form(object):
         font1.setPointSize(11)
         self.total_focus_time.setFont(font1)
 
-        self.verticalLayout.addWidget(self.total_focus_time)
+        self.verticalLayout_2.addWidget(self.total_focus_time)
 
         self.avarage_focus_time = QLabel(self.overallFrame)
         self.avarage_focus_time.setObjectName(u"avarage_focus_time")
         self.avarage_focus_time.setFont(font1)
 
-        self.verticalLayout.addWidget(self.avarage_focus_time)
+        self.verticalLayout_2.addWidget(self.avarage_focus_time)
 
-        self.longest_focus_session = QLabel(self.overallFrame)
-        self.longest_focus_session.setObjectName(u"longest_focus_session")
-        self.longest_focus_session.setFont(font1)
+        self.avg_daily_focus = QLabel(self.overallFrame)
+        self.avg_daily_focus.setObjectName(u"avg_daily_focus")
+        self.avg_daily_focus.setFont(font1)
 
-        self.verticalLayout.addWidget(self.longest_focus_session)
+        self.verticalLayout_2.addWidget(self.avg_daily_focus)
+
+        self.avg_weekly_focus = QLabel(self.overallFrame)
+        self.avg_weekly_focus.setObjectName(u"avg_weekly_focus")
+        self.avg_weekly_focus.setFont(font1)
+
+        self.verticalLayout_2.addWidget(self.avg_weekly_focus)
 
         self.focus_sessions_completed = QLabel(self.overallFrame)
         self.focus_sessions_completed.setObjectName(u"focus_sessions_completed")
         self.focus_sessions_completed.setFont(font1)
 
-        self.verticalLayout.addWidget(self.focus_sessions_completed)
+        self.verticalLayout_2.addWidget(self.focus_sessions_completed)
 
+        self.longest_focus_session = QLabel(self.overallFrame)
+        self.longest_focus_session.setObjectName(u"longest_focus_session")
+        self.longest_focus_session.setFont(font1)
+
+        self.verticalLayout_2.addWidget(self.longest_focus_session)
+
+        self.highest_daily_label = QLabel(self.overallFrame)
+        self.highest_daily_label.setObjectName(u"highest_daily_label")
+        self.highest_daily_label.setFont(font1)
+
+        self.verticalLayout_2.addWidget(self.highest_daily_label)
+
+        self.highest_weekly_label = QLabel(self.overallFrame)
+        self.highest_weekly_label.setObjectName(u"highest_weekly_label")
+        self.highest_weekly_label.setFont(font1)
+
+        self.verticalLayout_2.addWidget(self.highest_weekly_label)
+
+
+        self.horizontalLayout.addLayout(self.verticalLayout_2)
+
+        self.verticalLayout_10 = QVBoxLayout()
+        self.verticalLayout_10.setObjectName(u"verticalLayout_10")
         self.streak_and_karma_label = QLabel(self.overallFrame)
         self.streak_and_karma_label.setObjectName(u"streak_and_karma_label")
         self.streak_and_karma_label.setFont(font)
 
-        self.verticalLayout.addWidget(self.streak_and_karma_label)
+        self.verticalLayout_10.addWidget(self.streak_and_karma_label)
 
         self.daily_goal_achieved = QLabel(self.overallFrame)
         self.daily_goal_achieved.setObjectName(u"daily_goal_achieved")
         self.daily_goal_achieved.setFont(font1)
 
-        self.verticalLayout.addWidget(self.daily_goal_achieved)
+        self.verticalLayout_10.addWidget(self.daily_goal_achieved)
 
         self.current_streak = QLabel(self.overallFrame)
         self.current_streak.setObjectName(u"current_streak")
         self.current_streak.setFont(font1)
 
-        self.verticalLayout.addWidget(self.current_streak)
+        self.verticalLayout_10.addWidget(self.current_streak)
 
         self.longest_streak = QLabel(self.overallFrame)
         self.longest_streak.setObjectName(u"longest_streak")
         self.longest_streak.setFont(font1)
 
-        self.verticalLayout.addWidget(self.longest_streak)
+        self.verticalLayout_10.addWidget(self.longest_streak)
 
         self.karma = QLabel(self.overallFrame)
         self.karma.setObjectName(u"karma")
         self.karma.setFont(font1)
 
-        self.verticalLayout.addWidget(self.karma)
+        self.verticalLayout_10.addWidget(self.karma)
 
         self.karma_level = QLabel(self.overallFrame)
         self.karma_level.setObjectName(u"karma_level")
         self.karma_level.setFont(font1)
 
-        self.verticalLayout.addWidget(self.karma_level)
+        self.verticalLayout_10.addWidget(self.karma_level)
 
 
-        self.verticalLayout_2.addWidget(self.overallFrame)
+        self.horizontalLayout.addLayout(self.verticalLayout_10)
+
+
+        self.verticalLayout_11.addWidget(self.overallFrame)
 
         self.no_data_message = QLabel(self.scrollAreaWidgetContents)
         self.no_data_message.setObjectName(u"no_data_message")
@@ -124,11 +158,11 @@ class Ui_Form(object):
         font2.setBold(True)
         self.no_data_message.setFont(font2)
 
-        self.verticalLayout_2.addWidget(self.no_data_message, 0, Qt.AlignmentFlag.AlignHCenter)
+        self.verticalLayout_11.addWidget(self.no_data_message, 0, Qt.AlignmentFlag.AlignHCenter)
 
         self.horizontalSpacer = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
 
-        self.verticalLayout_2.addItem(self.horizontalSpacer)
+        self.verticalLayout_11.addItem(self.horizontalSpacer)
 
         self.focusFrame = QFrame(self.scrollAreaWidgetContents)
         self.focusFrame.setObjectName(u"focusFrame")
@@ -137,11 +171,11 @@ class Ui_Form(object):
         self.focusFrame.setFrameShape(QFrame.Shape.StyledPanel)
         self.focusFrame.setFrameShadow(QFrame.Shadow.Raised)
 
-        self.verticalLayout_2.addWidget(self.focusFrame)
+        self.verticalLayout_11.addWidget(self.focusFrame)
 
         self.horizontalSpacer_2 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
 
-        self.verticalLayout_2.addItem(self.horizontalSpacer_2)
+        self.verticalLayout_11.addItem(self.horizontalSpacer_2)
 
         self.subjectFrame = QFrame(self.scrollAreaWidgetContents)
         self.subjectFrame.setObjectName(u"subjectFrame")
@@ -150,11 +184,11 @@ class Ui_Form(object):
         self.subjectFrame.setFrameShape(QFrame.Shape.StyledPanel)
         self.subjectFrame.setFrameShadow(QFrame.Shadow.Raised)
 
-        self.verticalLayout_2.addWidget(self.subjectFrame)
+        self.verticalLayout_11.addWidget(self.subjectFrame)
 
         self.horizontalSpacer_3 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
 
-        self.verticalLayout_2.addItem(self.horizontalSpacer_3)
+        self.verticalLayout_11.addItem(self.horizontalSpacer_3)
 
         self.periodFrame = QFrame(self.scrollAreaWidgetContents)
         self.periodFrame.setObjectName(u"periodFrame")
@@ -163,11 +197,11 @@ class Ui_Form(object):
         self.periodFrame.setFrameShape(QFrame.Shape.StyledPanel)
         self.periodFrame.setFrameShadow(QFrame.Shadow.Raised)
 
-        self.verticalLayout_2.addWidget(self.periodFrame)
+        self.verticalLayout_11.addWidget(self.periodFrame)
 
         self.horizontalSpacer_4 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
 
-        self.verticalLayout_2.addItem(self.horizontalSpacer_4)
+        self.verticalLayout_11.addItem(self.horizontalSpacer_4)
 
         self.subjectBarFrame = QFrame(self.scrollAreaWidgetContents)
         self.subjectBarFrame.setObjectName(u"subjectBarFrame")
@@ -176,18 +210,18 @@ class Ui_Form(object):
         self.subjectBarFrame.setFrameShape(QFrame.Shape.StyledPanel)
         self.subjectBarFrame.setFrameShadow(QFrame.Shadow.Raised)
 
-        self.verticalLayout_2.addWidget(self.subjectBarFrame)
+        self.verticalLayout_11.addWidget(self.subjectBarFrame)
 
         self.horizontalSpacer_5 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
 
-        self.verticalLayout_2.addItem(self.horizontalSpacer_5)
+        self.verticalLayout_11.addItem(self.horizontalSpacer_5)
 
         self.include_archived_checkbox = QCheckBox(self.scrollAreaWidgetContents)
         self.include_archived_checkbox.setObjectName(u"include_archived_checkbox")
         self.include_archived_checkbox.setFont(font1)
         self.include_archived_checkbox.setChecked(True)
 
-        self.verticalLayout_2.addWidget(self.include_archived_checkbox)
+        self.verticalLayout_11.addWidget(self.include_archived_checkbox)
 
         self.subjectAllBarFrame = QFrame(self.scrollAreaWidgetContents)
         self.subjectAllBarFrame.setObjectName(u"subjectAllBarFrame")
@@ -195,7 +229,7 @@ class Ui_Form(object):
         self.subjectAllBarFrame.setFrameShape(QFrame.Shape.StyledPanel)
         self.subjectAllBarFrame.setFrameShadow(QFrame.Shadow.Raised)
 
-        self.verticalLayout_2.addWidget(self.subjectAllBarFrame)
+        self.verticalLayout_11.addWidget(self.subjectAllBarFrame)
 
         self.scrollArea.setWidget(self.scrollAreaWidgetContents)
 
@@ -211,9 +245,13 @@ class Ui_Form(object):
         Form.setWindowTitle(QCoreApplication.translate("Form", u"Form", None))
         self.focus_label.setText(QCoreApplication.translate("Form", u"Focus", None))
         self.total_focus_time.setText(QCoreApplication.translate("Form", u"total focus time:", None))
-        self.avarage_focus_time.setText(QCoreApplication.translate("Form", u"avarage focus time:", None))
-        self.longest_focus_session.setText(QCoreApplication.translate("Form", u"longest focus session:", None))
+        self.avarage_focus_time.setText(QCoreApplication.translate("Form", u"avg. focus session length:", None))
+        self.avg_daily_focus.setText(QCoreApplication.translate("Form", u"avg. daily focus:", None))
+        self.avg_weekly_focus.setText(QCoreApplication.translate("Form", u"avg. weekly focus:", None))
         self.focus_sessions_completed.setText(QCoreApplication.translate("Form", u"focus sessions completed:", None))
+        self.longest_focus_session.setText(QCoreApplication.translate("Form", u"longest focus session:", None))
+        self.highest_daily_label.setText(QCoreApplication.translate("Form", u"highest daily focus:", None))
+        self.highest_weekly_label.setText(QCoreApplication.translate("Form", u"highest weekly focus:", None))
         self.streak_and_karma_label.setText(QCoreApplication.translate("Form", u"Streak & Karma", None))
         self.daily_goal_achieved.setText(QCoreApplication.translate("Form", u"daily goal achieved:", None))
         self.current_streak.setText(QCoreApplication.translate("Form", u"current streak:", None))

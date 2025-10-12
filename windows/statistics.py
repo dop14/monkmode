@@ -1,6 +1,6 @@
 from PySide6.QtWidgets import QDialog, QApplication
 from ui_py.statistics import Ui_Form
-from database.db_manager import get_user_stats, get_avg_focus, get_daily_goal_achieved, get_current_streak, get_current_karma, get_focus_data, get_subject_data_stats, get_period_data_stats, get_subject_time_data, get_subject_time_data_all_include_archived, get_subject_time_data_all_not_include_archived
+from database.db_manager import get_user_stats, get_avg_focus, get_avg_daily_focus, get_avg_weekly_focus, get_daily_goal_achieved, get_current_streak, get_current_karma, get_focus_data, get_highest_weekly_focus, get_subject_data_stats, get_period_data_stats, get_subject_time_data, get_subject_time_data_all_include_archived, get_subject_time_data_all_not_include_archived, get_highest_daily_focus
 from PySide6.QtGui import QIcon, QColor, QPalette
 from datetime import datetime, timedelta
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
@@ -37,6 +37,10 @@ class Statistics(QDialog):
         stats = get_user_stats()
         self.longest_streak = stats[3]
         avg_focus = get_avg_focus()
+        avg_daily_focus = get_avg_daily_focus()
+        avg_weekly_focus = get_avg_weekly_focus()
+        highest_daily_focus = get_highest_daily_focus()
+        highest_weekly_focus = get_highest_weekly_focus()
         
         # Set label values
         if stats[0] > 3600:
@@ -64,18 +68,79 @@ class Statistics(QDialog):
 
         if avg_focus != None:
             if avg_focus < 3600:
-                self.ui.avarage_focus_time.setText(f"avarage focus time: <b>{int(avg_focus / 60)} minutes</b>")
+                self.ui.avarage_focus_time.setText(f"avg. focus duration: <b>{int(avg_focus / 60)} minutes</b>")
             elif avg_focus > 3600:
                 hours = avg_focus // 3600
                 minutes = (avg_focus % 3600) // 60
                 if minutes == 0:
-                    self.ui.avarage_focus_time.setText(f"avarage focus time: <b>{hours} hours</b>")
+                    self.ui.avarage_focus_time.setText(f"avg. focus duration: <b>{hours} hours</b>")
                 else:
-                    self.ui.avarage_focus_time.setText(f"avarage focus time: <b>{hours} hours and {minutes} minutes</b>")
+                    self.ui.avarage_focus_time.setText(f"avg. focus duration: <b>{hours} hours and {minutes} minutes</b>")
             else:
-                self.ui.avarage_focus_time.setText(f"avarage focus time: <b>no data</b>")
+                self.ui.avarage_focus_time.setText(f"avg. focus duration: <b>no data</b>")
         else:
-            self.ui.avarage_focus_time.setText(f"avarage focus time: <b>no data</b>")
+            self.ui.avarage_focus_time.setText(f"avg. focus duration: <b>no data</b>")
+
+        if highest_daily_focus != None:
+            if highest_daily_focus < 3600:
+                self.ui.highest_daily_label.setText(f"highest daily focus: <b>{int(highest_daily_focus / 60)} minutes</b>")
+            elif highest_daily_focus > 3600:
+                hours = highest_daily_focus // 3600
+                minutes = (highest_daily_focus % 3600) // 60
+                if minutes == 0:
+                    self.ui.highest_daily_label.setText(f"highest daily focus: <b>{hours} minutes</b>")
+                else:
+                    self.ui.highest_daily_label.setText(f"highest daily focus: <b>{hours} hours and {minutes} minutes</b>")
+            else:
+                self.ui.highest_daily_label.setText(f"highest daily focus: <b>no data</b>")
+        else:
+            self.ui.highest_daily_label.setText(f"highest daily focus: <b>no data</b>")
+
+
+        if highest_weekly_focus != None:
+            if highest_weekly_focus < 3600:
+                self.ui.highest_weekly_label.setText(f"highest weekly focus: <b>{int(highest_weekly_focus / 60)} minutes</b>")
+            elif highest_weekly_focus > 3600:
+                hours = highest_weekly_focus // 3600
+                minutes = (highest_weekly_focus % 3600) // 60
+                if minutes == 0:
+                    self.ui.highest_weekly_label.setText(f"highest weekly focus: <b>{hours} minutes</b>")
+                else:
+                    self.ui.highest_weekly_label.setText(f"highest weekly focus: <b>{hours} hours and {minutes} minutes</b>")
+            else:
+                self.ui.highest_weekly_label.setText(f"highest weekly focus: <b>no data</b>")
+        else:
+            self.ui.highest_weekly_label.setText(f"highest weekly focus: <b>no data</b>")
+
+        if avg_daily_focus  != None:
+            if avg_daily_focus  < 3600:
+                self.ui.avg_daily_focus.setText(f"avg. daily focus: <b>{int(avg_daily_focus / 60)} minutes</b>")
+            elif avg_daily_focus  > 3600:
+                hours = avg_daily_focus  // 3600
+                minutes = (avg_daily_focus  % 3600) // 60
+                if minutes == 0:
+                    self.ui.avg_daily_focus.setText(f"avg. daily focus: <b>{hours} minutes</b>")
+                else:
+                    self.ui.avg_daily_focus.setText(f"avg. daily focus: <b>{hours} hours and {minutes} minutes</b>")
+            else:
+                self.ui.avg_daily_focus.setText(f"avg. daily focus: <b>no data</b>")
+        else:
+            self.ui.avg_daily_focus.setText(f"avg. daily focus: <b>no data</b>")
+
+        if avg_weekly_focus  != None:
+            if avg_weekly_focus  < 3600:
+                self.ui.avg_weekly_focus.setText(f"avg. weekly focus: <b>{int(avg_weekly_focus / 60)} minutes</b>")
+            elif avg_weekly_focus  > 3600:
+                hours = avg_weekly_focus  // 3600
+                minutes = (avg_weekly_focus  % 3600) // 60
+                if minutes == 0:
+                    self.ui.avg_weekly_focus.setText(f"avg. weekly focus: <b>{hours} minutes</b>")
+                else:
+                    self.ui.avg_weekly_focus.setText(f"avg. weekly focus: <b>{hours} hours and {minutes} minutes</b>")
+            else:
+                self.ui.avg_weekly_focus.setText(f"avg. weekly focus: <b>no data</b>")
+        else:
+            self.ui.avg_weekly_focus.setText(f"avg. weekly focus: <b>no data</b>")
 
     def show_karma_and_streaks(self):
         daily_goal = get_daily_goal_achieved()
@@ -166,7 +231,6 @@ class Statistics(QDialog):
         ax.yaxis.set_major_locator(MultipleLocator(0.5))
         max_val = max(all_durations)
         ax.set_ylim(0, max(0.5, max_val))
-
 
         canvas = ScrollFriendlyCanvas(fig)
         canvas.setMaximumSize(600, 300)

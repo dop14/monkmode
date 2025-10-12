@@ -37,16 +37,16 @@
         <x>0</x>
         <y>0</y>
         <width>623</width>
-        <height>2300</height>
+        <height>2237</height>
        </rect>
       </property>
-      <layout class="QVBoxLayout" name="verticalLayout_2">
+      <layout class="QVBoxLayout" name="verticalLayout_11">
        <item>
         <widget class="QFrame" name="overallFrame">
          <property name="maximumSize">
           <size>
            <width>600</width>
-           <height>330</height>
+           <height>400</height>
           </size>
          </property>
          <property name="frameShape">
@@ -55,140 +55,196 @@
          <property name="frameShadow">
           <enum>QFrame::Shadow::Raised</enum>
          </property>
-         <layout class="QVBoxLayout" name="verticalLayout">
+         <layout class="QHBoxLayout" name="horizontalLayout">
           <item>
-           <widget class="QLabel" name="focus_label">
-            <property name="font">
-             <font>
-              <pointsize>18</pointsize>
-              <bold>true</bold>
-             </font>
-            </property>
-            <property name="text">
-             <string>Focus</string>
-            </property>
-           </widget>
+           <layout class="QVBoxLayout" name="verticalLayout_2">
+            <item>
+             <widget class="QLabel" name="focus_label">
+              <property name="font">
+               <font>
+                <pointsize>18</pointsize>
+                <bold>true</bold>
+               </font>
+              </property>
+              <property name="text">
+               <string>Focus</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="total_focus_time">
+              <property name="font">
+               <font>
+                <pointsize>11</pointsize>
+               </font>
+              </property>
+              <property name="text">
+               <string>total focus time:</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="avarage_focus_time">
+              <property name="font">
+               <font>
+                <pointsize>11</pointsize>
+               </font>
+              </property>
+              <property name="text">
+               <string>avg. focus session length:</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="avg_daily_focus">
+              <property name="font">
+               <font>
+                <pointsize>11</pointsize>
+               </font>
+              </property>
+              <property name="text">
+               <string>avg. daily focus:</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="avg_weekly_focus">
+              <property name="font">
+               <font>
+                <pointsize>11</pointsize>
+               </font>
+              </property>
+              <property name="text">
+               <string>avg. weekly focus:</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="focus_sessions_completed">
+              <property name="font">
+               <font>
+                <pointsize>11</pointsize>
+               </font>
+              </property>
+              <property name="text">
+               <string>focus sessions completed:</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="longest_focus_session">
+              <property name="font">
+               <font>
+                <pointsize>11</pointsize>
+               </font>
+              </property>
+              <property name="text">
+               <string>longest focus session:</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="highest_daily_label">
+              <property name="font">
+               <font>
+                <pointsize>11</pointsize>
+               </font>
+              </property>
+              <property name="text">
+               <string>highest daily focus:</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="highest_weekly_label">
+              <property name="font">
+               <font>
+                <pointsize>11</pointsize>
+               </font>
+              </property>
+              <property name="text">
+               <string>highest weekly focus:</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
           </item>
           <item>
-           <widget class="QLabel" name="total_focus_time">
-            <property name="font">
-             <font>
-              <pointsize>11</pointsize>
-             </font>
-            </property>
-            <property name="text">
-             <string>total focus time:</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QLabel" name="avarage_focus_time">
-            <property name="font">
-             <font>
-              <pointsize>11</pointsize>
-             </font>
-            </property>
-            <property name="text">
-             <string>avarage focus time:</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QLabel" name="longest_focus_session">
-            <property name="font">
-             <font>
-              <pointsize>11</pointsize>
-             </font>
-            </property>
-            <property name="text">
-             <string>longest focus session:</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QLabel" name="focus_sessions_completed">
-            <property name="font">
-             <font>
-              <pointsize>11</pointsize>
-             </font>
-            </property>
-            <property name="text">
-             <string>focus sessions completed:</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QLabel" name="streak_and_karma_label">
-            <property name="font">
-             <font>
-              <pointsize>18</pointsize>
-              <bold>true</bold>
-             </font>
-            </property>
-            <property name="text">
-             <string>Streak &amp; Karma</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QLabel" name="daily_goal_achieved">
-            <property name="font">
-             <font>
-              <pointsize>11</pointsize>
-             </font>
-            </property>
-            <property name="text">
-             <string>daily goal achieved:</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QLabel" name="current_streak">
-            <property name="font">
-             <font>
-              <pointsize>11</pointsize>
-             </font>
-            </property>
-            <property name="text">
-             <string>current streak:</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QLabel" name="longest_streak">
-            <property name="font">
-             <font>
-              <pointsize>11</pointsize>
-             </font>
-            </property>
-            <property name="text">
-             <string>longest streak:</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QLabel" name="karma">
-            <property name="font">
-             <font>
-              <pointsize>11</pointsize>
-             </font>
-            </property>
-            <property name="text">
-             <string>karma:</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QLabel" name="karma_level">
-            <property name="font">
-             <font>
-              <pointsize>11</pointsize>
-             </font>
-            </property>
-            <property name="text">
-             <string>karma level:</string>
-            </property>
-           </widget>
+           <layout class="QVBoxLayout" name="verticalLayout_10">
+            <item>
+             <widget class="QLabel" name="streak_and_karma_label">
+              <property name="font">
+               <font>
+                <pointsize>18</pointsize>
+                <bold>true</bold>
+               </font>
+              </property>
+              <property name="text">
+               <string>Streak &amp; Karma</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="daily_goal_achieved">
+              <property name="font">
+               <font>
+                <pointsize>11</pointsize>
+               </font>
+              </property>
+              <property name="text">
+               <string>daily goal achieved:</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="current_streak">
+              <property name="font">
+               <font>
+                <pointsize>11</pointsize>
+               </font>
+              </property>
+              <property name="text">
+               <string>current streak:</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="longest_streak">
+              <property name="font">
+               <font>
+                <pointsize>11</pointsize>
+               </font>
+              </property>
+              <property name="text">
+               <string>longest streak:</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="karma">
+              <property name="font">
+               <font>
+                <pointsize>11</pointsize>
+               </font>
+              </property>
+              <property name="text">
+               <string>karma:</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="karma_level">
+              <property name="font">
+               <font>
+                <pointsize>11</pointsize>
+               </font>
+              </property>
+              <property name="text">
+               <string>karma level:</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
           </item>
          </layout>
         </widget>

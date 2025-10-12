@@ -434,6 +434,82 @@ def get_subject_time_data_all_not_include_archived():
 
     return rows
 
+# Get highest daily focus all time
+def get_highest_daily_focus():
+    conn = get_connection()
+    cursor = conn.cursor()
+
+    cursor.execute("""
+        SELECT MAX(daily_total) as highest_daily_focus
+        FROM (
+            SELECT SUM(duration) as daily_total
+            FROM focus_sessions
+            GROUP BY DATE(timestamp)
+        );
+    """)
+
+    row = cursor.fetchone()[0]
+    conn.close()
+
+    return row
+
+# Get the highest weekly focus all time
+def get_highest_weekly_focus():
+    conn = get_connection()
+    cursor = conn.cursor()
+
+    cursor.execute("""
+    SELECT MAX(weekly_total) as highest_weekly_focus
+    FROM (
+        SELECT SUM(duration) as weekly_total
+        FROM focus_sessions
+        GROUP BY strftime('%Y-%W', timestamp)
+    );
+    """)
+
+    row = cursor.fetchone()[0]
+    conn.close()
+
+    return row
+
+# Get average daily focus
+def get_avg_daily_focus():
+    conn = get_connection()
+    cursor = conn.cursor()
+
+    cursor.execute("""
+    SELECT AVG(daily_total) as average_daily_focus
+    FROM (
+        SELECT SUM(duration) as daily_total
+        FROM focus_sessions
+        GROUP BY DATE(timestamp)
+    );
+    """)
+
+    row = cursor.fetchone()[0]
+    conn.close()
+
+    return row
+
+# Get average weekly focus
+def get_avg_weekly_focus():
+    conn = get_connection()
+    cursor = conn.cursor()
+
+    cursor.execute("""
+    SELECT AVG(weekly_total) as average_weekly_focus
+    FROM (
+        SELECT SUM(duration) as weekly_total
+        FROM focus_sessions
+        GROUP BY strftime('%Y-%W', timestamp)
+    );
+    """)
+
+    row = cursor.fetchone()[0]
+    conn.close()
+
+    return row
+
 # Calculates the session lenght with the current period setting
 def calculate_session_length(user_sessions, period_name):
     period_data = get_period_data(period_name)
@@ -734,7 +810,6 @@ def get_today_quote():
     except:
         return "You become what you focus on.", "dop14"
     
-
 # Check the streak_log for missing days
 def check_streak_log():
     conn = get_connection()
