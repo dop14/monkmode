@@ -1,6 +1,6 @@
 from PySide6.QtWidgets import QDialog, QApplication
 from ui_py.statistics import Ui_Form
-from database.db_manager import get_user_stats, get_avg_focus, get_avg_daily_focus, get_avg_weekly_focus, get_daily_goal_achieved, get_current_streak, get_current_karma, get_focus_data, get_highest_weekly_focus, get_subject_data_stats, get_period_data_stats, get_subject_time_data, get_subject_time_data_all_include_archived, get_subject_time_data_all_not_include_archived, get_highest_daily_focus
+from database.db_manager import get_user_stats, get_avg_daily_focus, get_avg_weekly_focus, get_daily_goal_achieved, get_current_streak, get_current_karma, get_focus_data, get_highest_weekly_focus, get_subject_data_stats, get_period_data_stats, get_subject_time_data, get_subject_time_data_all_include_archived, get_subject_time_data_all_not_include_archived, get_highest_daily_focus
 from PySide6.QtGui import QIcon, QColor, QPalette
 from datetime import datetime, timedelta
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
@@ -36,7 +36,6 @@ class Statistics(QDialog):
     def show_stats(self):
         stats = get_user_stats()
         self.longest_streak = stats[3]
-        avg_focus = get_avg_focus()
         avg_daily_focus = get_avg_daily_focus()
         avg_weekly_focus = get_avg_weekly_focus()
         highest_daily_focus = get_highest_daily_focus()
@@ -65,21 +64,6 @@ class Statistics(QDialog):
                 self.ui.longest_focus_session.setText(f"longest focus session: <b>{hours} hours and {minutes} minutes</b>")
         else:
             self.ui.longest_focus_session.setText(f"longest focus session: <b>{int(stats[2] / 60)} minutes</b>")
-
-        if avg_focus != None:
-            if avg_focus < 3600:
-                self.ui.avarage_focus_time.setText(f"avg. focus duration: <b>{int(avg_focus / 60)} minutes</b>")
-            elif avg_focus > 3600:
-                hours = avg_focus // 3600
-                minutes = (avg_focus % 3600) // 60
-                if minutes == 0:
-                    self.ui.avarage_focus_time.setText(f"avg. focus duration: <b>{hours} hours</b>")
-                else:
-                    self.ui.avarage_focus_time.setText(f"avg. focus duration: <b>{hours} hours and {minutes} minutes</b>")
-            else:
-                self.ui.avarage_focus_time.setText(f"avg. focus duration: <b>no data</b>")
-        else:
-            self.ui.avarage_focus_time.setText(f"avg. focus duration: <b>no data</b>")
 
         if highest_daily_focus != None:
             if highest_daily_focus < 3600:

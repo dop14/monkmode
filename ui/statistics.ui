@@ -37,7 +37,7 @@
         <x>0</x>
         <y>0</y>
         <width>623</width>
-        <height>2237</height>
+        <height>2211</height>
        </rect>
       </property>
       <layout class="QVBoxLayout" name="verticalLayout_11">
@@ -80,18 +80,6 @@
               </property>
               <property name="text">
                <string>total focus time:</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QLabel" name="avarage_focus_time">
-              <property name="font">
-               <font>
-                <pointsize>11</pointsize>
-               </font>
-              </property>
-              <property name="text">
-               <string>avg. focus session length:</string>
               </property>
              </widget>
             </item>

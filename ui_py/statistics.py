@@ -33,7 +33,7 @@ class Ui_Form(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollAreaWidgetContents = QWidget()
         self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
-        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 623, 2237))
+        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 623, 2211))
         self.verticalLayout_11 = QVBoxLayout(self.scrollAreaWidgetContents)
         self.verticalLayout_11.setObjectName(u"verticalLayout_11")
         self.overallFrame = QFrame(self.scrollAreaWidgetContents)
@@ -61,12 +61,6 @@ class Ui_Form(object):
         self.total_focus_time.setFont(font1)
 
         self.verticalLayout_2.addWidget(self.total_focus_time)
-
-        self.avarage_focus_time = QLabel(self.overallFrame)
-        self.avarage_focus_time.setObjectName(u"avarage_focus_time")
-        self.avarage_focus_time.setFont(font1)
-
-        self.verticalLayout_2.addWidget(self.avarage_focus_time)
 
         self.avg_daily_focus = QLabel(self.overallFrame)
         self.avg_daily_focus.setObjectName(u"avg_daily_focus")
@@ -245,7 +239,6 @@ class Ui_Form(object):
         Form.setWindowTitle(QCoreApplication.translate("Form", u"Form", None))
         self.focus_label.setText(QCoreApplication.translate("Form", u"Focus", None))
         self.total_focus_time.setText(QCoreApplication.translate("Form", u"total focus time:", None))
-        self.avarage_focus_time.setText(QCoreApplication.translate("Form", u"avg. focus session length:", None))
         self.avg_daily_focus.setText(QCoreApplication.translate("Form", u"avg. daily focus:", None))
         self.avg_weekly_focus.setText(QCoreApplication.translate("Form", u"avg. weekly focus:", None))
         self.focus_sessions_completed.setText(QCoreApplication.translate("Form", u"focus sessions completed:", None))
