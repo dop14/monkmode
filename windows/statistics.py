@@ -119,9 +119,9 @@ class Statistics(QDialog):
                 hours = avg_daily_focus  // 3600
                 minutes = (avg_daily_focus  % 3600) // 60
                 if minutes == 0:
-                    self.ui.avg_daily_focus.setText(f"avg. daily focus: <b>{hours} minutes</b>")
+                    self.ui.avg_daily_focus.setText(f"avg. daily focus: <b>{int(hours)} minutes</b>")
                 else:
-                    self.ui.avg_daily_focus.setText(f"avg. daily focus: <b>{hours} hours and {minutes} minutes</b>")
+                    self.ui.avg_daily_focus.setText(f"avg. daily focus: <b>{int(hours)} hours and {int(minutes)} minutes</b>")
             else:
                 self.ui.avg_daily_focus.setText(f"avg. daily focus: <b>no data</b>")
         else:
@@ -134,9 +134,9 @@ class Statistics(QDialog):
                 hours = avg_weekly_focus  // 3600
                 minutes = (avg_weekly_focus  % 3600) // 60
                 if minutes == 0:
-                    self.ui.avg_weekly_focus.setText(f"avg. weekly focus: <b>{hours} minutes</b>")
+                    self.ui.avg_weekly_focus.setText(f"avg. weekly focus: <b>{int(hours)} minutes</b>")
                 else:
-                    self.ui.avg_weekly_focus.setText(f"avg. weekly focus: <b>{hours} hours and {minutes} minutes</b>")
+                    self.ui.avg_weekly_focus.setText(f"avg. weekly focus: <b>{int(hours)} hours and {int(minutes)} minutes</b>")
             else:
                 self.ui.avg_weekly_focus.setText(f"avg. weekly focus: <b>no data</b>")
         else:
