@@ -101,9 +101,9 @@ class Ui_Form(object):
 
         self.horizontalLayout.addLayout(self.verticalLayout_2)
 
-        self.verticalSpacer = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
+        self.horizontalSpacer_6 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
 
-        self.horizontalLayout.addItem(self.verticalSpacer)
+        self.horizontalLayout.addItem(self.horizontalSpacer_6)
 
         self.verticalLayout_10 = QVBoxLayout()
         self.verticalLayout_10.setObjectName(u"verticalLayout_10")

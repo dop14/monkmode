@@ -158,14 +158,14 @@
            </layout>
           </item>
           <item>
-           <spacer name="verticalSpacer">
+           <spacer name="horizontalSpacer_6">
             <property name="orientation">
-             <enum>Qt::Orientation::Vertical</enum>
+             <enum>Qt::Orientation::Horizontal</enum>
             </property>
             <property name="sizeHint" stdset="0">
              <size>
-              <width>20</width>
-              <height>40</height>
+              <width>40</width>
+              <height>20</height>
              </size>
             </property>
            </spacer>
