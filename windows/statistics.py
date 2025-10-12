@@ -49,7 +49,7 @@ class Statistics(QDialog):
             if minutes == 0:
                 self.ui.total_focus_time.setText(f"total focus time: <b>{hours} hours")
             else:
-                self.ui.total_focus_time.setText(f"total focus time: <b>{hours} hours and {minutes} minutes</b>")
+                self.ui.total_focus_time.setText(f"total focus time: <b>{hours} hours {minutes} minutes</b>")
         else:
             self.ui.total_focus_time.setText(f"total focus time: <b>{int(stats[0] / 60)} minutes</b>")
 
@@ -61,7 +61,7 @@ class Statistics(QDialog):
             if minutes == 0:
                 self.ui.longest_focus_session.setText(f"longest focus session: <b>{hours} hours</b>")
             else:
-                self.ui.longest_focus_session.setText(f"longest focus session: <b>{hours} hours and {minutes} minutes</b>")
+                self.ui.longest_focus_session.setText(f"longest focus session: <b>{hours} hours {minutes} minutes</b>")
         else:
             self.ui.longest_focus_session.setText(f"longest focus session: <b>{int(stats[2] / 60)} minutes</b>")
 
@@ -74,7 +74,7 @@ class Statistics(QDialog):
                 if minutes == 0:
                     self.ui.highest_daily_label.setText(f"highest daily focus: <b>{hours} minutes</b>")
                 else:
-                    self.ui.highest_daily_label.setText(f"highest daily focus: <b>{hours} hours and {minutes} minutes</b>")
+                    self.ui.highest_daily_label.setText(f"highest daily focus: <b>{hours} hours {minutes} minutes</b>")
             else:
                 self.ui.highest_daily_label.setText(f"highest daily focus: <b>no data</b>")
         else:
@@ -90,7 +90,7 @@ class Statistics(QDialog):
                 if minutes == 0:
                     self.ui.highest_weekly_label.setText(f"highest weekly focus: <b>{hours} minutes</b>")
                 else:
-                    self.ui.highest_weekly_label.setText(f"highest weekly focus: <b>{hours} hours and {minutes} minutes</b>")
+                    self.ui.highest_weekly_label.setText(f"highest weekly focus: <b>{hours} hours {minutes} minutes</b>")
             else:
                 self.ui.highest_weekly_label.setText(f"highest weekly focus: <b>no data</b>")
         else:
@@ -105,7 +105,7 @@ class Statistics(QDialog):
                 if minutes == 0:
                     self.ui.avg_daily_focus.setText(f"avg. daily focus: <b>{int(hours)} minutes</b>")
                 else:
-                    self.ui.avg_daily_focus.setText(f"avg. daily focus: <b>{int(hours)} hours and {int(minutes)} minutes</b>")
+                    self.ui.avg_daily_focus.setText(f"avg. daily focus: <b>{int(hours)} hours {int(minutes)} minutes</b>")
             else:
                 self.ui.avg_daily_focus.setText(f"avg. daily focus: <b>no data</b>")
         else:
@@ -120,7 +120,7 @@ class Statistics(QDialog):
                 if minutes == 0:
                     self.ui.avg_weekly_focus.setText(f"avg. weekly focus: <b>{int(hours)} minutes</b>")
                 else:
-                    self.ui.avg_weekly_focus.setText(f"avg. weekly focus: <b>{int(hours)} hours and {int(minutes)} minutes</b>")
+                    self.ui.avg_weekly_focus.setText(f"avg. weekly focus: <b>{int(hours)} hours {int(minutes)} minutes</b>")
             else:
                 self.ui.avg_weekly_focus.setText(f"avg. weekly focus: <b>no data</b>")
         else:
