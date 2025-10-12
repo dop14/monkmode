@@ -37,7 +37,7 @@
         <x>0</x>
         <y>0</y>
         <width>623</width>
-        <height>2197</height>
+        <height>2196</height>
        </rect>
       </property>
       <layout class="QVBoxLayout" name="verticalLayout_11">
@@ -62,7 +62,7 @@
              <widget class="QLabel" name="focus_label">
               <property name="font">
                <font>
-                <pointsize>18</pointsize>
+                <pointsize>17</pointsize>
                 <bold>true</bold>
                </font>
               </property>
@@ -165,7 +165,7 @@
              <widget class="QLabel" name="streak_and_karma_label">
               <property name="font">
                <font>
-                <pointsize>18</pointsize>
+                <pointsize>17</pointsize>
                 <bold>true</bold>
                </font>
               </property>

@@ -33,7 +33,7 @@ class Ui_Form(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollAreaWidgetContents = QWidget()
         self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
-        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 623, 2197))
+        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 623, 2196))
         self.verticalLayout_11 = QVBoxLayout(self.scrollAreaWidgetContents)
         self.verticalLayout_11.setObjectName(u"verticalLayout_11")
         self.overallFrame = QFrame(self.scrollAreaWidgetContents)
@@ -48,7 +48,7 @@ class Ui_Form(object):
         self.focus_label = QLabel(self.overallFrame)
         self.focus_label.setObjectName(u"focus_label")
         font = QFont()
-        font.setPointSize(18)
+        font.setPointSize(17)
         font.setBold(True)
         self.focus_label.setFont(font)
 
