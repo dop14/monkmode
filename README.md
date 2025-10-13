@@ -244,7 +244,7 @@ The help menu contains two options:
   </li>
   <li><strong>Karma levels</strong> — reflect your “monk status” in your focus journey. There are 7 levels to discover.</li>
 </ul>
-<img width="50%" alt="monkmode_statistics" src="https://github.com/user-attachments/assets/420b1bcd-1469-415d-943f-ebda1627d001" />
+<img width="50%" alt="monkmode_statistics" src="https://github.com/user-attachments/assets/a37fbf30-4ebd-4b82-b2e8-a3b474690eb4" />
 
 <h3>Charts</h3>
 <p>After completing at least one focus session, 5 charts will appear in the statistics window:</p>
@@ -273,6 +273,7 @@ Restart the app after changing your OS theme for the best experience.
 
 
    
+
 
 
 
