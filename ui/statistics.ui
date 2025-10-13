@@ -37,7 +37,7 @@
         <x>0</x>
         <y>0</y>
         <width>623</width>
-        <height>2196</height>
+        <height>2194</height>
        </rect>
       </property>
       <layout class="QVBoxLayout" name="verticalLayout_11">
@@ -122,18 +122,6 @@
              </widget>
             </item>
             <item>
-             <widget class="QLabel" name="longest_focus_session">
-              <property name="font">
-               <font>
-                <pointsize>10</pointsize>
-               </font>
-              </property>
-              <property name="text">
-               <string>longest focus session:</string>
-              </property>
-             </widget>
-            </item>
-            <item>
              <widget class="QLabel" name="highest_daily_label">
               <property name="font">
                <font>
@@ -154,6 +142,13 @@
               </property>
               <property name="text">
                <string>highest weekly focus:</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="most_prod_day">
+              <property name="text">
+               <string>most productive day of the week:</string>
               </property>
              </widget>
             </item>
@@ -302,6 +297,12 @@
        </item>
        <item>
         <widget class="QFrame" name="subjectFrame">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
          <property name="minimumSize">
           <size>
            <width>600</width>
@@ -310,8 +311,8 @@
          </property>
          <property name="maximumSize">
           <size>
-           <width>600</width>
-           <height>300</height>
+           <width>16777215</width>
+           <height>16777215</height>
           </size>
          </property>
          <property name="frameShape">

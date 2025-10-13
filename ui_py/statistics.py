@@ -33,7 +33,7 @@ class Ui_Form(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollAreaWidgetContents = QWidget()
         self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
-        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 623, 2196))
+        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 623, 2194))
         self.verticalLayout_11 = QVBoxLayout(self.scrollAreaWidgetContents)
         self.verticalLayout_11.setObjectName(u"verticalLayout_11")
         self.overallFrame = QFrame(self.scrollAreaWidgetContents)
@@ -84,12 +84,6 @@ class Ui_Form(object):
 
         self.verticalLayout_2.addWidget(self.focus_sessions_completed)
 
-        self.longest_focus_session = QLabel(self.overallFrame)
-        self.longest_focus_session.setObjectName(u"longest_focus_session")
-        self.longest_focus_session.setFont(font2)
-
-        self.verticalLayout_2.addWidget(self.longest_focus_session)
-
         self.highest_daily_label = QLabel(self.overallFrame)
         self.highest_daily_label.setObjectName(u"highest_daily_label")
         self.highest_daily_label.setFont(font2)
@@ -101,6 +95,11 @@ class Ui_Form(object):
         self.highest_weekly_label.setFont(font2)
 
         self.verticalLayout_2.addWidget(self.highest_weekly_label)
+
+        self.most_prod_day = QLabel(self.overallFrame)
+        self.most_prod_day.setObjectName(u"most_prod_day")
+
+        self.verticalLayout_2.addWidget(self.most_prod_day)
 
 
         self.horizontalLayout.addLayout(self.verticalLayout_2)
@@ -177,8 +176,13 @@ class Ui_Form(object):
 
         self.subjectFrame = QFrame(self.scrollAreaWidgetContents)
         self.subjectFrame.setObjectName(u"subjectFrame")
+        sizePolicy = QSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Expanding)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.subjectFrame.sizePolicy().hasHeightForWidth())
+        self.subjectFrame.setSizePolicy(sizePolicy)
         self.subjectFrame.setMinimumSize(QSize(600, 300))
-        self.subjectFrame.setMaximumSize(QSize(600, 300))
+        self.subjectFrame.setMaximumSize(QSize(16777215, 16777215))
         self.subjectFrame.setFrameShape(QFrame.Shape.StyledPanel)
         self.subjectFrame.setFrameShadow(QFrame.Shadow.Raised)
 
@@ -248,9 +252,9 @@ class Ui_Form(object):
         self.avg_daily_focus.setText(QCoreApplication.translate("Form", u"avg. daily focus:", None))
         self.avg_weekly_focus.setText(QCoreApplication.translate("Form", u"avg. weekly focus:", None))
         self.focus_sessions_completed.setText(QCoreApplication.translate("Form", u"focus sessions completed:", None))
-        self.longest_focus_session.setText(QCoreApplication.translate("Form", u"longest focus session:", None))
         self.highest_daily_label.setText(QCoreApplication.translate("Form", u"highest daily focus:", None))
         self.highest_weekly_label.setText(QCoreApplication.translate("Form", u"highest weekly focus:", None))
+        self.most_prod_day.setText(QCoreApplication.translate("Form", u"most productive day of the week:", None))
         self.streak_and_karma_label.setText(QCoreApplication.translate("Form", u"Streak & Karma", None))
         self.daily_goal_achieved.setText(QCoreApplication.translate("Form", u"daily goal achieved:", None))
         self.current_streak.setText(QCoreApplication.translate("Form", u"current streak:", None))

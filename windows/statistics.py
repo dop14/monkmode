@@ -1,6 +1,6 @@
 from PySide6.QtWidgets import QDialog, QApplication
 from ui_py.statistics import Ui_Form
-from database.db_manager import get_user_stats, get_avg_daily_focus, get_avg_weekly_focus, get_daily_goal_achieved, get_current_streak, get_current_karma, get_focus_data, get_highest_weekly_focus, get_subject_data_stats, get_period_data_stats, get_subject_time_data, get_subject_time_data_all_include_archived, get_subject_time_data_all_not_include_archived, get_highest_daily_focus
+from database.db_manager import get_user_stats, get_most_productive_day, get_avg_daily_focus, get_avg_weekly_focus, get_daily_goal_achieved, get_current_streak, get_current_karma, get_focus_data, get_highest_weekly_focus, get_subject_data_stats, get_period_data_stats, get_subject_time_data, get_subject_time_data_all_include_archived, get_subject_time_data_all_not_include_archived, get_highest_daily_focus
 from PySide6.QtGui import QIcon, QColor, QPalette
 from datetime import datetime, timedelta
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
@@ -9,6 +9,7 @@ from PySide6.QtWidgets import QVBoxLayout
 import textwrap
 from utils import get_resource_path
 from matplotlib.ticker import MultipleLocator
+import matplotlib.dates as mdates
 
 class Statistics(QDialog):
     def __init__(self, main_window):
@@ -30,6 +31,7 @@ class Statistics(QDialog):
         self.plot_period_distribution()
         self.plot_subject_bar_chart()
         self.plot_subject_bar_chart_allhistory()
+        self.set_tooltips()
 
         self.ui.include_archived_checkbox.stateChanged.connect(self.plot_subject_bar_chart_allhistory)
 
@@ -40,7 +42,14 @@ class Statistics(QDialog):
         avg_weekly_focus = get_avg_weekly_focus()
         highest_daily_focus = get_highest_daily_focus()
         highest_weekly_focus = get_highest_weekly_focus()
-        
+        most_productive_day = get_most_productive_day()
+
+        # Set most productive day
+        if most_productive_day:
+            self.ui.most_prod_day.setText(f"most productive day of the week: <b>{most_productive_day}</b>")
+        else:
+            self.ui.most_prod_day.setText(f"most productive day of the week: <b>no data</b>")
+
         # Set label values
         if stats[0] > 3600:
             focus_mins = stats[0]
@@ -54,16 +63,6 @@ class Statistics(QDialog):
             self.ui.total_focus_time.setText(f"total focus time: <b>{int(stats[0] / 60)} minutes</b>")
 
         self.ui.focus_sessions_completed.setText(f"focus sessions completed: <b>{int(stats[1])}</b>")
-        if stats[2] > 3600:
-            longest_focus_mins = stats[2]
-            hours = longest_focus_mins // 3600
-            minutes = (longest_focus_mins % 3600) // 60
-            if minutes == 0:
-                self.ui.longest_focus_session.setText(f"longest focus session: <b>{hours} hours</b>")
-            else:
-                self.ui.longest_focus_session.setText(f"longest focus session: <b>{hours} hours {minutes} minutes</b>")
-        else:
-            self.ui.longest_focus_session.setText(f"longest focus session: <b>{int(stats[2] / 60)} minutes</b>")
 
         if highest_daily_focus != None:
             if highest_daily_focus < 3600:
@@ -137,7 +136,6 @@ class Statistics(QDialog):
 
         self.current_karma = get_current_karma()
         self.ui.karma.setText(f"karma: <b>{int(self.current_karma)}%</b>")
-        self.ui.karma.setToolTip("your consistency in the past 3 months")
         self.show_karma_level()
  
     def show_karma_level(self):
@@ -166,6 +164,19 @@ class Statistics(QDialog):
         self.ui.karma_level.setText(f"karma level: <b>{karma_level}</b>")
         self.ui.karma_level.setToolTip(tooltip_text)
 
+    def set_tooltips(self):
+        self.ui.total_focus_time.setToolTip("Total time spent in focus.")
+        self.ui.avg_daily_focus.setToolTip("Average focus time per day across all tracked days.")
+        self.ui.avg_weekly_focus.setToolTip("Average focus time per week across all tracked weeks.")
+        self.ui.focus_sessions_completed.setToolTip("Number of focus sessions completed.")
+        self.ui.highest_daily_label.setToolTip("Your highest focus time achieved in a single day.")
+        self.ui.highest_weekly_label.setToolTip("Your highest focus time achieved in a single week.")
+        self.ui.daily_goal_achieved.setToolTip("Number of days you've met your daily focus goal.")
+        self.ui.current_streak.setToolTip("Current streak of consecutive days meeting your goal. Weekdays are required; weekends are optional.")
+        self.ui.longest_streak.setToolTip("Your longest streak of consecutive days meeting your goal.")
+        self.ui.karma.setToolTip("Score reflecting your consistency in meeting focus goals over the past 3 months.")
+        self.ui.most_prod_day.setToolTip("The day of the week when you average the most focus time per session.")
+
     def is_dark_mode(app: QApplication) -> bool:
         palette: QPalette = app.palette()
         color: QColor = palette.color(QPalette.Window)
@@ -185,37 +196,58 @@ class Statistics(QDialog):
         else:
             plt.rcParams.update(plt.rcParamsDefault)
 
+    # Line chart
     def plot_focus_chart(self):
         self.ui.focusFrame.show()
 
         # Get data
         rows = get_focus_data()
 
-        if rows == []:
+        if not rows:
             self.ui.focusFrame.hide()
             self.ui.no_data_message.show()
-            self.ui.no_data_message.setText("Your statistics will appear here after you complete a focus session.")
+            self.ui.no_data_message.setText(
+                "Your statistics will appear here after you complete a focus session."
+            )
             return
 
-        # Prepare data
+        # Prepare data: map date -> hours
+        row_dict = {row[0]: row[1] / 3600 for row in rows}  # convert seconds to hours
 
-        row_dict = {row[0]: row[1]/3600 for row in rows} 
-
+        # Generate last 30 days
         all_days = [datetime.today() - timedelta(days=i) for i in reversed(range(30))]
         all_durations = [row_dict.get(d.strftime('%Y-%m-%d'), 0) for d in all_days]
 
-        # Create figure and canvas
+        # Create figure and axis
         fig, ax = plt.subplots(figsize=(6, 3))
+
+        # Fill area under line for better visibility
+        ax.fill_between(all_days, all_durations, color='grey', alpha=0.5)
         ax.plot(all_days, all_durations, color='blue', linewidth=2)
-        ax.set_title('daily focus time (last 30 days)',fontweight="bold")
+
+        # Titles and labels
+        ax.set_title('daily focus time (last 30 days)', fontweight="bold")
         ax.set_ylabel('focus duration (hours)')
-        ax.grid(True)
-        ax.tick_params(axis='x', rotation=45)
-        fig.tight_layout()
-        ax.yaxis.set_major_locator(MultipleLocator(0.5))
+
+        # Grid for easier reading
+        ax.grid(True, linestyle='--', alpha=0.5)
+
+        # Format x-axis with intervals
+        ax.xaxis.set_major_locator(mdates.DayLocator(interval=5))       # every 5 days
+        ax.xaxis.set_major_formatter(mdates.DateFormatter('%b %d'))    # e.g., Oct 13
+        ax.tick_params(axis='x', rotation=45, labelsize=8)              # rotate & smaller font
+
+        # Y-axis ticks
         max_val = max(all_durations)
+        if max_val > 5:
+            ax.yaxis.set_major_locator(MultipleLocator(1))   # 1-hour steps
+        else:
+            ax.yaxis.set_major_locator(MultipleLocator(0.5)) # 0.5-hour steps
         ax.set_ylim(0, max(0.5, max_val))
 
+        fig.tight_layout()
+
+        # Embed in Qt canvas
         canvas = ScrollFriendlyCanvas(fig)
         canvas.setMaximumSize(600, 300)
 
@@ -232,28 +264,37 @@ class Statistics(QDialog):
 
         layout.addWidget(canvas, 0)
 
+
+    # Pie chart #1
     def plot_subject_chart(self):
-        # Show the frame if previously was hidden
+        # Show the frame if previously hidden
         self.ui.subjectFrame.show()
+        
         # Get data
         rows = get_subject_data_stats()
-        
+
         # If no data, hide the frame
-        if rows == []:
+        if not rows:
             self.ui.subjectFrame.hide()
             return
 
+        # Sort by duration descending (if not already sorted)
+        rows.sort(key=lambda x: x[1], reverse=True)
+
+        # Limit to top 10 subjects
+        top_rows = rows[:10]
+
         # Prepare labels and values
-        labels = [row[0] for row in rows]
-        durations = [row[1]/60 for row in rows]  
+        labels = [row[0] for row in top_rows]
+        durations = [row[1] / 60 for row in top_rows]  # convert seconds to minutes if needed
 
         # Create pie chart
         fig, ax = plt.subplots(figsize=(6.2, 3.2))
         wedges, texts, autotexts = ax.pie(
-        durations,
-        autopct=autopct_filter,
-        startangle=90,
-        textprops={'fontsize': 7}
+            durations,
+            autopct=autopct_filter,
+            startangle=90,
+            textprops={'fontsize': 7}
         )
 
         plt.close(fig)
@@ -268,10 +309,10 @@ class Statistics(QDialog):
             fontsize=8
         )
 
-        ax.set_title('focus time distribution by subject (last 30 days)', fontweight="bold")
+        ax.set_title('focus time distribution by subject (last 30 days, top 10)', fontweight="bold")
 
         canvas = ScrollFriendlyCanvas(fig)
-        canvas.setMaximumSize(620, 320)  
+        canvas.setMaximumSize(620, 320)
 
         # Embed in subjectFrame
         layout = self.ui.subjectFrame.layout()
@@ -286,46 +327,38 @@ class Statistics(QDialog):
                     layout.removeWidget(widget)
                     widget.setParent(None)
 
-        layout.addWidget(canvas, 0)  
+        layout.addWidget(canvas, 0)
 
+    # Pie chart #2
     def plot_period_distribution(self):
         self.ui.periodFrame.show()
 
         # Get data
         rows = get_period_data_stats()
-        
-        if rows == []:
+
+        if not rows:
             self.ui.periodFrame.hide()
             return
 
-        # If no data, clear frame and exit
-        layout = self.ui.periodFrame.layout()
-        if layout is None:
-            layout = QVBoxLayout()
-            self.ui.periodFrame.setLayout(layout)
-        else:
-            for i in reversed(range(layout.count())):
-                w = layout.itemAt(i).widget()
-                if w:
-                    layout.removeWidget(w)
-                    w.setParent(None)
+        # Sort by duration descending (if not already sorted)
+        rows.sort(key=lambda x: x[1], reverse=True)
 
-        if not rows:
-            return
+        # Limit to top 10 periods
+        top_rows = rows[:10]
 
-        # Prepare labels and values 
-        labels = [r[0] for r in rows]
-        durations = [r[1] / 60 for r in rows]
+        # Prepare labels and values
+        labels = [r[0] for r in top_rows]
+        durations = [r[1] / 60 for r in top_rows]  # convert seconds → minutes
 
         # Create pie chart 
         fig, ax = plt.subplots(figsize=(6.2, 3.2))
         wedges, texts, autotexts = ax.pie(
-        durations,
-        autopct=autopct_filter,
-        startangle=90,
-        textprops={'fontsize': 7}
+            durations,
+            autopct=autopct_filter,
+            startangle=90,
+            textprops={'fontsize': 7}
         )
-        
+
         plt.close(fig)
 
         # Add legend 
@@ -338,24 +371,76 @@ class Statistics(QDialog):
             fontsize=8
         )
 
-        ax.set_title('focus time distribution by period (last 30 days)', fontweight="bold")
+        ax.set_title('focus time distribution by period (last 30 days, top 10)', fontweight="bold")
 
+        # Prepare frame layout
+        layout = self.ui.periodFrame.layout()
+        if layout is None:
+            layout = QVBoxLayout()
+            self.ui.periodFrame.setLayout(layout)
+        else:
+            # Clear old widgets
+            for i in reversed(range(layout.count())):
+                w = layout.itemAt(i).widget()
+                if w:
+                    layout.removeWidget(w)
+                    w.setParent(None)
+
+        # Add chart canvas
         canvas = ScrollFriendlyCanvas(fig)
-        canvas.setMaximumSize(620, 320) 
-
+        canvas.setMaximumSize(620, 320)
         layout.addWidget(canvas, 0)
-
+    
+    # Bar chart #1
     def plot_subject_bar_chart(self):
         self.ui.subjectBarFrame.show()
 
         # Get data
         rows = get_subject_time_data()
 
-        if rows == []:
+        if not rows:
             self.ui.subjectBarFrame.hide()
             return
 
-        # Ensure layout exists and clear old chart
+        # Sort by duration descending (if not already sorted)
+        rows.sort(key=lambda x: (-x[1], x[0]))
+
+        # Limit to top 15 subjects
+        top_rows = rows[:20]
+
+        # Prepare labels and values
+        labels = [r[0] for r in top_rows]
+        durations = [r[1] / 3600 for r in top_rows]  # convert seconds → hours
+
+        # Pick unique colors (tab20 supports 20 distinct colors)
+        cmap = plt.get_cmap("tab20")
+        colors = [cmap(i) for i in range(len(labels))]
+
+        # Wrap long labels for better display
+        labels = [textwrap.fill(l, 10) for l in labels]
+
+        # Create bar chart
+        fig, ax = plt.subplots(figsize=(6, 3))
+        ax.bar(labels, durations, color=colors)
+
+        ax.set_ylabel("focus time (hours)")
+        ax.set_title("focus time per subject (last 30 days, top 20)", fontweight="bold")
+
+        plt.xticks(rotation=45, ha="center", fontsize=8.5)
+
+        # Adjust Y-axis tick spacing dynamically
+        max_val = max(durations)
+        if max_val > 5:
+            ax.yaxis.set_major_locator(MultipleLocator(1))   # 1-hour intervals
+        else:
+            ax.yaxis.set_major_locator(MultipleLocator(0.5)) # 0.5-hour intervals
+
+        ax.set_ylim(0, max(0.5, max_val))
+        fig.subplots_adjust(bottom=0.3)
+
+        plt.close(fig)
+
+        # Clear existing layout before adding new chart
         layout = self.ui.subjectBarFrame.layout()
         if layout is None:
             layout = QVBoxLayout()
@@ -367,52 +452,66 @@ class Statistics(QDialog):
                     layout.removeWidget(w)
                     w.setParent(None)
 
+        # Add chart to layout
+        canvas = ScrollFriendlyCanvas(fig)
+        canvas.setMaximumSize(600, 450)
+        layout.addWidget(canvas, 0)
+
+
+    # Bar chart #2
+    def plot_subject_bar_chart_allhistory(self):
+        self.ui.subjectAllBarFrame.show()
+        self.ui.include_archived_checkbox.show()
+
+        # Get data depending on the checkbox
+        if self.ui.include_archived_checkbox.isChecked():
+            rows = get_subject_time_data_all_include_archived()
+        else:
+            rows = get_subject_time_data_all_not_include_archived()
+
+        if not rows:
+            self.ui.subjectAllBarFrame.hide()
+            self.ui.include_archived_checkbox.hide()
+            return
+
+        # Sort by duration descending, then alphabetically for tie-breaking
+        rows.sort(key=lambda x: (-x[1], x[0]))
+
+        # Limit to top 20 subjects
+        top_rows = rows[:20]
+
         # Prepare labels and values
-        labels = [r[0] for r in rows]
-        durations = [r[1] / 3600 for r in rows]  
+        labels = [r[0] for r in top_rows]
+        durations = [r[1] / 3600 for r in top_rows]  # convert seconds → hours
 
-        # Pick colors
-        cmap = plt.get_cmap("tab20") 
-        colors = [cmap(i % 20) for i in range(len(labels))]
+        # Pick unique colors from tab20 (20 distinct colors)
+        cmap = plt.get_cmap("tab20")
+        colors = [cmap(i) for i in range(len(labels))]
 
+        # Wrap long labels for readability
         labels = [textwrap.fill(l, 10) for l in labels]
 
         # Create bar chart
         fig, ax = plt.subplots(figsize=(6, 3))
         ax.bar(labels, durations, color=colors)
         ax.set_ylabel("focus time (hours)")
-        ax.set_title("focus time per subject (last 30 days)", fontweight="bold")
-        plt.xticks(rotation=45, ha="center")
-        ax.yaxis.set_major_locator(MultipleLocator(0.5))
+        ax.set_title("focus time per subject (all history, top 20)", fontweight="bold")
 
+        plt.xticks(rotation=45, ha="center",fontsize=8.5)
+
+        # Dynamic Y-axis tick spacing
+        max_val = max(durations)
+        if max_val > 5:
+            ax.yaxis.set_major_locator(MultipleLocator(1))   # 1-hour intervals
+        else:
+            ax.yaxis.set_major_locator(MultipleLocator(0.5)) # 0.5-hour intervals
+
+        ax.set_ylim(0, max(0.5, max_val))
         fig.subplots_adjust(bottom=0.3)
 
-        max_val = max(durations)
-        ax.set_ylim(0, max(0.5, max_val))
         plt.close(fig)
 
-        canvas = ScrollFriendlyCanvas(fig)
-        canvas.setMaximumSize(600, 450)
-        layout.addWidget(canvas, 0)
-
-    def plot_subject_bar_chart_allhistory(self):
-        self.ui.subjectAllBarFrame.show()
-        self.ui.include_archived_checkbox.show()
-
-        if self.ui.include_archived_checkbox.isChecked():
-            rows = get_subject_time_data_all_include_archived()
-            if rows == []:
-                self.ui.subjectAllBarFrame.hide()
-                self.ui.include_archived_checkbox.hide()
-                return
-        else:
-            rows = get_subject_time_data_all_not_include_archived()
-            if rows == []:
-                self.ui.subjectAllBarFrame.hide()
-                self.ui.include_archived_checkbox.hide()
-                return
-
-        # Ensure layout exists, clear old chart
+        # Ensure layout exists and clear old chart
         layout = self.ui.subjectAllBarFrame.layout()
         if layout is None:
             layout = QVBoxLayout()
@@ -424,34 +523,7 @@ class Statistics(QDialog):
                     layout.removeWidget(w)
                     w.setParent(None)
 
-        if not rows:
-            return
-
-        labels = [r[0] for r in rows]
-        durations = [r[1] / 3600 for r in rows]
-
-        # Pick colors
-        cmap = plt.get_cmap("tab20")  
-        colors = [cmap(i % 20) for i in range(len(labels))]
-
-        labels = [textwrap.fill(l, 10) for l in labels]
-
-        # Create bar chart
-        fig, ax = plt.subplots(figsize=(6, 3))
-        ax.bar(labels, durations, color=colors)
-        ax.set_ylabel("focus time (hours)")
-        ax.set_title("focus time per subject (all history)", fontweight="bold")
-        plt.xticks(rotation=45, ha="center")
-        ax.yaxis.set_major_locator(MultipleLocator(0.5))
-
-        # Give more space at bottom for labels
-        fig.subplots_adjust(bottom=0.3)
-        
-        max_val = max(durations)
-        ax.set_ylim(0, max(0.5, max_val))
-        plt.close(fig)
-
-        # Embed into Qt
+        # Add chart canvas to layout
         canvas = ScrollFriendlyCanvas(fig)
         canvas.setMaximumSize(600, 450)
         layout.addWidget(canvas, 0)

@@ -476,39 +476,76 @@ def get_highest_weekly_focus():
 def get_avg_daily_focus():
     conn = get_connection()
     cursor = conn.cursor()
-
     cursor.execute("""
     SELECT AVG(daily_total) as average_daily_focus
     FROM (
         SELECT SUM(duration) as daily_total
         FROM focus_sessions
+        WHERE DATE(timestamp) < DATE('now')
         GROUP BY DATE(timestamp)
     );
     """)
-
-    row = cursor.fetchone()[0]
+    row = cursor.fetchone()
+    result = row[0] if row else None
     conn.close()
-
-    return row
+    return result
 
 # Get average weekly focus
 def get_avg_weekly_focus():
     conn = get_connection()
     cursor = conn.cursor()
-
     cursor.execute("""
     SELECT AVG(weekly_total) as average_weekly_focus
     FROM (
         SELECT SUM(duration) as weekly_total
         FROM focus_sessions
+        WHERE strftime('%Y-%W', timestamp) < strftime('%Y-%W', 'now')
         GROUP BY strftime('%Y-%W', timestamp)
     );
     """)
-
-    row = cursor.fetchone()[0]
+    row = cursor.fetchone()
+    result = row[0] if row else None
     conn.close()
+    return result
 
-    return row
+# Get the most productive day of the week on average
+def get_most_productive_day():
+    conn = get_connection()
+    cursor = conn.cursor()
+
+    cursor.execute("""
+        SELECT
+            CASE CAST(day_of_week AS INTEGER)
+                WHEN 0 THEN 'Sunday'
+                WHEN 1 THEN 'Monday'
+                WHEN 2 THEN 'Tuesday'
+                WHEN 3 THEN 'Wednesday'
+                WHEN 4 THEN 'Thursday'
+                WHEN 5 THEN 'Friday'
+                WHEN 6 THEN 'Saturday'
+            END AS most_productive_day
+        FROM (
+            SELECT
+                day_of_week,
+                AVG(daily_total) AS avg_duration
+            FROM (
+                SELECT
+                    strftime('%w', timestamp) AS day_of_week,
+                    SUM(duration) AS daily_total
+                FROM focus_sessions
+                GROUP BY DATE(timestamp)
+            ) AS daily_sums
+            GROUP BY day_of_week
+            ORDER BY avg_duration DESC
+            LIMIT 1
+        ) AS avg_days;
+    """)
+
+    result = cursor.fetchone()
+    conn.close()
+    most_prod_day = result[0] if result else None
+
+    return most_prod_day
 
 # Calculates the session lenght with the current period setting
 def calculate_session_length(user_sessions, period_name):
