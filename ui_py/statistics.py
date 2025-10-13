@@ -33,7 +33,7 @@ class Ui_Form(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollAreaWidgetContents = QWidget()
         self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
-        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 623, 2194))
+        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 623, 2196))
         self.verticalLayout_11 = QVBoxLayout(self.scrollAreaWidgetContents)
         self.verticalLayout_11.setObjectName(u"verticalLayout_11")
         self.overallFrame = QFrame(self.scrollAreaWidgetContents)
@@ -98,6 +98,7 @@ class Ui_Form(object):
 
         self.most_prod_day = QLabel(self.overallFrame)
         self.most_prod_day.setObjectName(u"most_prod_day")
+        self.most_prod_day.setFont(font2)
 
         self.verticalLayout_2.addWidget(self.most_prod_day)
 

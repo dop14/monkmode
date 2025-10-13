@@ -37,7 +37,7 @@
         <x>0</x>
         <y>0</y>
         <width>623</width>
-        <height>2194</height>
+        <height>2196</height>
        </rect>
       </property>
       <layout class="QVBoxLayout" name="verticalLayout_11">
@@ -147,6 +147,11 @@
             </item>
             <item>
              <widget class="QLabel" name="most_prod_day">
+              <property name="font">
+               <font>
+                <pointsize>10</pointsize>
+               </font>
+              </property>
               <property name="text">
                <string>most productive day of the week:</string>
               </property>
