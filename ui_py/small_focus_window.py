@@ -3,7 +3,7 @@
 ################################################################################
 ## Form generated from reading UI file 'small_focus_window.ui'
 ##
-## Created by: Qt User Interface Compiler version 6.9.1
+## Created by: Qt User Interface Compiler version 6.10.1
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
@@ -22,7 +22,7 @@ class Ui_Form(object):
     def setupUi(self, Form):
         if not Form.objectName():
             Form.setObjectName(u"Form")
-        Form.resize(220, 200)
+        Form.resize(200, 200)
         sizePolicy = QSizePolicy(QSizePolicy.Policy.Preferred, QSizePolicy.Policy.Preferred)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -50,6 +50,7 @@ class Ui_Form(object):
         font.setPointSize(7)
         self.back_to_main_btn.setFont(font)
         self.back_to_main_btn.setFocusPolicy(Qt.FocusPolicy.NoFocus)
+        self.back_to_main_btn.setStyleSheet(u"padding: 5px 0px 5px  0px;")
         icon = QIcon(QIcon.fromTheme(QIcon.ThemeIcon.ViewFullscreen))
         self.back_to_main_btn.setIcon(icon)
         self.back_to_main_btn.setIconSize(QSize(12, 12))
@@ -85,6 +86,7 @@ class Ui_Form(object):
         self.small_pause_btn.setSizePolicy(sizePolicy1)
         self.small_pause_btn.setMinimumSize(QSize(60, 0))
         self.small_pause_btn.setFocusPolicy(Qt.FocusPolicy.NoFocus)
+        self.small_pause_btn.setStyleSheet(u"padding: 3px 0px 3px  0px;")
         icon1 = QIcon(QIcon.fromTheme(QIcon.ThemeIcon.MediaPlaybackPause))
         self.small_pause_btn.setIcon(icon1)
 
@@ -96,6 +98,7 @@ class Ui_Form(object):
         self.small_resume_btn.setSizePolicy(sizePolicy1)
         self.small_resume_btn.setMinimumSize(QSize(60, 0))
         self.small_resume_btn.setFocusPolicy(Qt.FocusPolicy.NoFocus)
+        self.small_resume_btn.setStyleSheet(u"padding: 3px 0px 3px  0px;")
         icon2 = QIcon(QIcon.fromTheme(QIcon.ThemeIcon.MediaPlaybackStart))
         self.small_resume_btn.setIcon(icon2)
 
@@ -107,6 +110,7 @@ class Ui_Form(object):
         self.small_stop_btn.setSizePolicy(sizePolicy1)
         self.small_stop_btn.setMinimumSize(QSize(60, 0))
         self.small_stop_btn.setFocusPolicy(Qt.FocusPolicy.NoFocus)
+        self.small_stop_btn.setStyleSheet(u"padding: 3px 0px 3px  0px;")
         icon3 = QIcon(QIcon.fromTheme(QIcon.ThemeIcon.MediaPlaybackStop))
         self.small_stop_btn.setIcon(icon3)
 

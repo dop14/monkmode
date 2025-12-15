@@ -3,7 +3,7 @@
 ################################################################################
 ## Form generated from reading UI file 'statistics.ui'
 ##
-## Created by: Qt User Interface Compiler version 6.9.1
+## Created by: Qt User Interface Compiler version 6.10.1
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
@@ -30,10 +30,13 @@ class Ui_Form(object):
         self.verticalLayout_3.setObjectName(u"verticalLayout_3")
         self.scrollArea = QScrollArea(Form)
         self.scrollArea.setObjectName(u"scrollArea")
+        self.scrollArea.setMinimumSize(QSize(640, 720))
+        self.scrollArea.setMaximumSize(QSize(16777215, 16777215))
+        self.scrollArea.setStyleSheet(u"")
         self.scrollArea.setWidgetResizable(True)
         self.scrollAreaWidgetContents = QWidget()
         self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
-        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 623, 2196))
+        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 624, 2198))
         self.verticalLayout_11 = QVBoxLayout(self.scrollAreaWidgetContents)
         self.verticalLayout_11.setObjectName(u"verticalLayout_11")
         self.overallFrame = QFrame(self.scrollAreaWidgetContents)
@@ -166,6 +169,7 @@ class Ui_Form(object):
         self.focusFrame.setObjectName(u"focusFrame")
         self.focusFrame.setMinimumSize(QSize(600, 300))
         self.focusFrame.setMaximumSize(QSize(600, 300))
+        self.focusFrame.setStyleSheet(u"")
         self.focusFrame.setFrameShape(QFrame.Shape.StyledPanel)
         self.focusFrame.setFrameShadow(QFrame.Shadow.Raised)
 
@@ -183,7 +187,8 @@ class Ui_Form(object):
         sizePolicy.setHeightForWidth(self.subjectFrame.sizePolicy().hasHeightForWidth())
         self.subjectFrame.setSizePolicy(sizePolicy)
         self.subjectFrame.setMinimumSize(QSize(600, 300))
-        self.subjectFrame.setMaximumSize(QSize(16777215, 16777215))
+        self.subjectFrame.setMaximumSize(QSize(600, 300))
+        self.subjectFrame.setStyleSheet(u"")
         self.subjectFrame.setFrameShape(QFrame.Shape.StyledPanel)
         self.subjectFrame.setFrameShadow(QFrame.Shadow.Raised)
 
@@ -197,6 +202,7 @@ class Ui_Form(object):
         self.periodFrame.setObjectName(u"periodFrame")
         self.periodFrame.setMinimumSize(QSize(600, 300))
         self.periodFrame.setMaximumSize(QSize(600, 300))
+        self.periodFrame.setStyleSheet(u"")
         self.periodFrame.setFrameShape(QFrame.Shape.StyledPanel)
         self.periodFrame.setFrameShadow(QFrame.Shadow.Raised)
 
@@ -210,6 +216,7 @@ class Ui_Form(object):
         self.subjectBarFrame.setObjectName(u"subjectBarFrame")
         self.subjectBarFrame.setMinimumSize(QSize(600, 420))
         self.subjectBarFrame.setMaximumSize(QSize(600, 420))
+        self.subjectBarFrame.setStyleSheet(u"")
         self.subjectBarFrame.setFrameShape(QFrame.Shape.StyledPanel)
         self.subjectBarFrame.setFrameShadow(QFrame.Shadow.Raised)
 
@@ -231,6 +238,7 @@ class Ui_Form(object):
         self.subjectAllBarFrame = QFrame(self.scrollAreaWidgetContents)
         self.subjectAllBarFrame.setObjectName(u"subjectAllBarFrame")
         self.subjectAllBarFrame.setMinimumSize(QSize(600, 420))
+        self.subjectAllBarFrame.setStyleSheet(u"")
         self.subjectAllBarFrame.setFrameShape(QFrame.Shape.StyledPanel)
         self.subjectAllBarFrame.setFrameShadow(QFrame.Shadow.Raised)
 

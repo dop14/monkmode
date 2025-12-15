@@ -3,7 +3,7 @@
 ################################################################################
 ## Form generated from reading UI file 'mainwindow.ui'
 ##
-## Created by: Qt User Interface Compiler version 6.9.1
+## Created by: Qt User Interface Compiler version 6.10.1
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
@@ -25,13 +25,14 @@ class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
-        MainWindow.resize(510, 769)
+        MainWindow.resize(510, 750)
         sizePolicy = QSizePolicy(QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Minimum)
         sizePolicy.setHorizontalStretch(200)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(MainWindow.sizePolicy().hasHeightForWidth())
         MainWindow.setSizePolicy(sizePolicy)
         MainWindow.setMinimumSize(QSize(510, 0))
+        MainWindow.setMaximumSize(QSize(750, 800))
         MainWindow.setCursor(QCursor(Qt.CursorShape.ArrowCursor))
         MainWindow.setAutoFillBackground(False)
         self.actiondaily_goal = QAction(MainWindow)
@@ -158,6 +159,7 @@ class Ui_MainWindow(object):
         sizePolicy2.setHeightForWidth(self.small_focus_window.sizePolicy().hasHeightForWidth())
         self.small_focus_window.setSizePolicy(sizePolicy2)
         self.small_focus_window.setFocusPolicy(Qt.FocusPolicy.NoFocus)
+        self.small_focus_window.setStyleSheet(u"padding: 3px 3px 3px 3px;")
         icon = QIcon(QIcon.fromTheme(QIcon.ThemeIcon.WindowNew))
         self.small_focus_window.setIcon(icon)
 
@@ -202,6 +204,7 @@ class Ui_MainWindow(object):
         font2.setKerning(True)
         self.focus_pause_btn.setFont(font2)
         self.focus_pause_btn.setFocusPolicy(Qt.FocusPolicy.NoFocus)
+        self.focus_pause_btn.setStyleSheet(u"padding: 3px 0px 3px 0px;")
         icon1 = QIcon(QIcon.fromTheme(QIcon.ThemeIcon.MediaPlaybackPause))
         self.focus_pause_btn.setIcon(icon1)
         self.focus_pause_btn.setIconSize(QSize(18, 18))
@@ -214,6 +217,7 @@ class Ui_MainWindow(object):
         self.focus_resume_btn.setSizePolicy(sizePolicy2)
         self.focus_resume_btn.setMinimumSize(QSize(60, 0))
         self.focus_resume_btn.setFocusPolicy(Qt.FocusPolicy.NoFocus)
+        self.focus_resume_btn.setStyleSheet(u"padding: 3px 0px 3px 0px;")
         icon2 = QIcon(QIcon.fromTheme(QIcon.ThemeIcon.MediaPlaybackStart))
         self.focus_resume_btn.setIcon(icon2)
         self.focus_resume_btn.setIconSize(QSize(18, 18))
@@ -226,6 +230,7 @@ class Ui_MainWindow(object):
         self.focus_stop_btn.setSizePolicy(sizePolicy2)
         self.focus_stop_btn.setMinimumSize(QSize(60, 0))
         self.focus_stop_btn.setFocusPolicy(Qt.FocusPolicy.NoFocus)
+        self.focus_stop_btn.setStyleSheet(u"padding: 3px 0px 3px 0px;")
         icon3 = QIcon(QIcon.fromTheme(QIcon.ThemeIcon.MediaPlaybackStop))
         self.focus_stop_btn.setIcon(icon3)
         self.focus_stop_btn.setIconSize(QSize(18, 18))
@@ -278,13 +283,21 @@ class Ui_MainWindow(object):
         self.newperiod_btn.setObjectName(u"newperiod_btn")
         sizePolicy1.setHeightForWidth(self.newperiod_btn.sizePolicy().hasHeightForWidth())
         self.newperiod_btn.setSizePolicy(sizePolicy1)
+        font5 = QFont()
+        font5.setBold(False)
+        font5.setKerning(True)
+        font5.setStyleStrategy(QFont.PreferDefault)
+        self.newperiod_btn.setFont(font5)
+        self.newperiod_btn.setStyleSheet(u"padding: 3px 0px 3px 0px;")
         icon4 = QIcon(QIcon.fromTheme(QIcon.ThemeIcon.ListAdd))
         self.newperiod_btn.setIcon(icon4)
+        self.newperiod_btn.setIconSize(QSize(16, 16))
 
         self.horizontalLayout.addWidget(self.newperiod_btn)
 
         self.editperiod_btn = QPushButton(self.periodFrame)
         self.editperiod_btn.setObjectName(u"editperiod_btn")
+        self.editperiod_btn.setStyleSheet(u"padding: 3px 0px 3px 0px;")
         icon5 = QIcon(QIcon.fromTheme(QIcon.ThemeIcon.MailMessageNew))
         self.editperiod_btn.setIcon(icon5)
 
@@ -292,6 +305,7 @@ class Ui_MainWindow(object):
 
         self.delete_period_btn = QPushButton(self.periodFrame)
         self.delete_period_btn.setObjectName(u"delete_period_btn")
+        self.delete_period_btn.setStyleSheet(u"padding: 3px 0px 3px 0px;")
         icon6 = QIcon(QIcon.fromTheme(QIcon.ThemeIcon.EditDelete))
         self.delete_period_btn.setIcon(icon6)
 
@@ -324,15 +338,15 @@ class Ui_MainWindow(object):
 
         self.today_label = QLabel(self.dailyFrame)
         self.today_label.setObjectName(u"today_label")
-        font5 = QFont()
-        font5.setPointSize(10)
-        self.today_label.setFont(font5)
+        font6 = QFont()
+        font6.setPointSize(10)
+        self.today_label.setFont(font6)
 
         self.verticalLayout_5.addWidget(self.today_label)
 
         self.daily_goal_label = QLabel(self.dailyFrame)
         self.daily_goal_label.setObjectName(u"daily_goal_label")
-        self.daily_goal_label.setFont(font5)
+        self.daily_goal_label.setFont(font6)
 
         self.verticalLayout_5.addWidget(self.daily_goal_label)
 
@@ -375,18 +389,21 @@ class Ui_MainWindow(object):
         self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
         self.newsubject_btn = QPushButton(self.subjectFrame)
         self.newsubject_btn.setObjectName(u"newsubject_btn")
+        self.newsubject_btn.setStyleSheet(u"padding: 3px 0px 3px 0px;")
         self.newsubject_btn.setIcon(icon4)
 
         self.horizontalLayout_2.addWidget(self.newsubject_btn)
 
         self.edit_subject_btn = QPushButton(self.subjectFrame)
         self.edit_subject_btn.setObjectName(u"edit_subject_btn")
+        self.edit_subject_btn.setStyleSheet(u"padding: 3px 0px 3px 0px;")
         self.edit_subject_btn.setIcon(icon5)
 
         self.horizontalLayout_2.addWidget(self.edit_subject_btn)
 
         self.archive_subject_btn = QPushButton(self.subjectFrame)
         self.archive_subject_btn.setObjectName(u"archive_subject_btn")
+        self.archive_subject_btn.setStyleSheet(u"padding: 3px 0px 3px 0px;")
         icon7 = QIcon(QIcon.fromTheme(QIcon.ThemeIcon.FolderOpen))
         self.archive_subject_btn.setIcon(icon7)
 
@@ -394,6 +411,7 @@ class Ui_MainWindow(object):
 
         self.delete_subject_btn = QPushButton(self.subjectFrame)
         self.delete_subject_btn.setObjectName(u"delete_subject_btn")
+        self.delete_subject_btn.setStyleSheet(u"padding: 3px 0px 3px 0px;")
         self.delete_subject_btn.setIcon(icon6)
 
         self.horizontalLayout_2.addWidget(self.delete_subject_btn)
@@ -425,13 +443,13 @@ class Ui_MainWindow(object):
 
         self.this_week_focus = QLabel(self.statsFrame)
         self.this_week_focus.setObjectName(u"this_week_focus")
-        self.this_week_focus.setFont(font5)
+        self.this_week_focus.setFont(font6)
 
         self.verticalLayout_7.addWidget(self.this_week_focus)
 
         self.current_streak_label = QLabel(self.statsFrame)
         self.current_streak_label.setObjectName(u"current_streak_label")
-        self.current_streak_label.setFont(font5)
+        self.current_streak_label.setFont(font6)
 
         self.verticalLayout_7.addWidget(self.current_streak_label)
 
@@ -474,9 +492,9 @@ class Ui_MainWindow(object):
         self.quote_label.setSizePolicy(sizePolicy3)
         self.quote_label.setMinimumSize(QSize(300, 0))
         self.quote_label.setMaximumSize(QSize(16777215, 16777215))
-        font6 = QFont()
-        font6.setPointSize(9)
-        self.quote_label.setFont(font6)
+        font7 = QFont()
+        font7.setPointSize(9)
+        self.quote_label.setFont(font7)
         self.quote_label.setWordWrap(True)
         self.quote_label.setMargin(0)
 

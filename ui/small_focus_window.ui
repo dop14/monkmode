@@ -63,6 +63,9 @@
         <property name="focusPolicy">
          <enum>Qt::FocusPolicy::NoFocus</enum>
         </property>
+        <property name="styleSheet">
+         <string notr="true">padding: 5px 0px 5px  0px;</string>
+        </property>
         <property name="text">
          <string/>
         </property>
@@ -133,6 +136,9 @@
           <property name="focusPolicy">
            <enum>Qt::FocusPolicy::NoFocus</enum>
           </property>
+          <property name="styleSheet">
+           <string notr="true">padding: 3px 0px 3px  0px;</string>
+          </property>
           <property name="text">
            <string/>
           </property>
@@ -158,6 +164,9 @@
           <property name="focusPolicy">
            <enum>Qt::FocusPolicy::NoFocus</enum>
           </property>
+          <property name="styleSheet">
+           <string notr="true">padding: 3px 0px 3px  0px;</string>
+          </property>
           <property name="text">
            <string/>
           </property>
@@ -182,6 +191,9 @@
           </property>
           <property name="focusPolicy">
            <enum>Qt::FocusPolicy::NoFocus</enum>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">padding: 3px 0px 3px  0px;</string>
           </property>
           <property name="text">
            <string/>

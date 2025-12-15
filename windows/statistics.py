@@ -193,8 +193,20 @@ class Statistics(QDialog):
             plt.rcParams['ytick.color'] = 'white'
             plt.rcParams['text.color'] = 'white'
             plt.rcParams['grid.color'] = 'gray'
+
+            self.ui.focusFrame.setStyleSheet("background-color:#2D2D2D")
+            self.ui.subjectFrame.setStyleSheet("background-color:#2D2D2D")
+            self.ui.periodFrame.setStyleSheet("background-color:#2D2D2D")
+            self.ui.subjectBarFrame.setStyleSheet("background-color:#2D2D2D")
+            self.ui.subjectAllBarFrame.setStyleSheet("background-color:#2D2D2D")
         else:
             plt.rcParams.update(plt.rcParamsDefault)
+
+            self.ui.focusFrame.setStyleSheet("background-color:#FFFFF")
+            self.ui.subjectFrame.setStyleSheet("background-color:#FFFFF")
+            self.ui.periodFrame.setStyleSheet("background-color:#FFFFF")
+            self.ui.subjectBarFrame.setStyleSheet("background-color:#FFFFF")
+            self.ui.subjectAllBarFrame.setStyleSheet("background-color:#FFFFF")
 
     # Line chart
     def plot_focus_chart(self):
@@ -262,6 +274,8 @@ class Statistics(QDialog):
                     layout.removeWidget(widget)
                     widget.setParent(None)
 
+        layout.setContentsMargins(0, 0, 0, 0)  # No margins
+        layout.setSpacing(0) 
         layout.addWidget(canvas, 0)
 
 
@@ -289,7 +303,7 @@ class Statistics(QDialog):
         durations = [row[1] / 60 for row in top_rows]  # convert seconds to minutes if needed
 
         # Create pie chart
-        fig, ax = plt.subplots(figsize=(6.2, 3.2))
+        fig, ax = plt.subplots(figsize=(6, 3))
         wedges, texts, autotexts = ax.pie(
             durations,
             autopct=autopct_filter,
@@ -312,7 +326,7 @@ class Statistics(QDialog):
         ax.set_title('focus time distribution by subject (last 30 days, top 10)', fontweight="bold")
 
         canvas = ScrollFriendlyCanvas(fig)
-        canvas.setMaximumSize(620, 320)
+        canvas.setMaximumSize(600, 300)
 
         # Embed in subjectFrame
         layout = self.ui.subjectFrame.layout()
@@ -429,11 +443,10 @@ class Statistics(QDialog):
         plt.xticks(rotation=45, ha="center", fontsize=8.5)
 
         # Adjust Y-axis tick spacing dynamically
+        # Dynamic Y-axis tick spacing
         max_val = max(durations)
-        if max_val > 5:
-            ax.yaxis.set_major_locator(MultipleLocator(1))   # 1-hour intervals
-        else:
-            ax.yaxis.set_major_locator(MultipleLocator(0.5)) # 0.5-hour intervals
+        interval = int(max_val / 5)
+        ax.yaxis.set_major_locator(MultipleLocator(interval))
 
         ax.set_ylim(0, max(0.5, max_val))
         fig.subplots_adjust(bottom=0.3)
@@ -501,10 +514,8 @@ class Statistics(QDialog):
 
         # Dynamic Y-axis tick spacing
         max_val = max(durations)
-        if max_val > 5:
-            ax.yaxis.set_major_locator(MultipleLocator(1))   # 1-hour intervals
-        else:
-            ax.yaxis.set_major_locator(MultipleLocator(0.5)) # 0.5-hour intervals
+        interval = int(max_val / 5)
+        ax.yaxis.set_major_locator(MultipleLocator(interval))
 
         ax.set_ylim(0, max(0.5, max_val))
         fig.subplots_adjust(bottom=0.3)

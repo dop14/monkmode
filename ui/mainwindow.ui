@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>510</width>
-    <height>769</height>
+    <height>750</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -22,6 +22,12 @@
     <height>0</height>
    </size>
   </property>
+  <property name="maximumSize">
+   <size>
+    <width>750</width>
+    <height>800</height>
+   </size>
+  </property>
   <property name="cursor">
    <cursorShape>ArrowCursor</cursorShape>
   </property>
@@ -30,6 +36,9 @@
   </property>
   <property name="autoFillBackground">
    <bool>false</bool>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">background-color:#161616;</string>
   </property>
   <widget class="QWidget" name="mainLayout">
    <layout class="QVBoxLayout" name="verticalLayout_10">
@@ -49,6 +58,9 @@
           <height>150</height>
          </size>
         </property>
+        <property name="styleSheet">
+         <string notr="true">background-color:#0F0F0F;</string>
+        </property>
         <property name="frameShape">
          <enum>QFrame::Shape::StyledPanel</enum>
         </property>
@@ -67,6 +79,9 @@
            <property name="focusPolicy">
             <enum>Qt::FocusPolicy::NoFocus</enum>
            </property>
+           <property name="styleSheet">
+            <string notr="true">padding: 3px 3px 3px 3px;</string>
+           </property>
            <property name="text">
             <string/>
            </property>
@@ -82,6 +97,9 @@
              <pointsize>36</pointsize>
              <bold>false</bold>
             </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">background-color:#0F0F0F;</string>
            </property>
            <property name="text">
             <string/>
@@ -150,6 +168,9 @@
              <property name="focusPolicy">
               <enum>Qt::FocusPolicy::NoFocus</enum>
              </property>
+             <property name="styleSheet">
+              <string notr="true">padding: 3px 0px 3px 0px;</string>
+             </property>
              <property name="text">
               <string/>
              </property>
@@ -181,6 +202,9 @@
              <property name="focusPolicy">
               <enum>Qt::FocusPolicy::NoFocus</enum>
              </property>
+             <property name="styleSheet">
+              <string notr="true">padding: 3px 0px 3px 0px;</string>
+             </property>
              <property name="text">
               <string/>
              </property>
@@ -211,6 +235,9 @@
              </property>
              <property name="focusPolicy">
               <enum>Qt::FocusPolicy::NoFocus</enum>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">padding: 3px 0px 3px 0px;</string>
              </property>
              <property name="text">
               <string/>
@@ -277,6 +304,9 @@
                  <bold>true</bold>
                 </font>
                </property>
+               <property name="styleSheet">
+                <string notr="true">color:#EFA723'</string>
+               </property>
                <property name="text">
                 <string>focus period</string>
                </property>
@@ -301,16 +331,35 @@
                    <verstretch>0</verstretch>
                   </sizepolicy>
                  </property>
+                 <property name="font">
+                  <font>
+                   <bold>false</bold>
+                   <stylestrategy>PreferDefault</stylestrategy>
+                   <kerning>true</kerning>
+                  </font>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">padding: 3px 0px 3px 0px;</string>
+                 </property>
                  <property name="text">
                   <string/>
                  </property>
                  <property name="icon">
                   <iconset theme="QIcon::ThemeIcon::ListAdd"/>
                  </property>
+                 <property name="iconSize">
+                  <size>
+                   <width>16</width>
+                   <height>16</height>
+                  </size>
+                 </property>
                 </widget>
                </item>
                <item>
                 <widget class="QPushButton" name="editperiod_btn">
+                 <property name="styleSheet">
+                  <string notr="true">padding: 3px 0px 3px 0px;</string>
+                 </property>
                  <property name="text">
                   <string/>
                  </property>
@@ -321,6 +370,9 @@
                </item>
                <item>
                 <widget class="QPushButton" name="delete_period_btn">
+                 <property name="styleSheet">
+                  <string notr="true">padding: 3px 0px 3px 0px;</string>
+                 </property>
                  <property name="text">
                   <string/>
                  </property>
@@ -469,6 +521,9 @@
               <layout class="QHBoxLayout" name="horizontalLayout_2">
                <item>
                 <widget class="QPushButton" name="newsubject_btn">
+                 <property name="styleSheet">
+                  <string notr="true">padding: 3px 0px 3px 0px;</string>
+                 </property>
                  <property name="text">
                   <string/>
                  </property>
@@ -479,6 +534,9 @@
                </item>
                <item>
                 <widget class="QPushButton" name="edit_subject_btn">
+                 <property name="styleSheet">
+                  <string notr="true">padding: 3px 0px 3px 0px;</string>
+                 </property>
                  <property name="text">
                   <string/>
                  </property>
@@ -489,6 +547,9 @@
                </item>
                <item>
                 <widget class="QPushButton" name="archive_subject_btn">
+                 <property name="styleSheet">
+                  <string notr="true">padding: 3px 0px 3px 0px;</string>
+                 </property>
                  <property name="text">
                   <string/>
                  </property>
@@ -499,6 +560,9 @@
                </item>
                <item>
                 <widget class="QPushButton" name="delete_subject_btn">
+                 <property name="styleSheet">
+                  <string notr="true">padding: 3px 0px 3px 0px;</string>
+                 </property>
                  <property name="text">
                   <string/>
                  </property>

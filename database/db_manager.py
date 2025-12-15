@@ -294,10 +294,9 @@ def get_current_streak():
 def get_current_karma():
     conn = get_connection()
     cursor = conn.cursor()
-
     today = date.today()
-    start_date = today - timedelta(days=90)
-
+    start_date = today - timedelta(days=60) 
+    
     cursor.execute("""
         SELECT COUNT(*) FROM streak_log
         WHERE date BETWEEN ? AND ?
@@ -305,7 +304,7 @@ def get_current_karma():
           AND strftime('%w', date) BETWEEN '1' AND '5'
     """, (start_date, today))
     completed_weekdays = cursor.fetchone()[0]
-
+    
     cursor.execute("""
         SELECT COUNT(*) FROM streak_log
         WHERE date BETWEEN ? AND ?
@@ -313,16 +312,16 @@ def get_current_karma():
           AND (strftime('%w', date) = '0' OR strftime('%w', date) = '6')
     """, (start_date, today))
     completed_weekends = cursor.fetchone()[0]
-
-    weekdays_past_3_months = sum(
-        1 for i in range(91)
+    
+    weekdays_past_2_months = sum( 
+        1 for i in range(61)  
         if (start_date + timedelta(days=i)).weekday() < 5
     )
-
-    relevant_days = weekdays_past_3_months + completed_weekends
+    
+    relevant_days = weekdays_past_2_months + completed_weekends
     completed_days = completed_weekdays + completed_weekends
-
     karma = (completed_days / relevant_days * 100) if relevant_days > 0 else 0
+    
     return karma
 
 # Get focus data for statistics
