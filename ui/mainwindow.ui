@@ -38,9 +38,12 @@
    <bool>false</bool>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-color:#161616;</string>
+   <string notr="true"/>
   </property>
   <widget class="QWidget" name="mainLayout">
+   <property name="styleSheet">
+    <string notr="true"/>
+   </property>
    <layout class="QVBoxLayout" name="verticalLayout_10">
     <item>
      <layout class="QVBoxLayout" name="verticalLayout_6">
@@ -59,7 +62,7 @@
          </size>
         </property>
         <property name="styleSheet">
-         <string notr="true">background-color:#0F0F0F;</string>
+         <string notr="true"/>
         </property>
         <property name="frameShape">
          <enum>QFrame::Shape::StyledPanel</enum>
@@ -97,9 +100,6 @@
              <pointsize>36</pointsize>
              <bold>false</bold>
             </font>
-           </property>
-           <property name="styleSheet">
-            <string notr="true">background-color:#0F0F0F;</string>
            </property>
            <property name="text">
             <string/>
@@ -305,7 +305,7 @@
                 </font>
                </property>
                <property name="styleSheet">
-                <string notr="true">color:#EFA723'</string>
+                <string notr="true"/>
                </property>
                <property name="text">
                 <string>focus period</string>
@@ -693,6 +693,9 @@
         <height>0</height>
        </size>
       </property>
+      <property name="styleSheet">
+       <string notr="true"/>
+      </property>
       <property name="frameShape">
        <enum>QFrame::Shape::StyledPanel</enum>
       </property>
@@ -762,9 +765,20 @@
      <addaction name="actionfocus_period"/>
      <addaction name="actionfocus_subject"/>
     </widget>
+    <widget class="QMenu" name="menuthemes">
+     <property name="title">
+      <string>themes</string>
+     </property>
+     <addaction name="actionfocus_fire"/>
+     <addaction name="actionzen_garden"/>
+     <addaction name="actiondeep_focus"/>
+     <addaction name="actiondawn_ritual"/>
+     <addaction name="actionminimal_monk"/>
+    </widget>
     <addaction name="menuchange_default"/>
     <addaction name="actiontips_and_quotes"/>
     <addaction name="all_notifications_2"/>
+    <addaction name="menuthemes"/>
    </widget>
    <widget class="QMenu" name="menuabout">
     <property name="title">
@@ -1038,6 +1052,46 @@
   <action name="actionweekly_focus_goal">
    <property name="text">
     <string>weekly focus goal</string>
+   </property>
+  </action>
+  <action name="actionfocus_fire">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>focus fire</string>
+   </property>
+  </action>
+  <action name="actionzen_garden">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>zen garden</string>
+   </property>
+  </action>
+  <action name="actiondeep_focus">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>deep focus</string>
+   </property>
+  </action>
+  <action name="actiondawn_ritual">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>dawn ritual</string>
+   </property>
+  </action>
+  <action name="actionminimal_monk">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>minimal monk</string>
    </property>
   </action>
  </widget>

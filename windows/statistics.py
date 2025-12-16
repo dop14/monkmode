@@ -174,7 +174,7 @@ class Statistics(QDialog):
         self.ui.daily_goal_achieved.setToolTip("Number of days you've met your daily focus goal.")
         self.ui.current_streak.setToolTip("Current streak of consecutive days meeting your goal. Weekdays are required; weekends are optional.")
         self.ui.longest_streak.setToolTip("Your longest streak of consecutive days meeting your goal.")
-        self.ui.karma.setToolTip("Score reflecting your consistency in meeting focus goals over the past 3 months.")
+        self.ui.karma.setToolTip("Score reflecting your consistency in meeting focus goals over the past 2 months.")
         self.ui.most_prod_day.setToolTip("The day of the week when you average the most focus time per session.")
 
     def is_dark_mode(app: QApplication) -> bool:

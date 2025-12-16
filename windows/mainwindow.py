@@ -15,6 +15,7 @@ from windows.about import AboutWindow
 from windows.statistics import Statistics
 from core.timer import FocusTimer
 from core.menu_bar import MenuBar
+from core.theme_manager import ThemeManager
 from database.db_manager import get_period_names, get_subject_names, get_current_streak, save_daily_goal, get_user_stats, update_user_stats
 from database.db_manager import get_default_period_name, get_default_subject_name, get_user_preferences, get_today_focus, get_this_week_focus, get_today_quote, check_streak_log
 from utils import get_db_path
@@ -32,6 +33,11 @@ class MainWindow(QMainWindow):
         self.showNormal()
         self.is_timer_active = False
         self.is_delay_timer = False
+
+        # THEME TEST
+        self.theme_manager = ThemeManager()
+        self.setStyleSheet(self.theme_manager.get_stylesheet())
+
 
         # Check the streak_log
         check_streak_log()
