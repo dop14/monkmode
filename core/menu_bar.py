@@ -1,6 +1,7 @@
 from windows.change_def_daily_focus import ChangeDefDailyFocus
 from windows.archive_window import ArchiveWindow
 from database.db_manager import update_user_preferences, get_user_preferences
+from PySide6.QtCore import QSettings
 
 class MenuBar:
     def __init__(self, preferences, main_window):
@@ -8,6 +9,8 @@ class MenuBar:
         self.main_window = main_window
 
         self.load_default_checkbox_values()
+
+        # When changing themes
 
     # Check buttons according to preferences (DEFAULT)
     def load_default_checkbox_values(self):
@@ -18,11 +21,28 @@ class MenuBar:
         else:
             self.main_window.ui.all_notifications_2.setChecked(True)
 
-        # tips
+        # Tips
         self.tips_and_quotes = self.preferences["tips_and_quotes"]
         if self.tips_and_quotes == 1:
             self.main_window.ui.actiontips_and_quotes.setChecked(True)
 
+    def get_default_theme(self):
+        self.settings = QSettings("monkmode","monkmode")
+        self.theme = self.settings.value("theme", "monkmode_dark")
+
+        return self.theme
+
+    # When user clicks on any theme
+    def change_theme(self, theme):
+        # if that theme is NOT already picked 
+            # check that theme
+            # set that theme across whole app
+            # uncheck all other picks
+        pass
+
+        
+
+    
     # Connect buttons to classes
     def change_default_daily(self):
         self.change_def = ChangeDefDailyFocus(self)

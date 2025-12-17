@@ -769,11 +769,13 @@
      <property name="title">
       <string>themes</string>
      </property>
-     <addaction name="actionfocus_fire"/>
-     <addaction name="actionzen_garden"/>
-     <addaction name="actiondeep_focus"/>
-     <addaction name="actiondawn_ritual"/>
-     <addaction name="actionminimal_monk"/>
+     <addaction name="monkmode_dark"/>
+     <addaction name="monkmode_light"/>
+     <addaction name="focus_fire"/>
+     <addaction name="zen_garden"/>
+     <addaction name="dawn_ritual"/>
+     <addaction name="deep_focus"/>
+     <addaction name="minimal_monk"/>
     </widget>
     <addaction name="menuchange_default"/>
     <addaction name="actiontips_and_quotes"/>
@@ -1087,6 +1089,62 @@
    </property>
   </action>
   <action name="actionminimal_monk">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>minimal monk</string>
+   </property>
+  </action>
+  <action name="monkmode_dark">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>monkmode dark</string>
+   </property>
+  </action>
+  <action name="monkmode_light">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>monkmode light</string>
+   </property>
+  </action>
+  <action name="focus_fire">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>focus fire</string>
+   </property>
+  </action>
+  <action name="zen_garden">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>zen garden</string>
+   </property>
+  </action>
+  <action name="dawn_ritual">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>dawn ritual</string>
+   </property>
+  </action>
+  <action name="deep_focus">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>deep focus</string>
+   </property>
+  </action>
+  <action name="minimal_monk">
    <property name="checkable">
     <bool>true</bool>
    </property>

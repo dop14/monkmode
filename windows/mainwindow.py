@@ -16,6 +16,7 @@ from windows.statistics import Statistics
 from core.timer import FocusTimer
 from core.menu_bar import MenuBar
 from core.theme_manager import ThemeManager
+from core.icons import IconManager
 from database.db_manager import get_period_names, get_subject_names, get_current_streak, save_daily_goal, get_user_stats, update_user_stats
 from database.db_manager import get_default_period_name, get_default_subject_name, get_user_preferences, get_today_focus, get_this_week_focus, get_today_quote, check_streak_log
 from utils import get_db_path
@@ -30,14 +31,22 @@ class MainWindow(QMainWindow):
         self.adjustSize()   # Shrinks window to the smallest size that fits the layout
 
         self.small_window = SmallFocusWindow(self)
+
+        # Load user preferences
+        preferences = get_user_preferences()
+        self.menubar = MenuBar(preferences, self)
+
+        # Set default theme
+        self.theme_manager = ThemeManager()
+        self.theme_manager.set_theme(self.menubar.get_default_theme())
+        self.setStyleSheet(self.theme_manager.get_stylesheet())
+
+        # Set icons
+        self.icons = IconManager(self, self.small_window)
+
         self.showNormal()
         self.is_timer_active = False
         self.is_delay_timer = False
-
-        # THEME TEST
-        self.theme_manager = ThemeManager()
-        self.setStyleSheet(self.theme_manager.get_stylesheet())
-
 
         # Check the streak_log
         check_streak_log()
@@ -56,10 +65,6 @@ class MainWindow(QMainWindow):
 
         # Load subject combobox values
         self.update_subject_combobox()
-
-        # Load user preferences
-        preferences = get_user_preferences()
-        self.menubar = MenuBar(preferences, self)
 
         # Load today's focus and this week's focus
         self.update_daily_focus()

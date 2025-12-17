@@ -1,7 +1,24 @@
 class ThemeManager:
     def __init__(self):
-
         self.themes = {
+            "monkmode_dark": {
+                "background": "#1E1E1E",
+                "card": "#2D2D2D",
+                "accent": "#606060",
+                "accent_text": "#ffffff",
+                "text": "#ffffff",
+                "text_secondary": "#b0b0b0",
+                "progress_bg": "#3F3F3F"
+            },
+            "monkmode_light": {
+                "background": "#f0f0f0",
+                "card": "#ffffff",
+                "accent": "#c0c0c0",
+                "accent_text": "#000000",
+                "text": "#000000",
+                "text_secondary": "#707070",
+                "progress_bg": "#e0e0e0"
+            },
             "focus_fire": {
                 "background": "#1a1a1a",
                 "card": "#262626",
@@ -49,8 +66,8 @@ class ThemeManager:
             }
         }
 
-        self.current_theme_name = "dawn_ritual"
-        self.current_theme = self.themes[self.current_theme_name]
+    def set_theme(self, current_theme_name):
+        self.current_theme = self.themes[current_theme_name]
 
     def get_stylesheet(self):
         return f"""
@@ -74,7 +91,7 @@ class ThemeManager:
                 border: 1px solid;
                 border-color: {self.current_theme['accent']};
                 border-radius: 4px;
-                padding: 8px 16px;
+                padding: 4px 12px;
             }}
             
             QPushButton:hover {{
@@ -125,6 +142,9 @@ class ThemeManager:
                 background-color: {self.current_theme['card']};
                 color: {self.current_theme['text']};
                 border: 1px solid {self.current_theme['accent']};
+            }}
+            QMenu::item {{
+                padding:5px 5px 5px 5px;
             }}
             
             QMenu::item:selected {{
