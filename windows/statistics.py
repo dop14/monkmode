@@ -10,6 +10,7 @@ import textwrap
 from utils import get_resource_path
 from matplotlib.ticker import MultipleLocator
 import matplotlib.dates as mdates
+from core.theme_manager import ThemeManager
 
 class Statistics(QDialog):
     def __init__(self, main_window):
@@ -25,7 +26,6 @@ class Statistics(QDialog):
 
         self.show_stats()
         self.show_karma_and_streaks()
-        self.set_color_mode()
         self.plot_focus_chart()
         self.plot_subject_chart()
         self.plot_period_distribution()
@@ -177,36 +177,6 @@ class Statistics(QDialog):
         self.ui.karma.setToolTip("Score reflecting your consistency in meeting focus goals over the past 2 months.")
         self.ui.most_prod_day.setToolTip("The day of the week when you average the most focus time per session.")
 
-    def is_dark_mode(app: QApplication) -> bool:
-        palette: QPalette = app.palette()
-        color: QColor = palette.color(QPalette.Window)
-        luminance = 0.2126 * color.redF() + 0.7152 * color.greenF() + 0.0722 * color.blueF()
-        return luminance < 0.5  # return true if dark mode, false if light mode
-    
-    def set_color_mode(self):
-        if self.is_dark_mode():
-            plt.rcParams['figure.facecolor'] = '#2D2D2D'
-            plt.rcParams['axes.facecolor'] = '#2D2D2D'
-            plt.rcParams['axes.edgecolor'] = 'white'
-            plt.rcParams['axes.labelcolor'] = 'white'
-            plt.rcParams['xtick.color'] = 'white'
-            plt.rcParams['ytick.color'] = 'white'
-            plt.rcParams['text.color'] = 'white'
-            plt.rcParams['grid.color'] = 'gray'
-
-            self.ui.focusFrame.setStyleSheet("background-color:#2D2D2D")
-            self.ui.subjectFrame.setStyleSheet("background-color:#2D2D2D")
-            self.ui.periodFrame.setStyleSheet("background-color:#2D2D2D")
-            self.ui.subjectBarFrame.setStyleSheet("background-color:#2D2D2D")
-            self.ui.subjectAllBarFrame.setStyleSheet("background-color:#2D2D2D")
-        else:
-            plt.rcParams.update(plt.rcParamsDefault)
-
-            self.ui.focusFrame.setStyleSheet("background-color:#FFFFF")
-            self.ui.subjectFrame.setStyleSheet("background-color:#FFFFF")
-            self.ui.periodFrame.setStyleSheet("background-color:#FFFFF")
-            self.ui.subjectBarFrame.setStyleSheet("background-color:#FFFFF")
-            self.ui.subjectAllBarFrame.setStyleSheet("background-color:#FFFFF")
 
     # Line chart
     def plot_focus_chart(self):

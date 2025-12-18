@@ -11,7 +11,6 @@ class AboutWindow(QDialog):
         self.setWindowTitle("about")
         
         self.setWindowIcon(QIcon(get_resource_path("logo/monkmode.png")))
-
         self.set_text()
 
     def set_text(self):

@@ -3,7 +3,7 @@
 ################################################################################
 ## Form generated from reading UI file 'focuswindow.ui'
 ##
-## Created by: Qt User Interface Compiler version 6.9.1
+## Created by: Qt User Interface Compiler version 6.10.1
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
@@ -57,11 +57,11 @@ class Ui_Form(object):
 
         self.verticalLayout_2.addWidget(self.focusSetting)
 
-        self.start_focus_btn = QPushButton(Form)
-        self.start_focus_btn.setObjectName(u"start_focus_btn")
-        self.start_focus_btn.setMinimumSize(QSize(0, 30))
+        self.start_focus = QPushButton(Form)
+        self.start_focus.setObjectName(u"start_focus")
+        self.start_focus.setMinimumSize(QSize(0, 30))
 
-        self.verticalLayout_2.addWidget(self.start_focus_btn)
+        self.verticalLayout_2.addWidget(self.start_focus)
 
 
         self.retranslateUi(Form)
@@ -73,6 +73,6 @@ class Ui_Form(object):
         Form.setWindowTitle(QCoreApplication.translate("Form", u"Form", None))
         self.session_label.setText(QCoreApplication.translate("Form", u"Choose the number of focus sessions", None))
         self.session_lenght_label.setText(QCoreApplication.translate("Form", u"this will approximately take:", None))
-        self.start_focus_btn.setText(QCoreApplication.translate("Form", u"start focus", None))
+        self.start_focus.setText(QCoreApplication.translate("Form", u"start focus", None))
     # retranslateUi
 

@@ -199,8 +199,6 @@ class Ui_MainWindow(object):
         self.small_focus_window.setSizePolicy(sizePolicy2)
         self.small_focus_window.setFocusPolicy(Qt.FocusPolicy.NoFocus)
         self.small_focus_window.setStyleSheet(u"padding: 3px 3px 3px 3px;")
-        icon = QIcon(QIcon.fromTheme(QIcon.ThemeIcon.WindowNew))
-        self.small_focus_window.setIcon(icon)
 
         self.verticalLayout_3.addWidget(self.small_focus_window, 0, Qt.AlignmentFlag.AlignRight)
 
@@ -244,8 +242,6 @@ class Ui_MainWindow(object):
         self.focus_pause_btn.setFont(font2)
         self.focus_pause_btn.setFocusPolicy(Qt.FocusPolicy.NoFocus)
         self.focus_pause_btn.setStyleSheet(u"padding: 3px 0px 3px 0px;")
-        icon1 = QIcon(QIcon.fromTheme(QIcon.ThemeIcon.MediaPlaybackPause))
-        self.focus_pause_btn.setIcon(icon1)
         self.focus_pause_btn.setIconSize(QSize(18, 18))
 
         self.horizontalLayout_3.addWidget(self.focus_pause_btn, 0, Qt.AlignmentFlag.AlignHCenter)
@@ -257,8 +253,6 @@ class Ui_MainWindow(object):
         self.focus_resume_btn.setMinimumSize(QSize(60, 0))
         self.focus_resume_btn.setFocusPolicy(Qt.FocusPolicy.NoFocus)
         self.focus_resume_btn.setStyleSheet(u"padding: 3px 0px 3px 0px;")
-        icon2 = QIcon(QIcon.fromTheme(QIcon.ThemeIcon.MediaPlaybackStart))
-        self.focus_resume_btn.setIcon(icon2)
         self.focus_resume_btn.setIconSize(QSize(18, 18))
 
         self.horizontalLayout_3.addWidget(self.focus_resume_btn, 0, Qt.AlignmentFlag.AlignHCenter)
@@ -270,8 +264,6 @@ class Ui_MainWindow(object):
         self.focus_stop_btn.setMinimumSize(QSize(60, 0))
         self.focus_stop_btn.setFocusPolicy(Qt.FocusPolicy.NoFocus)
         self.focus_stop_btn.setStyleSheet(u"padding: 3px 0px 3px 0px;")
-        icon3 = QIcon(QIcon.fromTheme(QIcon.ThemeIcon.MediaPlaybackStop))
-        self.focus_stop_btn.setIcon(icon3)
         self.focus_stop_btn.setIconSize(QSize(18, 18))
 
         self.horizontalLayout_3.addWidget(self.focus_stop_btn, 0, Qt.AlignmentFlag.AlignHCenter)
@@ -329,8 +321,6 @@ class Ui_MainWindow(object):
         font5.setStyleStrategy(QFont.PreferDefault)
         self.newperiod_btn.setFont(font5)
         self.newperiod_btn.setStyleSheet(u"padding: 3px 0px 3px 0px;")
-        icon4 = QIcon(QIcon.fromTheme(QIcon.ThemeIcon.ListAdd))
-        self.newperiod_btn.setIcon(icon4)
         self.newperiod_btn.setIconSize(QSize(16, 16))
 
         self.horizontalLayout.addWidget(self.newperiod_btn)
@@ -338,16 +328,12 @@ class Ui_MainWindow(object):
         self.editperiod_btn = QPushButton(self.periodFrame)
         self.editperiod_btn.setObjectName(u"editperiod_btn")
         self.editperiod_btn.setStyleSheet(u"padding: 3px 0px 3px 0px;")
-        icon5 = QIcon(QIcon.fromTheme(QIcon.ThemeIcon.MailMessageNew))
-        self.editperiod_btn.setIcon(icon5)
 
         self.horizontalLayout.addWidget(self.editperiod_btn)
 
         self.delete_period_btn = QPushButton(self.periodFrame)
         self.delete_period_btn.setObjectName(u"delete_period_btn")
         self.delete_period_btn.setStyleSheet(u"padding: 3px 0px 3px 0px;")
-        icon6 = QIcon(QIcon.fromTheme(QIcon.ThemeIcon.EditDelete))
-        self.delete_period_btn.setIcon(icon6)
 
         self.horizontalLayout.addWidget(self.delete_period_btn)
 
@@ -430,29 +416,24 @@ class Ui_MainWindow(object):
         self.newsubject_btn = QPushButton(self.subjectFrame)
         self.newsubject_btn.setObjectName(u"newsubject_btn")
         self.newsubject_btn.setStyleSheet(u"padding: 3px 0px 3px 0px;")
-        self.newsubject_btn.setIcon(icon4)
 
         self.horizontalLayout_2.addWidget(self.newsubject_btn)
 
         self.edit_subject_btn = QPushButton(self.subjectFrame)
         self.edit_subject_btn.setObjectName(u"edit_subject_btn")
         self.edit_subject_btn.setStyleSheet(u"padding: 3px 0px 3px 0px;")
-        self.edit_subject_btn.setIcon(icon5)
 
         self.horizontalLayout_2.addWidget(self.edit_subject_btn)
 
         self.archive_subject_btn = QPushButton(self.subjectFrame)
         self.archive_subject_btn.setObjectName(u"archive_subject_btn")
         self.archive_subject_btn.setStyleSheet(u"padding: 3px 0px 3px 0px;")
-        icon7 = QIcon(QIcon.fromTheme(QIcon.ThemeIcon.FolderOpen))
-        self.archive_subject_btn.setIcon(icon7)
 
         self.horizontalLayout_2.addWidget(self.archive_subject_btn)
 
         self.delete_subject_btn = QPushButton(self.subjectFrame)
         self.delete_subject_btn.setObjectName(u"delete_subject_btn")
         self.delete_subject_btn.setStyleSheet(u"padding: 3px 0px 3px 0px;")
-        self.delete_subject_btn.setIcon(icon6)
 
         self.horizontalLayout_2.addWidget(self.delete_subject_btn)
 

@@ -64,13 +64,10 @@
          <enum>Qt::FocusPolicy::NoFocus</enum>
         </property>
         <property name="styleSheet">
-         <string notr="true">padding: 5px 0px 5px  0px;</string>
+         <string notr="true">padding: 3px 0px 3px 0px;</string>
         </property>
         <property name="text">
          <string/>
-        </property>
-        <property name="icon">
-         <iconset theme="QIcon::ThemeIcon::ViewFullscreen"/>
         </property>
         <property name="iconSize">
          <size>
@@ -142,9 +139,6 @@
           <property name="text">
            <string/>
           </property>
-          <property name="icon">
-           <iconset theme="QIcon::ThemeIcon::MediaPlaybackPause"/>
-          </property>
          </widget>
         </item>
         <item>
@@ -170,9 +164,6 @@
           <property name="text">
            <string/>
           </property>
-          <property name="icon">
-           <iconset theme="QIcon::ThemeIcon::MediaPlaybackStart"/>
-          </property>
          </widget>
         </item>
         <item>
@@ -197,9 +188,6 @@
           </property>
           <property name="text">
            <string/>
-          </property>
-          <property name="icon">
-           <iconset theme="QIcon::ThemeIcon::MediaPlaybackStop"/>
           </property>
          </widget>
         </item>

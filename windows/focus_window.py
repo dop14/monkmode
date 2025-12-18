@@ -24,7 +24,7 @@ class FocusWindow(QDialog):
         self.ui.session_spinbox.valueChanged.connect(self.spinbox_value_changed)
 
         # If start focus is button is clicked
-        self.ui.start_focus_btn.clicked.connect(lambda: self.start_focus(main_window))
+        self.ui.start_focus.clicked.connect(lambda: self.start_focus(main_window))
 
     def spinbox_value_changed(self):
         length = calculate_session_length(self.ui.session_spinbox.value(),self.current_period)

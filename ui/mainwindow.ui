@@ -88,9 +88,6 @@
            <property name="text">
             <string/>
            </property>
-           <property name="icon">
-            <iconset theme="QIcon::ThemeIcon::WindowNew"/>
-           </property>
           </widget>
          </item>
          <item>
@@ -174,9 +171,6 @@
              <property name="text">
               <string/>
              </property>
-             <property name="icon">
-              <iconset theme="QIcon::ThemeIcon::MediaPlaybackPause"/>
-             </property>
              <property name="iconSize">
               <size>
                <width>18</width>
@@ -208,9 +202,6 @@
              <property name="text">
               <string/>
              </property>
-             <property name="icon">
-              <iconset theme="QIcon::ThemeIcon::MediaPlaybackStart"/>
-             </property>
              <property name="iconSize">
               <size>
                <width>18</width>
@@ -241,9 +232,6 @@
              </property>
              <property name="text">
               <string/>
-             </property>
-             <property name="icon">
-              <iconset theme="QIcon::ThemeIcon::MediaPlaybackStop"/>
              </property>
              <property name="iconSize">
               <size>
@@ -344,9 +332,6 @@
                  <property name="text">
                   <string/>
                  </property>
-                 <property name="icon">
-                  <iconset theme="QIcon::ThemeIcon::ListAdd"/>
-                 </property>
                  <property name="iconSize">
                   <size>
                    <width>16</width>
@@ -363,9 +348,6 @@
                  <property name="text">
                   <string/>
                  </property>
-                 <property name="icon">
-                  <iconset theme="QIcon::ThemeIcon::MailMessageNew"/>
-                 </property>
                 </widget>
                </item>
                <item>
@@ -375,9 +357,6 @@
                  </property>
                  <property name="text">
                   <string/>
-                 </property>
-                 <property name="icon">
-                  <iconset theme="QIcon::ThemeIcon::EditDelete"/>
                  </property>
                 </widget>
                </item>
@@ -527,9 +506,6 @@
                  <property name="text">
                   <string/>
                  </property>
-                 <property name="icon">
-                  <iconset theme="QIcon::ThemeIcon::ListAdd"/>
-                 </property>
                 </widget>
                </item>
                <item>
@@ -539,9 +515,6 @@
                  </property>
                  <property name="text">
                   <string/>
-                 </property>
-                 <property name="icon">
-                  <iconset theme="QIcon::ThemeIcon::MailMessageNew"/>
                  </property>
                 </widget>
                </item>
@@ -553,9 +526,6 @@
                  <property name="text">
                   <string/>
                  </property>
-                 <property name="icon">
-                  <iconset theme="QIcon::ThemeIcon::FolderOpen"/>
-                 </property>
                 </widget>
                </item>
                <item>
@@ -565,9 +535,6 @@
                  </property>
                  <property name="text">
                   <string/>
-                 </property>
-                 <property name="icon">
-                  <iconset theme="QIcon::ThemeIcon::EditDelete"/>
                  </property>
                 </widget>
                </item>

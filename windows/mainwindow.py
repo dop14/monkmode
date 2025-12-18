@@ -15,7 +15,6 @@ from windows.about import AboutWindow
 from windows.statistics import Statistics
 from core.timer import FocusTimer
 from core.menu_bar import MenuBar
-from core.theme_manager import ThemeManager
 from core.icons import IconManager
 from database.db_manager import get_period_names, get_subject_names, get_current_streak, save_daily_goal, get_user_stats, update_user_stats
 from database.db_manager import get_default_period_name, get_default_subject_name, get_user_preferences, get_today_focus, get_this_week_focus, get_today_quote, check_streak_log
@@ -35,11 +34,6 @@ class MainWindow(QMainWindow):
         # Load user preferences
         preferences = get_user_preferences()
         self.menubar = MenuBar(preferences, self)
-
-        # Set default theme
-        self.theme_manager = ThemeManager()
-        self.theme_manager.set_theme(self.menubar.get_default_theme())
-        self.setStyleSheet(self.theme_manager.get_stylesheet())
 
         # Set icons
         self.icons = IconManager(self, self.small_window)

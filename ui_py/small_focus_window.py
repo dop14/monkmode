@@ -50,9 +50,7 @@ class Ui_Form(object):
         font.setPointSize(7)
         self.back_to_main_btn.setFont(font)
         self.back_to_main_btn.setFocusPolicy(Qt.FocusPolicy.NoFocus)
-        self.back_to_main_btn.setStyleSheet(u"padding: 5px 0px 5px  0px;")
-        icon = QIcon(QIcon.fromTheme(QIcon.ThemeIcon.ViewFullscreen))
-        self.back_to_main_btn.setIcon(icon)
+        self.back_to_main_btn.setStyleSheet(u"padding: 3px 0px 3px 0px;")
         self.back_to_main_btn.setIconSize(QSize(12, 12))
 
         self.verticalLayout.addWidget(self.back_to_main_btn)
@@ -87,8 +85,6 @@ class Ui_Form(object):
         self.small_pause_btn.setMinimumSize(QSize(60, 0))
         self.small_pause_btn.setFocusPolicy(Qt.FocusPolicy.NoFocus)
         self.small_pause_btn.setStyleSheet(u"padding: 3px 0px 3px  0px;")
-        icon1 = QIcon(QIcon.fromTheme(QIcon.ThemeIcon.MediaPlaybackPause))
-        self.small_pause_btn.setIcon(icon1)
 
         self.horizontalLayout.addWidget(self.small_pause_btn)
 
@@ -99,8 +95,6 @@ class Ui_Form(object):
         self.small_resume_btn.setMinimumSize(QSize(60, 0))
         self.small_resume_btn.setFocusPolicy(Qt.FocusPolicy.NoFocus)
         self.small_resume_btn.setStyleSheet(u"padding: 3px 0px 3px  0px;")
-        icon2 = QIcon(QIcon.fromTheme(QIcon.ThemeIcon.MediaPlaybackStart))
-        self.small_resume_btn.setIcon(icon2)
 
         self.horizontalLayout.addWidget(self.small_resume_btn)
 
@@ -111,8 +105,6 @@ class Ui_Form(object):
         self.small_stop_btn.setMinimumSize(QSize(60, 0))
         self.small_stop_btn.setFocusPolicy(Qt.FocusPolicy.NoFocus)
         self.small_stop_btn.setStyleSheet(u"padding: 3px 0px 3px  0px;")
-        icon3 = QIcon(QIcon.fromTheme(QIcon.ThemeIcon.MediaPlaybackStop))
-        self.small_stop_btn.setIcon(icon3)
 
         self.horizontalLayout.addWidget(self.small_stop_btn)
 

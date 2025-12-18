@@ -1,10 +1,15 @@
+from PySide6.QtWidgets import QApplication
+from PySide6.QtCore import QSettings
+
 class ThemeManager:
     def __init__(self):
+        self.settings = QSettings("monkmode", "monkmode")
+
         self.themes = {
             "monkmode_dark": {
                 "background": "#1E1E1E",
                 "card": "#2D2D2D",
-                "accent": "#606060",
+                "accent": "#5B5A5A",
                 "accent_text": "#ffffff",
                 "text": "#ffffff",
                 "text_secondary": "#b0b0b0",
@@ -65,9 +70,23 @@ class ThemeManager:
                 "progress_bg": "#2a2a2a"
             }
         }
+        
+        self.theme_name = self.settings.value("theme", "deep_focus")
+        self.current_theme_name = self.theme_name
+        self.current_theme = self.themes[self.theme_name]
+        self.apply_initial_theme()
 
-    def set_theme(self, current_theme_name):
-        self.current_theme = self.themes[current_theme_name]
+    # Returns the current theme's HEX values
+    def get_colors(self):
+        return self.themes.get(self.theme_name, self.themes["monkmode_dark"])
+
+    def apply_initial_theme(self):
+        app = QApplication.instance()
+        app.setStyleSheet(self.get_stylesheet())
+
+    # Return the currently set theme's colors dictionary
+    def get_colors(self):
+        pass
 
     def get_stylesheet(self):
         return f"""
@@ -84,6 +103,11 @@ class ThemeManager:
                 background-color: {self.current_theme['card']};
                 border-radius: 8px;
             }}
+
+            QFrame:disabled {{
+                background-color: {self.current_theme['background']};
+            }}
+
             
             QPushButton {{
                 background-color: {self.current_theme['card']};
@@ -105,6 +129,35 @@ class ThemeManager:
                 font-weight: bold;
                 padding: 16px 48px;
                 border:1px solid {self.current_theme['accent']};
+            }}
+
+            #PopupNotification QLabel {{
+                background-color: {self.current_theme['background']};
+                color: {self.current_theme['text']};
+                padding: 20px 30px;
+                border-radius: 15px;
+                
+            }}
+
+            QSpinBox {{
+                background-color: {self.current_theme['background']};
+                height:20px;
+            }}
+
+            QSpinBox::up-button, QSpinBox::down-button {{
+                width: 20px;
+            }}
+
+            QCheckBox:checked {{
+                background-color: {self.current_theme['card']};
+                color: {self.current_theme['text']};
+                padding: 2px;
+            }}
+
+            QCheckBox:unchecked {{
+                background-color: {self.current_theme['card']};
+                color: {self.current_theme['text']};
+                padding: 2px;
             }}
 
             QPushButton#start_focus_btn:hover {{
@@ -132,6 +185,7 @@ class ThemeManager:
             QMenuBar {{
                 background-color: {self.current_theme['background']};
                 color: {self.current_theme['text']};
+                font-size:13px;
             }}
             
             QMenuBar::item:selected {{
@@ -141,8 +195,8 @@ class ThemeManager:
             QMenu {{
                 background-color: {self.current_theme['card']};
                 color: {self.current_theme['text']};
-                border: 1px solid {self.current_theme['accent']};
             }}
+            
             QMenu::item {{
                 padding:5px 5px 5px 5px;
             }}
@@ -152,9 +206,8 @@ class ThemeManager:
                 color: {self.current_theme['accent_text']};
             }}
             
-            
             QLineEdit, QTextEdit {{
-                background-color: {self.current_theme['card']};
+                background-color: {self.current_theme['background']};
                 color: {self.current_theme['text']};
                 border: 1px solid {self.current_theme['text_secondary']};
                 border-radius: 4px;
@@ -177,7 +230,7 @@ class ThemeManager:
             }}
 
             QComboBox QAbstractItemView::item {{
-                padding: 2px 4px;
+                padding:0px;
                 border: none;
             }}
 
