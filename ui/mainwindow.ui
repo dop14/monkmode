@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>510</width>
-    <height>750</height>
+    <height>737</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -253,8 +253,8 @@
         </property>
         <property name="sizeHint" stdset="0">
          <size>
-          <width>40</width>
-          <height>20</height>
+          <width>5</width>
+          <height>5</height>
          </size>
         </property>
        </spacer>
@@ -376,7 +376,7 @@
             <property name="sizeHint" stdset="0">
              <size>
               <width>20</width>
-              <height>30</height>
+              <height>20</height>
              </size>
             </property>
            </spacer>
@@ -554,7 +554,7 @@
             <property name="sizeHint" stdset="0">
              <size>
               <width>20</width>
-              <height>30</height>
+              <height>20</height>
              </size>
             </property>
            </spacer>
@@ -640,8 +640,8 @@
       </property>
       <property name="sizeHint" stdset="0">
        <size>
-        <width>40</width>
-        <height>20</height>
+        <width>5</width>
+        <height>5</height>
        </size>
       </property>
      </spacer>
@@ -742,7 +742,6 @@
      <addaction name="zen_garden"/>
      <addaction name="dawn_ritual"/>
      <addaction name="deep_focus"/>
-     <addaction name="minimal_monk"/>
     </widget>
     <addaction name="menuchange_default"/>
     <addaction name="actiontips_and_quotes"/>

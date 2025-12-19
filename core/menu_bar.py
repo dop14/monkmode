@@ -1,5 +1,6 @@
 from windows.change_def_daily_focus import ChangeDefDailyFocus
 from windows.archive_window import ArchiveWindow
+from core.theme_manager import ThemeManager
 from database.db_manager import update_user_preferences, get_user_preferences
 
 class MenuBar:
@@ -7,9 +8,12 @@ class MenuBar:
         self.preferences = preferences
         self.main_window = main_window
 
+        self.tm = ThemeManager()
+        self.themes = ["focus_fire", "zen_garden", "deep_focus", 
+                      "dawn_ritual", "minimal_monk", "monkmode_dark", 
+                      "monkmode_light"]
+        
         self.load_default_checkbox_values()
-
-        # When changing themes
 
     # Check buttons according to preferences (DEFAULT)
     def load_default_checkbox_values(self):
@@ -24,6 +28,13 @@ class MenuBar:
         self.tips_and_quotes = self.preferences["tips_and_quotes"]
         if self.tips_and_quotes == 1:
             self.main_window.ui.actiontips_and_quotes.setChecked(True)
+
+        # Check the currently chosen theme
+        theme_name = self.tm.get_theme_name()
+        for name in self.themes:
+            if name == theme_name:
+                action = getattr(self.main_window.ui, name)
+                action.setChecked(True)
 
     # Connect buttons to classes
     def change_default_daily(self):
@@ -64,3 +75,13 @@ class MenuBar:
             update_user_preferences(new_preferences, new_preferences["id"])
 
         self.main_window.load_today_quote()
+
+    def change_theme(self, theme):
+        # Set the chosen theme
+        self.tm.set_theme(theme)
+
+        # Uncheck all other themes
+        for name in self.themes:
+            if name != theme:
+                action = getattr(self.main_window.ui, name)
+                action.setChecked(False)

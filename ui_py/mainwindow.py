@@ -25,7 +25,7 @@ class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
-        MainWindow.resize(510, 750)
+        MainWindow.resize(510, 737)
         sizePolicy = QSizePolicy(QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Minimum)
         sizePolicy.setHorizontalStretch(200)
         sizePolicy.setVerticalStretch(0)
@@ -274,7 +274,7 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_6.addWidget(self.focusFrame)
 
-        self.horizontalSpacer = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
+        self.horizontalSpacer = QSpacerItem(5, 5, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
 
         self.verticalLayout_6.addItem(self.horizontalSpacer)
 
@@ -343,7 +343,7 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_8.addWidget(self.periodFrame)
 
-        self.verticalSpacer = QSpacerItem(20, 30, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Fixed)
+        self.verticalSpacer = QSpacerItem(20, 20, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Fixed)
 
         self.verticalLayout_8.addItem(self.verticalSpacer)
 
@@ -443,7 +443,7 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_9.addWidget(self.subjectFrame)
 
-        self.verticalSpacer_2 = QSpacerItem(20, 30, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Fixed)
+        self.verticalSpacer_2 = QSpacerItem(20, 20, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Fixed)
 
         self.verticalLayout_9.addItem(self.verticalSpacer_2)
 
@@ -491,7 +491,7 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_10.addLayout(self.verticalLayout_6)
 
-        self.horizontalSpacer_2 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
+        self.horizontalSpacer_2 = QSpacerItem(5, 5, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
 
         self.verticalLayout_10.addItem(self.horizontalSpacer_2)
 
@@ -560,7 +560,6 @@ class Ui_MainWindow(object):
         self.menuthemes.addAction(self.zen_garden)
         self.menuthemes.addAction(self.dawn_ritual)
         self.menuthemes.addAction(self.deep_focus)
-        self.menuthemes.addAction(self.minimal_monk)
         self.menuabout.addAction(self.actionabout)
         self.menuabout.addAction(self.actionhowtouse)
         self.menuabout.addSeparator()

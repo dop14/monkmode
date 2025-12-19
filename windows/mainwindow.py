@@ -144,7 +144,16 @@ class MainWindow(QMainWindow):
 
         # When how to use button is clicked
         self.ui.actionhowtouse.triggered.connect(lambda: QDesktopServices.openUrl(QUrl("https://github.com/dop14/monkmode")))
-    
+
+        # When theme is clicked
+        self.ui.monkmode_dark.triggered.connect(lambda: self.menubar.change_theme("monkmode_dark"))
+        self.ui.monkmode_light.triggered.connect(lambda: self.menubar.change_theme("monkmode_light"))
+        self.ui.focus_fire.triggered.connect(lambda: self.menubar.change_theme("focus_fire"))
+        self.ui.zen_garden.triggered.connect(lambda: self.menubar.change_theme("zen_garden"))
+        self.ui.deep_focus.triggered.connect(lambda: self.menubar.change_theme("deep_focus"))
+        self.ui.dawn_ritual.triggered.connect(lambda: self.menubar.change_theme("dawn_ritual"))
+        
+
     # If app is closed
     def closeEvent(self, event):
         # If no timer is active

@@ -51,13 +51,13 @@
         </property>
         <property name="minimumSize">
          <size>
-          <width>60</width>
+          <width>0</width>
           <height>0</height>
          </size>
         </property>
         <property name="font">
          <font>
-          <pointsize>7</pointsize>
+          <pointsize>9</pointsize>
          </font>
         </property>
         <property name="focusPolicy">

@@ -9,7 +9,7 @@ class ThemeManager:
             "monkmode_dark": {
                 "background": "#1E1E1E",
                 "card": "#2D2D2D",
-                "accent": "#5B5A5A",
+                "accent": "#4A4A4A",
                 "accent_text": "#ffffff",
                 "text": "#ffffff",
                 "text_secondary": "#b0b0b0",
@@ -18,7 +18,7 @@ class ThemeManager:
             "monkmode_light": {
                 "background": "#f0f0f0",
                 "card": "#ffffff",
-                "accent": "#c0c0c0",
+                "accent": "#d9d9d9",
                 "accent_text": "#000000",
                 "text": "#000000",
                 "text_secondary": "#707070",
@@ -59,27 +59,41 @@ class ThemeManager:
                 "text": "#fef4f0",
                 "text_secondary": "#b39f96",
                 "progress_bg": "#332e2c"
-            },
-            "minimal_monk": {
-                "background": "#0a0a0a",
-                "card": "#1a1a1a",
-                "accent": "#ffffff",
-                "accent_text": "#0a0a0a",
-                "text": "#e0e0e0",
-                "text_secondary": "#808080",
-                "progress_bg": "#2a2a2a"
             }
         }
         
-        self.theme_name = self.settings.value("theme", "deep_focus")
-        self.current_theme_name = self.theme_name
+        # The default theme
+        self.theme_name = self.settings.value("theme", "monkmode_dark")
+
+        # Hex values of the theme
         self.current_theme = self.themes[self.theme_name]
-        self.apply_initial_theme()
 
     # Returns the current theme's HEX values
     def get_colors(self):
-        return self.themes.get(self.theme_name, self.themes["monkmode_dark"])
+        print("waaaa")
+        return self.themes[self.theme_name]
+    
+    def get_theme_name(self):
+        return self.theme_name
+    
+    # Set the theme
+    def set_theme(self, theme_name):
+        if theme_name in self.themes:
+            self.current_theme_name = theme_name
+            self.current_theme = self.themes[theme_name]
+            
+            # Save to QSettings
+            self.settings.setValue("theme", theme_name)
+            
+            # Apply to app
+            app = QApplication.instance()
+            app.setStyleSheet(self.get_stylesheet())
 
+            # Apply to matplotlib charts
+
+            return True
+        return False
+    
     def apply_initial_theme(self):
         app = QApplication.instance()
         app.setStyleSheet(self.get_stylesheet())
@@ -105,10 +119,34 @@ class ThemeManager:
             }}
 
             QFrame:disabled {{
-                background-color: {self.current_theme['background']};
+                color:{self.current_theme["text_secondary"]};
             }}
 
-            
+            QComboBox:disabled {{
+                color:{self.current_theme["text_secondary"]};
+            }}
+
+            QPushButton:disabled {{
+                color:{self.current_theme["text_secondary"]};
+            }}
+
+            QSpinBox:disabled {{
+                color:{self.current_theme["text_secondary"]};
+            }}
+
+            QMenuBar:disabled {{
+                color:{self.current_theme["text_secondary"]};
+            }}
+
+            QProgressBar:disabled {{
+                color:{self.current_theme["text_secondary"]};
+            }}
+
+            QToolTip {{
+                background-color: {self.current_theme['card']};
+                color:{self.current_theme["text"]};
+            }}
+    
             QPushButton {{
                 background-color: {self.current_theme['card']};
                 color: {self.current_theme['text']};
@@ -189,7 +227,7 @@ class ThemeManager:
             }}
             
             QMenuBar::item:selected {{
-                background-color: {self.current_theme['card']};
+                background-color: {self.current_theme['accent']};
             }}
             
             QMenu {{
@@ -223,10 +261,14 @@ class ThemeManager:
                 padding: 2px;
             }}
 
+            QComboBox:hover {{
+                background-color: {self.current_theme['accent']};
+                color: {self.current_theme['accent_text']};
+            }}
+
             QComboBox QAbstractItemView {{
                 selection-background-color: {self.current_theme['accent']};
                 selection-color: {self.current_theme['accent_text']};
-                outline: 0;
             }}
 
             QComboBox QAbstractItemView::item {{

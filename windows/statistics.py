@@ -1,7 +1,7 @@
-from PySide6.QtWidgets import QDialog, QApplication
+from PySide6.QtWidgets import QDialog
 from ui_py.statistics import Ui_Form
 from database.db_manager import get_user_stats, get_most_productive_day, get_avg_daily_focus, get_avg_weekly_focus, get_daily_goal_achieved, get_current_streak, get_current_karma, get_focus_data, get_highest_weekly_focus, get_subject_data_stats, get_period_data_stats, get_subject_time_data, get_subject_time_data_all_include_archived, get_subject_time_data_all_not_include_archived, get_highest_daily_focus
-from PySide6.QtGui import QIcon, QColor, QPalette
+from PySide6.QtGui import QIcon
 from datetime import datetime, timedelta
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
 import matplotlib.pyplot as plt
@@ -23,6 +23,7 @@ class Statistics(QDialog):
         self.main_window = main_window
 
         self.ui.no_data_message.hide()
+        self.set_chart_theme()
 
         self.show_stats()
         self.show_karma_and_streaks()
@@ -177,6 +178,16 @@ class Statistics(QDialog):
         self.ui.karma.setToolTip("Score reflecting your consistency in meeting focus goals over the past 2 months.")
         self.ui.most_prod_day.setToolTip("The day of the week when you average the most focus time per session.")
 
+    def set_chart_theme(self):
+        tm = ThemeManager()
+        print(f"Theme name: '{tm.theme_name}'")  # What is the actual value?
+        print(f"Theme name type: {type(tm.theme_name)}")  # Is it a string?
+        print(f"Available themes: {list(tm.themes.keys())}")  # What keys exist?
+        print(f"Key exists? {tm.theme_name in tm.themes}")  # Does the key exist?
+        
+        colors = tm.get_colors()
+        print(f"Colors: {colors}")
+        
 
     # Line chart
     def plot_focus_chart(self):
@@ -215,7 +226,7 @@ class Statistics(QDialog):
         ax.grid(True, linestyle='--', alpha=0.5)
 
         # Format x-axis with intervals
-        ax.xaxis.set_major_locator(mdates.DayLocator(interval=5))       # every 5 days
+        ax.xaxis.set_major_locator(mdates.DayLocator(interval=7))       # every 7 days
         ax.xaxis.set_major_formatter(mdates.DateFormatter('%b %d'))    # e.g., Oct 13
         ax.tick_params(axis='x', rotation=45, labelsize=8)              # rotate & smaller font
 
