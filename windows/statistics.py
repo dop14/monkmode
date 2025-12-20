@@ -23,6 +23,7 @@ class Statistics(QDialog):
         self.main_window = main_window
 
         self.ui.no_data_message.hide()
+        self.tm = ThemeManager()
         self.set_chart_theme()
 
         self.show_stats()
@@ -179,15 +180,21 @@ class Statistics(QDialog):
         self.ui.most_prod_day.setToolTip("The day of the week when you average the most focus time per session.")
 
     def set_chart_theme(self):
-        tm = ThemeManager()
-        print(f"Theme name: '{tm.theme_name}'")  # What is the actual value?
-        print(f"Theme name type: {type(tm.theme_name)}")  # Is it a string?
-        print(f"Available themes: {list(tm.themes.keys())}")  # What keys exist?
-        print(f"Key exists? {tm.theme_name in tm.themes}")  # Does the key exist?
-        
-        colors = tm.get_colors()
-        print(f"Colors: {colors}")
-        
+        self.colors = self.tm.current_theme
+        plt.rcParams.update({
+            'figure.facecolor': self.colors['background'],
+            'axes.facecolor': self.colors['card'],
+            'axes.edgecolor': self.colors['text_secondary'],
+            'axes.labelcolor': self.colors['text'],
+            'text.color': self.colors['text'],
+            'xtick.color': self.colors['text'],
+            'ytick.color': self.colors['text'],
+            'grid.color': self.colors['text_secondary'],
+            'legend.facecolor': self.colors['card'],
+            'legend.edgecolor': self.colors['text_secondary']
+        })
+        #self.ui.subjectFrame.setStyleSheet(f"background-color:{self.colors["background"]}")
+        self.ui.include_archived_checkbox.setStyleSheet(f"background-color:{self.colors["background"]}")
 
     # Line chart
     def plot_focus_chart(self):
@@ -215,8 +222,12 @@ class Statistics(QDialog):
         fig, ax = plt.subplots(figsize=(6, 3))
 
         # Fill area under line for better visibility
-        ax.fill_between(all_days, all_durations, color='grey', alpha=0.5)
-        ax.plot(all_days, all_durations, color='blue', linewidth=2)
+        if self.tm.get_theme_name() == "monkmode_dark":
+            ax.plot(all_days, all_durations, color="white", linewidth=2)
+        elif self.tm.get_theme_name() == "monkmode_light":
+             ax.plot(all_days, all_durations, color="black", linewidth=2)
+        else:
+            ax.plot(all_days, all_durations, color=self.colors["accent"], linewidth=2)
 
         # Titles and labels
         ax.set_title('daily focus time (last 30 days)', fontweight="bold")

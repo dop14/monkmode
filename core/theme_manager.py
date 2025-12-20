@@ -4,7 +4,6 @@ from PySide6.QtCore import QSettings
 class ThemeManager:
     def __init__(self):
         self.settings = QSettings("monkmode", "monkmode")
-
         self.themes = {
             "monkmode_dark": {
                 "background": "#1E1E1E",
@@ -70,8 +69,7 @@ class ThemeManager:
 
     # Returns the current theme's HEX values
     def get_colors(self):
-        print("waaaa")
-        return self.themes[self.theme_name]
+        return self.current_theme
     
     def get_theme_name(self):
         return self.theme_name
@@ -252,7 +250,6 @@ class ThemeManager:
                 padding: 4px;
             }}
 
-            
             QComboBox {{
                 background-color: {self.current_theme['card']};
                 color: {self.current_theme['text']};
@@ -283,8 +280,23 @@ class ThemeManager:
             }}
 
             QComboBox::drop-down {{
-                    background: transparent;
+                background: transparent;
             }}
+
+            QScrollBar:vertical {{
+                background-color: {self.current_theme['accent']};
+                width: 14px;
+            }}
+
+            QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {{
+                background: {self.current_theme['card']};
+            }}
+
+
+            QScrollBar::add-line:vertical, QScrollBar::sub-line:vertical {{
+                background: {self.current_theme['background']};
+            }}
+
 
         """
 
