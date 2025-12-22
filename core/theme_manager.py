@@ -4,6 +4,7 @@ from PySide6.QtCore import QSettings
 class ThemeManager:
     def __init__(self):
         self.settings = QSettings("monkmode", "monkmode")
+
         self.themes = {
             "monkmode_dark": {
                 "background": "#1E1E1E",
@@ -86,8 +87,6 @@ class ThemeManager:
             # Apply to app
             app = QApplication.instance()
             app.setStyleSheet(self.get_stylesheet())
-
-            # Apply to matplotlib charts
 
             return True
         return False

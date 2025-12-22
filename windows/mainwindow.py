@@ -27,16 +27,27 @@ class MainWindow(QMainWindow):
         self.ui.setupUi(self)
         self.setWindowTitle("monkmode")
 
-        self.adjustSize()   # Shrinks window to the smallest size that fits the layout
+        # Shrinks window to the smallest size that fits the layout
+        self.adjustSize()  
 
+        # Create small focus iwndow
         self.small_window = SmallFocusWindow(self)
+
+        # Create IconManager object
+        self.icons = IconManager()
 
         # Load user preferences
         preferences = get_user_preferences()
-        self.menubar = MenuBar(preferences, self)
+        self.menubar = MenuBar(preferences, self, self.small_window, self.icons)
+        self.theme = self.menubar.theme_name
 
         # Set icons
-        self.icons = IconManager(self, self.small_window)
+        if (self.menubar.theme_name == "monkmode_light"):
+            self.icons.build("black")
+            self.icons.apply_icons(self, self.small_window)
+        else:
+            self.icons.build("white")
+            self.icons.apply_icons(self, self.small_window)
 
         self.showNormal()
         self.is_timer_active = False

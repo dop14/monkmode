@@ -11,6 +11,7 @@ from utils import get_resource_path
 from matplotlib.ticker import MultipleLocator
 import matplotlib.dates as mdates
 from core.theme_manager import ThemeManager
+from matplotlib.ticker import MaxNLocator
 
 class Statistics(QDialog):
     def __init__(self, main_window):
@@ -182,7 +183,7 @@ class Statistics(QDialog):
     def set_chart_theme(self):
         self.colors = self.tm.current_theme
         plt.rcParams.update({
-            'figure.facecolor': self.colors['background'],
+            'figure.facecolor': self.colors['card'],
             'axes.facecolor': self.colors['card'],
             'axes.edgecolor': self.colors['text_secondary'],
             'axes.labelcolor': self.colors['text'],
@@ -243,10 +244,8 @@ class Statistics(QDialog):
 
         # Y-axis ticks
         max_val = max(all_durations)
-        if max_val > 5:
-            ax.yaxis.set_major_locator(MultipleLocator(1))   # 1-hour steps
-        else:
-            ax.yaxis.set_major_locator(MultipleLocator(0.5)) # 0.5-hour steps
+        
+        ax.yaxis.set_major_locator(MaxNLocator(nbins=5, prune="lower"))
         ax.set_ylim(0, max(0.5, max_val))
 
         fig.tight_layout()
@@ -254,6 +253,10 @@ class Statistics(QDialog):
         # Embed in Qt canvas
         canvas = ScrollFriendlyCanvas(fig)
         canvas.setMaximumSize(600, 300)
+        canvas.setStyleSheet("""
+            background: transparent;
+            border: none;
+        """)
 
         layout = self.ui.focusFrame.layout()
         if layout is None:
@@ -266,8 +269,6 @@ class Statistics(QDialog):
                     layout.removeWidget(widget)
                     widget.setParent(None)
 
-        layout.setContentsMargins(0, 0, 0, 0)  # No margins
-        layout.setSpacing(0) 
         layout.addWidget(canvas, 0)
 
 
@@ -319,6 +320,10 @@ class Statistics(QDialog):
 
         canvas = ScrollFriendlyCanvas(fig)
         canvas.setMaximumSize(600, 300)
+        canvas.setStyleSheet("""
+            background: transparent;
+            border: none;
+        """)
 
         # Embed in subjectFrame
         layout = self.ui.subjectFrame.layout()
@@ -357,7 +362,7 @@ class Statistics(QDialog):
         durations = [r[1] / 60 for r in top_rows]  # convert seconds → minutes
 
         # Create pie chart 
-        fig, ax = plt.subplots(figsize=(6.2, 3.2))
+        fig, ax = plt.subplots(figsize=(6, 3))
         wedges, texts, autotexts = ax.pie(
             durations,
             autopct=autopct_filter,
@@ -394,7 +399,12 @@ class Statistics(QDialog):
 
         # Add chart canvas
         canvas = ScrollFriendlyCanvas(fig)
-        canvas.setMaximumSize(620, 320)
+        canvas.setMaximumSize(600, 300)
+        canvas.setStyleSheet("""
+            background: transparent;
+            border: none;
+        """)
+
         layout.addWidget(canvas, 0)
     
     # Bar chart #1
@@ -435,11 +445,8 @@ class Statistics(QDialog):
         plt.xticks(rotation=45, ha="center", fontsize=8.5)
 
         # Adjust Y-axis tick spacing dynamically
-        # Dynamic Y-axis tick spacing
         max_val = max(durations)
-        interval = int(max_val / 5)
-        ax.yaxis.set_major_locator(MultipleLocator(interval))
-
+        ax.yaxis.set_major_locator(MaxNLocator(nbins=5, prune="lower"))
         ax.set_ylim(0, max(0.5, max_val))
         fig.subplots_adjust(bottom=0.3)
 
@@ -459,7 +466,11 @@ class Statistics(QDialog):
 
         # Add chart to layout
         canvas = ScrollFriendlyCanvas(fig)
-        canvas.setMaximumSize(600, 450)
+        canvas.setMaximumSize(600, 300)
+        canvas.setStyleSheet("""
+            background: transparent;
+            border: none;
+        """)
         layout.addWidget(canvas, 0)
 
 
@@ -505,10 +516,9 @@ class Statistics(QDialog):
         plt.xticks(rotation=45, ha="center",fontsize=8.5)
 
         # Dynamic Y-axis tick spacing
-        max_val = max(durations)
-        interval = int(max_val / 5)
-        ax.yaxis.set_major_locator(MultipleLocator(interval))
+        ax.yaxis.set_major_locator(MaxNLocator(nbins=5, prune="lower"))
 
+        max_val = max(durations)
         ax.set_ylim(0, max(0.5, max_val))
         fig.subplots_adjust(bottom=0.3)
 
@@ -528,7 +538,11 @@ class Statistics(QDialog):
 
         # Add chart canvas to layout
         canvas = ScrollFriendlyCanvas(fig)
-        canvas.setMaximumSize(600, 450)
+        canvas.setMaximumSize(600, 300)
+        canvas.setStyleSheet("""
+            background: transparent;
+            border: none;
+        """)
         layout.addWidget(canvas, 0)
 
 # If less then 4% on pie chart then dont show

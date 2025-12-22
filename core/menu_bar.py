@@ -1,14 +1,18 @@
 from windows.change_def_daily_focus import ChangeDefDailyFocus
 from windows.archive_window import ArchiveWindow
 from core.theme_manager import ThemeManager
+from core.icons import IconManager
 from database.db_manager import update_user_preferences, get_user_preferences
 
 class MenuBar:
-    def __init__(self, preferences, main_window):
+    def __init__(self, preferences, main_window, small_window, icon_manager):
         self.preferences = preferences
         self.main_window = main_window
+        self.small_window = small_window
+        self.icon_manager = icon_manager
 
         self.tm = ThemeManager()
+        self.theme_name = self.tm.get_theme_name()
         self.themes = ["focus_fire", "zen_garden", "deep_focus", 
                       "dawn_ritual", "minimal_monk", "monkmode_dark", 
                       "monkmode_light"]
@@ -79,6 +83,14 @@ class MenuBar:
     def change_theme(self, theme):
         # Set the chosen theme
         self.tm.set_theme(theme)
+
+        # Check icons
+        if theme == "monkmode_light":
+            self.icon_manager.build("black")
+            self.icon_manager.apply_icons(self.main_window, self.small_window)
+        else:
+            self.icon_manager.build("white")
+            self.icon_manager.apply_icons(self.main_window, self.small_window)
 
         # Uncheck all other themes
         for name in self.themes:

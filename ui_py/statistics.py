@@ -36,7 +36,7 @@ class Ui_Form(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollAreaWidgetContents = QWidget()
         self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
-        self.scrollAreaWidgetContents.setGeometry(QRect(0, -16, 624, 2198))
+        self.scrollAreaWidgetContents.setGeometry(QRect(0, -1190, 624, 2198))
         self.verticalLayout_11 = QVBoxLayout(self.scrollAreaWidgetContents)
         self.verticalLayout_11.setObjectName(u"verticalLayout_11")
         self.overallFrame = QFrame(self.scrollAreaWidgetContents)
@@ -216,7 +216,7 @@ class Ui_Form(object):
 
         self.subjectBarFrame = QFrame(self.scrollAreaWidgetContents)
         self.subjectBarFrame.setObjectName(u"subjectBarFrame")
-        self.subjectBarFrame.setMinimumSize(QSize(600, 420))
+        self.subjectBarFrame.setMinimumSize(QSize(600, 300))
         self.subjectBarFrame.setMaximumSize(QSize(600, 420))
         self.subjectBarFrame.setStyleSheet(u"")
         self.subjectBarFrame.setFrameShape(QFrame.Shape.StyledPanel)
@@ -239,7 +239,7 @@ class Ui_Form(object):
 
         self.subjectAllBarFrame = QFrame(self.scrollAreaWidgetContents)
         self.subjectAllBarFrame.setObjectName(u"subjectAllBarFrame")
-        self.subjectAllBarFrame.setMinimumSize(QSize(600, 420))
+        self.subjectAllBarFrame.setMinimumSize(QSize(600, 300))
         self.subjectAllBarFrame.setStyleSheet(u"")
         self.subjectAllBarFrame.setFrameShape(QFrame.Shape.StyledPanel)
         self.subjectAllBarFrame.setFrameShadow(QFrame.Shadow.Raised)
