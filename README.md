@@ -90,9 +90,6 @@ main.py
 - **Windows**: No requirements - executable includes everything
 - **Linux/macOS**: Python 3.8+ and dependencies listed in `requirements.txt`
 
-### Platform Note
-Screenshots in this README were taken on Windows. The app may look slightly different on Linux/macOS (different icons, progress bar styling, some UI behaviors) but all functionality remains the same.
-
 <h2>What Are Focus Periods</h2>
 
 Focus periods are the core of deep work. When you first run monkmode, the default focus period is called "pomodoro", one of the most popular focus techniques: it divides work into 25-minute focus sessions followed by 5-minute breaks. After completing four focus sessions, the next break is a long break, usually around 15 minutes.
@@ -256,12 +253,10 @@ The help menu contains two options:
   <li><strong>Bar chart</strong> — same as the previous one, but for all history (archived subjects can be shown or hidden).</li>
 </ol>
 
-<h2>Theme</h2>
+<h2>Syncing</h2>
 <p>
-The app automatically adapts to your operating system's theme (dark/light mode). 
-Restart the app after changing your OS theme for the best experience.
+TBA
 </p>
-
 
 <p>
 <h2>Wrapping Up</h2>
@@ -273,6 +268,7 @@ Restart the app after changing your OS theme for the best experience.
 
 
    
+
 
 
 
