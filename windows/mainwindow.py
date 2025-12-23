@@ -1,7 +1,7 @@
 from PySide6.QtWidgets import QMainWindow, QMessageBox
 from PySide6.QtGui import QDesktopServices
 from PySide6.QtCore import QUrl, Qt
-import shutil, os, sys
+import shutil, os
 from ui_py.mainwindow import Ui_MainWindow
 from windows.focus_window import FocusWindow
 from windows.new_period_window import NewPeriodWindow

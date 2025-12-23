@@ -1,6 +1,5 @@
 import sys
 import os
-import sqlite3
 from pathlib import Path
 
 def get_resource_path(relative_path):

@@ -8,7 +8,6 @@ import matplotlib.pyplot as plt
 from PySide6.QtWidgets import QVBoxLayout
 import textwrap
 from utils import get_resource_path
-from matplotlib.ticker import MultipleLocator
 import matplotlib.dates as mdates
 from core.theme_manager import ThemeManager
 from matplotlib.ticker import MaxNLocator

@@ -18,11 +18,11 @@ class ThemeManager:
             "monkmode_light": {
                 "background": "#f0f0f0",
                 "card": "#ffffff",
-                "accent": "#d9d9d9",
+                "accent": "#e0dcdc",
                 "accent_text": "#000000",
                 "text": "#000000",
                 "text_secondary": "#707070",
-                "progress_bg": "#e0e0e0"
+                "progress_bg": "#f6f3f3"
             },
             "focus_fire": {
                 "background": "#1a1a1a",
@@ -67,10 +67,6 @@ class ThemeManager:
 
         # Hex values of the theme
         self.current_theme = self.themes[self.theme_name]
-
-    # Returns the current theme's HEX values
-    def get_colors(self):
-        return self.current_theme
     
     def get_theme_name(self):
         return self.theme_name
@@ -94,10 +90,6 @@ class ThemeManager:
     def apply_initial_theme(self):
         app = QApplication.instance()
         app.setStyleSheet(self.get_stylesheet())
-
-    # Return the currently set theme's colors dictionary
-    def get_colors(self):
-        pass
 
     def get_stylesheet(self):
         return f"""
@@ -295,8 +287,7 @@ class ThemeManager:
             QScrollBar::add-line:vertical, QScrollBar::sub-line:vertical {{
                 background: {self.current_theme['background']};
             }}
-
-
+            
         """
 
 

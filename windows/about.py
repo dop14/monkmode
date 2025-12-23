@@ -1,8 +1,6 @@
 from PySide6.QtWidgets import QDialog
-from PySide6.QtCore import Qt
 from ui_py.about import Ui_Form
 from PySide6.QtGui import QIcon
-from PySide6.QtGui import QPalette, QColor
 from utils import get_resource_path
 
 class AboutWindow(QDialog):

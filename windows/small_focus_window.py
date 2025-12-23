@@ -1,4 +1,4 @@
-from PySide6.QtWidgets import QDialog, QLabel, QVBoxLayout
+from PySide6.QtWidgets import QDialog, QLabel
 from PySide6.QtCore import Qt
 from ui_py.small_focus_window import Ui_Form
 from PySide6.QtGui import QIcon, QPixmap

@@ -1,7 +1,6 @@
 from windows.change_def_daily_focus import ChangeDefDailyFocus
 from windows.archive_window import ArchiveWindow
 from core.theme_manager import ThemeManager
-from core.icons import IconManager
 from database.db_manager import update_user_preferences, get_user_preferences
 
 class MenuBar:
@@ -13,6 +12,7 @@ class MenuBar:
 
         self.tm = ThemeManager()
         self.theme_name = self.tm.get_theme_name()
+        self.theme_color = self.tm.current_theme
         self.themes = ["focus_fire", "zen_garden", "deep_focus", 
                       "dawn_ritual", "minimal_monk", "monkmode_dark", 
                       "monkmode_light"]

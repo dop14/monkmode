@@ -1,5 +1,4 @@
-from PySide6.QtCore import QObject, Signal, QTimer
-from PySide6.QtWidgets import QMessageBox
+from PySide6.QtCore import QObject, QTimer
 from database.db_manager import save_focus_session_db, get_user_preferences, get_user_stats, update_user_stats
 from core.sound_player import SoundPlayer
 from core.popup_notification import PopupNotification
@@ -28,7 +27,6 @@ class FocusTimer(QObject):
 
         self.remaining_time = 0
         self.focus_delay()
-
 
         self.timer = QTimer()
         self.timer.timeout.connect(self._tick)
@@ -197,7 +195,7 @@ class FocusTimer(QObject):
                 else:
                     self.longest_session = old_stats[2]
 
-                # save new stats
+                # Save new stats
                 new_stats = {
                     "total_focus_time_mins": old_stats[0] + focus_time_unfinished_session,
                     "focus_sessions_completed": old_stats[1],
