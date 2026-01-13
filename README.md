@@ -256,7 +256,7 @@ The help menu contains two options:
 
 <h3>Important</h3>
 <ul>
-   <li>Never open MonkMode on more than one device at the same time when using junctions, to avoid database corruption.</li>
+   <li>Never open monkmode on more than one device at the same time when using junctions, to avoid database corruption.</li>
    <li>You must be logged into the same cloud service on all devices and create junctions on each device pointing to the synced folder.</li>
 </ul>
 
@@ -293,6 +293,7 @@ app_data = Path.home() / '.monkmode'
 
 
    
+
 
 
 
