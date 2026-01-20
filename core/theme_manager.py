@@ -210,7 +210,6 @@ class ThemeManager:
             }}
             
             QMenuBar {{
-                background-color: {self.current_theme['background']};
                 color: {self.current_theme['text']};
                 font-size:13px;
             }}
@@ -254,14 +253,17 @@ class ThemeManager:
                 color: {self.current_theme['accent_text']};
             }}
 
+
             QComboBox QAbstractItemView {{
-                selection-background-color: {self.current_theme['accent']};
-                selection-color: {self.current_theme['accent_text']};
+                outline: 0;
+                border: none;
+                margin-top: 3px;
             }}
 
             QComboBox QAbstractItemView::item {{
                 padding:0px;
-                border: none;
+                border-radius: 4px;
+                background-color:{self.current_theme['background']};
             }}
 
             QComboBox QAbstractItemView::item:selected {{
@@ -274,19 +276,34 @@ class ThemeManager:
                 background: transparent;
             }}
 
+
             QScrollBar:vertical {{
-                background-color: {self.current_theme['accent']};
-                width: 14px;
-            }}
-
-            QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {{
-                background: {self.current_theme['card']};
-            }}
-
-
-            QScrollBar::add-line:vertical, QScrollBar::sub-line:vertical {{
                 background: {self.current_theme['background']};
+                width: 14px;
+                margin: 0px;
+                border: none;
             }}
+
+            QScrollBar::handle:vertical {{
+                background: {self.current_theme['accent']};
+                min-height: 20px;
+                border: none;
+                border-radius: 6px;
+            }}
+
+            QScrollBar::add-line:vertical,
+            QScrollBar::sub-line:vertical {{
+                background: none;
+                border: none;
+                height: 0px;
+            }}
+
+            QScrollBar::add-page:vertical,
+            QScrollBar::sub-page:vertical {{
+                background: {self.current_theme['card']};
+                border: none;
+            }}
+
             
         """
 

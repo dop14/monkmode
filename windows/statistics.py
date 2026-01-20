@@ -34,6 +34,7 @@ class Statistics(QDialog):
         self.plot_subject_bar_chart()
         self.plot_subject_bar_chart_allhistory()
         self.set_tooltips()
+        #self.create_heatmap()
 
         self.ui.include_archived_checkbox.stateChanged.connect(self.plot_subject_bar_chart_allhistory)
 
@@ -195,6 +196,11 @@ class Statistics(QDialog):
         })
         #self.ui.subjectFrame.setStyleSheet(f"background-color:{self.colors["background"]}")
         self.ui.include_archived_checkbox.setStyleSheet(f"background-color:{self.colors["background"]}")
+
+    # Heatmap widget
+    def create_heatmap(self):
+        pass
+                
 
     # Line chart
     def plot_focus_chart(self):
