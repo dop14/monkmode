@@ -3,7 +3,7 @@ import qtawesome as qta
 class IconManager:
     def __init__(self):
          self.icons = {}
-
+    
     def build(self, color):
         self.icons["add"] = qta.icon('fa5s.plus',color=color)  
         self.icons["edit"] = qta.icon('fa5s.edit',color=color)

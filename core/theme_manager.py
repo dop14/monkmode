@@ -9,7 +9,7 @@ class ThemeManager:
             "monkmode_dark": {
                 "background": "#1E1E1E",
                 "card": "#2D2D2D",
-                "accent": "#4A4A4A",
+                "accent": "#6C6C6C",
                 "accent_text": "#ffffff",
                 "text": "#ffffff",
                 "text_secondary": "#b0b0b0",
@@ -18,7 +18,7 @@ class ThemeManager:
             "monkmode_light": {
                 "background": "#f0f0f0",
                 "card": "#ffffff",
-                "accent": "#e0dcdc",
+                "accent": "#A2A2A2",
                 "accent_text": "#000000",
                 "text": "#000000",
                 "text_secondary": "#707070",
@@ -65,7 +65,7 @@ class ThemeManager:
         # The default theme
         self.theme_name = self.settings.value("theme", "monkmode_dark")
 
-        # Hex values of the theme
+        # Hex values of the current theme
         self.current_theme = self.themes[self.theme_name]
     
     def get_theme_name(self):
@@ -221,6 +221,7 @@ class ThemeManager:
             QMenu {{
                 background-color: {self.current_theme['card']};
                 color: {self.current_theme['text']};
+                border: 2px solid {self.current_theme['background']};
             }}
             
             QMenu::item {{
@@ -276,7 +277,6 @@ class ThemeManager:
                 background: transparent;
             }}
 
-
             QScrollBar:vertical {{
                 background: {self.current_theme['background']};
                 width: 14px;
@@ -303,8 +303,6 @@ class ThemeManager:
                 background: {self.current_theme['card']};
                 border: none;
             }}
-
-            
         """
 
 

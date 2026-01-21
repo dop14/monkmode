@@ -194,14 +194,8 @@ class Statistics(QDialog):
             'legend.facecolor': self.colors['card'],
             'legend.edgecolor': self.colors['text_secondary']
         })
-        #self.ui.subjectFrame.setStyleSheet(f"background-color:{self.colors["background"]}")
         self.ui.include_archived_checkbox.setStyleSheet(f"background-color:{self.colors["background"]}")
-
-    # Heatmap widget
-    def create_heatmap(self):
-        pass
                 
-
     # Line chart
     def plot_focus_chart(self):
         self.ui.focusFrame.show()

@@ -1,6 +1,6 @@
 from PySide6.QtWidgets import QDialog
 from ui_py.add_and_edit_period import Ui_Form
-from database.db_manager import get_period_data, get_period_names, get_default_period_name, update_period_settings
+from database.db_manager import get_period_data, get_period_names, update_period_settings
 from PySide6.QtGui import QIcon
 from utils import get_resource_path
 

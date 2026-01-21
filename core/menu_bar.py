@@ -19,7 +19,7 @@ class MenuBar:
         
         self.load_default_checkbox_values()
 
-    # Check buttons according to preferences (DEFAULT)
+    # Check buttons according to preferences
     def load_default_checkbox_values(self):
         # All notifications off/on
         self.all_notifications = self.preferences["all_notifications_off"]
