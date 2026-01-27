@@ -5,6 +5,7 @@ from PySide6.QtGui import QFont
 class PopupNotification(QWidget):
     def __init__(self, message, duration=5000):
         super().__init__()
+
         self.setWindowFlags(
             Qt.Tool | Qt.FramelessWindowHint | Qt.WindowStaysOnTopHint | Qt.X11BypassWindowManagerHint
         )
@@ -19,13 +20,14 @@ class PopupNotification(QWidget):
         layout = QVBoxLayout()
         self.label = QLabel(message)
         self.label.setFont(QFont("Segoe UI", 13))
+        self.label.setOpenExternalLinks(True)
 
         layout.addWidget(self.label)
         layout.setContentsMargins(0, 0, 0, 0)
         self.setLayout(layout)
         self.adjustSize()
 
-        # Position in bottom left corner
+        # Position in bottom right corner
         screen_geometry = self.screen().availableGeometry()
         x = screen_geometry.right() - self.width() - 20
         y = screen_geometry.bottom() - self.height() - 25

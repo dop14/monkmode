@@ -1,16 +1,19 @@
 from PySide6.QtWidgets import QDialog
-from ui_py.about import Ui_Form
 from PySide6.QtGui import QIcon
+from ui_py.about import Ui_Form
 from utils import get_resource_path
 
 class AboutWindow(QDialog):
     def __init__(self):
         super().__init__()
+
+        # Setup UI
         self.ui = Ui_Form()
         self.ui.setupUi(self)
         self.setWindowTitle("about")
-        
         self.setWindowIcon(QIcon(get_resource_path("logo/monkmode.png")))
+        
+        # Show about text
         self.set_text()
 
     def set_text(self):
@@ -35,6 +38,11 @@ class AboutWindow(QDialog):
 
         <p><b>License:</b> This project is licensed under the 
             <a href="https://opensource.org/licenses/MIT">MIT License</a>.
+        </p>
+
+        <p><b>Third-party software:</b> This application uses <b>PySide6 (Qt for Python)</b>,<br> which is licensed under the
+            <a href="https://www.gnu.org/licenses/lgpl-3.0.html">GNU LGPL v3</a>.<br>
+            Source code is available at the GitHub repository below.
         </p>
 
         <p><b>Support:</b> For issues, suggestions, or contributions, visit the 

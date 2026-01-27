@@ -1,38 +1,38 @@
 from PySide6.QtWidgets import QDialog, QLabel
 from PySide6.QtCore import Qt
-from ui_py.small_focus_window import Ui_Form
 from PySide6.QtGui import QIcon, QPixmap
+from ui_py.small_focus_window import Ui_Form
 from utils import get_resource_path
 
 class SmallFocusWindow(QDialog):
     def __init__(self, main_window):
         super().__init__()
+
+        # Setup UI
         self.ui = Ui_Form()
         self.ui.setupUi(self)
         self.setModal(True)
         self.setWindowTitle("small view")
         self.setWindowIcon(QIcon(get_resource_path("logo/monkmode.png")))
-        self.main_window = main_window
         self.setWindowFlags(
             Qt.Window | 
             Qt.WindowStaysOnTopHint
         )
-
         self.top_right_position()
-        
         self.monk_image()
         self.image_label.hide()
 
+        self.main_window = main_window
+
+        # Signals
         self.ui.time_label.mousePressEvent = self.toggle_timer_image
         self.image_label.mousePressEvent = self.toggle_timer_image
-
-
-        # Button actions
         self.ui.back_to_main_btn.clicked.connect(self.closeEvent)
         self.ui.small_pause_btn.clicked.connect(self.pause_timer)
         self.ui.small_resume_btn.clicked.connect(self.resume_timer)
         self.ui.small_stop_btn.clicked.connect(self.stop_timer)
-        
+    
+    # Moves the window to the top right of the screen
     def top_right_position(self):
         screen_geometry = self.screen().availableGeometry()
         window_size = self.size()
@@ -67,12 +67,10 @@ class SmallFocusWindow(QDialog):
             self.image_label.hide()
             self.ui.time_label.show()
 
-    # Hiding buttons in small focus window
-    def default_values(self):
-        # Hide buttons                          
+    # Set the UI's default state
+    def default_values(self):                         
         self.ui.small_resume_btn.hide()
 
-        # Show buttons
         self.ui.small_pause_btn.show()
         self.ui.time_label.show()
         self.ui.session_label.show()
@@ -83,14 +81,14 @@ class SmallFocusWindow(QDialog):
         self.main_window.showNormal()
     
     def monk_image(self, width=100, height=120):
-        # Create image label
+        # Set the image
         self.image_label = QLabel()
         pixmap = QPixmap(get_resource_path("logo/monk.png"))
         scaled_pixmap = pixmap.scaled(width, height, Qt.KeepAspectRatio, Qt.SmoothTransformation)
         self.image_label.setPixmap(scaled_pixmap)
         self.image_label.setAlignment(Qt.AlignCenter)
 
-        # Add image_label to the Designer-created layout
+        # Add image_label to the layout
         self.ui.image_layout.addWidget(self.image_label)
 
         return self.image_label

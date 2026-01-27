@@ -10,6 +10,7 @@ class MenuBar:
         self.small_window = small_window
         self.icon_manager = icon_manager
 
+        # Create theme manager object
         self.tm = ThemeManager()
         self.theme_name = self.tm.get_theme_name()
         self.theme_color = self.tm.current_theme
@@ -21,14 +22,14 @@ class MenuBar:
 
     # Check buttons according to preferences
     def load_default_checkbox_values(self):
-        # All notifications off/on
+        # Notifications on or off
         self.all_notifications = self.preferences["all_notifications_off"]
         if self.all_notifications == False:
             self.main_window.ui.all_notifications_2.setChecked(False)
         else:
             self.main_window.ui.all_notifications_2.setChecked(True)
 
-        # Tips
+        # Quotes
         self.tips_and_quotes = self.preferences["tips_and_quotes"]
         if self.tips_and_quotes == 1:
             self.main_window.ui.actiontips_and_quotes.setChecked(True)
@@ -40,7 +41,6 @@ class MenuBar:
                 action = getattr(self.main_window.ui, name)
                 action.setChecked(True)
 
-    # Connect buttons to classes
     def change_default_daily(self):
         self.change_def = ChangeDefDailyFocus(self)
         self.change_def.show()
@@ -58,13 +58,6 @@ class MenuBar:
     def archive_clicked(self):
         self.archived_window = ArchiveWindow(self)
         self.archived_window.show()
-
-    def refresh_daily_focus(self):
-        self.main_window.update_daily_focus_goal()
-
-    def refresh_subject_combobox(self):
-        self.main_window.ui.subject_combobox.clear()
-        self.main_window.update_subject_combobox()
 
     def tips_and_quotes_clicked(self):
         if self.main_window.ui.actiontips_and_quotes.isChecked():
@@ -97,3 +90,10 @@ class MenuBar:
             if name != theme:
                 action = getattr(self.main_window.ui, name)
                 action.setChecked(False)
+
+    def refresh_daily_focus(self):
+        self.main_window.update_daily_focus_goal()
+
+    def refresh_subject_combobox(self):
+        self.main_window.ui.subject_combobox.clear()
+        self.main_window.update_subject_combobox()

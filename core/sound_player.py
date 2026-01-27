@@ -5,6 +5,7 @@ from utils import get_resource_path
 class SoundPlayer(QSoundEffect):
     def __init__(self, sound_type):
         super().__init__()
+        
         self.sound_type = sound_type
         
         if self.sound_type == "break":

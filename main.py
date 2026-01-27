@@ -12,9 +12,11 @@ def main():
 
     app = QApplication(sys.argv)
     
+    # Set theme
     theme_manager = ThemeManager()
     theme_manager.apply_initial_theme()
-
+    
+    # Create the main window
     window = MainWindow()
     window.show()
     window.setWindowIcon(QIcon(get_resource_path("logo/monkmode.png")))

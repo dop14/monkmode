@@ -22,12 +22,10 @@ class IconManager:
         main_window.ui.newperiod_btn.setIcon(self.icons["add"])
         main_window.ui.editperiod_btn.setIcon(self.icons["edit"])
         main_window.ui.delete_period_btn.setIcon(self.icons["delete"])
-
         main_window.ui.newsubject_btn.setIcon(self.icons["add"])
         main_window.ui.edit_subject_btn.setIcon(self.icons["edit"])
         main_window.ui.delete_subject_btn.setIcon(self.icons["delete"])
         main_window.ui.archive_subject_btn.setIcon(self.icons["archive"])
-
         main_window.ui.focus_pause_btn.setIcon(self.icons["pause"])
         main_window.ui.focus_resume_btn.setIcon(self.icons["resume"])
         main_window.ui.focus_stop_btn.setIcon(self.icons["stop"])

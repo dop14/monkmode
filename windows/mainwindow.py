@@ -1,7 +1,6 @@
 from PySide6.QtWidgets import QMainWindow, QMessageBox
 from PySide6.QtGui import QDesktopServices
-from PySide6.QtCore import QUrl, Qt
-import shutil, os
+from PySide6.QtCore import QUrl, Qt, QTimer
 from ui_py.mainwindow import Ui_MainWindow
 from windows.focus_window import FocusWindow
 from windows.new_period_window import NewPeriodWindow
@@ -13,35 +12,44 @@ from windows.change_default import ChangeDefault
 from windows.small_focus_window import SmallFocusWindow
 from windows.about import AboutWindow
 from windows.statistics import Statistics
+from core.popup_notification import PopupNotification
 from core.timer import FocusTimer
 from core.menu_bar import MenuBar
 from core.icons import IconManager
 from database.db_manager import get_period_names, get_subject_names, get_current_streak, save_daily_goal, get_user_stats, update_user_stats
 from database.db_manager import get_default_period_name, get_default_subject_name, get_user_preferences, get_today_focus, get_this_week_focus, get_today_quote, check_streak_log
 from utils import get_db_path
+import requests
+import shutil, os
 
 class MainWindow(QMainWindow):
+    APP_VERSION = "v1.2.1"
+
     def __init__(self):
         super().__init__()
+
         self.ui = Ui_MainWindow()   
         self.ui.setupUi(self)
         self.setWindowTitle("monkmode")
-
-        # Shrinks window to the smallest size that fits the layout
         self.adjustSize()  
+        self.showNormal()
 
-        # Create small focus iwndow
+        self.is_timer_active = False
+        self.is_delay_timer = False
+
+        self.setup_ui()
+
+    def setup_ui(self):
+        # Create windows and managers
         self.small_window = SmallFocusWindow(self)
-
-        # Create IconManager object
         self.icons = IconManager()
-
-        # Load user preferences
+        
+        # Create menubar and theme
         preferences = get_user_preferences()
         self.menubar = MenuBar(preferences, self, self.small_window, self.icons)
         self.theme = self.menubar.theme_name
-
-        # Set icons
+        
+        # Apply theme dependent icons
         if (self.menubar.theme_name == "monkmode_light"):
             self.icons.build("black")
             self.icons.apply_icons(self, self.small_window)
@@ -49,123 +57,71 @@ class MainWindow(QMainWindow):
             self.icons.build("white")
             self.icons.apply_icons(self, self.small_window)
 
-        self.showNormal()
-        self.is_timer_active = False
-        self.is_delay_timer = False
+        # Check for updates after a small delay
+        QTimer.singleShot(1500, self.check_latest_release)
 
-        # Check the streak_log
+        # Initalize streak data
         check_streak_log()
-
-        # Check the longest_streak
         self.check_longest_streak()
-
-        # Show streak
         self.show_streak()
-
-        # Hide buttons
+        
+        # Initialize UI state
         self.hide_buttons()
-        
-        # Load period combobox values
         self.update_period_combobox()
-
-        # Load subject combobox values
         self.update_subject_combobox()
-
-        # Load today's focus and this week's focus
         self.update_daily_focus()
-
-        # Load weekly and monthly focus
-        self.update_weekly_monthly_focus()
-
-        # Load daily and weekly progression bar
+        self.update_weekly_focus()
         self.update_progression_bar()
-        
-        # Load today's quote
         self.load_today_quote()
-
-        # Load daily focus goal
         self.update_daily_focus_goal()
 
-        # When focus button is clicked
+        # Connecting buttons to actions
         self.ui.start_focus_btn.clicked.connect(self.start_focus_window)
         
-        # When add period button is clicked
         self.ui.newperiod_btn.clicked.connect(lambda:self.start_add_window("period"))
-        self.ui.newperiod_btn.setToolTip("create new period")
-
-        # When edit period button is clicked
         self.ui.editperiod_btn.clicked.connect(lambda:self.start_edit_window("period"))
-        self.ui.editperiod_btn.setToolTip("edit period")
-
-        # When delete period button is clicked
         self.ui.delete_period_btn.clicked.connect(lambda:self.start_delete_window("period"))
-        self.ui.delete_period_btn.setToolTip("delete period")
 
-        # When add subject button is clicked
         self.ui.newsubject_btn.clicked.connect(lambda:self.start_add_window("subject"))
-        self.ui.newsubject_btn.setToolTip("create new subject")
-
-        # When edit subject button is clicked
         self.ui.edit_subject_btn.clicked.connect(lambda:self.start_edit_window("subject"))
-        self.ui.edit_subject_btn.setToolTip("edit subject")
-
-        # When archive subject button is clicked
-        self.ui.archive_subject_btn.clicked.connect(lambda:self.start_archive_window("subject"))
-        self.ui.archive_subject_btn.setToolTip("archive subject")
-
-        # When delete subject button is clicked
+        self.ui.archive_subject_btn.clicked.connect(lambda:self.start_archive_window())
         self.ui.delete_subject_btn.clicked.connect(lambda:self.start_delete_window("subject"))
-        self.ui.delete_subject_btn.setToolTip("delete subject")
 
-        # If stop button is clicked
         self.ui.focus_stop_btn.clicked.connect(self.stop_focus_confirmation)
-
-        # If small focus window button is clicked
         self.ui.small_focus_window.clicked.connect(self.start_small_focus_window)
 
-        # Tooltips for focus buttons
+        # Tooltips
+        self.ui.newperiod_btn.setToolTip("create new period")
+        self.ui.editperiod_btn.setToolTip("edit period")
+        self.ui.delete_period_btn.setToolTip("delete period")
+        self.ui.newsubject_btn.setToolTip("create new subject")
+        self.ui.edit_subject_btn.setToolTip("edit subject")
+        self.ui.archive_subject_btn.setToolTip("archive subject")
+        self.ui.delete_subject_btn.setToolTip("delete subject")
         self.ui.focus_stop_btn.setToolTip("stop focus")
         self.ui.focus_pause_btn.setToolTip("pause focus")
         self.ui.focus_resume_btn.setToolTip("resume focus")
         self.ui.small_focus_window.setToolTip("small view")
 
-        # When change default daily focus button is clicked
+        # Menu actions
         self.ui.actiondaily_goal.triggered.connect(self.menubar.change_default_daily)
-
-        # When change default period button is clicked
         self.ui.actionfocus_period.triggered.connect(lambda:self.start_change_default_window("period"))
-
-        # When change default subject is clicked
         self.ui.actionfocus_subject.triggered.connect(lambda:self.start_change_default_window("subject"))
-
-        # When turn off notifications clicked
         self.ui.all_notifications_2.triggered.connect(self.menubar.all_notifications_clicked)
-
-        # When view archived button is clicked
         self.ui.actionview_archived_subjects.triggered.connect(self.menubar.archive_clicked)
-
-        # When tips and quotes button is clicked
         self.ui.actiontips_and_quotes.triggered.connect(self.menubar.tips_and_quotes_clicked)
-
-        # When show all statistics button is clicked
         self.ui.show_all.clicked.connect(self.start_statistics_window)
-
-        # When about button is clicked
         self.ui.actionabout.triggered.connect(self.start_about_window)
-
-        # When how to use button is clicked
         self.ui.actionhowtouse.triggered.connect(lambda: QDesktopServices.openUrl(QUrl("https://github.com/dop14/monkmode")))
 
-        # When theme is clicked
+        # Theme switching
         self.ui.monkmode_dark.triggered.connect(lambda: self.menubar.change_theme("monkmode_dark"))
         self.ui.monkmode_light.triggered.connect(lambda: self.menubar.change_theme("monkmode_light"))
         self.ui.focus_fire.triggered.connect(lambda: self.menubar.change_theme("focus_fire"))
         self.ui.zen_garden.triggered.connect(lambda: self.menubar.change_theme("zen_garden"))
         self.ui.deep_focus.triggered.connect(lambda: self.menubar.change_theme("deep_focus"))
         self.ui.dawn_ritual.triggered.connect(lambda: self.menubar.change_theme("dawn_ritual"))
-        
 
-    # If app is closed
     def closeEvent(self, event):
         # If no timer is active
         if self.is_timer_active == False:
@@ -232,37 +188,30 @@ class MainWindow(QMainWindow):
             self.edit_window.exec()
 
     def start_delete_window(self, setting_type):
-        # If the a period setting is being deleted
         if setting_type == "period":
-            # If the chosen element is the default one
             if self.ui.period_combobox.currentText() == self.default_period_name:
-                self.error_window = ConfirmationWindow(self,"The default focus setting cannot be deleted.",setting_type)
+                self.error_window = ConfirmationWindow(self,"The default focus setting cannot be deleted.", setting_type)
                 self.error_window.exec()
-            # Else if deletable
             else:
-                self.del_window = ConfirmationWindow(self,f"Do you really want to delete <b>{self.ui.period_combobox.currentText()}</b> focus period setting?<br>This action cannot be undone.",setting_type)
-                self.del_window.exec()
-        # Else if a subject setting is being deleted
-        elif setting_type == "subject":
-            # If the chosen element is the default one
-            if self.ui.subject_combobox.currentText() == self.default_subject_name:
-                self.error_window = ConfirmationWindow(self,"The default subject cannot be deleted.",setting_type)
-                self.error_window.exec()
-            # Else if deletable
-            else:
-                self.del_window = ConfirmationWindow(self,f"Do you really want to delete <b>{self.ui.subject_combobox.currentText()}</b> subject?<br>If you might use it later, use <b>archive</b> instead of <b>delete</b>.<br>This action cannot be undone.",setting_type)
+                self.del_window = ConfirmationWindow(self, f"Do you really want to delete <b>{self.ui.period_combobox.currentText()}</b> focus period setting?<br>This action cannot be undone.", setting_type)
                 self.del_window.exec()
 
-    def start_archive_window(self, setting_type):
+        elif setting_type == "subject":
+            if self.ui.subject_combobox.currentText() == self.default_subject_name:
+                self.error_window = ConfirmationWindow(self, "The default subject cannot be deleted.", setting_type)
+                self.error_window.exec()
+            else:
+                self.del_window = ConfirmationWindow(self, f"Do you really want to delete <b>{self.ui.subject_combobox.currentText()}</b> subject?<br>If you might use it later, use <b>archive</b> instead of <b>delete</b>.<br>This action cannot be undone.", setting_type)
+                self.del_window.exec()
+
+    def start_archive_window(self):
         if self.ui.subject_combobox.currentText() == self.default_subject_name:
-            self.error_window = ConfirmationWindow(self,"The default subject cannot be archived.","archive_subject")
+            self.error_window = ConfirmationWindow(self,"The default subject cannot be archived.", "archive_subject")
             self.error_window.exec()
-            # Else if deletable
         else:
-            self.del_window = ConfirmationWindow(self,f"Do you really want to archive <b>{self.ui.subject_combobox.currentText()}</b> subject?<br>You can unarchive it later.","archive_subject")
+            self.del_window = ConfirmationWindow(self, f"Do you really want to archive <b>{self.ui.subject_combobox.currentText()}</b> subject?<br>You can unarchive it later.", "archive_subject")
             self.del_window.exec()
 
-    # Change default subject or period window
     def start_change_default_window(self, setting_type):
         if setting_type == "period":
             self.change_def_window = ChangeDefault(self, "period")
@@ -283,35 +232,42 @@ class MainWindow(QMainWindow):
         self.about_window = AboutWindow()
         self.about_window.show()
 
-    # Starting timer
+    def check_latest_release(self):
+        try:
+            response = requests.get("https://api.github.com/repos/dop14/monkmode/releases/latest", timeout=5)
+            response.raise_for_status()
+            data = response.json()
+            latest_version = data["tag_name"]
+        
+            if latest_version != MainWindow.APP_VERSION:
+
+                self.notification = PopupNotification(f"monkmode {latest_version} is now available!<br><a href='https://github.com/dop14/monkmode/releases/latest'>Download update</a>",10000)
+                self.notification.show_notification()
+
+        except requests.exceptions.RequestException as e:
+            print("Version API failed:", e)
+
     def start_timer(self, period, subject, user_sessions):
-        # Timer is active
         self.is_timer_active = True
 
-        # Hide button
+        # Set UI
         self.ui.start_focus_btn.hide()
-
-        # Show buttons
         self.ui.timer_label.show()
         self.ui.focus_pause_btn.show()
         self.ui.focus_stop_btn.show()
         self.ui.small_focus_window.show()
-
-        # Disable things on mainwindow
         self.disable_and_enable_gui(True)
-
-        # Create FocusTimer
+        
+        # Create and start the timer
         self.focus_timer = FocusTimer(period, subject, user_sessions, self, self.small_window)
 
-        # If pause button clicked
+        # Connect buttons to actions
         self.ui.focus_pause_btn.clicked.connect(self.focus_timer.pause)
-
-        # If resume button is clicked
         self.ui.focus_resume_btn.clicked.connect(self.focus_timer.resume)
     
-    # Confirmation for stopping the focus
     def stop_focus_confirmation(self):
         self.focus_timer.stop()
+
         reply = QMessageBox.question(
             self,
             "stopping focus session",
@@ -321,12 +277,8 @@ class MainWindow(QMainWindow):
         )
 
         if reply == QMessageBox.Yes:
-            # Save the data
             self.focus_timer.save_focus_stopped_session()
-
-            # Reset small focus window
             self.small_window.default_values()
-            
             self.focus_ended()
 
         elif reply == QMessageBox.No:
@@ -349,49 +301,29 @@ class MainWindow(QMainWindow):
         self.ui.small_focus_window.hide()
 
     def focus_ended(self):
-        # Timer is inactive
         self.is_timer_active = False
 
-        # Update text on small focus window
+        # Set UI
         self.small_window.focus_over()
-
-        # Hide timer label, pause/resume and stop
         self.hide_buttons()
-
-        # Clear timer_label
         self.ui.timer_label.setText("")
-
-        # Show focus button
         self.ui.start_focus_btn.show()
-
         self.preferences = get_user_preferences()
         if self.preferences["tips_and_quotes"] == True:
             self.ui.quote_label.show()
-
-        # Enable focus button
         self.ui.start_focus_btn.setDisabled(False)
-
-        # Enable GUI
         self.disable_and_enable_gui(False)
 
-        # Update focus times
+        # Update focus values
         self.update_focus()
-
-        # Check if daily goal was achieved
         self.check_daily_goal()
-
-        # Update streak
         self.show_streak()
 
-    # Update the daily and weekly focus goal if the user changes the default values
     def update_daily_focus_goal(self):
         preferences = get_user_preferences()
-
         self.ui.daily_goal_label.setText(f"daily focus goal: <b>{preferences["default_daily_focus_goal"]} hours</b> ")
-
         self.update_progression_bar()
 
-    # Update the progression bars
     def update_progression_bar(self):
         preferences = get_user_preferences()
 
@@ -402,7 +334,6 @@ class MainWindow(QMainWindow):
         self.ui.daily_progression_bar.setValue(self.daily_progress)
     
     def update_daily_focus(self):
-         # Load today's focus
         today_focus = get_today_focus()
         today_focus_minutes = 0
         if today_focus == 0:
@@ -418,7 +349,7 @@ class MainWindow(QMainWindow):
             else:
                 self.ui.today_label.setText(f"today's focus: <b>{hours} hours {minutes} minutes</b>")
         
-    def update_weekly_monthly_focus(self):
+    def update_weekly_focus(self):
         current_week_focus = get_this_week_focus()
         if current_week_focus < 3600:
             current_week_focus_minutes = int(current_week_focus / 60)
@@ -435,7 +366,6 @@ class MainWindow(QMainWindow):
         current_streak = get_current_streak()
         self.ui.current_streak_label.setText(f"current streak: <b>{current_streak} days</b>")
 
-
     def check_longest_streak(self):
         current_streak = get_current_streak()
         user_stats = get_user_stats()
@@ -450,25 +380,16 @@ class MainWindow(QMainWindow):
                     }
             update_user_stats(new_stats)
 
-
     def check_daily_goal(self):
         if self.daily_progress == 100:
             save_daily_goal()
             self.check_longest_streak()
 
-            
-    # Update the daily, weekly, monthly focus if user finished a focus session
     def update_focus(self):
-        # update focus labels
         self.update_daily_focus()
-
-        # update weekly and monthly focus
-        self.update_weekly_monthly_focus()
-
-        # update progression bar
+        self.update_weekly_focus()
         self.update_progression_bar()
 
-    # Update period combobox values
     def update_period_combobox(self):
         # Load all period settings into combobox
         periods = get_period_names()

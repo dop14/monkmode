@@ -1,32 +1,62 @@
 from PySide6.QtWidgets import QDialog
+from PySide6.QtGui import QIcon
 from ui_py.add_and_edit_period import Ui_Form
 from database.db_manager import get_period_data, get_period_names, update_period_settings
-from PySide6.QtGui import QIcon
 from utils import get_resource_path
 
 class EditPeriodWindow(QDialog):
     def __init__(self, main_window):
         super().__init__()
+
+        # Setup UI
         self.ui = Ui_Form()
         self.ui.setupUi(self)
         self.setModal(True)
         self.setWindowTitle("monkmode")
         self.setWindowIcon(QIcon(get_resource_path("logo/monkmode.png")))
-
-        # Set title
         self.ui.main_label.setText("edit focus period")
 
-        # when save button is clicked call error handling
-        self.ui.save_btn.clicked.connect(lambda:self.error_handling(main_window))
+        self.main_window = main_window
 
-        # Checkbox logic
+        # Signals
+        self.ui.save_btn.clicked.connect(self.error_handling)
         self.ui.short_break_checkbox.stateChanged.connect(self.short_break_checkbox_changed)
         self.ui.long_break_checkbox.stateChanged.connect(self.long_break_checkbox_changed)
 
-        # Load period_data to input fields
-        self.load_inputs(main_window)
+        self.load_inputs()
 
-    # Set checkbox logic
+    def load_inputs(self):
+        self.old_period_data = get_period_data(self.main_window.ui.period_combobox.currentText())
+
+        # Set inputs
+        self.ui.focus_name_entry.setText(self.old_period_data["name"])
+        self.ui.focus_time_spinbox.setValue(self.old_period_data["focus_time"])
+        
+        # Short break checked
+        if self.old_period_data["short_break_enabled"]:
+            self.ui.short_break_checkbox.setChecked(True)
+            self.ui.short_break_spinbox.setDisabled(False)
+            self.ui.short_break_spinbox.setValue(self.old_period_data["short_break_time"])
+        # Short break unchecked
+        else:
+            self.ui.short_break_checkbox.setChecked(False)
+            self.ui.short_break_spinbox.setDisabled(True)
+            self.ui.short_break_minutes_label.setDisabled(True)
+        # Long break checked
+        if self.old_period_data["long_break_enabled"]:
+            self.ui.long_break_checkbox.setChecked(True)
+            self.ui.long_break_spinbox.setDisabled(False)
+            self.ui.long_break_spinbox.setValue(self.old_period_data["long_break_time"])
+            self.ui.long_break_after_spinbox.setValue(self.old_period_data["long_break_after"])
+        # Long break unchecked
+        else:
+            self.ui.long_break_checkbox.setChecked(False)
+            self.ui.long_break_spinbox.setDisabled(True)
+            self.ui.long_break_after_spinbox.setDisabled(True)
+            self.ui.long_break_after_label.setDisabled(True)
+            self.ui.focus_sessions_label.setDisabled(True)
+            self.ui.long_break_minutes_label.setDisabled(True)
+
     def short_break_checkbox_changed(self):
         if not self.ui.short_break_checkbox.isChecked():
             self.ui.short_break_spinbox.setDisabled(True)
@@ -49,39 +79,7 @@ class EditPeriodWindow(QDialog):
             self.ui.focus_sessions_label.setDisabled(False)
             self.ui.long_break_minutes_label.setDisabled(False)
 
-    def load_inputs(self,main_window):
-        # get period data
-        self.old_period_data = get_period_data(main_window.ui.period_combobox.currentText())
-
-        # set inputs
-        self.ui.focus_name_entry.setText(self.old_period_data["name"])
-        self.ui.focus_time_spinbox.setValue(self.old_period_data["focus_time"])
-        
-        # Short break checkbox logic
-        if self.old_period_data["short_break_enabled"]:
-            self.ui.short_break_checkbox.setChecked(True)
-            self.ui.short_break_spinbox.setDisabled(False)
-            self.ui.short_break_spinbox.setValue(self.old_period_data["short_break_time"])
-        else:
-            self.ui.short_break_checkbox.setChecked(False)
-            self.ui.short_break_spinbox.setDisabled(True)
-            self.ui.short_break_minutes_label.setDisabled(True)
-
-        # Long break checkbox logic
-        if self.old_period_data["long_break_enabled"]:
-            self.ui.long_break_checkbox.setChecked(True)
-            self.ui.long_break_spinbox.setDisabled(False)
-            self.ui.long_break_spinbox.setValue(self.old_period_data["long_break_time"])
-            self.ui.long_break_after_spinbox.setValue(self.old_period_data["long_break_after"])
-        else:
-            self.ui.long_break_checkbox.setChecked(False)
-            self.ui.long_break_spinbox.setDisabled(True)
-            self.ui.long_break_after_spinbox.setDisabled(True)
-            self.ui.long_break_after_label.setDisabled(True)
-            self.ui.focus_sessions_label.setDisabled(True)
-            self.ui.long_break_minutes_label.setDisabled(True)
-
-    def error_handling(self, main_window):
+    def error_handling(self):
         period_names = get_period_names()
 
         # Delete previous errors
@@ -89,24 +87,21 @@ class EditPeriodWindow(QDialog):
         self.ui.focus_name_entry.setToolTip("")
         self.ui.focus_name_entry.setPlaceholderText("")
 
-        # If name is empty:
+        # Empty string error
         if self.ui.focus_name_entry.text().strip() == "":
             self.ui.focus_name_entry.setStyleSheet("border: 1px solid red;")
             self.ui.focus_name_entry.setPlaceholderText("Required field!")
-        # Or if name is not unique
-        elif self.ui.focus_name_entry.text().strip() in period_names and self.ui.focus_name_entry.text().strip() != main_window.ui.period_combobox.currentText():
+        # String not unique error
+        elif self.ui.focus_name_entry.text().strip() in period_names and self.ui.focus_name_entry.text().strip() != self.main_window.ui.period_combobox.currentText():
             self.ui.focus_name_entry.setStyleSheet("border: 1px solid red;")
             self.ui.focus_name_entry.setText("")
             self.ui.focus_name_entry.setPlaceholderText("Field has to be unique")
             self.ui.focus_name_entry.setToolTip("Field has to be unique")
-        # Else no errors
         else:
-            self.save_inputs(main_window)
+            self.save_inputs()
 
-    # Save the inputs to a dict
-    def save_inputs(self, main_window):
-
-        # Handle checkbox logic
+    def save_inputs(self):
+        # Save short and long break data
         if not self.ui.short_break_checkbox.isChecked():
             self.short_break_time = 0
         else:
@@ -119,7 +114,7 @@ class EditPeriodWindow(QDialog):
             self.long_break_time = self.ui.long_break_spinbox.value()
             self.long_break_after = self.ui.long_break_after_spinbox.value()
 
-        # Collect inputs into dict
+        # Collect the inputs to a dictionary
         self.new_period_data = {
             "name": self.ui.focus_name_entry.text(),
             "focus_time": self.ui.focus_time_spinbox.value(),
@@ -130,38 +125,30 @@ class EditPeriodWindow(QDialog):
             "long_break_after": self.long_break_after
         }
 
+        # Checking if any changes were made to period settings
         changes = self.has_changes(self.old_period_data, self.new_period_data)
-        # If changes were made
         if changes:
-            # Update the period settings
             update_period_settings(self.new_period_data, self.old_period_data["id"])
-
-            # Refresh combobox
-            self.refresh_period_combobox(main_window)
-
-            # Close the window
+            self.refresh_period_combobox()
             self.close()
-
-        # If no changes were made
         else:
-            # Close the window
             self.close()
 
-    # Checking if any changes were made to period settings
+    # Checking the difference between two dictionaries
     def has_changes(self, old, new):
         for key in new:
             if old.get(key) != new.get(key):
                 return True
         return False
 
-    # Refresh the period combobox on main_window
-    def refresh_period_combobox(self, main_window):
+    # Refresh the period combobox on main window
+    def refresh_period_combobox(self):
         periods = get_period_names()
-        main_window.ui.period_combobox.clear()
-        main_window.ui.period_combobox.addItems(periods)
+        self.main_window.ui.period_combobox.clear()
+        self.main_window.ui.period_combobox.addItems(periods)
 
         # Set the last edited period as chosen
         last_edited_period = self.ui.focus_name_entry.text().strip()
-        period_index = main_window.ui.period_combobox.findText(last_edited_period)
+        period_index = self.main_window.ui.period_combobox.findText(last_edited_period)
         if period_index != -1:
-            main_window.ui.period_combobox.setCurrentIndex(period_index)
+            self.main_window.ui.period_combobox.setCurrentIndex(period_index)

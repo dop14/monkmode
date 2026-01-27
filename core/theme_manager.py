@@ -71,7 +71,6 @@ class ThemeManager:
     def get_theme_name(self):
         return self.theme_name
     
-    # Set the theme
     def set_theme(self, theme_name):
         if theme_name in self.themes:
             self.current_theme_name = theme_name
@@ -186,6 +185,12 @@ class ThemeManager:
                 color: {self.current_theme['text']};
                 padding: 2px;
             }}
+
+            #all_history_checkbox {{
+                background-color: {self.current_theme['background']};
+                color: {self.current_theme['text']};
+                padding: 2px;
+             }}
 
             QPushButton#start_focus_btn:hover {{
                 color: {self.current_theme['accent_text']};
@@ -302,7 +307,7 @@ class ThemeManager:
             QScrollBar::sub-page:vertical {{
                 background: {self.current_theme['card']};
                 border: none;
-            }}
+            }}  
         """
 
 

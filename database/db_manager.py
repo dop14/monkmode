@@ -3,6 +3,7 @@ import os
 from datetime import datetime, timedelta, date
 import calendar
 import requests
+import random
 from utils import get_resource_path, get_db_path
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))  
@@ -546,6 +547,55 @@ def get_most_productive_day():
 
     return most_prod_day
 
+# Get daily quote
+def get_today_quote():
+    conn = get_connection()
+    cursor = conn.cursor()
+
+    today = date.today().isoformat()
+    cursor.execute("SELECT text, author FROM quotes WHERE date = ?", (today,))
+    result = cursor.fetchone()
+    
+    # If there's a quote for today already
+    if result:
+        return result[0], result[1]
+    # If no quote for today, use the API
+    try:
+        response = requests.get("https://zenquotes.io/api/today", timeout=5)
+        response.raise_for_status()
+
+        data = response.json()[0]
+        text = data["q"]
+        author = data["a"]
+
+        cursor.execute("INSERT INTO quotes (text, author, date) VALUES (?,?,?)", (text, author, today))
+        return text, author
+    # If error occurs during request
+    except requests.exceptions.RequestException as e:
+        print("Quote API failed:", e)
+
+        # Check if there are rows in the db
+        cursor.execute("SELECT COUNT(*) from quotes")
+        result = cursor.fetchone()[0]
+
+        # If there are rows, choose a random quote from the db
+        if result > 0:
+            row_index = random.randint(0, result - 1)
+            cursor.execute("""
+                SELECT text, author
+                FROM quotes
+                LIMIT 1 OFFSET ?
+            """, (row_index,))
+
+            row = cursor.fetchone()
+            return row
+        # If no rows in db, return a hardcoded quote
+        else:
+            return "You become what you focus on.", "dop14"
+    finally:
+        conn.commit()
+        conn.close()
+
 # Calculates the session lenght with the current period setting
 def calculate_session_length(user_sessions, period_name):
     period_data = get_period_data(period_name)
@@ -820,31 +870,6 @@ def save_focus_session_db(data:dict):
     cursor.execute(query, data)
     conn.commit()
     conn.close()
-
-# Get daily quote
-def get_today_quote():
-    conn = get_connection()
-    cursor = conn.cursor()
-
-    today = date.today().isoformat()
-    cursor.execute("SELECT text, author FROM quotes WHERE date = ?", (today,))
-    result = cursor.fetchone()
-
-    if result:
-        return result[0], result[1]
-    
-    try:
-        response = requests.get("https://zenquotes.io/api/today")
-        if response.status_code == 200:
-            data = response.json()[0]
-            text = data["q"]
-            author = data["a"]
-
-            cursor.execute("INSERT INTO quotes (text, author, date) VALUES (?,?,?)", (text, author, today))
-            conn.commit()
-            return text, author
-    except:
-        return "You become what you focus on.", "dop14"
     
 # Check the streak_log for missing days
 def check_streak_log():
