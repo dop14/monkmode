@@ -135,6 +135,10 @@ class FocusTimer(QObject):
             self.small_window.ui.small_pause_btn.hide()
             self.small_window.ui.small_resume_btn.show()
 
+        self.main_window.pause_shortcut.setEnabled(False)
+        self.main_window.resume_shortcut.setEnabled(True)
+
+
     def resume(self):
         self.timer.start(1000)
         self.main_window.ui.focus_resume_btn.hide()
@@ -142,6 +146,9 @@ class FocusTimer(QObject):
 
         self.small_window.ui.small_resume_btn.hide()
         self.small_window.ui.small_pause_btn.show()
+
+        self.main_window.pause_shortcut.setEnabled(True)
+        self.main_window.resume_shortcut.setEnabled(False)
 
     def stop(self):
         if self.timer.isActive():
@@ -226,6 +233,8 @@ class FocusTimer(QObject):
             self.popup.show_notification()
 
     def focus_delay(self):
+        self.disable_shortcuts()
+
         self.main_window.is_delay_timer = True
         self.focus_delay_time = 5
 
@@ -262,7 +271,11 @@ class FocusTimer(QObject):
             self.small_window.delay_ends()
             self.start_focus_session()
 
+            self.enable_shortcuts()
+
     def break_delay(self):
+        self.disable_shortcuts()
+
         self.main_window.is_delay_timer = True
         self.break_delay_time = 5
 
@@ -299,6 +312,25 @@ class FocusTimer(QObject):
             self.small_window.delay_ends()
             self.start_break_session()
 
+            self.enable_shortcuts()
 
+    def disable_shortcuts(self):
+        self.main_window.pause_shortcut.setEnabled(False)
+        self.main_window.resume_shortcut.setEnabled(False)
+        self.main_window.stop_shortcut.setEnabled(False)
+        self.main_window.fullscreen_shortcut.setEnabled(False)
 
+        self.small_window.pause_shortcut.setEnabled(False)
+        self.small_window.resume_shortcut.setEnabled(False)
+        self.small_window.stop_shortcut.setEnabled(False)
+        self.small_window.fullscreen_shortcut.setEnabled(False)
+
+    def enable_shortcuts(self):
+        self.main_window.pause_shortcut.setEnabled(True)
+        self.main_window.stop_shortcut.setEnabled(True)
+        self.main_window.fullscreen_shortcut.setEnabled(True)
+
+        self.small_window.pause_shortcut.setEnabled(True)
+        self.small_window.stop_shortcut.setEnabled(True)
+        self.small_window.fullscreen_shortcut.setEnabled(True)
 

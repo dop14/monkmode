@@ -56,6 +56,6 @@ class FocusWindow(QDialog):
        period_data = get_period_data(self.current_period)
        subject_data = get_subject_data(self.current_subject)
        
-       self.main_window.start_timer(period_data, subject_data, self.ui.session_spinbox.value())
-
+       self.main_window.start_timer(period_data, subject_data, self.ui.session_spinbox.value())     
+         
        self.close()

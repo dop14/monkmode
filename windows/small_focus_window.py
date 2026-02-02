@@ -1,6 +1,6 @@
 from PySide6.QtWidgets import QDialog, QLabel
 from PySide6.QtCore import Qt
-from PySide6.QtGui import QIcon, QPixmap
+from PySide6.QtGui import QIcon, QPixmap, QShortcut, QKeySequence
 from ui_py.small_focus_window import Ui_Form
 from utils import get_resource_path
 
@@ -27,11 +27,28 @@ class SmallFocusWindow(QDialog):
         # Signals
         self.ui.time_label.mousePressEvent = self.toggle_timer_image
         self.image_label.mousePressEvent = self.toggle_timer_image
-        self.ui.back_to_main_btn.clicked.connect(self.closeEvent)
+        self.ui.back_to_main_btn.clicked.connect(self.back_to_fullscreen)
         self.ui.small_pause_btn.clicked.connect(self.pause_timer)
         self.ui.small_resume_btn.clicked.connect(self.resume_timer)
         self.ui.small_stop_btn.clicked.connect(self.stop_timer)
-    
+
+        # Shortcuts and their signals
+        self.pause_shortcut = QShortcut(QKeySequence("Ctrl+S"), self)
+        self.resume_shortcut = QShortcut(QKeySequence("Ctrl+S"), self)
+        self.stop_shortcut = QShortcut(QKeySequence("Ctrl+X"), self)
+        self.fullscreen_shortcut = QShortcut(QKeySequence("Ctrl+F"), self)
+        self.pause_shortcut.activated.connect(self.pause_timer)
+        self.resume_shortcut.activated.connect(self.resume_timer)
+        self.stop_shortcut.activated.connect(self.stop_timer)
+        self.fullscreen_shortcut.activated.connect(self.back_to_fullscreen)
+        self.resume_shortcut.setEnabled(False)
+
+        # Set tooltips
+        self.ui.small_pause_btn.setToolTip("Shortcut: Ctrl+S")
+        self.ui.small_resume_btn.setToolTip("Shortcut: Ctrl+S")
+        self.ui.small_stop_btn.setToolTip("Shortcut: Ctrl+X")
+        self.ui.back_to_main_btn.setToolTip("Shortcut: Ctrl+F")
+
     # Moves the window to the top right of the screen
     def top_right_position(self):
         screen_geometry = self.screen().availableGeometry()
@@ -44,13 +61,25 @@ class SmallFocusWindow(QDialog):
         self.close()
         self.main_window.showNormal()
 
+    def back_to_fullscreen(self):
+        self.close()
+        self.main_window.showNormal()
+
     def pause_timer(self):
         self.main_window.focus_timer.pause()
+
+        self.pause_shortcut.setEnabled(False)
+        self.resume_shortcut.setEnabled(True)
+
         self.ui.small_pause_btn.hide()
         self.ui.small_resume_btn.show()
     
     def resume_timer(self):
         self.main_window.focus_timer.resume()
+
+        self.pause_shortcut.setEnabled(True)
+        self.resume_shortcut.setEnabled(False)
+
         self.ui.small_pause_btn.show()
         self.ui.small_resume_btn.hide()
 

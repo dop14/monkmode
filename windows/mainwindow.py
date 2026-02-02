@@ -1,5 +1,5 @@
 from PySide6.QtWidgets import QMainWindow, QMessageBox
-from PySide6.QtGui import QDesktopServices
+from PySide6.QtGui import QDesktopServices, QShortcut, QKeySequence
 from PySide6.QtCore import QUrl, Qt, QTimer
 from ui_py.mainwindow import Ui_MainWindow
 from windows.focus_window import FocusWindow
@@ -23,7 +23,7 @@ import requests
 import shutil, os
 
 class MainWindow(QMainWindow):
-    APP_VERSION = "v1.2.1"
+    APP_VERSION = "v1.2.2"
 
     def __init__(self):
         super().__init__()
@@ -91,6 +91,7 @@ class MainWindow(QMainWindow):
         self.ui.small_focus_window.clicked.connect(self.start_small_focus_window)
 
         # Tooltips
+        self.ui.start_focus_btn.setToolTip("Shortcut: Ctrl+Q")
         self.ui.newperiod_btn.setToolTip("create new period")
         self.ui.editperiod_btn.setToolTip("edit period")
         self.ui.delete_period_btn.setToolTip("delete period")
@@ -98,10 +99,10 @@ class MainWindow(QMainWindow):
         self.ui.edit_subject_btn.setToolTip("edit subject")
         self.ui.archive_subject_btn.setToolTip("archive subject")
         self.ui.delete_subject_btn.setToolTip("delete subject")
-        self.ui.focus_stop_btn.setToolTip("stop focus")
-        self.ui.focus_pause_btn.setToolTip("pause focus")
-        self.ui.focus_resume_btn.setToolTip("resume focus")
-        self.ui.small_focus_window.setToolTip("small view")
+        self.ui.focus_stop_btn.setToolTip("Shortcut: Ctrl+X")
+        self.ui.focus_pause_btn.setToolTip("Shortcut: Ctrl+S")
+        self.ui.focus_resume_btn.setToolTip("Shortcut: Ctrl+S")
+        self.ui.small_focus_window.setToolTip("Shortcut: Ctrl+F")
 
         # Menu actions
         self.ui.actiondaily_goal.triggered.connect(self.menubar.change_default_daily)
@@ -122,6 +123,20 @@ class MainWindow(QMainWindow):
         self.ui.deep_focus.triggered.connect(lambda: self.menubar.change_theme("deep_focus"))
         self.ui.dawn_ritual.triggered.connect(lambda: self.menubar.change_theme("dawn_ritual"))
 
+        # Create shortcuts
+        self.start_shortcut = QShortcut(QKeySequence("Ctrl+Q"), self)
+        self.stop_shortcut = QShortcut(QKeySequence("Ctrl+X"), self)
+        self.fullscreen_shortcut = QShortcut(QKeySequence("Ctrl+F"), self)
+        self.pause_shortcut = QShortcut(QKeySequence("Ctrl+S"), self)
+        self.resume_shortcut = QShortcut(QKeySequence("Ctrl+S"), self)
+        self.start_shortcut.activated.connect(self.start_focus_window)
+        self.stop_shortcut.activated.connect(self.stop_focus_confirmation)
+        self.fullscreen_shortcut.activated.connect(self.start_small_focus_window)
+        self.stop_shortcut.setEnabled(False)
+        self.fullscreen_shortcut.setEnabled(False)
+        self.pause_shortcut.setEnabled(False)
+        self.resume_shortcut.setEnabled(False)
+    
     def closeEvent(self, event):
         # If no timer is active
         if self.is_timer_active == False:
@@ -249,6 +264,7 @@ class MainWindow(QMainWindow):
 
     def start_timer(self, period, subject, user_sessions):
         self.is_timer_active = True
+        self.start_shortcut.setEnabled(False)
 
         # Set UI
         self.ui.start_focus_btn.hide()
@@ -264,6 +280,18 @@ class MainWindow(QMainWindow):
         # Connect buttons to actions
         self.ui.focus_pause_btn.clicked.connect(self.focus_timer.pause)
         self.ui.focus_resume_btn.clicked.connect(self.focus_timer.resume)
+
+        # Connect focus shortcuts that need focus_timer
+        self.pause_shortcut.activated.connect(self.focus_timer.pause)
+        self.resume_shortcut.activated.connect(self.focus_timer.resume)
+
+        # Enable shortcuts after 5 seconds
+        QTimer.singleShot(5000, self.enable_shortcuts)
+
+    def enable_shortcuts(self):
+        self.stop_shortcut.setEnabled(True)
+        self.fullscreen_shortcut.setEnabled(True)
+        self.pause_shortcut.setEnabled(True)
     
     def stop_focus_confirmation(self):
         self.focus_timer.stop()
@@ -275,7 +303,7 @@ class MainWindow(QMainWindow):
             QMessageBox.Yes | QMessageBox.No,
             QMessageBox.No
         )
-
+        
         if reply == QMessageBox.Yes:
             self.focus_timer.save_focus_stopped_session()
             self.small_window.default_values()
@@ -302,6 +330,13 @@ class MainWindow(QMainWindow):
 
     def focus_ended(self):
         self.is_timer_active = False
+
+        # Disable in-focus shortcuts
+        self.start_shortcut.setEnabled(True)
+        self.pause_shortcut.setEnabled(False)
+        self.resume_shortcut.setEnabled(False)
+        self.stop_shortcut.setEnabled(False)
+        self.fullscreen_shortcut.setEnabled(False)
 
         # Set UI
         self.small_window.focus_over()
