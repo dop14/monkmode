@@ -28,7 +28,7 @@ This happens because the executable isn't code-signed. The app is safe to use - 
 #### Option 1: Run from source
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/monkmode.git
+git clone https://github.com/dop14/monkmode.git
 cd monkmode
 
 # Install dependencies
@@ -62,7 +62,7 @@ main.py
 #### Option 1: Run from source
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/monkmode.git
+git clone https://github.com/dop14/monkmode.git
 cd monkmode
 
 # Install dependencies
