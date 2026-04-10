@@ -15,14 +15,13 @@
 #### Windows Security Notice
 Windows Defender may show a warning when downloading or running the executable. This is normal for unsigned applications.
 
-### Linux/macOS
-#### Run from source
+### Linux
 ```bash
 # Clone the repository
 git clone https://github.com/dop14/monkmode.git
 cd monkmode
 
-# Linux: pip requires a virtual environment on most modern distros
+# pip requires a virtual environment on most modern distros
 python3 -m venv venv
 source venv/bin/activate
 
@@ -30,12 +29,22 @@ source venv/bin/activate
 pip install -r requirements.txt
 
 # Run the application
+python3 main.py
+```
+### macOS
+<p>Install Python, then</p>
+
+```bash
+# Clone the repository
+git clone https://github.com/dop14/monkmode.git
+cd monkmode
+
+# Install dependencies
+pip install -r requirements.txt
+
+# Run the application
 python main.py
 ```
-
-### Requirements
-- **Windows**: No requirements - executable includes everything
-- **Linux/macOS**: Python 3.8+ and dependencies listed in `requirements.txt`
 
 <h2>Syncing</h2>
 <p>monkmode stores all data locally on your device. There are no plans for a built-in cloud syncing feature.</p>
