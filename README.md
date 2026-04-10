@@ -7,7 +7,7 @@
 
 ## Download and Installation
 
-### Windows (Recommended)
+### Windows
 1. Go to [Releases](https://github.com/dop14/monkmode/releases)
 2. Download the latest `monkmode.exe`
 3. Double-click to run - no installation required!
