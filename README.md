@@ -25,7 +25,7 @@ Windows Defender may show a warning when downloading or running the executable. 
 This happens because the executable isn't code-signed. The app is safe to use - you can verify by checking the source code in this repository.
 
 ### Linux
-#### Option 1: Run from source
+#### Run from source
 ```bash
 # Clone the repository
 git clone https://github.com/dop14/monkmode.git
@@ -36,26 +36,6 @@ pip install -r requirements.txt
 
 # Run the application
 python main.py
-```
-
-#### Option 2: Build your own executable
-```bash
-# Follow steps above, then:
-pip install pyinstaller
-
-# Linux build command
-pyinstaller --onefile --windowed \
---name monkmode \
---icon=logo/monkmode.png \
---add-data "database/schema.sql:database" \
---add-data "logo/monkmode.png:logo" \
---add-data "logo/monk.png:logo" \
---add-data "monkmode_sounds/break_start.wav:monkmode_sounds" \
---add-data "monkmode_sounds/focus_start.wav:monkmode_sounds" \
-main.py
-
-# Find executable in dist/ folder
-
 ```
 
 ### macOS
@@ -70,25 +50,6 @@ pip install -r requirements.txt
 
 # Run the application
 python main.py
-```
-
-#### Option 2: Build your own executable
-```bash
-# Follow steps above, then:
-pip install pyinstaller
-
-# macOS build command
-pyinstaller --onefile --windowed \
---name monkmode \
---icon=logo/monkmode.png \
---add-data "database/schema.sql:database" \
---add-data "logo/monkmode.png:logo" \
---add-data "logo/monk.png:logo" \
---add-data "monkmode_sounds/break_start.wav:monkmode_sounds" \
---add-data "monkmode_sounds/focus_start.wav:monkmode_sounds" \
-main.py
-
-# Find executable in dist/ folder
 ```
 
 ### Requirements
