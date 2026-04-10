@@ -22,6 +22,10 @@ Windows Defender may show a warning when downloading or running the executable. 
 git clone https://github.com/dop14/monkmode.git
 cd monkmode
 
+# Linux: pip requires a virtual environment on most modern distros
+python3 -m venv venv
+source venv/bin/activate
+
 # Install dependencies
 pip install -r requirements.txt
 
