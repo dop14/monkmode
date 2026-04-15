@@ -49,7 +49,7 @@ python main.py
 <h2>Syncing</h2>
 <p>monkmode stores all data locally on your device. There are no plans for a built-in cloud syncing feature.</p>
 
-<p>Advanced users can sync their data with third-party cloud services (like OneDrive or iCloud) using junctions / symbolic links.</p>
+<p>Advanced users can sync their data with third-party cloud services using junctions / symbolic links.</p>
 
 
    
